@@ -2,91 +2,172 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
-import CTA from '../components/CTA.astro';
+
+const faqs = [
+  { q: 'How early should we book our wedding DJ?', a: ['We recommend booking your wedding DJ at least 9 to 18 months in advance—especially if your wedding falls during peak season (Spring or Fall in South Florida). Xpress Entertainment DJs often book up quickly because we only take on a limited number of weddings each weekend to ensure each event gets the attention it deserves. Booking early gives you the best chance to secure your preferred DJ and allows more time for personalized planning using our exclusive app, Vibo DJ.'] },
+  { q: "What's included in your standard DJ package (music, lighting, MC services)?", a: ['Our most popular package is the Express Package, which includes:'], list: ['A professional DJ/MC for up to 6 hours', 'Full sound system for the ceremony, cocktail hour, and reception', 'Wireless microphone for the officiant and toasts', 'MC services for all major moments (introductions, first dance, speeches, etc.)'], after: 'We also offer upgraded packages like the Xperience and Xperience Plus, which include enhancements like lighting, photo booths, Dancing on the Clouds, and Cold Spark machines. Every couple gets access to our planning app where they can create playlists, schedule key moments, and collaborate with their DJ.' },
+  { q: "Can we provide a 'must-play' and 'do-not-play' list?", a: ['Absolutely! One of our core values at Xpress Entertainment is personalization. Through our Vibo DJ planning app, you’ll be able to add your must-play songs, do-not-play list, and vibe preferences for each part of your wedding. You can even involve your guests in the process with our song request feature. This helps us curate a soundtrack that reflects your personality and keeps the dance floor packed.'] },
+  { q: 'Will the DJ serve as an emcee (MC) for announcements and the schedule?', a: ['Yes! All of our DJs are trained and experienced in acting as your Master of Ceremonies. From your grand entrance to the cake cutting and last dance, we’ll make sure every announcement is delivered professionally and with energy. We work closely with your planner, coordinator, or venue team to keep everything running on time—so you can focus on enjoying the night.'] },
+  { q: "Do you carry backup equipment and what's the contingency plan?", a: ['100%! We take reliability seriously. All of our DJs bring backup gear—including microphones, speakers, and laptops—so your event never misses a beat. We also have a roster of professional DJs ready to step in if an emergency were to ever arise. In 8+ years of doing weddings, we’ve never missed a single one, and we plan to keep it that way.'] },
+  { q: 'How long do you need for setup, soundcheck, and teardown?', a: ['We typically arrive 1.5 to 2 hours before the scheduled start time to allow plenty of time for setup, soundcheck, and coordination with your venue and vendors. Teardown is always done quietly and professionally after your event ends and is included in all of our packages—no surprise fees.'] },
+  { q: "Are you insured and what's your cancellation/refund policy?", a: ['Yes, Xpress Entertainment is fully insured and can provide a Certificate of Insurance (COI) to your venue upon request. As for cancellations, we require a signed agreement and a non-refundable deposit to secure your date. If your plans change, we’re happy to work with you to reschedule or transfer your package to a new date based on availability.'] },
+  { q: 'How much experience do your DJs have with weddings and local venues?', a: ['Our DJs collectively perform at over 100 weddings per year and have worked at nearly every major venue in South Florida—from upscale ballrooms in Miami and Fort Lauderdale to beachside resorts in the Keys and Palm Beach. We know how to read diverse crowds, manage multicultural playlists, and handle logistics with ease. Plus, our bilingual DJs are a huge hit at Latin, Caribbean, and blended weddings.'] },
+  { q: 'Do you take song requests from guests during the event?', a: ['Yes—but only if you want us to. Some couples love when guests make requests, while others prefer to stick to a curated vibe. We follow your lead and use our judgment to keep the energy right. Through our app, you can allow or restrict guest requests in advance, and we’ll filter them live to make sure nothing sneaks in from your do-not-play list.'] },
+  { q: 'What lighting and speaker upgrades do you offer?', a: ['Xpress Entertainment offers a variety of epic add-ons to elevate your wedding atmosphere, including:'], list: ['Wireless uplighting to transform your reception space', 'Dance floor lighting for that club-style experience', 'Monogram projection with your names or logo', 'Cold Spark machines (indoor fireworks!)', 'Dancing on the Clouds effect', 'Photo booths'], after: "We’ll guide you through which enhancements will best match your venue, vision, and budget." },
+];
 ---
-<Base title="Xpress Entertainment | Miami & South Florida Wedding DJs" description="Award-winning, bilingual wedding DJs & entertainment in Miami, Fort Lauderdale & Palm Beach. DJs, MCs, photo booths, cold sparks & more. 150+ weddings a year.">
+<Base title="Xpress Entertainment | The Ultimate Wedding Experience — South Florida Wedding DJs" description="With over 150 weddings a year across South Florida, Xpress Entertainment is the go-to choice for couples seeking a top-tier, award-winning Wedding DJ. WeddingWire Best of Weddings.">
 
   <Hero
     size="full"
     eyebrow="Miami · Fort Lauderdale · Palm Beach"
-    titleHtml={`Weddings people<br>don't stop<br><span class="serif-accent" style="font-style:italic">talking about.</span>`}
-    sub="From the first note of your ceremony to the last song of the night, we bring the DJs, MCs, photo booths, and production that turn a beautiful wedding into an unforgettable one — handled by one award-winning team."
+    titleHtml={`The <span class="serif-accent" style="font-style:italic">Ultimate</span><br>Wedding Experience`}
     image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
-    alt="Packed wedding dance floor in South Florida"
-    ctaText="Check Your Date"
-    ctaText2="Explore the Experience"
-    ctaHref2="/the-experience"
+    alt="The Ultimate Wedding Experience"
+    ctaText="View Prices & Packages"
+    ctaHref="/pricing"
+    ctaText2="Check Out Reviews"
+    ctaHref2="#reviews"
   />
 
-  <Marquee items={["Wedding DJs","Master of Ceremonies","Photo Booths","Cold Sparks","Dancing on the Clouds","Content Creation"]} />
+  <Marquee items={["Wedding DJs","Master of Ceremonies","Photo Booths","Cold Sparks","Dancing on the Clouds","Uplighting"]} />
 
-  <!-- INTRO + STATS -->
+  <!-- WHY CHOOSE -->
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Why it matters</span>
-        <h2 class="h-xl">We don't just play music.<br>We create <span class="serif-accent" style="font-style:italic">moments.</span></h2>
-        <p class="lead">Anyone can show up with speakers and a playlist. What your guests remember is how the night <em>moved</em> — the timing, the energy, and the person behind the booth who knows exactly when to build a moment and when to let it breathe.</p>
+        <span class="eyebrow">Why choose us</span>
+        <h2 class="h-xl">Why Choose Xpress Entertainment?</h2>
+        <p class="lead">With over 150 weddings celebrated each year across South Florida, Xpress Entertainment stands as the go-to choice for couples seeking a top-tier Wedding DJ. We take pride in our award-winning service, having earned WeddingWire's Best of Weddings award two years in a row. The decor will be stunning, the catering delicious, and together we'll set the dance floor on fire! Our experienced DJs know how to read the crowd, keeping the energy high and the dance floor packed all night long.</p>
       </div>
-      <div class="stats">
-        <div class="stat reveal"><div class="num" data-count="150" data-suffix="+">0</div><div class="label">Weddings every single year across South Florida</div></div>
-        <div class="stat reveal d1"><div class="num" data-count="8" data-suffix="+">0</div><div class="label">Years and never once missed an event</div></div>
-        <div class="stat reveal d2"><div class="num" data-count="35000" data-suffix="+">0</div><div class="label">Guests kept on the dance floor</div></div>
-        <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="label">Languages spoken behind the mic</div></div>
+      <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat reveal"><div class="num" data-count="150" data-suffix="+">0</div><div class="label">Weddings per year</div></div>
+        <div class="stat reveal d1"><div class="num" data-count="3000" data-suffix="+">0</div><div class="label">Dancing Humans</div></div>
+        <div class="stat reveal d2"><div class="num" data-count="100" data-suffix="+">0</div><div class="label">Positive reviews</div></div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES PREVIEW -->
+  <!-- WHAT MAKES US DIFFERENT -->
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="sec-head center reveal">
-        <span class="eyebrow light">What we do</span>
-        <h2 class="h-xl">An experience, end to end.</h2>
-      </div>
-      <div class="cards">
-        <a class="card reveal" href="/services/djs">
-          <img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="Wedding DJ in action" />
-          <span class="tag">The Sound</span>
-          <div class="card-body"><h3>DJs & MCs</h3><p>Bilingual, open-format DJs who read the floor and host every toast, intro, and transition.</p></div>
-        </a>
-        <a class="card reveal d1" href="/south-florida-photo-booth-rental">
-          <img src="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png" alt="Guests enjoying a photo booth" />
-          <span class="tag">The Keepsake</span>
-          <div class="card-body"><h3>Photo Booths</h3><p>Lux & 360 booths with instant prints, shareable video, and an on-site attendant.</p></div>
-        </a>
-        <a class="card reveal d2" href="/epic-extras-1">
-          <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks and dancing on the clouds" />
-          <span class="tag">The Wow</span>
-          <div class="card-body"><h3>Epic Extras</h3><p>Cold sparks, dancing on the clouds, CO2 & confetti — cinematic moments your guests film.</p></div>
-        </a>
-      </div>
-      <div style="text-align:center; margin-top:50px;" class="reveal">
-        <a href="/services" class="btn"><span>See All Services</span> <span class="arrow">↗</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SHOWCASE -->
-  <section class="showcase">
-    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Elegant South Florida wedding reception" />
-    <div class="wrap"><blockquote class="reveal">The night everyone remembers.</blockquote></div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="pad bg-light" id="why">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Why couples choose us</span>
-        <h2 class="h-xl">Trusted with the biggest night of their lives.</h2>
+        <span class="eyebrow light">What makes us different</span>
+        <h2 class="h-xl">✨ What Makes Xpress Entertainment Different ✨</h2>
+        <p class="lead" style="margin-inline:auto;">Your wedding entertainment should feel just as unforgettable as your love story. Here's how we make it happen.</p>
       </div>
       <div class="values">
-        <div class="value reveal"><div class="vnum">01</div><h3>Bilingual & Multicultural</h3><p>English, Spanish, and the cultural range to keep every generation — and both sides of the family — on the dance floor.</p></div>
-        <div class="value reveal d1"><div class="vnum">02</div><h3>One Team, Every Detail</h3><p>DJ, MC, photo booth, lighting, and effects under one roof. One timeline, one point of contact, zero stress.</p></div>
-        <div class="value reveal d2"><div class="vnum">03</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings winner with hundreds of five-star reviews across South Florida.</p></div>
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>💍 Starts With Your <span class="serif-accent" style="font-style:italic">Love Story</span></h3>
+          <p style="color:#d9d0ec;">As your trusted South Florida wedding DJ, we take the time to get to know you — your music style, your energy, and your love story. Whether you're planning a luxury wedding, a backyard celebration, or a multicultural event, we design a personalized wedding experience that reflects who you are as a couple from the very first song to the last dance.</p>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>🤝 Built on <span class="serif-accent" style="font-style:italic">Trust & Intention</span></h3>
+          <p style="color:#d9d0ec;">With 100s of weddings under our belt, we know how to make your day run smoothly and stress-free. But we never treat any event like "just another wedding." From custom timelines to flawless announcements, our DJs bring professionalism, passion, and a genuine love for what we do. Many of our DJs are bilingual, helping us connect with diverse families and keep everyone on the dance floor.</p>
+        </div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>💫 Designed to Be <span class="serif-accent" style="font-style:italic">Unforgettable</span></h3>
+          <p style="color:#d9d0ec;">We don't just provide music — we create unforgettable wedding entertainment. Whether it's with cold sparks, uplighting, dancing on the clouds, or just the perfect remix at the right time, we're here to create moments that people will talk about long after the bouquet toss. If you're looking for a wedding DJ in South Florida who brings the party and the polish — you've found your team.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:50px;" class="reveal">
+        <a href="/services" class="btn"><span>View Our Services</span> <span class="arrow">↗</span></a>
       </div>
     </div>
   </section>
 
-  <CTA />
+  <!-- VIBE -->
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="South Florida wedding celebration" />
+    <div class="wrap" style="max-width:900px;">
+      <blockquote class="reveal" style="max-width:none;">We set the vibe — you bring it to life. ✨</blockquote>
+      <p class="lead reveal d1" style="color:#e9e2f5; margin:24px auto 30px; text-align:center;">At Xpress, we don't just show up and press play. We create a vibe, keep your people dancing, and make sure every single moment feels like you. From the first song to the final send-off, we've got you. Whether you're planning a beachside wedding in Miami or a chic indoor celebration in Boca, we'll make sure your day is seamless, joyful, and totally unforgettable.</p>
+      <div class="reveal d2" style="text-align:center;"><a href="/check-availability" class="btn"><span>Check Availability</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS CALLOUT -->
+  <section class="pad bg-ink" id="reviews">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Real people, real parties</span>
+        <h2 class="h-lg">Don't just take it from us …</h2>
+        <p class="lead" style="margin-inline:auto;">Real People, Real Parties, No Lies. Check out these video recaps from other amazing party people that had an amazing time with our Team.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px;">
+          <a href="https://www.zola.com/wedding-vendors/wedding-bands-djs/xpress-djs--2" target="_blank" rel="noopener" class="btn"><span>View More Reviews</span> <span class="arrow">↗</span></a>
+          <a href="/check-availability" class="btn ghost"><span>Check Availability</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBO -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Vibo DJ planning" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">Planning made easy</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">🎵 Curate Your Soundtrack with Vibo DJ</h2>
+          <p class="lead">We make planning easy — and actually fun — with the Vibo DJ app, your personal hub for everything music.</p>
+          <ul style="list-style:none; margin:24px 0; display:flex; flex-direction:column; gap:14px;">
+            <li class="lead" style="margin:0;">✨ Build your playlist — add songs, share with guests, and mark your must-plays</li>
+            <li class="lead" style="margin:0;">💌 Stay in sync — chat with your DJ, send updates, and feel confident</li>
+            <li class="lead" style="margin:0;">🎶 Organize your day — from the ceremony to the last dance, every song in its place</li>
+          </ul>
+          <a href="/vibo" class="btn"><span>Start Building Your Playlist</span> <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">Frequently Asked Questions</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map((f, i) => (
+          <details class={`faq reveal ${i % 2 ? 'd1' : ''}`}>
+            <summary>{f.q}</summary>
+            <div class="faq-a">
+              {f.a.map((p) => <p>{p}</p>)}
+              {f.list && <ul>{f.list.map((li) => <li>{li}</li>)}</ul>}
+              {f.after && <p>{f.after}</p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 REASONS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Why couples trust us</span><h2 class="h-xl">💍 5 Reasons Why Couples Trust Xpress Entertainment</h2></div>
+      <div style="max-width:880px; display:flex; flex-direction:column; gap:4px;">
+        <div class="reason reveal"><span class="rn">1</span><p><strong>Miami wedding vibes? We've got you.</strong> We know how to bring the party to South Florida weddings — from Brickell rooftops to beachside receptions.</p></div>
+        <div class="reason reveal"><span class="rn">2</span><p><strong>Full wedding entertainment, start to finish.</strong> From ceremony mics to cocktail hour playlists and epic dance floors, we handle it all.</p></div>
+        <div class="reason reveal"><span class="rn">3</span><p><strong>We're pros at wedding receptions.</strong> Our DJs know how to read the room, hype up your guests, and keep the energy flowing all night.</p></div>
+        <div class="reason reveal"><span class="rn">4</span><p><strong>Bilingual DJs & MCs = happy guests.</strong> English or Spanish, we make sure <em>everyone</em> feels included and connected.</p></div>
+        <div class="reason reveal"><span class="rn">5</span><p><strong>One team, one mission: your best night ever.</strong> With top-tier DJ and MC services for weddings, we make your love story sound amazing — literally.</p></div>
+      </div>
+      <div style="margin-top:46px;" class="reveal"><a href="/check-availability" class="btn"><span>Check Availability</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+
+  <style>
+    .faq { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 6px 0; }
+    .faq summary { cursor: pointer; list-style: none; font-family: var(--serif); font-size: 1.35rem; color: var(--purple); padding: 22px 40px 22px 0; position: relative; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 1.8rem; color: var(--red); transition: transform 0.3s var(--ease); }
+    .faq[open] summary::after { transform: rotate(45deg); }
+    .faq-a { padding: 0 0 24px; }
+    .faq-a p { color: #5a4f6e; margin-bottom: 14px; line-height: 1.8; }
+    .faq-a ul { color: #5a4f6e; margin: 0 0 14px 22px; }
+    .faq-a li { margin-bottom: 8px; line-height: 1.7; }
+    .reason { display: flex; gap: 22px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .reason .rn { font-family: var(--serif); font-size: 2rem; color: var(--red); line-height: 1; min-width: 40px; }
+    .reason p { color: var(--muted); line-height: 1.8; }
+    .reason strong { color: #fff; }
+  </style>
 </Base>
