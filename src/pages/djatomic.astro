@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
+import SocialFollow from '../components/SocialFollow.astro';
+
+const socials = [
+  { platform: 'instagram', url: 'https://instagram.com/djatomicentertainment', handle: '@djatomicentertainment' },
+];
 
 const why = [
   ['🎤 Charismatic MC & crowd motivator', 'Brings the energy and keeps your guests engaged from the first announcement to the last song.'],
@@ -66,6 +71,8 @@ const why = [
       <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With Atomic behind the booth, you’re not just booking a DJ—you’re bringing heart, energy, and unforgettable memories to your wedding day.</p>
     </div>
   </section>
+
+  <SocialFollow name="DJ Atomic" links={socials} />
 
   <CTA eyebrow="Book DJ Atomic" titleHtml={`An unforgettable<br>experience.`} />
 </Base>

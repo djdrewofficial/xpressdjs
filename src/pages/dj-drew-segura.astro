@@ -3,6 +3,19 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
+import SocialFollow from '../components/SocialFollow.astro';
+
+const socials = [
+  { platform: 'instagram',  url: 'https://instagram.com/djdrewofficial',   handle: '@djdrewofficial' },
+  { platform: 'mixcloud',   url: 'https://mixcloud.com/djdrewofficial',    handle: 'djdrewofficial' },
+  { platform: 'soundcloud', url: 'https://soundcloud.com/djdrewofficial',  handle: 'djdrewofficial' },
+  { platform: 'youtube',    url: 'https://youtube.com/@djdrewofficial',    handle: '@djdrewofficial' },
+  { platform: 'tiktok',     url: 'https://tiktok.com/@djdrewofficiall',    handle: '@djdrewofficiall' },
+];
+const igPosts = [
+  'https://www.instagram.com/reel/DUw7-a3jepU/',
+  'https://www.instagram.com/reel/DT8j0FBERzN/',
+];
 
 const why = [
   ['🎤 Charismatic MC & crowd motivator', 'Drew brings the energy, reads the crowd, and makes every announcement feel personal—keeping your guests involved from “I do” to last dance.'],
@@ -68,6 +81,8 @@ const why = [
       <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With DJ Drew behind the booth, you’re not just hiring someone to play music — you’re booking a partner who truly cares about making your wedding unforgettable.</p>
     </div>
   </section>
+
+  <SocialFollow name="DJ Drew" links={socials} igPosts={igPosts} />
 
   <CTA eyebrow="Book DJ Drew Segura" titleHtml={`Make it<br>unforgettable.`} />
 </Base>
