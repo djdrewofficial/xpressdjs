@@ -9,18 +9,21 @@
   Props:
     provider  'youtube' | 'vimeo'   (default youtube)
     id        the video id, e.g. 'IfiDx2t5OZI'
-    thumb     poster image url
+    thumb     poster image url (optional — auto-derived from YouTube if absent)
     label     overlay/aria label text
     eyebrow   small kicker shown above the label
     ratio     CSS aspect-ratio (default '16/9')
+    compact   hide the text caption (for gallery grids); aria-label still set
+    class     extra classes (e.g. reveal delay 'd1')
 */
 interface Props {
   provider?: 'youtube' | 'vimeo';
   id: string;
-  thumb: string;
+  thumb?: string;
   label?: string;
   eyebrow?: string;
   ratio?: string;
+  compact?: boolean;
   class?: string;
 }
 const {
@@ -30,27 +33,41 @@ const {
   label = 'Watch the experience',
   eyebrow,
   ratio = '16/9',
+  compact = false,
   class: cls = '',
 } = Astro.props;
 
 const src = provider === 'vimeo'
   ? `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`
   : `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+
+// Auto-derive a YouTube poster when none supplied; main.js falls back to
+// hqdefault if the high-res maxres image 404s.
+const poster = thumb
+  ? thumb
+  : provider === 'youtube'
+    ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
+    : '';
+const fallback = !thumb && provider === 'youtube'
+  ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+  : '';
 ---
 <button
   type="button"
-  class={`video-facade reveal ${cls}`}
+  class={`video-facade reveal ${compact ? 'is-compact' : ''} ${cls}`.trim()}
   data-video-src={src}
   aria-label={label}
   style={`aspect-ratio:${ratio}`}
 >
-  <img src={thumb} alt={label} loading="lazy" decoding="async" />
+  <img src={poster} alt={label} loading="lazy" decoding="async" data-fallback={fallback} />
   <span class="video-shade" aria-hidden="true"></span>
   <span class="video-play" aria-hidden="true">
     <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
   </span>
-  <span class="video-cap" aria-hidden="true">
-    {eyebrow && <span class="video-eyebrow">{eyebrow}</span>}
-    <span class="video-label">{label}</span>
-  </span>
+  {!compact && (
+    <span class="video-cap" aria-hidden="true">
+      {eyebrow && <span class="video-eyebrow">{eyebrow}</span>}
+      <span class="video-label">{label}</span>
+    </span>
+  )}
 </button>

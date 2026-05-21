@@ -378,6 +378,13 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); p
 .video-label { font-family: var(--serif); font-size: clamp(1.1rem, 2.2vw, 1.6rem); line-height: 1.15; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .video-play::after { animation: none; } }
 
+/* Gallery of facades */
+.video-grid { display: grid; gap: 20px; grid-template-columns: repeat(2, 1fr); margin-top: 8px; }
+.video-grid .video-facade { border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.video-facade.is-compact .video-play { width: 72px; height: 72px; }
+.video-facade.is-compact .video-play svg { width: 26px; height: 26px; }
+@media (max-width: 720px) { .video-grid { grid-template-columns: 1fr; } }
+
 /* ---- Lightbox modal (built in main.js on first open) ---- */
 .video-modal {
   position: fixed; inset: 0; z-index: 9999; display: none;

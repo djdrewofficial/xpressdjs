@@ -98,6 +98,14 @@
   /* ---- Video lightbox (click-to-play facade) ---- */
   var facades = document.querySelectorAll(".video-facade");
   if (facades.length) {
+    /* Swap to hqdefault if a YouTube maxres poster is missing (404) */
+    document.querySelectorAll(".video-facade img[data-fallback]").forEach(function (img) {
+      var fb = img.getAttribute("data-fallback");
+      if (!fb) return;
+      function useFallback() { if (img.src !== fb) img.src = fb; }
+      img.addEventListener("error", useFallback);
+      if (img.complete && img.naturalWidth === 0) useFallback();
+    });
     var vModal = null, vFrame = null, lastFocus = null;
     function buildVModal() {
       vModal = document.createElement("div");
