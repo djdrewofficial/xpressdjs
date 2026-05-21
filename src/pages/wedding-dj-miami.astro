@@ -2,41 +2,70 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const why = [
+  ['🎤 Bilingual DJs & MCs', 'We speak both English and Spanish — so everyone feels included, no matter their background.'],
+  ['🎶 Personalized Playlists', 'No cookie-cutter playlists here. We build your wedding soundtrack based on your taste and vibe — from Reggaeton and Top 40 to 2000s throwbacks, Latin hits, EDM, and more.'],
+  ['📋 Seamless Event Flow', 'We handle transitions, announcements, and timing so you don’t have to. From ceremony cues to the final song, we’ve got every moment covered.'],
+  ['✨ Your Style, Your Party', 'We bring the hype when it’s time to dance and stay classy when it’s time to toast. We match your energy and vision — not the other way around.'],
+];
 ---
-<Base title="Wedding DJ Miami | Bilingual DJ & MC — Xpress Entertainment" description="Miami's go-to bilingual wedding DJ. Latin & open-format experts. 100+ Miami weddings/year. Starting at $2,500. See packages & check availability.">
+<Base title="Miami Wedding DJ | High-Energy, Bilingual & Always On Point — Xpress Entertainment" description="Looking for a trusted Miami Wedding DJ? Xpress Entertainment brings the music, energy, and professionalism your wedding needs — bilingual DJs, personalized playlists, seamless flow.">
 
   <Hero
-    eyebrow="Miami, FL"
-    titleHtml={`Your Miami<br>wedding DJ.`}
-    sub="High-energy, bilingual, and always on point. From the ceremony to the last dance, Xpress Entertainment brings the music, energy, and professionalism your Miami wedding deserves."
-    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    eyebrow="Miami Wedding DJ"
+    titleHtml={`High-Energy. Bilingual.<br><span class="serif-accent" style="font-style:italic">Always On Point.</span>`}
+    sub="Looking for a trusted Miami Wedding DJ to turn your big day into an unforgettable celebration? Xpress Entertainment brings the music, energy, and professionalism your wedding needs — from the ceremony to the last dance."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/CC200110-1024x683.jpg"
     alt="Miami wedding DJ"
     ctaText="Check Your Date"
   />
 
   <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">We’ve helped hundreds of couples across Miami create stress-free, high-vibe weddings that keep guests dancing all night. Whether your style is laid-back, luxurious, or a little bit of both — we’ve got you.</p>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">💍 Why couples book us as their Miami Wedding DJ</span><h2 class="h-xl">More than a playlist.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUES LOVE US -->
+  <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="Miami wedding reception" /></div>
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/07/Briza-on-the-bay-Leo-Photographer.png" alt="Miami wedding venue" /></div>
         <div class="reveal d1">
-          <span class="eyebrow">Built for Miami weddings</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">A DJ who speaks your crowd.</h2>
-          <p class="lead">We've helped hundreds of couples across Miami celebrate — blending Reggaeton, Latin, Top 40, and open-format so every generation and both sides of the family stay on the dance floor. Bilingual MC included.</p>
+          <span class="eyebrow">Why Miami venues love working with us</span>
+          <h2 class="h-lg" style="margin:14px 0 16px;">(And why you will too.)</h2>
+          <p class="lead">Great DJs do more than play music — they keep your entire event running smoothly. We show up early, stay in touch with your vendors, and make sure everyone’s on the same page. Before your first dance, we check with your photographer. Before your grand entrance, we make sure catering is ready.</p>
+          <p class="lead" style="margin-top:14px;">When the night is over, we clean up, pack out, and leave no trace behind — just good memories. That’s why venues like Villa Toscana, Briza on the Bay, Vista Lago, Loews Miami Beach, and Villa Woodbine trust and recommend us again and again.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PRICING TEASER -->
   <section class="pad bg-light">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Why Miami couples book us</span><h2 class="h-xl">Local. Bilingual. Unforgettable.</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow">Miami Wedding DJ Pricing</span><h2 class="h-xl">Customizable packages.</h2><p class="lead">All of our Miami wedding DJ packages are customizable. Let us know your vision — we’ll help you build the perfect package.</p></div>
       <div class="values">
-        <div class="value reveal"><div class="vnum">01</div><h3>Bilingual DJ & MC</h3><p>English & Spanish hosting that keeps Miami's multicultural crowds dancing all night.</p></div>
-        <div class="value reveal d1"><div class="vnum">02</div><h3>Every Miami Venue</h3><p>From beachfront ceremonies to luxury ballrooms — we know how to work the room.</p></div>
-        <div class="value reveal d2"><div class="vnum">03</div><h3>From $2,500</h3><p>Transparent pricing with photo booths, lighting, and epic extras to complete the night.</p></div>
+        <div class="value reveal"><h3>Xpress</h3><p>Perfect for: Simple + Fun Receptions. Coverage: Cocktail Hour & Reception.</p></div>
+        <div class="value reveal d1"><h3>Xperience</h3><p>Perfect for: Elevated Vibes with a Little Flair.</p></div>
+        <div class="value reveal d2"><h3>Xperience Plus</h3><p>Perfect for: Show-Stopping Celebrations. Coverage: Ceremony, Cocktail Hour & Reception.</p></div>
       </div>
+      <div style="margin-top:40px;" class="reveal"><a href="/pricing" class="btn"><span>View Pricing</span> <span class="arrow">↗</span></a></div>
     </div>
   </section>
 
-  <CTA eyebrow="Miami weddings" titleHtml={`Book your Miami<br>wedding DJ.`} />
+  <CTA eyebrow="💌 Ready to book your Miami Wedding DJ?" titleHtml={`You deserve<br>an Experience.`} text="Let's create the kind of wedding your guests will talk about for years." />
 </Base>

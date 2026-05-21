@@ -2,14 +2,21 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const why = [
+  ['🎤 Charismatic MC & crowd motivator', 'Brings the energy and keeps your guests engaged from the first announcement to the last song.'],
+  ['🎚️ Open-format mixing across cultures', 'Seamlessly blends genres like Reggaeton, Soca, Top 40, Hip-Hop, EDM, and more—customized for your crowd.'],
+  ['🌍 Proven Global DJ Experience', 'From Saint Lucia to South Florida, he’s rocked stages around the world and knows how to tailor music to any audience.'],
+  ['🔊 Seamless Music from ‘I Do’ to Last Dance', 'No awkward silences, no missed moments—just smooth transitions and nonstop good energy.'],
+];
 ---
-<Base title="DJ Atomic | South Florida's International Wedding & Event DJ" description="DJ Atomic — international wedding & event DJ based in South Florida. 600+ events, multicultural style, flawless mixing, and the ability to read any room.">
+<Base title="DJ Atomic | International Wedding & Event DJ in South Florida — Xpress Entertainment" description="DJ Atomic — international wedding & event DJ based in South Florida. 600+ events, multicultural style, flawless mixing, and the ability to read any room.">
 
   <Hero
-    eyebrow="International Wedding & Event DJ"
-    titleHtml={`DJ <span class="serif-accent" style="font-style:italic">Atomic.</span>`}
-    sub="From luxury resorts and global stages to unforgettable South Florida weddings, DJ Atomic brings world-class experience and high-energy vibes to every celebration."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Atomic.jpg"
+    eyebrow="South Florida's Wedding & Event DJ"
+    titleHtml={`DJ <span class="serif-accent" style="font-style:italic">Atomic</span>`}
+    sub="From luxury cruise ships to unforgettable South Florida weddings, DJ Atomic brings global experience and high-energy vibes to every celebration."
+    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
     alt="DJ Atomic"
     ctaText="Check Availability"
   />
@@ -17,16 +24,41 @@ import CTA from '../components/CTA.astro';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="DJ Atomic performing" /></div>
+        <div class="media reveal" style="display:flex; align-items:center; justify-content:center; background:var(--ink-2);"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Atomic-Circle.png" alt="DJ Atomic" style="aspect-ratio:1; object-fit:contain;" /></div>
         <div class="reveal d1">
-          <span class="eyebrow">A world of sound</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Reads any room.</h2>
-          <p class="lead">With a track record of 600+ weddings and events, DJ Atomic is more than a DJ — he's a world-class entertainer with a local heartbeat. Known for his multicultural music style, flawless mixing, and the rare ability to feel exactly what a room needs next.</p>
-          <p class="lead" style="margin-top:16px;">From romantic first dances to peak-energy receptions, Atomic curates the perfect mix to keep your floor packed all night.</p>
+          <span class="eyebrow">🌍 International Wedding & Event DJ Based in South Florida</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Over 600 Unforgettable Weddings</h2>
+          <p class="lead">With a track record of over 600 weddings and events, DJ Atomic brings an elite level of experience to every celebration. From cruise ships and luxury resorts to vibrant South Florida weddings and international stages, he’s not just a DJ—he’s a world-class entertainer with a local heartbeat.</p>
+          <p class="lead" style="margin-top:14px;">Originally from Saint Lucia and now based in South Florida, DJ Atomic is known for his multicultural music style, flawless mixing, and ability to read any room. Whether it’s a beachfront ceremony, a chic ballroom reception, or a destination wedding, he creates a high-energy soundtrack that keeps your guests dancing all night long.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Book Atomic" titleHtml={`Bring the<br>world to your<br>dance floor.`} />
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">🔥 Why Couples & Event Planners Book DJ Atomic</span><h2 class="h-xl">A world-class entertainer.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Packed dance floor" />
+    <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">A World of Sound, One Packed Dance Floor — Soca, Reggaeton, R&B, and 70s throwbacks, curating the perfect mix all night long.</blockquote></div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Beyond the Booth</span><h2 class="h-lg">A Wedding DJ with Global Soul</h2></div>
+      <p class="lead reveal d1">Off the stage, DJ Atomic is more than just a music pro—he’s a storyteller and vibe curator. With roots in Saint Lucia and years of wedding experience across luxury resorts, destination venues, and South Florida hotspots, Atomic brings a global perspective to every couple’s big day.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;"><li>🎶 A deep understanding of wedding moments—from ceremony to last dance</li><li>🌎 Global music knowledge with a personal touch</li><li>✨ A calm, professional presence that helps couples feel at ease</li><li>🖤 A passion for creating soundtracks that reflect your love story</li></ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With Atomic behind the booth, you’re not just booking a DJ—you’re bringing heart, energy, and unforgettable memories to your wedding day.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book DJ Atomic" titleHtml={`An unforgettable<br>experience.`} />
 </Base>

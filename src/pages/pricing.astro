@@ -4,85 +4,95 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 
 const extras = [
-  ['Ceremony Coverage', '$250'],
-  ['Uplighting (10-pack)', '$300'],
-  ['Monogram Projection', '$375'],
-  ['Cold Spark Machines (pair)', '$450'],
-  ['Dancing on the Clouds', '$450'],
-  ['CO2 Hand Guns', '$450'],
-  ['Ultimate Laser Experience', '$750'],
-  ['Club-Style Light Show', '$850'],
-  ['CO2 Cannons', '$875'],
+  'Ceremony Coverage',
+  'Uplighting (Set of 10)',
+  'Monogram Projection',
+  'Cold Spark Machines (Pair of 2)',
+  'Dancing on the Clouds',
+  'Club Style Light Show',
+  'CO2 Hand Guns',
+  'CO2 Cannons',
+  'The Ultimate Laser Experience',
 ];
+const lux = ['Cannon DSLR Camera', 'Delivery & Breakdown', 'Unlimited Photo Sessions + Prints', 'Studio Flash', 'Quality Props', 'Instant Prints', 'Online Gallery', 'Text Message Sharing', 'Photobooth Attendant'];
+const threesixty = ['360 Booth', 'Delivery & Breakdown', 'Unlimited Video Sessions', 'Studio Lighting', 'Red & Gold Stanchions', 'Social Sharing', 'Text Message Sharing', 'Photobooth Attendant'];
 ---
-<Base title="Wedding DJ Pricing in South Florida | Xpress Entertainment" description="Transparent wedding DJ pricing from $2,500. Photo booths, lighting, cold sparks, dancing on the clouds & more. Serving Miami, Fort Lauderdale & Palm Beach.">
+<Base title="Wedding DJ Pricing | Xpress Entertainment — South Florida" description="How much do wedding DJs cost? Most couples spend between $1,750 and $3,500. Meet our DJs, see their rates, and build your Ultimate Wedding Experience.">
 
   <Hero
     size="mid"
     eyebrow="Transparent pricing"
-    titleHtml={`How much does a<br>wedding DJ <span class="serif-accent" style="font-style:italic">cost?</span>`}
-    sub="Your wedding isn't a package — it's an experience. We build pricing around the DJ you choose and the moments you want to create. DJ services start at $2,500."
+    titleHtml={`How Much Do<br>Wedding DJs <span class="serif-accent" style="font-style:italic">Cost?</span>`}
+    sub="Your wedding is not a package. It is an experience, and the DJ you choose plays a huge role in how the entire night feels."
     image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg"
     alt="Wedding DJ booth"
     ctaText="Check Your Date"
   />
 
-  <!-- DJ PACKAGES -->
   <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">At Xpress Entertainment, we built our pricing around a simple idea. Every DJ has their own personality, background, and level of demand, and the price reflects the experience they bring to your celebration.</p>
+      <p class="lead reveal d1" style="margin-top:16px;">Most couples spend between $1,750 and $3,500, with our newer, in-demand DJs starting on the lower end and our most requested, highly experienced DJs at the top. This gives you the freedom to choose the person who aligns with your vision and the energy you want for your wedding day.</p>
+      <p class="lead reveal d2" style="margin-top:16px; color:#fff;">👉 Scroll down to meet the DJs, see their rates, and start building your version of The Ultimate Wedding Experience.</p>
+    </div>
+  </section>
+
+  <!-- DJ PRICING -->
+  <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">DJ packages</span><h2 class="h-xl">Choose your DJ.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Meet the DJs</span><h2 class="h-xl">Choose your DJ.</h2></div>
       <div class="cards" style="grid-template-columns:repeat(2,1fr);">
         <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <div class="vnum" style="color:var(--lavender);">Bilingual · EN / ES</div>
-          <h3 style="margin:10px 0;">DJ Drew Segura</h3>
-          <div style="font-family:var(--serif); font-size:3rem; color:var(--red); line-height:1;">$2,500</div>
-          <p style="color:#d9d0ec; margin-top:14px;">Founder &amp; lead DJ. Includes cocktail hour &amp; reception. Roots in American, Dominican &amp; Colombian cultures.</p>
-          <a href="/dj-drew-segura" class="textlink" style="margin-top:18px;">Meet Drew ↗</a>
+          <h3>DJ Drew Segura</h3>
+          <p style="color:#d9d0ec; margin:12px 0;">A Bi-lingual Wedding DJ & MC with roots is American, Dominican & Colombian cultures. Known for his phenomenal hosting skills & blending cultures seamlessly.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Starting at $2,500</div>
+          <a href="/dj-drew-segura" class="textlink" style="margin-top:16px;">Learn More About Drew ↗</a>
         </div>
         <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <div class="vnum" style="color:var(--lavender);">Multicultural · International</div>
-          <h3 style="margin:10px 0;">DJ Atomic</h3>
-          <div style="font-family:var(--serif); font-size:3rem; color:var(--red); line-height:1;">$2,500</div>
-          <p style="color:#d9d0ec; margin-top:14px;">Multicultural style, flawless mixing, reads any room. Includes cocktail hour &amp; reception.</p>
-          <a href="/djatomic" class="textlink" style="margin-top:18px;">Meet Atomic ↗</a>
+          <h3>DJ Atomic (Dimitri)</h3>
+          <p style="color:#d9d0ec; margin:12px 0;">Originally from Saint Lucia and now based in South Florida, DJ Atomic is known for his multicultural music style, flawless mixing, and ability to read any room.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Starting at $2,500</div>
+          <a href="/djatomic" class="textlink" style="margin-top:16px;">Learn More About Atomic ↗</a>
         </div>
       </div>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">(Pricing includes Cocktail Hour & Reception)</p>
     </div>
   </section>
 
   <!-- EPIC EXTRAS -->
-  <section class="pad bg-deep">
+  <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">Epic Extras (Add-Ons)</span><h2 class="h-xl">Add the wow.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow">Epic Extras (Addons)</span><h2 class="h-xl">Elevate the experience.</h2><p class="lead" style="margin-inline:auto;">A great entertainer is the first step in creating an epic dancefloor at your wedding. These Epic Extras will elevate your Ultimate Wedding Experience.</p></div>
       <div class="reveal" style="max-width:680px; margin:0 auto;">
-        {extras.map(([name, price]) => (
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
-            <span style="font-size:1.1rem;">{name}</span>
-            <span style="font-family:var(--serif); font-size:1.5rem; color:var(--lavender);">{price}</span>
+        {extras.map((name) => (
+          <div style="display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
+            <span style="color:var(--red); font-family:var(--serif);">✦</span><span style="font-size:1.15rem;">{name}</span>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- PHOTO BOOTHS -->
-  <section class="pad bg-ink">
+  <!-- PHOTOBOOTHS -->
+  <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">Photo booth packages</span><h2 class="h-xl">Capture every frame.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Photobooth Packages</span><h2 class="h-xl">Tap, Pose, Smile – Repeat.</h2></div>
       <div class="cards" style="grid-template-columns:repeat(2,1fr);">
         <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <h3>Lux Photo Booth</h3>
-          <div style="font-family:var(--serif); font-size:2.6rem; color:var(--red); line-height:1; margin:10px 0;">$875</div>
-          <p style="color:#d9d0ec;">4 hours · DSLR camera · custom prints · props · online gallery · on-site attendant.</p>
+          <h3>Lux Photo-Booth</h3>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$875</div>
+          <p style="color:var(--lavender); margin-bottom:14px;">4 Hours</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{lux.map((i) => <li>✦ {i}</li>)}</ul>
         </div>
         <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
           <h3>360 Video Booth</h3>
-          <div style="font-family:var(--serif); font-size:2.6rem; color:var(--red); line-height:1; margin:10px 0;">$1,250</div>
-          <p style="color:#d9d0ec;">4 hours · 360° platform · LED lighting · instant social sharing · on-site attendant.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$1,250</div>
+          <p style="color:var(--lavender); margin-bottom:14px;">4 Hours</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{threesixty.map((i) => <li>✦ {i}</li>)}</ul>
         </div>
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Build your night" titleHtml={`Get your<br>custom quote.`} text="Tell us your date, venue, and vision — we'll send packages built around it." ctaText="Get Your Quote" />
+  <CTA eyebrow="Build your night" titleHtml={`Build your Ultimate<br>Wedding Experience.`} ctaText="Check Availability" />
 </Base>

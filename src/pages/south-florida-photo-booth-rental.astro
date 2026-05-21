@@ -4,54 +4,96 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 
 const faqs = [
-  ['How much space do I need?', 'The Lux Booth needs about an 8′×8′ area; the 360 Booth about 10′×10′ of flat space.'],
-  ['Do you include an attendant?', 'Always. Every booth comes with a friendly pro to guide your guests all night.'],
-  ['Do guests get prints?', 'Yes — the Lux Booth offers unlimited 2×6 or 4×6 prints plus digital downloads.'],
-  ['Can we customize the prints?', 'Absolutely — custom overlays, monograms, and your colors and date.'],
+  ['How much space do I need?', 'Lux Booth: ≈ 8′×8′ | 360 Booth: ≈ 10′×10′ flat area'],
+  ['Do you include an attendant?', 'Always ✔️ Our booths come with a friendly pro to guide your guests.'],
+  ['Do guests get prints?', 'Yes — Lux Booth offers unlimited 2×6 or 4×6 prints plus digital downloads. The 360 Booth focuses on videos with instant digital sharing.'],
+  ['Can we customize the prints?', 'Absolutely — we’ll match your wedding colors or brand logo perfectly.'],
+  ['What areas do you serve?', 'Yes! We cover Miami-Dade and Palm Beach counties (small travel fee may apply).'],
+];
+const steps = [
+  ['Choose Your Booth', '360 or Lux (or both)'],
+  ['Customize Your Look', 'Pick your overlay, backdrop, and theme.'],
+  ['We Set the Scene', 'Delivery, setup, and operation handled by our team.'],
+  ['Strike a Pose', 'Snap, spin, and share instantly via text or print.'],
+  ['Relive the Memories', 'Get your full digital gallery after the event.'],
 ];
 ---
-<Base title="Photo Booth Rental Miami & Fort Lauderdale | Xpress Entertainment" description="Lux & 360 photo booths for South Florida weddings. Pro DSLR prints, custom overlays, instant social sharing, and an on-site attendant. From $875.">
+<Base title="Photo Booth Rental Miami & Fort Lauderdale | Xpress Entertainment" description="Lux & 360 photo booths for South Florida weddings — DSLR-quality cameras, instant prints, social sharing, and an on-site attendant. The Ultimate Wedding Experience, captured.">
 
   <Hero
-    eyebrow="Miami · Fort Lauderdale · Palm Beach"
-    titleHtml={`Photo booths,<br>captured frame<br>by frame.`}
-    sub="The Ultimate Wedding Experience doesn't end on the dance floor — it lives on in every smile, pose, and playful moment inside our booths."
+    eyebrow="Photo Booths in Fort Lauderdale / Miami / Palm Beach"
+    titleHtml={`Captured<br>Frame by <span class="serif-accent" style="font-style:italic">Frame</span>`}
+    sub="At Xpress Entertainment, The Ultimate Wedding Experience doesn’t end on the dance floor — it lives on in every smile, pose, and playful moment inside our photo booths."
     image="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png"
     alt="Wedding photo booth"
     ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Each booth is equipped with professional-grade cameras, flattering studio lighting, and instant print &amp; digital sharing options so your guests can keep the fun going long after the night ends.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">From romantic snapshots to hilarious group shots, our booths have become the home of the first kiss, the last laugh, and every memory in between. Whether you’re creating a chic black-and-white glam wall or a confetti-filled celebration reel, your guests will walk away with keepsakes as beautiful as your day itself.</p>
+    </div>
+  </section>
+
+  <!-- TWO BOOTHS -->
+  <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">Two ways to capture it</span><h2 class="h-xl">Choose your booth.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Two ways to capture it</span><h2 class="h-xl">Our Booths</h2></div>
       <div class="cards" style="grid-template-columns:repeat(2,1fr);">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <h3>The Lux Booth</h3>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:10px 0;">$875</div>
-          <p style="color:#d9d0ec;">4 hours · DSLR-quality camera · unlimited custom prints · props · black-and-white filters · online gallery · on-site attendant.</p>
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>📸 The Lux Booth</h3>
+          <p style="color:var(--lavender); margin:6px 0 12px;">Classic. Chic. Timeless.</p>
+          <p style="color:#d9d0ec;">Our Lux Booth brings that modern-studio look to your event with high-definition cameras, flattering lighting, and gorgeous print templates. Guests can snap unlimited photos, create GIFs or boomerangs, and take home instant prints or digital copies, all designed to match your event’s vibe. The sleek open-air design fits seamlessly into any wedding venue or party backdrop.</p>
+          <p style="color:#fff; margin:16px 0 8px;">Highlights:</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;"><li>✦ DSLR-quality camera for crisp photos</li><li>✦ Instant prints (optional) + digital downloads</li><li>✦ Custom overlays & branded templates</li><li>✦ Optional Glam filter (black-and-white “Kardashian-style”)</li><li>✦ Friendly on-site attendant included</li></ul>
         </div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <h3>The 360 Booth</h3>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:10px 0;">$1,250</div>
-          <p style="color:#d9d0ec;">4 hours · 360° rotating platform · cinematic slow-motion · LED lighting · instant social sharing via text, email or QR · attendant.</p>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>✨ The 360 Booth</h3>
+          <p style="color:var(--lavender); margin:6px 0 12px;">Step into the spotlight — literally.</p>
+          <p style="color:#d9d0ec;">Our 360 Booth creates jaw-dropping slow-motion videos that capture your guests from every angle. It’s an interactive experience that makes everyone feel like a celebrity on the red carpet. With studio-grade cameras, dynamic lighting, and instant social-media sharing, every spin becomes a moment worth replaying. Weddings that deserve a little extra wow.</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; margin-top:16px;"><li>✦ 360° rotating video platform with cinematic slow motion</li><li>✦ Instant sharing via text, email, or QR code</li><li>✦ LED base with customizable lighting</li><li>✦ Attendant-operated for a smooth experience</li><li>✦ Optional overlays, logos, and branded effects</li></ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- WHY CHOOSE -->
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Why Choose Xpress Entertainment</span><h2 class="h-lg">We don’t just drop off a booth; we deliver The Ultimate Wedding Experience.</h2></div>
+      <p class="lead reveal d1">At Xpress Entertainment, our photo booths are powered by high-quality cameras, studio-grade lighting, and instant sharing technology that make every click look like a cover shoot. Whether you’re spinning on the 360 Booth or striking a pose in front of the Lux Booth, your guests will walk away with keepsakes that feel as premium as your celebration itself.</p>
+      <p class="lead reveal d2" style="margin-top:14px;">Our team has rocked hundreds of weddings and events across South Florida, from Miami rooftops to Fort Lauderdale ballrooms. We handle setup, operation, and teardown, so all you have to do is smile.</p>
+      <p class="lead reveal d2" style="margin-top:14px; color:#fff; font-family:var(--serif); font-size:1.5rem;">✨ Because memories fade… but photos last forever.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
   <section class="pad bg-light">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">Frequently asked.</h2></div>
-      <div style="max-width:760px;">
+      <div class="sec-head reveal"><span class="eyebrow">How It Works</span><h2 class="h-xl">From "say cheese" to your gallery.</h2></div>
+      <div class="steps" style="grid-template-columns:repeat(5,1fr);">
+        {steps.map(([t, d], i) => (
+          <div class={`step reveal ${i ? 'd' + i : ''}`}><div class="sn">{i + 1}</div><h4>{t}</h4><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">Frequently Asked Questions</h2></div>
+      <div style="max-width:820px;">
         {faqs.map(([q, a], i) => (
-          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
-            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
-            <p style="color:#5a4f6e;">{a}</p>
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <h3 style="font-size:1.3rem; color:#fff; margin-bottom:8px;">{q}</h3>
+            <p style="color:var(--muted); line-height:1.8;">{a}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Smile" titleHtml={`Add a booth<br>to your night.`} />
+  <CTA eyebrow="Check Availability" titleHtml={`Make your dance floor<br>unforgettable.`} text="Your Ultimate Wedding Experience starts here." />
 </Base>

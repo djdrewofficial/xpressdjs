@@ -2,14 +2,26 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const forYou = [
+  { t: '🌿 You live for the candid moments', d: 'From teary-eyed vows to dance floor chaos — we capture the real stuff you won’t see in the pro video.' },
+  { t: '💃 You love sharing your story', d: 'Whether you’re planning a mini doc, a wedding trailer, or just vibey Reels — we’ve got your content covered.' },
+  { t: '📲 You want content, now', d: 'No months of waiting. Get social-ready clips within days — or even same-day stories.' },
+  { t: '🤳 You want a bestie with a camera', d: 'Not a stiff videographer — a creative who hypes you up, fixes your veil, and gets the shot.' },
+];
+const packages = [
+  { t: '📸 The Essentials Package ✨', d: 'Perfect for couples who want social-ready content fast.' },
+  { t: '🎞️ The Highlight Experience 💫', d: 'Ideal if you want a deeper storytelling experience and a recap to share.' },
+  { t: '🔥 The All-Out Social Package 🎉', d: 'The full experience for couples who love content and want it all.' },
+];
 ---
-<Base title="Wedding Content Creator | Real-Time Reels & Photos — Xpress Entertainment" description="Relive your South Florida wedding in real time. Our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes magic while your party is still going.">
+<Base title="Wedding Content Creator | Xpress Entertainment" description="Relive your day in real-time — high-quality Reels, Stories, and behind-the-scenes magic captured and delivered while your South Florida wedding is still going.">
 
   <Hero
     size="mid"
-    eyebrow="The Story"
-    titleHtml={`Wedding content,<br>in real time.`}
-    sub="Relive your day as it happens — through the lens of a content creator dedicated just to you. Forget waiting weeks for highlights."
+    eyebrow="Wedding Content Creator"
+    titleHtml={`Relive your day<br>in <span class="serif-accent" style="font-style:italic">real-time.</span>`}
+    sub="Through the lens of a content creator dedicated just to you. Forget waiting weeks to see your wedding highlights — our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes magic while your party is still going."
     image="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg"
     alt="Wedding content creator"
     ctaText="Check Availability"
@@ -17,17 +29,26 @@ import CTA from '../components/CTA.astro';
 
   <section class="pad bg-ink">
     <div class="wrap">
-      <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg" alt="Wedding content creation" /></div>
-        <div class="reveal d1">
-          <span class="eyebrow">Posted before the honeymoon</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Reels you'll actually post.</h2>
-          <p class="lead">Our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes moments <em>while your party is still going</em> — so you can share the magic the same night, not six weeks later.</p>
-          <p class="lead" style="margin-top:16px;">Vertical-first, social-ready, and shot to match the energy of your celebration.</p>
-        </div>
+      <div class="sec-head center reveal"><span class="eyebrow">💖 Is This for You? Absolutely — If…</span><h2 class="h-xl">You're our kind of couple.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {forYou.map((f, i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{f.t}</h3><p style="color:#d9d0ec;">{f.d}</p></div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Capture it" titleHtml={`Relive it<br>in real time.`} />
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">What's Included in Our Packages</span><h2 class="h-xl">🎬 Your Day, Your Way ✨</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr);">
+        {packages.map((p, i) => (
+          <div class={`value reveal ${i ? 'd' + i : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;"><h3>{p.t}</h3><p style="color:#d9d0ec; margin-top:12px;">{p.d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="text-align:center; margin:34px auto 0; color:var(--lavender);">⭐️ Add-Ons & Custom Options Available: Need longer coverage? Want us to film the rehearsal dinner or bridal shower? Just ask 💬</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="See the vibes" titleHtml={`Capture it<br>in real time.`} />
 </Base>

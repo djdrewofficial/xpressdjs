@@ -2,27 +2,70 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const love = [
+  ['Stress-Free Communication', 'Your DJ will have all music preferences locked in, ensuring a flawless event.'],
+  ['Collaborate with Your DJ & Guests', 'Get input from your fiancé(e), wedding party, or family.'],
+  ['Organized Wedding Timeline', 'Plan every key moment, from your ceremony entrance to the last dance.'],
+  ['Song Suggestions & Playlists', 'Need inspiration? Browse curated playlists for every part of your wedding.'],
+];
+const steps = [
+  ['Download the App', 'We’ll send you a private link to access your wedding planning hub.'],
+  ['Select & Organize Songs', 'Choose music for your ceremony, first dance, reception, and more.'],
+  ['Get Friends & Family Involved', 'Allow guests to make requests before the wedding.'],
+  ['Finalize with Your DJ', 'We review your selections, fine-tune your timeline, and get ready to rock your night!'],
+];
 ---
-<Base title="Vibo: The Ultimate Wedding Music Planning App | Xpress Entertainment" description="Plan every song and moment of your South Florida wedding from your phone with Vibo — the music-planning app built into your Xpress Entertainment booking.">
+<Base title="Vibo DJ: Wedding Music Planning App | Xpress Entertainment" description="Take your wedding music planning to the next level with Vibo DJ — customize every song and moment of your big day from your phone, and collaborate with your DJ in real time.">
 
   <Hero
     size="mid"
     eyebrow="The Plan"
-    titleHtml={`Plan your music<br>with <span class="serif-accent" style="font-style:italic">Vibo.</span>`}
-    sub="We believe planning your wedding music should be fun, easy, and stress-free. That's why every booking includes Vibo — a cutting-edge app that lets you customize every song and moment from your phone."
+    titleHtml={`Plan your music<br>with <span class="serif-accent" style="font-style:italic">Vibo DJ.</span>`}
+    sub="At Xpress Entertainment, we believe planning your wedding music should be fun, easy, and stress-free. That’s why we use Vibo DJ, a cutting-edge music planning app that lets you customize every song and moment of your big day — all from your phone."
     image="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg"
-    alt="Wedding music planning"
+    alt="Vibo DJ wedding planning"
     ctaText="Check Availability"
   />
 
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/03/Iphone_4-Timeline-d-1024x1024.png" alt="Vibo DJ timeline app" /></div>
+        <div class="reveal d1">
+          <p class="lead">With Vibo DJ, you and your partner can collaborate in real-time, invite friends and family to suggest songs, and ensure your wedding playlist reflects your unique style. Whether you want to create a high-energy dance party or a romantic, intimate ambiance, Vibo DJ makes it simple and interactive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">Built into your booking</span><h2 class="h-xl">Your soundtrack, sorted.</h2></div>
-      <div class="values">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Build Your Timeline</h3><p style="color:#d9d0ec;">Map every moment — ceremony, entrance, first dance, send-off — so nothing is left to chance.</p></div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Curate Every Song</h3><p style="color:#d9d0ec;">Import from Spotify or Apple Music, set must-plays and do-not-plays, and even let guests request.</p></div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Message Your DJ</h3><p style="color:#d9d0ec;">Everything in one place — your DJ sees your vision long before the big day.</p></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Why Couples Love Vibo DJ</span><h2 class="h-xl">Your soundtrack, sorted.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {love.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
       </div>
+    </div>
+  </section>
+
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">How Vibo DJ Works</span><h2 class="h-xl">Four simple steps.</h2></div>
+      <div class="steps" style="grid-template-columns:repeat(4,1fr);">
+        {steps.map(([t, d], i) => (
+          <div class={`step reveal ${i ? 'd' + i : ''}`}><div class="sn">{i + 1}</div><h4>{t}</h4><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:840px; text-align:center;">
+      <span class="eyebrow reveal">Experience the Xpress Entertainment Difference</span>
+      <h2 class="h-lg reveal d1" style="margin:14px 0 18px;">More than just DJs.</h2>
+      <p class="lead reveal d2" style="margin-inline:auto;">We’re wedding music experts dedicated to making your celebration unforgettable. With Vibo DJ, we ensure your playlist is personalized, perfectly timed, and packed with your favorite songs.</p>
     </div>
   </section>
 

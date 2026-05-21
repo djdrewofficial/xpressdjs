@@ -2,13 +2,20 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const why = [
+  ['🎤 Charismatic MC & crowd motivator', 'Drew brings the energy, reads the crowd, and makes every announcement feel personal—keeping your guests involved from “I do” to last dance.'],
+  ['🎧 Open-format mixing for diverse weddings', 'Expertly mixes Reggaeton, Merengue, Freestyle, 2000s throwbacks, Pop, EDM, and more—tailored for multicultural crowds and bilingual families.'],
+  ['🌟 Wedding DJ Specialist', 'While he’s rocked nightclubs and other events, weddings are his true passion. Drew built Xpress Entertainment just to focus on epic wedding experiences.'],
+  ['🎶 Seamless soundtrack from start to finish', 'No awkward silences, no missed moments—just smooth transitions and nonstop good energy.'],
+];
 ---
-<Base title="DJ Drew Segura | Bilingual Wedding DJ in Miami & South Florida" description="DJ Drew Segura — founder of Xpress Entertainment. 8+ years, 100+ weddings a year, bilingual (EN/ES), open-format. Reggaeton, Latin, Top 40 & more. Check availability.">
+<Base title="DJ Drew Segura | Bilingual Wedding DJ in South Florida — Xpress Entertainment" description="DJ Drew Segura — founder of Xpress Entertainment. 8+ years, 100+ weddings a year, bilingual (English & Spanish), open-format. Reggaeton, Latin, Top 40 & more.">
 
   <Hero
-    eyebrow="Founder & Lead DJ"
-    titleHtml={`DJ Drew<br>Segura.`}
-    sub="From intimate beachside weddings to high-energy nightlife, Drew brings 8+ years of experience, a bilingual (English & Spanish) background, and unmatched open-format mixing to every celebration."
+    eyebrow="South Florida's Wedding & Event DJ"
+    titleHtml={`DJ Drew<br>Segura`}
+    sub="From intimate beachside weddings to high-energy nightlife in Fort Lauderdale, DJ Drew Segura brings over 8 years of experience, a bilingual (English & Spanish) background, and unmatched open-format mixing skills. Trusted by over 100 couples a year."
     image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
     alt="DJ Drew Segura"
     ctaText="Check Availability"
@@ -17,12 +24,12 @@ import CTA from '../components/CTA.astro';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="DJ Drew Segura performing" /></div>
+        <div class="media reveal" style="display:flex; align-items:center; justify-content:center; background:var(--ink-2);"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Drew-Circle.png" alt="DJ Drew Segura" style="aspect-ratio:1; object-fit:contain;" /></div>
         <div class="reveal d1">
-          <span class="eyebrow">Storyteller · Host · Vibe curator</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Multicultural by nature.</h2>
-          <p class="lead">With roots in American, Dominican, and Colombian cultures, Drew specializes in multicultural celebrations and serves over 100 couples a year across Miami, Fort Lauderdale, and West Palm Beach.</p>
-          <p class="lead" style="margin-top:16px;">Open-format mastery: Reggaeton, Merengue, Salsa, Freestyle, 2000s Hip-Hop, EDM, and Top 40 — seamlessly blended, with bilingual MC built in.</p>
+          <span class="eyebrow">🌎 Bilingual Wedding & Event DJ Based in South Florida</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Over 100 Weddings Every Year</h2>
+          <p class="lead">With over a decade of experience and more than 100 weddings a year, DJ Drew Segura is one of South Florida’s most sought-after bilingual DJs. From waterfront venues in West Palm Beach to chic hotel ballrooms in Miami, he’s known for creating unforgettable, high-energy dance floors that cater to every generation and culture.</p>
+          <p class="lead" style="margin-top:14px;">Raised in a Dominican-American household and fluent in both English and Spanish, Drew is a pro at blending Latin hits with Top 40, Hip-Hop, EDM, and wedding classics. Whether you’re planning a laid-back beach wedding or a luxury black-tie affair, Drew knows how to read the room and curate a vibe your guests will talk about for years.</p>
         </div>
       </div>
     </div>
@@ -30,14 +37,28 @@ import CTA from '../components/CTA.astro';
 
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="stats">
-        <div class="stat reveal"><div class="num" data-count="8" data-suffix="+">0</div><div class="label">Years behind the booth</div></div>
-        <div class="stat reveal d1"><div class="num" data-count="100" data-suffix="+">0</div><div class="label">Weddings every year</div></div>
-        <div class="stat reveal d2"><div class="num" data-count="2">0</div><div class="label">Languages on the mic (EN/ES)</div></div>
-        <div class="stat reveal d3"><div class="num" data-count="600" data-suffix="+">0</div><div class="label">Total events with the team</div></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Why Couples & Event Planners Book DJ Drew Segura</span><h2 class="h-xl">The whole night, handled.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Book Drew" titleHtml={`Make Drew your<br>secret weapon.`} />
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="Packed dance floor" />
+    <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">A World of Music, One Unforgettable Dance Floor — Reggaeton, 2000s Hip-Hop, Salsa, EDM, and sing-along pop favorites, all tailored to your crowd.</blockquote></div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Beyond the Booth</span><h2 class="h-lg">A Wedding DJ with Heart & Experience</h2></div>
+      <p class="lead reveal d1">Off the stage, DJ Drew Segura is more than just a music pro — he’s a storyteller, host, and vibe curator. With Dominican roots and a deep passion for weddings, Drew has built a career around bringing joy, energy, and personalization to couples across South Florida and beyond.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;"><li>🎶 A deep understanding of wedding flow — from ceremony to grand finale</li><li>🌴 South Florida music flavor with bilingual charm</li><li>✨ A calm, fun, and professional presence that puts couples at ease</li><li>❤️ A passion for building a soundtrack that reflects your culture, love story, and style</li></ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With DJ Drew behind the booth, you’re not just hiring someone to play music — you’re booking a partner who truly cares about making your wedding unforgettable.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book DJ Drew Segura" titleHtml={`Make it<br>unforgettable.`} />
 </Base>

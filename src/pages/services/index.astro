@@ -4,53 +4,99 @@ import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
 import CTA from '../../components/CTA.astro';
 
-const services = [
-  { t: 'Wedding DJs & MCs', d: 'Bilingual, open-format DJs who read the crowd and double as your MC — guiding every toast, intro, and transition.', img: 'https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg', href: '/services/djs', tag: 'The Sound' },
-  { t: 'Photo Booths', d: 'Lux & 360 booths with instant custom prints, shareable video, and an on-site attendant.', img: 'https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png', href: '/south-florida-photo-booth-rental', tag: 'The Keepsake' },
-  { t: 'Epic Extras', d: 'Cold sparks, dancing on the clouds, CO2 & confetti — the cinematic wow-moments.', img: 'https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png', href: '/epic-extras-1', tag: 'The Wow' },
-  { t: 'Lighting & Monogram', d: 'Uplighting, intelligent dance-floor lighting, and a custom monogram projection.', img: 'https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-8.png', href: '/epic-extras-1/lighting', tag: 'The Atmosphere' },
-  { t: 'Content Creator', d: 'Real-time Reels and photos delivered while your party is still going.', img: 'https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg', href: '/wedding-content-creator', tag: 'The Story' },
-  { t: 'Vibo Planning App', d: 'Plan every song and moment from your phone — built into your booking.', img: 'https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg', href: '/vibo', tag: 'The Plan' },
+const faqs = [
+  ['Do you offer bilingual DJs and MCs?', 'Yes. Our DJs host in English and Spanish and read multicultural crowds with ease — keeping every generation, and both sides of the family, on the dance floor.'],
+  ['Can we bundle the DJ, photo booth, and lighting together?', 'Absolutely — that’s the whole point. Booking everything with one team means one timeline, one point of contact, and a night that flows seamlessly from ceremony to last dance.'],
+  ['How far in advance should we book?', 'We take a limited number of weddings each weekend to keep our quality high, so popular dates book up fast. Check your date as early as you can to lock it in.'],
+  ['What areas do you serve?', 'All of South Florida — Miami-Dade, Broward, Palm Beach, and the Florida Keys.'],
+  ['How do we get a price?', 'Tell us your date and your vision and we’ll send transparent pricing and packages. DJ services start at $2,500.'],
 ];
 ---
 <Base title="Wedding Entertainment Services in Miami & South Florida | Xpress Entertainment" description="Wedding DJs, MCs, photo booths, lighting, cold sparks & content creation — all from one award-winning South Florida team. Serving Miami, Fort Lauderdale & Palm Beach.">
 
   <Hero
-    eyebrow="Everything, under one roof"
-    titleHtml={`Our wedding &<br>event <span class="serif-accent" style="font-style:italic">services.</span>`}
-    sub="Six ways we turn your celebration into the one everyone remembers — designed to work together as one seamless night."
+    eyebrow="Miami · Fort Lauderdale · Palm Beach"
+    titleHtml={`Weddings People<br>Don't Stop<br><span class="serif-accent" style="font-style:italic">Talking About</span>`}
+    sub="From the first note of your ceremony to the last song of the night, we bring the DJs, MCs, photo booths, and production that turn a beautiful wedding into an unforgettable one — all handled by one team."
     image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
-    alt="Wedding entertainment"
+    alt="South Florida wedding entertainment"
     ctaText="Check Your Date"
   />
 
-  <Marquee variant="alt" items={["Bilingual","Open-Format","Cinematic","Stress-Free","Award-Winning"]} />
+  <Marquee items={["Bilingual","Open-Format","Cinematic","Stress-Free","Award-Winning"]} variant="alt" />
 
+  <!-- STAT BAND -->
+  <section class="bg-purple" style="padding-block:50px;">
+    <div class="wrap">
+      <div class="stats" style="border:none; padding-top:0;">
+        <div class="stat reveal"><div class="num">150+</div><div class="label" style="color:#fff;">Weddings every year</div></div>
+        <div class="stat reveal d1"><div class="num">8+ yrs</div><div class="label" style="color:#fff;">Never missed an event</div></div>
+        <div class="stat reveal d2"><div class="num">Bilingual</div><div class="label" style="color:#fff;">DJs & MCs who speak your crowd</div></div>
+        <div class="stat reveal d3"><div class="num" style="font-size:clamp(1.8rem,3.4vw,2.6rem);">Award-Winning</div><div class="label" style="color:#fff;">WeddingWire Best of Weddings</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
   <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">What we do</span><h2 class="h-xl">One team. Every detail.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow">Why it matters</span><h2 class="h-xl">Anyone Can Press Play. We Read the Room.</h2><p class="lead" style="margin-inline:auto;">The difference between a nice wedding and an unforgettable one isn’t the playlist — it’s the timing, the energy, and the person behind the booth who knows exactly when to build a moment and when to let it breathe. We plan with you, coordinate with your vendors, and run your night start to finish, so the only thing you have to do is enjoy it.</p></div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE ROWS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="srow reveal">
+        <div class="srow-media"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="Wedding DJ & MC" /></div>
+        <div><span class="idx">THE SOUND</span><h3>DJs & MCs Who Run the Whole Night</h3><p>Bilingual, open-format, and impossible to ignore. Your DJ reads the floor in real time and doubles as the MC who guides every introduction, toast, and transition — so the energy never drops and you never feel rushed.</p><a href="/services/djs" class="textlink">Meet our DJs →</a></div>
+      </div>
+      <div class="srow rev reveal">
+        <div class="srow-media"><img src="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png" alt="Photo booths" /></div>
+        <div><span class="idx">THE KEEPSAKE</span><h3>Photo Booths That Become the Party</h3><p>Our Lux and 360 booths pull guests off their seats and send them home with something real — instant custom prints, shareable videos, and an on-site attendant making sure every group shot lands.</p><a href="/south-florida-photo-booth-rental" class="textlink">See the booths →</a></div>
+      </div>
+      <div class="srow reveal">
+        <div class="srow-media"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Epic Extras" /></div>
+        <div><span class="idx">THE WOW</span><h3>Moments That Look Like a Movie</h3><p>Cold sparks raining over your grand entrance. Dancing on the clouds for your first dance. CO2 blasts when the beat drops. The cinematic touches that make your photographer’s job easy and your guests’ jaws drop.</p><a href="/epic-extras-1" class="textlink">Explore Epic Extras →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVERY DETAIL ONE TEAM -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Complete the experience</span><h2 class="h-xl">Every Detail, One Team</h2></div>
       <div class="cards">
-        {services.map((s, i) => (
-          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={s.href}>
-            <img src={s.img} alt={s.t} />
-            <span class="tag">{s.tag}</span>
-            <div class="card-body"><h3>{s.t}</h3><p>{s.d}</p></div>
-          </a>
+        <a class="card reveal" href="/epic-extras-1/lighting"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-8.png" alt="Lighting & Monogram" /><div class="card-body"><h3 style="font-size:1.4rem;">Lighting & Monogram</h3><p>Uplighting, intelligent dance-floor lighting, and a custom monogram that transforms your venue after dark.</p></div></a>
+        <a class="card reveal d1" href="/wedding-content-creator"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Wedding Content Creator" /><div class="card-body"><h3 style="font-size:1.4rem;">Wedding Content Creator</h3><p>Reels and photos captured and delivered while your party is still going — content you’ll actually want to post.</p></div></a>
+        <a class="card reveal d2" href="/vibo"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Vibo Planning App" /><div class="card-body"><h3 style="font-size:1.4rem;">Vibo Planning App</h3><p>Plan every song and moment from your phone with Vibo, our stress-free music planning app built into your booking.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="pad bg-purple">
+    <div class="wrap" style="max-width:820px; text-align:center;">
+      <span class="eyebrow light reveal">Trusted</span>
+      <h2 class="h-xl reveal d1" style="margin:14px 0 18px; color:#fff;">South Florida Couples Trust Us With Their Biggest Night</h2>
+      <p class="lead reveal d2" style="margin-inline:auto; color:#f6f2ff;">150+ weddings a year. Two-time WeddingWire Best of Weddings winner. Hundreds of five-star reviews from couples across Miami, Fort Lauderdale, and Palm Beach.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">Questions Couples Ask Us</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
+            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
+            <p style="color:#5a4f6e; line-height:1.8;">{a}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="pad bg-light">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Why South Florida couples choose us</span><h2 class="h-xl">Effortless, end to end.</h2></div>
-      <div class="values">
-        <div class="value reveal"><div class="vnum">150+</div><h3>Weddings a Year</h3><p>Experience you can hear in every transition and feel on every dance floor.</p></div>
-        <div class="value reveal d1"><div class="vnum">EN/ES</div><h3>Bilingual & Multicultural</h3><p>The cultural range to keep every generation — and both families — dancing.</p></div>
-        <div class="value reveal d2"><div class="vnum">★★</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings, every service from one trusted team.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <CTA eyebrow="Build your night" titleHtml={`Let's build<br>your night.`} />
+  <CTA titleHtml={`Let's Make Your Wedding<br>the One Everyone Remembers`} text="Tell us your date. We'll show you how effortless an unforgettable night can feel." />
 </Base>

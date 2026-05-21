@@ -2,27 +2,34 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+
+const why = [
+  ['🎤 Charismatic MC & crowd motivator', 'Brings the energy and keeps your guests engaged from the first announcement to the last song.'],
+  ['🎚️ Open-format mixing across cultures', 'Seamlessly blends genres like Reggaeton, Top 40, Hip-Hop, EDM, and more—customized for your crowd.'],
+  ['🌍 Trilingual Across Cultures', 'From Miami to South Florida, he’s rocked stages around the world and knows how to tailor music to any audience.'],
+  ['🔊 Seamless Music from ‘I Do’ to Last Dance', 'No awkward silences, no missed moments—just smooth transitions and nonstop good energy.'],
+];
 ---
-<Base title="DJ Phil Santos | Multicultural Wedding DJ in Miami" description="DJ Phil Santos — Miami-based multicultural wedding DJ with 12+ years of experience. Trilingual (EN/ES/PT), open-format, 250+ events and 35,000+ happy guests.">
+<Base title="DJ Phil Santos | Multicultural Wedding DJ in Miami — Xpress Entertainment" description="DJ Phil — Miami-based multicultural wedding DJ with 12+ years of experience, 250+ events and 35,000+ happy guests. Trilingual, open-format, high-energy.">
 
   <Hero
-    eyebrow="Multicultural DJ · Miami"
-    titleHtml={`DJ Phil<br>Santos.`}
-    sub="Based in Miami with 12+ years of experience, DJ Phil blends Latin and multicultural beats with crowd-favorite hits to create celebrations that get every guest on the dance floor."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Phil-Santos.jpg"
-    alt="DJ Phil Santos"
+    eyebrow="South Florida's Wedding & Event DJ"
+    titleHtml={`DJ Phil`}
+    sub="Across South Florida weddings, corporate events, and private celebrations, DJ Phil brings 12+ years of multicultural experience and high-energy vibes to every event."
+    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    alt="DJ Phil"
     ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="DJ Phil Santos performing" /></div>
+        <div class="media reveal" style="display:flex; align-items:center; justify-content:center; background:var(--ink-2);"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Phil-Santos.jpg" alt="DJ Phil Santos" /></div>
         <div class="reveal d1">
-          <span class="eyebrow">Open-format · Trilingual</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">A sound for every guest.</h2>
-          <p class="lead">An open-format DJ who effortlessly mixes all genres — Top 40, Latin, hip-hop, and classics from the 80s, 90s, and 2000s. Awarded Best DJ by Orlando Weekly and fluent in English, Spanish, and Portuguese.</p>
-          <p class="lead" style="margin-top:16px;">Beyond the booth, Phil is an exceptional MC and a meticulous planner — every detail of your music and flow aligned with your vision.</p>
+          <span class="eyebrow">🌍 Multicultural Wedding & Event DJ Based in Miami</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Over 250 Events & 35,000+ Happy Guests</h2>
+          <p class="lead">With a track record of over 250 events, DJ Phil brings an elite level of experience to every celebration. From South Florida venues and luxury resorts to vibrant South Florida weddings and international stages, he’s not just a DJ—he’s a world-class entertainer with a local heartbeat.</p>
+          <p class="lead" style="margin-top:14px;">Based in Miami with deep South Florida roots, DJ Phil is known for his multicultural music style, flawless mixing, and ability to read any room. Whether it’s a beachfront ceremony, a chic ballroom reception, or a destination wedding, he creates a high-energy soundtrack that keeps your guests dancing all night long.</p>
         </div>
       </div>
     </div>
@@ -30,14 +37,28 @@ import CTA from '../components/CTA.astro';
 
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="stats">
-        <div class="stat reveal"><div class="num" data-count="12" data-suffix="+">0</div><div class="label">Years of experience</div></div>
-        <div class="stat reveal d1"><div class="num" data-count="250" data-suffix="+">0</div><div class="label">Events performed</div></div>
-        <div class="stat reveal d2"><div class="num" data-count="35000" data-suffix="+">0</div><div class="label">Happy guests</div></div>
-        <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="label">Languages (EN/ES/PT)</div></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">🔥 Why Couples & Event Planners Book DJ Phil</span><h2 class="h-xl">A sound for every guest.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Book Phil" titleHtml={`Get the party<br>started.`} />
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Packed dance floor" />
+    <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">A World of Sound, One Packed Dance Floor — Reggaeton, top 40 hits, hip-hop, and classics from the 80s, 90s, and 2000s.</blockquote></div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Beyond the Booth</span><h2 class="h-lg">A Wedding DJ with Global Soul</h2></div>
+      <p class="lead reveal d1">Off the stage, DJ Phil is more than just a music pro—he’s a storyteller and vibe curator. With roots in Miami and years of wedding experience across luxury resorts, destination venues, and South Florida hotspots, Phil brings a global perspective to every couple’s big day.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;"><li>🎶 A deep understanding of wedding moments—from ceremony to last dance</li><li>🌎 Global music knowledge with a personal touch</li><li>✨ A calm, professional presence that helps couples feel at ease</li><li>🖤 A passion for creating soundtracks that reflect your love story</li></ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With Phil behind the booth, you’re not just booking a DJ—you’re bringing heart, energy, and unforgettable memories to your wedding day.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book DJ Phil" titleHtml={`Get the party<br>started.`} />
 </Base>

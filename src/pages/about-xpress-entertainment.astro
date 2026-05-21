@@ -1,58 +1,123 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import CTA from '../components/CTA.astro';
+
+const team = [
+  { name: 'Drew Segura', role: 'Founder & Lead DJ', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/20-1024x1024.png' },
+  { name: 'Stephanie Estrada', role: 'Content Producer', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/11-1024x1024.png' },
+  { name: 'DJ Atomic', role: 'Wedding & Event Entertainer', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/22-1-300x300.png' },
+  { name: 'Helen Fisher', role: 'Sales & Logistics', img: 'https://xpressdjs.com/wp-content/uploads/2025/01/IMG_0356-1024x1024.jpeg' },
+];
+
+const reasons = [
+  { t: '🎧 Custom Music Vibes', d: 'No generic playlists — we tailor every moment to your taste and your guests’ energy.' },
+  { t: '🕺 Packed Dance Floors, Always', d: 'We read the crowd and keep the party going — from your tío to your college crew.' },
+  { t: '🌎 Multicultural & Bilingual DJs', d: 'We specialize in multicultural weddings and speak both English & Spanish fluently.' },
+  { t: '🎤 Professional Hosts, Not Just DJs', d: 'We guide your timeline smoothly — entrances, toasts, dances and all the moments in between.' },
+  { t: '✨ Our Magical Epic Extras', d: 'From photo booths to cold sparks and uplighting — we bring all the fun.' },
+  { t: '📍 South Florida Wedding Pros', d: 'We know the venues, the vendors, and how to make your Miami-area celebration flawless.' },
+];
 ---
-<Base title="About Xpress Entertainment | South Florida's Wedding DJs Since 2016" description="Meet the team behind 150+ South Florida weddings a year. Founded in 2016 by Drew Segura — award-winning, bilingual, and obsessed with your love story.">
+<Base title="About Xpress Entertainment | South Florida Wedding DJs" description="From a dream to 100+ weddings a year. Meet the bilingual, multicultural team behind Xpress Entertainment — your go-to wedding DJ team in South Florida.">
 
   <Hero
     size="mid"
     eyebrow="About us"
-    titleHtml={`Your wedding's<br>secret weapon.`}
-    sub="(Besides love, of course.) We're Xpress Entertainment — your go-to wedding DJ & entertainment team in South Florida, here to bring the vibe, guide the flow, and keep your party lit from the 'I do' to the last dance."
+    titleHtml={`Your Wedding's Secret Weapon<br><span class="serif-accent" style="font-style:italic">(Besides Love, of course)</span>`}
     image="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg"
-    alt="South Florida wedding celebration"
+    alt="Xpress Entertainment wedding"
     ctaText="Check Availability"
   />
 
-  <!-- STORY -->
   <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Hey there! We’re Xpress Entertainment, your go-to wedding DJ team in South Florida. We’re not just here to play music — we’re here to bring the vibe, guide the flow, and keep your party lit from the “I do” to the last dance. From romantic backyard weddings to luxury venues in Miami and Fort Lauderdale, we specialize in creating unforgettable moments through music, lighting, and crowd connection.</p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
         <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Xpress Entertainment wedding" /></div>
         <div class="reveal d1">
-          <span class="eyebrow">From a dream…</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">…to 150+ weddings a year.</h2>
-          <p class="lead">Xpress Entertainment started in 2016 as a one-person DJ operation at a Pompano Beach venue. Today we're one of the most-loved wedding entertainment companies in South Florida — and we've never lost the obsession that got us here: making your night feel like <em>you</em>.</p>
-          <p class="lead" style="margin-top:18px;">We're not just DJs. We're hosts, music curators, and party facilitators — with the multicultural range to read any room and keep every generation dancing.</p>
+          <span class="eyebrow light">From a dream…</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">…to 100+ weddings a year.</h2>
+          <p class="lead">Xpress Entertainment began in 2016 when Drew Segura, a passionate bilingual DJ, took his love for music and turned it into a one-man show at a Pompano Beach wedding venue.</p>
+          <p class="lead" style="margin-top:14px;">What started small quickly evolved into one of the most loved wedding entertainment companies in South Florida — known for our personalized approach, multicultural flair, and unmatched crowd-reading skills.</p>
+          <p class="lead" style="margin-top:14px;">Now we’re a full team, rocking over 100 weddings a year, plus corporate events and private parties across Miami, Fort Lauderdale, Weston, and beyond.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TEAM -->
-  <section class="pad bg-deep">
+  <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">The team bringing the magic</span><h2 class="h-xl">Meet the crew.</h2></div>
-      <div class="values">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">DJ</div><h3>Drew Segura</h3><p style="color:#d9d0ec;">Founder &amp; Lead DJ. Bilingual (EN/ES), Dominican-American, and the engine behind the brand.</p></div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">DJ</div><h3>DJ Atomic</h3><p style="color:#d9d0ec;">Wedding &amp; event entertainer with global, multicultural range and flawless mixing.</p></div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">★</div><h3>Stephanie &amp; Helen</h3><p style="color:#d9d0ec;">Content production, sales &amp; logistics — the team making sure every detail is handled.</p></div>
+      <div class="sec-head center reveal"><span class="eyebrow">The team bringing the magic ✨</span><h2 class="h-xl">Meet the crew.</h2><p class="lead" style="margin-inline:auto;">Behind every epic reception is a team that gets it. We’re more than DJs — we’re hosts, music curators, and party facilitators. And yeah, we kinda love what we do.</p></div>
+      <div class="cards" style="grid-template-columns:repeat(4,1fr);">
+        {team.map((m, i) => (
+          <div class={`card reveal ${i ? 'd' + i : ''}`} style="aspect-ratio:3/4;">
+            <img src={m.img} alt={m.name} />
+            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
+  <!-- WHY BRIDES CHOOSE -->
   <section class="pad bg-light">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Why couples choose Xpress</span><h2 class="h-xl">More than a playlist.</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow">Why brides choose Xpress 💖</span><h2 class="h-xl">6 Reasons We Might Be Your Perfect Wedding Team</h2></div>
       <div class="values">
-        <div class="value reveal"><div class="vnum">01</div><h3>Bilingual & Multicultural</h3><p>Roots across American, Dominican, Colombian and Latin cultures — we keep both sides of the family on the floor.</p></div>
-        <div class="value reveal d1"><div class="vnum">02</div><h3>Custom Curation</h3><p>Your music, your moments — planned with you in the Vibo app, never copy-pasted from another wedding.</p></div>
-        <div class="value reveal d2"><div class="vnum">03</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings, 8+ years, and never a missed event.</p></div>
+        {reasons.map((r, i) => (
+          <div class={`value reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`}><h3>{r.t}</h3><p>{r.d}</p></div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA eyebrow="Let's meet" titleHtml={`Let's make<br>magic.`} />
+  <!-- PACKAGES -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">💍 Our Most-Loved Wedding Packages</span><h2 class="h-xl">Find your perfect match.</h2><p class="lead" style="margin-inline:auto;">When couples ask us where to start, these are the ones we show them. Each one includes the essentials (like an amazing DJ/MC) plus some unforgettable extras — full of personality, packed with value, and tested on real dance floors.</p></div>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>Xpress</h3>
+          <p style="color:var(--lavender); margin:6px 0 14px;">Perfect for: Simple + Fun Receptions</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;">
+            <li>✅ Pro DJ/MC for Reception</li><li>✅ DJ Assistant</li><li>✅ Xpress Planning App Access</li><li>✅ Full Sound System + Wireless Mics</li><li>✅ 2 Planning Meetings</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:14px; font-size:0.9rem;">Coverage: Cocktail Hour & Reception</p>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>Xperience</h3>
+          <p style="color:var(--lavender); margin:6px 0 14px;">Perfect for: Elevated Vibes with a Little Flair</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;">
+            <li>✅ Everything in Xpress, plus:</li><li>✅ Day-of Coordination Help</li><li>✅ Simple Dance Floor Lighting</li><li>✅ 10 Uplights</li><li>✅ Cold Spark Machines (x2)</li><li>✅ Dancing on the Clouds</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:14px; font-size:0.9rem;">Coverage: Cocktail Hour & Reception</p>
+        </div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>Xperience Plus</h3>
+          <p style="color:var(--lavender); margin:6px 0 14px;">Perfect for: Show-Stopping Celebrations</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;">
+            <li>✅ Everything in Xperience, plus:</li><li>✅ Club-Style Lighting (Intelligent System)</li><li>✅ Monogram Projection</li><li>✅ Lux Photo Booth (Upgrade for +$300)</li><li>✅ 4 Cold Spark Machines</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:14px; font-size:0.9rem;">Coverage: Cocktail Hour & Reception</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="cta pad">
+    <div class="wrap" style="max-width:820px;">
+      <span class="eyebrow light reveal">Let's talk</span>
+      <h2 class="display reveal d1">Ready to Make Your Event Unforgettable?</h2>
+      <p class="lead reveal d2" style="margin:24px auto 0; text-align:center; color:#e9e2f5;">We’re excited to work with you! Whether you’re planning a wedding, corporate event, or party, Xpress Entertainment is here to bring your vision to life. Contact us today to learn more about our services or to schedule a consultation.</p>
+      <div class="reveal d3" style="margin-top:36px;"><a href="/check-availability" class="btn"><span>Check Availability</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
 </Base>

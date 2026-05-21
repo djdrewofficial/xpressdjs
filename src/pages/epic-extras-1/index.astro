@@ -4,33 +4,37 @@ import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
 
 const extras = [
-  { t: 'Dancing on the Clouds', d: 'A romantic, ethereal cloud for your first dance — like floating on air.', href: '/epic-extras-1/dancing-on-the-clouds' },
-  { t: 'Cold Spark Machines', d: 'Safe, indoor sparks for your grand entrance, first dance, or send-off.', href: '/epic-extras-1/cold-sparks' },
-  { t: 'Lighting & Monogram', d: 'Uplighting, dance-floor lighting, and a custom monogram projection.', href: '/epic-extras-1/lighting' },
-  { t: 'CO2 Hand Guns & Cannons', d: 'Blasts of fog when the beat drops — peak-energy crowd moments.', href: '/check-availability' },
-  { t: 'Ultimate Laser Experience', d: 'A club-style laser show that transforms your reception after dark.', href: '/check-availability' },
-  { t: 'Confetti & More', d: 'Confetti cannons and interactive touches for unforgettable peaks.', href: '/check-availability' },
+  { t: '☁️ Dancing on the Clouds', s: 'Feel like you’re in a dream.', d: 'This low-lying fog creates a cloud-like floor during your first dance or special moment—ideal for romantic vibes and stunning photos.', use: '💭 Top use: First dance, slow songs, dreamy wedding vibes', href: '/epic-extras-1/dancing-on-the-clouds' },
+  { t: '✨ Cold Spark Machines', s: 'Sparks fly—safely.', d: 'These cold spark machines create an indoor-safe, dramatic effect without fire or smoke. Use them for your first dance, entrance, or a major party moment.', use: '✨ Perfect for: Indoor venues, outdoor parties, and those dramatic wow moments you’ll never forget', href: '/epic-extras-1/cold-sparks' },
+  { t: '🎨 Custom Monogram Design & Projection', s: 'Put your love in lights.', d: 'Display your initials, wedding logo, or a fully custom design on the dance floor, backdrop, or venue wall. A sleek, stylish detail that makes your celebration feel truly personal.', use: '📸 Popular for: Elegant entrances, photo ops, and branding your big day', href: '/epic-extras-1/lighting' },
+  { t: '🧊 CO2 Guns & Cannons', s: 'Time to hype up the party.', d: 'Our CO2 effects shoot out quick bursts of fog, adding excitement and movement to the dance floor. Totally safe and totally unforgettable.', use: '🎉 Perfect for: Grand entrances, late-night dance sets, and surprise DJ moments', href: '/check-availability' },
+  { t: '🕴🏽 Club-Style Light Show', s: 'Bring that nightlife energy to your wedding.', d: 'Our intelligent light show creates a dynamic, music-synced visual experience that keeps the dance floor alive and your guests fully immersed.', use: '🔥 Best for: Reception party time, energetic playlists, and guests who love to dance', href: '/epic-extras-1/lighting' },
+  { t: '🌈 Uplighting Rentals', s: 'Put your love in lights.', d: 'Strategically placed uplights cast a beautiful glow on walls, columns, and decor — customizable to match your wedding colors.', use: '📍 Great for: Receptions, ceremony backdrops, and unforgettable photo moments', href: '/epic-extras-1/lighting' },
 ];
 ---
-<Base title="Epic Extras for Your Wedding | Cold Sparks, Clouds & Lighting — Xpress Entertainment" description="Add that extra touch: cold sparks, dancing on the clouds, CO2, lasers, uplighting & custom monograms for South Florida weddings. The wow-moments your guests film.">
+<Base title="Epic Extras for Your Wedding | Xpress Entertainment" description="Add that extra touch: dancing on the clouds, cold sparks, custom monograms, CO2, club-style lighting & uplighting for South Florida weddings. The wow-moments your guests film.">
 
   <Hero
-    eyebrow="Add that ✨ extra touch ✨"
-    titleHtml={`Epic <span class="serif-accent" style="font-style:italic">Extras.</span>`}
-    sub="The wow-moments that make your wedding feel completely yours — designed to impress your guests and keep the energy going all night long."
+    eyebrow="Epic Extras"
+    titleHtml={`Add That <span class="serif-accent" style="font-style:italic">✨ Extra Touch ✨</span><br>to Your Wedding Day`}
+    sub="At Xpress Entertainment, we’re all about those wow moments that make your wedding feel completely yours. From lighting to custom visuals, these wedding add-ons are designed to enhance your experience, impress your guests, and keep the energy going all night long."
     image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
-    alt="Cold sparks and dancing on the clouds"
+    alt="Epic Extras"
     ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">Most-loved add-ons</span><h2 class="h-xl">Make a moment.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow">Explore our most-loved extras</span><h2 class="h-xl">Make a moment.</h2></div>
       <div class="cards">
         {extras.map((e, i) => (
-          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={e.href} style="aspect-ratio:4/3;">
+          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={e.href} style="aspect-ratio:auto; min-height:340px;">
             <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt={e.t} />
-            <div class="card-body"><h3 style="font-size:1.4rem;">{e.t}</h3><p>{e.d}</p></div>
+            <div class="card-body">
+              <h3 style="font-size:1.4rem;">{e.t}</h3>
+              <p style="max-height:none; opacity:1; margin:8px 0;"><strong style="color:#fff;">{e.s}</strong> {e.d}</p>
+              <p style="max-height:none; opacity:1; color:var(--lavender); font-size:0.85rem;">{e.use}</p>
+            </div>
           </a>
         ))}
       </div>

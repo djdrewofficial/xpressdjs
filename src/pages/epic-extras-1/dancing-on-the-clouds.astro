@@ -2,32 +2,44 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+
+const why = [
+  ['Romantic Ambiance', 'The low-lying fog creates a dreamy, romantic atmosphere, perfect for your first dance or any key moment during your wedding.'],
+  ['Safe & Non-Slip', 'Our dry ice machine produces a fog that stays on the ground, avoiding the risks of slippery floors or obscuring your guests’ view.'],
+  ['Perfect for Photos', 'This effect looks incredible in photos, giving you stunning images that will be cherished forever.'],
+  ['Versatile for Multiple Moments', 'Often used for the first dance, it can also enhance grand entrances, special toasts, or your wedding exit.'],
+];
 ---
-<Base title="Dancing on the Clouds | First Dance Cloud Effect — Xpress Entertainment" description="Dancing on the Clouds for your South Florida wedding first dance. A professional dry-ice cloud that makes you feel like you're floating on air.">
+<Base title="Dancing on the Clouds | First Dance Cloud Effect — Xpress Entertainment" description="Dancing on the Clouds for your South Florida wedding — a professional dry-ice machine creates a low-lying cloud so you feel like you're floating on air during your first dance.">
 
   <Hero
     size="mid"
     eyebrow="Epic Extras"
-    titleHtml={`Dancing on<br>the clouds.`}
-    sub="Imagine your first dance as newlyweds, surrounded by a romantic, ethereal cloud that makes you feel like you're floating on air."
-    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
+    titleHtml={`Dancing on Clouds for<br>Your <span class="serif-accent" style="font-style:italic">Dream Wedding</span>`}
+    sub="Imagine your first dance as newlyweds, surrounded by a romantic, ethereal cloud that makes you feel like you’re floating on air."
+    image="https://xpressdjs.com/wp-content/uploads/2023/04/first-wedding-dance-2022-05-31-22-38-16-utc-1024x683.jpg"
     alt="Dancing on the clouds first dance"
-    ctaText="Add to My Wedding"
+    ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
-    <div class="wrap">
-      <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="First dance" /></div>
-        <div class="reveal d1">
-          <span class="eyebrow">The dream first dance</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Float through your first dance.</h2>
-          <p class="lead">Our professional-grade dry-ice machine creates a stunning, low-lying cloud that rolls across your dance floor — turning your first dance into a breathtaking, photo-worthy moment without any haze in the air.</p>
-          <p class="lead" style="margin-top:16px;">Starting at <strong style="color:#fff;">$450</strong>.</p>
-        </div>
-      </div>
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">With Dancing on the Clouds from Xpress Entertainment, this magical moment can be yours. Our professional-grade dry ice machine creates a stunning low-lying fog that stays close to the floor, giving the illusion that you’re dancing on a soft, fluffy cloud.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">Perfect for weddings, this effect adds a touch of fantasy and elegance to your special day. Whether it’s for your first dance, a grand entrance, or even during a special moment like the cake cutting, Dancing on the Clouds will leave your guests speechless and make your wedding photos unforgettable.</p>
     </div>
   </section>
 
-  <CTA eyebrow="Your first dance" titleHtml={`Dance on<br>the clouds.`} ctaText="Check Availability" />
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Why it's perfect for your big day</span><h2 class="h-xl">More than a special effect.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="max-width:820px; margin:34px auto 0; text-align:center;">When you rent Dancing on the Clouds from Xpress Entertainment, you get the expertise of our team to ensure it’s perfectly executed. We work closely with your venue and other vendors to ensure the cloud effect enhances your moment without disrupting other elements of your day.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Contact us for dancing on the clouds" titleHtml={`Dance on<br>the clouds.`} />
 </Base>

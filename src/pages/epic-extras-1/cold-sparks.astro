@@ -2,32 +2,44 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+
+const why = [
+  ['Visually Stunning', 'Create a dazzling spark effect without the risks associated with fireworks or pyrotechnics.'],
+  ['Safe for Guests', 'The sparks are cold to the touch, reducing fire hazards, and making them safe for use indoors and outdoors.'],
+  ['Customizable Heights', 'We will control the height of the sparks, ranging from 3 to 10 feet, to match the style and atmosphere of your wedding.'],
+  ['Perfect for Key Moments', 'Ideal for your first dance, grand entrance, cake cutting, and exit.'],
+];
 ---
-<Base title="Cold Spark Machines for Weddings | Xpress Entertainment" description="Cold spark machines for South Florida weddings — safe, indoor-friendly sparks for your grand entrance, first dance, and send-off. A breathtaking display of drama.">
+<Base title="Cold Spark Machines for Weddings | Xpress Entertainment" description="Elevate your wedding with Cold Spark Machines — non-pyrotechnic, cold-to-the-touch sparks that add drama and excitement, safe for indoor or outdoor South Florida venues.">
 
   <Hero
     size="mid"
     eyebrow="Epic Extras"
-    titleHtml={`Cold sparks for<br>unforgettable<br>weddings.`}
-    sub="Whether it's your grand entrance, first dance, or send-off, cold spark machines create a breathtaking display that adds drama and excitement to your big day."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design.png"
-    alt="Cold spark machines at a wedding"
-    ctaText="Add to My Wedding"
+    titleHtml={`Cold Sparks for<br>Unforgettable<br>Weddings`}
+    sub="Whether it’s your grand entrance, first dance, or send-off, Cold Spark Machines create a breathtaking display of sparks that add drama and excitement to your big day."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-1024x576.png"
+    alt="Cold spark machines"
+    ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
-    <div class="wrap">
-      <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks" /></div>
-        <div class="reveal d1">
-          <span class="eyebrow">Safe. Indoor. Stunning.</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Sparks that don't burn.</h2>
-          <p class="lead">Cold spark machines use a special low-temperature effect that's safe for indoor venues — giving you all the drama of fireworks without the heat, smoke, or risk. Perfect for grand entrances and that jaw-dropping first-dance moment.</p>
-          <p class="lead" style="margin-top:16px;">Starting at <strong style="color:#fff;">$450</strong> per pair.</p>
-        </div>
-      </div>
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Elevate your wedding with the magic of Cold Spark Machines from Xpress Entertainment. These non-pyrotechnic machines produce cold-to-the-touch sparks, making them a safe and stunning choice for indoor or outdoor wedding venues.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">Unlike traditional fireworks, cold sparks are safe and free from heat, smoke, and strong odors, making them ideal for weddings of any size.</p>
     </div>
   </section>
 
-  <CTA eyebrow="Make an entrance" titleHtml={`Light up<br>the room.`} ctaText="Check Availability" />
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Why choose cold sparks?</span><h2 class="h-xl">The "wow" factor, safely.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="max-width:820px; margin:34px auto 0; text-align:center;">At Xpress Entertainment, we pair Cold Spark Machines with our professional DJ and lighting services to ensure the timing and coordination of the spark effects perfectly match the rhythm of your celebration. Our trained technicians will operate the machines, allowing you to enjoy your day stress-free.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Contact us for cold spark rentals" titleHtml={`Light up<br>the room.`} />
 </Base>

@@ -2,38 +2,67 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+
+const why = [
+  ['Experienced DJs', 'With over 8 years of experience in the wedding industry, we know what it takes to create a memorable wedding reception.'],
+  ['Bilingual DJs', 'Need a DJ who can switch seamlessly between English and Spanish? Our team is fluent and experienced in multicultural weddings.'],
+  ['Custom Playlists', 'Your day, your music. We work with you to curate a playlist that reflects your style, from romantic first dances to packed dance floors.'],
+  ['Professional Equipment', 'From high-quality sound systems to stunning lighting, we bring the gear that makes a difference.'],
+  ['Interactive MCs', 'Not just a DJ! We provide MC services to keep the night flowing with excitement, humor, and engagement.'],
+];
+const vibo = ['Organize and manage wedding details efficiently', 'Set up your wedding timeline and music preferences', 'Provide your DJ with essential event information', 'Allow guests to contribute song suggestions', 'Customize different sections of your timeline', 'Import playlists from platforms like Spotify, Apple Music, and others'];
 ---
-<Base title="Wedding DJ Fort Lauderdale | Xpress Entertainment" description="Premium wedding DJ & MC services in Fort Lauderdale. Bilingual hosts, full production, photo booths & content creator add-ons. Check your date.">
+<Base title="Fort Lauderdale Wedding DJ Services | Xpress Entertainment" description="Your dream wedding soundtrack starts here. Experienced, bilingual Fort Lauderdale wedding DJs with the passion and expertise to keep your guests dancing all night long.">
 
   <Hero
     eyebrow="Fort Lauderdale, FL"
-    titleHtml={`Fort Lauderdale<br>wedding DJs.`}
-    sub="Your dream wedding soundtrack starts here. Whether you're hosting an intimate ceremony or a grand celebration, our Fort Lauderdale DJs bring the passion, energy, and professionalism."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg"
+    titleHtml={`Fort Lauderdale<br>Wedding DJ Services`}
+    sub="Your Dream Wedding Soundtrack Starts Here. Whether you’re hosting an intimate ceremony or a grand celebration, our Fort Lauderdale wedding DJs bring the passion and expertise needed to keep your guests dancing all night long."
+    image="https://xpressdjs.com/wp-content/uploads/2024/08/1-_-HEADER-1024x683.jpg"
     alt="Fort Lauderdale wedding"
-    ctaText="Check Your Date"
+    ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
-      <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Fort Lauderdale wedding reception" /></div>
-        <div class="reveal d1">
-          <span class="eyebrow">The perfect blend</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Music, energy, professionalism.</h2>
-          <p class="lead">We turn your Fort Lauderdale wedding into an unforgettable experience — reading the crowd in real time, hosting every moment, and keeping your dance floor full from cocktail hour to last call.</p>
-        </div>
+      <div class="sec-head reveal"><span class="eyebrow">Why choose us</span><h2 class="h-xl">Why Choose Xpress Entertainment for Your Fort Lauderdale Wedding?</h2></div>
+      <div class="values">
+        {why.map((w, i) => (
+          <div class={`value reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{w[0]}</h3><p style="color:#d9d0ec;">{w[1]}</p></div>
+        ))}
       </div>
     </div>
   </section>
 
+  <!-- VIBO -->
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">One team, every detail</span><h2 class="h-xl">More than a DJ.</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow light">Communication is key</span><h2 class="h-xl">Introducing the Vibo DJ App</h2><p class="lead">At Xpress Entertainment, we elevate your wedding planning experience through our custom event management app. This easy-to-use tool is crafted to streamline your music selections and wedding timeline, giving you full control over the process.</p></div>
+      <ul style="max-width:760px; columns:2; gap:30px; color:#d9d0ec; line-height:2; list-style:none; padding:0;">
+        {vibo.map((v) => <li>✦ {v}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Locations Served</span><h2 class="h-xl">Across South Florida.</h2></div>
       <div class="values">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>DJ + Bilingual MC</h3><p style="color:#d9d0ec;">One pro who spins and hosts — your night flows seamlessly start to finish.</p></div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Add Photo Booths & Extras</h3><p style="color:#d9d0ec;">Bundle lighting, cold sparks, and a 360 booth — all from one Fort Lauderdale team.</p></div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Award-Winning</h3><p style="color:#d9d0ec;">Two-time WeddingWire Best of Weddings, 150+ weddings a year across South Florida.</p></div>
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Broward</h3></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Miami</h3></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>West Palm</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET DJs -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Meet Our Wedding DJs</span><h2 class="h-xl">Get to know the team that will rock your wedding.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <a class="card reveal" href="/dj-drew-segura" style="aspect-ratio:auto; min-height:340px;"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Drew-Circle.png" alt="DJ Drew Segura" style="object-fit:contain; background:var(--tint-2);" /><div class="card-body"><h3>DJ Drew Segura</h3><p style="max-height:none; opacity:1;">With a passion for creating high-energy dance floors, DJ Drew has delivered unforgettable weddings in Fort Lauderdale since 2016. Bilingual in English and Spanish, he can curate the perfect vibe for diverse crowds.</p></div></a>
+        <a class="card reveal d1" href="/djatomic" style="aspect-ratio:auto; min-height:340px;"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Atomic-Circle.png" alt="DJ Atomic" style="object-fit:contain; background:var(--tint-2);" /><div class="card-body"><h3>DJ Atomic</h3><p style="max-height:none; opacity:1;">DJ Atomic brings nearly a decade of experience to weddings and events, specializing in Reggaeton, Dancehall, Soca, and multicultural celebrations.</p></div></a>
       </div>
     </div>
   </section>
