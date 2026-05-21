@@ -1,71 +1,133 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import CTA from '../components/CTA.astro';
 ---
-<Base title="The Experience | Xpress Entertainment — Luxury South Florida Weddings" description="More than entertainment. The Xpress Entertainment experience: intentional music, atmosphere, and moments that turn your wedding into the night everyone remembers.">
+<Base title="The Experience | Xpress Entertainment" description="More than entertainment. This is how your wedding comes to life — intentional music, atmosphere, and the moments your guests will be talking about long after.">
 
   <Hero
     eyebrow="The Xpress Entertainment Experience"
     titleHtml={`More than<br>entertainment.`}
-    sub="This is how your wedding comes to life — the music, the energy, and the moments your guests will be talking about long after the last song."
+    sub="This is how your wedding comes to life."
     image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-954.jpg"
     alt="Wedding reception celebration"
     ctaText="Check Availability"
   />
 
-  <!-- MEET OUR TEAM / PROMISE -->
+  <!-- WE CREATE MOMENTS -->
   <section class="pad bg-ink">
-    <div class="wrap">
-      <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png" alt="Packed dance floor" /></div>
-        <div class="reveal d1">
-          <span class="eyebrow">We create moments</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">We don't just play music.</h2>
-          <p class="lead">Anyone can show up with speakers and a playlist. That's not what makes a wedding memorable. What people remember is how the night <em>moved</em> — and that's what we obsess over.</p>
-        </div>
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;">
+        <span class="eyebrow">We create moments</span>
+        <h2 class="h-xl">We don't just play music. We create moments.</h2>
       </div>
+      <p class="lead reveal d1">Anyone can show up with speakers and a playlist. That's not what makes a wedding memorable. What people remember is how the night moved. When the room felt full. When the dance floor stayed alive. When everything just clicked without anyone noticing why. That's what we focus on. We think about timing, transitions, and energy. We pay attention to the crowd. We know when to push things forward and when to let a moment breathe. Nothing feels forced. Nothing feels random. At the end of the night, guests don't talk about the songs you played. They talk about how much fun they had.</p>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff; font-family:var(--serif); font-size:1.6rem;">That's the difference.</p>
     </div>
   </section>
 
   <!-- MUSIC & ENERGY -->
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">The Music & Energy</span><h2 class="h-xl">Read the room. Run the night.</h2></div>
-      <div class="values">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Intentional Transitions</h3><p style="color:#d9d0ec;">Every song flows into the next so the energy never dips and the dance floor never empties.</p></div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Energy Control, Not Chaos</h3><p style="color:#d9d0ec;">We build the night in waves — knowing when to push and when to let a moment breathe.</p></div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Music That Feels Personal</h3><p style="color:#d9d0ec;">Bilingual, open-format, and curated around your story — not a generic wedding playlist.</p></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">The Music & Energy</span><h2 class="h-xl">How the night moves.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Intentional Transitions</h3><p style="color:#d9d0ec;">Every moment flows with purpose.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Energy Control, Not Chaos</h3><p style="color:#d9d0ec;">A packed dance floor doesn't have to feel messy. We know how to build energy without losing control of the room.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Music That Feels Personal</h3><p style="color:#d9d0ec;">Your wedding doesn't sound like anyone else's. The music reflects your taste, your people, and your story.</p></div>
+        <div class="value reveal d3" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Calm Presence Behind the Booth</h3><p style="color:#d9d0ec;">When something unexpected happens, guests never notice. We stay steady, focused, and in control so the night stays on track.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- VISUAL / ATMOSPHERE -->
+  <!-- THE VISUAL EXPERIENCE -->
   <section class="pad bg-ink">
     <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png" alt="Photo booth experience" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">The Visual Experience</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">What your guests see &amp; remember.</h2>
+          <p class="lead">Your wedding should look as good as it feels.</p>
+          <p class="lead" style="margin-top:14px;">From beautifully designed photo booth experiences to lighting that transforms the room, we obsess over details your guests will notice and photograph.</p>
+          <p class="lead" style="margin-top:14px;">These aren't just "add-ons". They're part of the atmosphere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ATMOSPHERE -->
+  <section class="pad bg-light">
+    <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks and clouds first dance" /></div>
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Atmosphere lighting and effects" /></div>
         <div class="reveal d1">
           <span class="eyebrow">The Atmosphere</span>
-          <h2 class="h-lg" style="margin:14px 0 20px;">Energy you can feel.</h2>
-          <p class="lead">The right lighting, effects, and pacing turn a beautiful space into an unforgettable experience. From uplighting and monograms to cold sparks and dancing on the clouds — your wedding should look as good as it feels.</p>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Energy you can feel.</h2>
+          <p class="lead">Atmosphere changes everything.</p>
+          <p class="lead" style="margin-top:14px;">The right lighting, effects, and pacing can turn a beautiful space into an unforgettable experience. We design the environment around your celebration, enhancing key moments without overpowering them.</p>
+          <p class="lead" style="margin-top:14px;">From romantic to high-energy, every shift feels intentional.</p>
+          <ul style="margin:22px 0 0 20px; color:#5a4f6e; line-height:1.9;">
+            <li>Dance floor-focused lighting design</li>
+            <li>Smooth transitions between moments</li>
+            <li>Elevated energy without chaos</li>
+            <li>Club-style vibes when it's time to party</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <!-- THE MOMENTS -->
-  <section class="showcase">
-    <img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="First dance moment" />
-    <div class="wrap"><blockquote class="reveal">The moments you only get once — handled with care.</blockquote></div>
-  </section>
-
-  <!-- OUR APPROACH -->
-  <section class="pad bg-light">
+  <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Our Approach</span><h2 class="h-xl">Calm, prepared, and intentional.</h2><p class="lead">Behind every great wedding experience is preparation you never see. We plan with you, coordinate with your vendors, and run your night so the only thing you have to do is enjoy it.</p></div>
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Wedding first dance moment" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">The Moments</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">The moments you only get once.</h2>
+          <p class="lead">Your wedding isn't one long party.</p>
+          <p class="lead" style="margin-top:14px;">The walk into the room for the first time. The pause before the first dance. That split second before the dance floor fills.</p>
+          <p class="lead" style="margin-top:14px;">Those moments deserve attention.</p>
+          <p class="lead" style="margin-top:14px;">We slow things down when it matters and step on the gas when it's time to celebrate. We give space to emotion without letting the night lose momentum. Nothing is rushed. Nothing feels drawn out. Every transition has a reason.</p>
+          <p class="lead" style="margin-top:14px;">We work closely with your planner, photographer, and venue to make sure the timing is right, not just on paper, but in real life.</p>
+          <p class="lead" style="margin-top:14px; color:#fff;">Most guests won't be able to explain why the night felt so good. They'll just know it did.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <CTA titleHtml={`Let's create<br>something<br>unforgettable.`} />
+  <!-- OUR APPROACH -->
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:820px; text-align:center;">
+      <span class="eyebrow light reveal">Our Approach</span>
+      <h2 class="h-xl reveal d1" style="margin:16px 0 22px;">Calm, prepared, and intentional.</h2>
+      <p class="lead reveal d2" style="margin-inline:auto;">Behind every great wedding experience is preparation you never see. We plan with you, coordinate with your vendors, and handle the details so you can be fully present on your wedding day. Our process is built to reduce stress, not add to it.</p>
+      <p class="lead reveal d3" style="margin:18px auto 0; color:#fff; font-family:var(--serif); font-size:1.5rem;">You enjoy the night. We handle everything else.</p>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Who This Is For</span><h2 class="h-xl">This experience is for couples who…</h2></div>
+      <ul style="max-width:760px; list-style:none; display:flex; flex-direction:column; gap:0;">
+        <li class="reveal" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Care deeply about how their wedding feels</li>
+        <li class="reveal d1" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Want a packed dance floor without chaos</li>
+        <li class="reveal d2" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Value professionalism and preparation</li>
+        <li class="reveal d3" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Want their guests talking about the night — not the logistics</li>
+      </ul>
+      <p class="lead reveal" style="margin-top:30px; color:var(--purple); font-family:var(--serif); font-size:1.8rem;">If that sounds like you, you're in the right place.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="cta pad">
+    <div class="wrap" style="max-width:820px;">
+      <span class="eyebrow light reveal">Let's talk</span>
+      <h2 class="display reveal d1">Let's create<br>something<br>unforgettable.</h2>
+      <p class="lead reveal d2" style="margin:26px auto 0; text-align:center; color:#e9e2f5;">Your wedding deserves more than someone who just shows up and plays music. It deserves a team that understands timing, energy, and the importance of getting every moment right.</p>
+      <p class="lead reveal d2" style="margin:18px auto 0; text-align:center; color:#e9e2f5;">You've spent months planning this day. You deserve to be fully present for it. We'll take care of the rest.</p>
+      <p class="lead reveal d3" style="margin:18px auto 0; text-align:center; color:#e9e2f5;">From the first conversation to the final song of the night, our focus is simple: make sure your wedding feels exactly the way you imagined it would. If that sounds like what you're looking for, we'd love to be part of your day.</p>
+      <div class="reveal d3" style="margin-top:38px;"><a href="/check-availability" class="btn"><span>Check Availability</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
 </Base>
