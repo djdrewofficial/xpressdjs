@@ -154,6 +154,56 @@
     });
   }
 
+  /* ---- Sample gallery modal ---- */
+  var galleryCards = document.querySelectorAll(".gallery-card");
+  if (galleryCards.length) {
+    var gModal = null, gGrid = null, gTitleEl = null, gLast = null;
+    function buildGModal() {
+      gModal = document.createElement("div");
+      gModal.className = "gallery-modal";
+      gModal.setAttribute("role", "dialog");
+      gModal.setAttribute("aria-modal", "true");
+      gModal.innerHTML =
+        '<div class="gallery-modal-backdrop"></div>' +
+        '<div class="gallery-modal-inner">' +
+        '<button class="gallery-modal-close" type="button" aria-label="Close gallery">&times;</button>' +
+        '<h3 class="gallery-modal-title"></h3>' +
+        '<div class="gallery-modal-grid"></div>' +
+        "</div>";
+      document.body.appendChild(gModal);
+      gGrid = gModal.querySelector(".gallery-modal-grid");
+      gTitleEl = gModal.querySelector(".gallery-modal-title");
+      gModal.querySelector(".gallery-modal-backdrop").addEventListener("click", closeGModal);
+      gModal.querySelector(".gallery-modal-close").addEventListener("click", closeGModal);
+    }
+    function openGModal(id, title) {
+      var source = document.getElementById("gsrc-" + id);
+      if (!source) return;
+      if (!gModal) buildGModal();
+      gLast = document.activeElement;
+      gTitleEl.textContent = title || "Sample Gallery";
+      gGrid.innerHTML = source.innerHTML;
+      gModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      gModal.querySelector(".gallery-modal-close").focus();
+    }
+    function closeGModal() {
+      if (!gModal) return;
+      gModal.classList.remove("open");
+      gGrid.innerHTML = "";
+      document.body.style.overflow = "";
+      if (gLast && gLast.focus) gLast.focus();
+    }
+    galleryCards.forEach(function (c) {
+      c.addEventListener("click", function () {
+        openGModal(c.getAttribute("data-gallery"), c.getAttribute("data-title"));
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && gModal && gModal.classList.contains("open")) closeGModal();
+    });
+  }
+
   /* ---- Contact form (demo handler) ---- */
   var form = document.querySelector("#availability-form");
   if (form) {

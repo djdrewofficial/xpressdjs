@@ -2,6 +2,14 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import SampleGalleries from '../components/SampleGalleries.astro';
+
+const galleries = [
+  { id: 'lux-classics', title: 'Lux Booth Classics', count: 10 },
+  { id: 'glam-bw',      title: 'Glam Black & White', count: 10 },
+  { id: 'three60-booth', title: '360 Booth Moments', count: 10 },
+  { id: 'print-designs', title: 'Custom Print Designs', count: 10 },
+];
 
 const faqs = [
   ['How much space do I need?', 'Lux Booth: ≈ 8′×8′ | 360 Booth: ≈ 10′×10′ flat area'],
@@ -67,6 +75,14 @@ const steps = [
       <p class="lead reveal d2" style="margin-top:14px; color:#fff; font-family:var(--serif); font-size:1.5rem;">✨ Because memories fade… but photos last forever.</p>
     </div>
   </section>
+
+  <!-- SAMPLE GALLERIES -->
+  <SampleGalleries
+    galleries={galleries}
+    eyebrow="Sample Galleries"
+    title="See the magic."
+    sub="A peek at what your guests take home — tap any gallery to flip through real booth moments."
+  />
 
   <!-- HOW IT WORKS -->
   <section class="pad bg-light">

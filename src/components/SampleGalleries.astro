@@ -1,0 +1,64 @@
+---
+/*
+  Sample galleries — a row of cover cards; each opens a popup (lightbox)
+  with ~10 sample images. Until real photos arrive, every slot renders a
+  labeled placeholder showing the exact filename + pixel size the graphics
+  person should supply. Swapping later = drop a file at that path and set
+  `cover` / `images` on the gallery (or just replace the placeholder src).
+
+  Props:
+    galleries  [{ id, title, count, cover?, images?, coverSize?, imageSize? }]
+    eyebrow / title / sub  section heading copy
+
+  How playback works: each gallery's tiles live in a hidden source <div>
+  (#gsrc-<id>); main.js clones them into the modal grid on click.
+*/
+interface Gallery {
+  id: string; title: string; count: number;
+  cover?: string; images?: string[];
+  coverSize?: string; imageSize?: string;
+}
+interface Props { galleries: Gallery[]; eyebrow?: string; title?: string; sub?: string; }
+const {
+  galleries,
+  eyebrow = 'Sample Galleries',
+  title = 'See the magic.',
+  sub,
+} = Astro.props;
+const COVER = '1200 × 900';
+const IMG = '1080 × 1080';
+---
+<section class="pad bg-deep">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow light">{eyebrow}</span>
+      <h2 class="h-xl">{title}</h2>
+      {sub && <p class="lead" style="color:#d9d0ec; max-width:660px; margin:14px auto 0;">{sub}</p>}
+    </div>
+    <div class="gallery-cards">
+      {galleries.map((g) => (
+        <button class="gallery-card reveal" data-gallery={g.id} data-title={g.title} aria-label={`View ${g.title} sample gallery`}>
+          {g.cover
+            ? <img src={g.cover} alt={`${g.title} cover`} loading="lazy" decoding="async" />
+            : <span class="ph ph-cover"><strong>{g.coverSize || COVER}</strong><em>{g.id}-cover.jpg</em></span>}
+          <span class="gallery-card-shade" aria-hidden="true"></span>
+          <span class="gallery-card-body">
+            <span class="gallery-card-title">{g.title}</span>
+            <span class="gallery-card-btn">View Gallery <span aria-hidden="true">↗</span></span>
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  {/* Hidden image sources — cloned into the modal on click */}
+  {galleries.map((g) => (
+    <div class="gallery-source" id={`gsrc-${g.id}`} hidden>
+      {Array.from({ length: g.count }).map((_, i) => (
+        g.images?.[i]
+          ? <img src={g.images[i]} alt={`${g.title} sample ${i + 1}`} loading="lazy" decoding="async" />
+          : <span class="ph ph-square"><strong>{g.imageSize || IMG}</strong><em>{g.id}-{String(i + 1).padStart(2, '0')}.jpg</em></span>
+      ))}
+    </div>
+  ))}
+</section>
