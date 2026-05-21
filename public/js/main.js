@@ -95,6 +95,57 @@
     });
   }
 
+  /* ---- Video lightbox (click-to-play facade) ---- */
+  var facades = document.querySelectorAll(".video-facade");
+  if (facades.length) {
+    var vModal = null, vFrame = null, lastFocus = null;
+    function buildVModal() {
+      vModal = document.createElement("div");
+      vModal.className = "video-modal";
+      vModal.setAttribute("role", "dialog");
+      vModal.setAttribute("aria-modal", "true");
+      vModal.innerHTML =
+        '<div class="video-modal-backdrop"></div>' +
+        '<div class="video-modal-inner">' +
+        '<button class="video-modal-close" type="button" aria-label="Close video">&times;</button>' +
+        '<div class="video-modal-frame"></div>' +
+        "</div>";
+      document.body.appendChild(vModal);
+      vFrame = vModal.querySelector(".video-modal-frame");
+      vModal.querySelector(".video-modal-backdrop").addEventListener("click", closeVModal);
+      vModal.querySelector(".video-modal-close").addEventListener("click", closeVModal);
+    }
+    function openVModal(src) {
+      if (!src) return;
+      if (!vModal) buildVModal();
+      lastFocus = document.activeElement;
+      var iframe = document.createElement("iframe");
+      iframe.setAttribute("src", src);
+      iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("title", "Video player");
+      vFrame.appendChild(iframe);
+      vModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      vModal.querySelector(".video-modal-close").focus();
+    }
+    function closeVModal() {
+      if (!vModal) return;
+      vModal.classList.remove("open");
+      vFrame.innerHTML = "";
+      document.body.style.overflow = "";
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    facades.forEach(function (f) {
+      f.addEventListener("click", function () {
+        openVModal(f.getAttribute("data-video-src"));
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && vModal && vModal.classList.contains("open")) closeVModal();
+    });
+  }
+
   /* ---- Contact form (demo handler) ---- */
   var form = document.querySelector("#availability-form");
   if (form) {
