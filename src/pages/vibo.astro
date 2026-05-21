@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const love = [
   ['Stress-Free Communication', 'Your DJ will have all music preferences locked in, ensuring a flawless event.'],
@@ -23,7 +25,7 @@ const steps = [
     eyebrow="The Plan"
     titleHtml={`Plan your music<br>with <span class="serif-accent" style="font-style:italic">Vibo DJ.</span>`}
     sub="At Xpress Entertainment, we believe planning your wedding music should be fun, easy, and stress-free. That’s why we use Vibo DJ, a cutting-edge music planning app that lets you customize every song and moment of your big day — all from your phone."
-    image="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg"
+    image={phUri(2560, 1440, 'Vibo — hero', 'Couple planning music / celebration')}
     alt="Vibo DJ wedding planning"
     ctaText="Check Availability"
   />
@@ -31,7 +33,7 @@ const steps = [
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/03/Iphone_4-Timeline-d-1024x1024.png" alt="Vibo DJ timeline app" /></div>
+        <div class="media reveal"><Ph w={1024} h={1024} label="Vibo app screen" note="Phone mockup of the Vibo timeline/app" /></div>
         <div class="reveal d1">
           <p class="lead">With Vibo DJ, you and your partner can collaborate in real-time, invite friends and family to suggest songs, and ensure your wedding playlist reflects your unique style. Whether you want to create a high-energy dance party or a romantic, intimate ambiance, Vibo DJ makes it simple and interactive.</p>
         </div>

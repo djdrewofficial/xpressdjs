@@ -1,0 +1,20 @@
+---
+/*
+  Placeholder <img>. Drop-in replacement for any image slot — keeps the
+  element an <img> so existing CSS (object-fit, aspect-ratio, hero-bg, etc.)
+  works unchanged. Shows the target size + a short note of what belongs there.
+  Replace by swapping <Ph .../> for a real <img src="/images/..."> later.
+*/
+import { phUri } from '../lib/ph';
+interface Props {
+  w: number;
+  h: number;
+  label: string;
+  note?: string;
+  class?: string;
+  style?: string;
+}
+const { w, h, label, note = '', class: cls = '', style = '' } = Astro.props;
+const src = phUri(w, h, label, note);
+---
+<img src={src} alt={`Placeholder — ${label} (${w}x${h})`} class={cls} style={style} width={w} height={h} loading="lazy" />

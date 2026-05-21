@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import { phUri } from '../lib/ph';
 
 const extras = [
   'Ceremony Coverage',
@@ -24,7 +25,7 @@ const threesixty = ['360 Booth', 'Delivery & Breakdown', 'Unlimited Video Sessio
     eyebrow="Transparent pricing"
     titleHtml={`How Much Do<br>Wedding DJs <span class="serif-accent" style="font-style:italic">Cost?</span>`}
     sub="Your wedding is not a package. It is an experience, and the DJ you choose plays a huge role in how the entire night feels."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg"
+    image={phUri(2560, 1440, 'Pricing — hero', 'Celebration / packed dance floor')}
     alt="Wedding DJ booth"
     ctaText="Check Your Date"
   />

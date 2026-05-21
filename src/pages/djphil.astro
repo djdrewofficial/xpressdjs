@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const why = [
   ['🎤 Charismatic MC & crowd motivator', 'Brings the energy and keeps your guests engaged from the first announcement to the last song.'],
@@ -16,15 +18,15 @@ const why = [
     eyebrow="South Florida's Wedding & Event DJ"
     titleHtml={`DJ Phil`}
     sub="Across South Florida weddings, corporate events, and private celebrations, DJ Phil brings 12+ years of multicultural experience and high-energy vibes to every event."
-    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
-    alt="DJ Phil"
+    image={phUri(2560, 1440, 'DJ Phil — page hero', 'Phil performing / packed dance floor')}
+    alt="DJ Phil performing at a South Florida wedding"
     ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal" style="display:flex; align-items:center; justify-content:center; background:var(--ink-2);"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Phil-Santos.jpg" alt="DJ Phil Santos" /></div>
+        <div class="media reveal" style="background:var(--ink-2);"><Ph w={1000} h={1000} label="DJ Phil headshot" note="Square studio headshot, clean background" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
         <div class="reveal d1">
           <span class="eyebrow">🌍 Multicultural Wedding & Event DJ Based in Miami</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Over 250 Events & 35,000+ Happy Guests</h2>
@@ -47,7 +49,7 @@ const why = [
   </section>
 
   <section class="showcase">
-    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Packed dance floor" />
+    <Ph w={2000} h={1100} label="Packed dance floor" note="Full-width wedding crowd / dance floor moment" />
     <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">A World of Sound, One Packed Dance Floor — Reggaeton, top 40 hits, hip-hop, and classics from the 80s, 90s, and 2000s.</blockquote></div>
   </section>
 

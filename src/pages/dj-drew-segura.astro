@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
 import SocialFollow from '../components/SocialFollow.astro';
+import { phUri } from '../lib/ph';
 
 const socials = [
   { platform: 'instagram',  url: 'https://instagram.com/djdrewofficial',   handle: '@djdrewofficial' },
@@ -30,8 +31,8 @@ const why = [
     eyebrow="South Florida's Wedding & Event DJ"
     titleHtml={`DJ Drew<br>Segura`}
     sub="From intimate beachside weddings to high-energy nightlife in Fort Lauderdale, DJ Drew Segura brings over 8 years of experience, a bilingual (English & Spanish) background, and unmatched open-format mixing skills. Trusted by over 100 couples a year."
-    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
-    alt="DJ Drew Segura"
+    image={phUri(2560, 1440, 'DJ Drew — page hero', 'Drew performing / packed wedding dance floor')}
+    alt="DJ Drew Segura performing at a South Florida wedding"
     ctaText="Check Availability"
   />
 

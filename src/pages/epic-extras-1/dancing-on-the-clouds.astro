@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import { phUri } from '../../lib/ph';
 
 const why = [
   ['Romantic Ambiance', 'The low-lying fog creates a dreamy, romantic atmosphere, perfect for your first dance or any key moment during your wedding.'],
@@ -17,7 +18,7 @@ const why = [
     eyebrow="Epic Extras"
     titleHtml={`Dancing on Clouds for<br>Your <span class="serif-accent" style="font-style:italic">Dream Wedding</span>`}
     sub="Imagine your first dance as newlyweds, surrounded by a romantic, ethereal cloud that makes you feel like you’re floating on air."
-    image="https://xpressdjs.com/wp-content/uploads/2023/04/first-wedding-dance-2022-05-31-22-38-16-utc-1024x683.jpg"
+    image={phUri(2560, 1440, 'Dancing on the Clouds — hero', 'First dance on low-lying cloud fog')}
     alt="Dancing on the clouds first dance"
     ctaText="Check Availability"
   />

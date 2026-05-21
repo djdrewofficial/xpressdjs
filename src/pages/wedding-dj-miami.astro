@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const why = [
   ['🎤 Bilingual DJs & MCs', 'We speak both English and Spanish — so everyone feels included, no matter their background.'],
@@ -16,7 +18,7 @@ const why = [
     eyebrow="Miami Wedding DJ"
     titleHtml={`High-Energy. Bilingual.<br><span class="serif-accent" style="font-style:italic">Always On Point.</span>`}
     sub="Looking for a trusted Miami Wedding DJ to turn your big day into an unforgettable celebration? Xpress Entertainment brings the music, energy, and professionalism your wedding needs — from the ceremony to the last dance."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/CC200110-1024x683.jpg"
+    image={phUri(2560, 1440, 'Miami wedding DJ — hero', 'Miami wedding / skyline + dance floor')}
     alt="Miami wedding DJ"
     ctaText="Check Your Date"
   />
@@ -43,7 +45,7 @@ const why = [
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/07/Briza-on-the-bay-Leo-Photographer.png" alt="Miami wedding venue" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Miami wedding venue" note="Briza on the Bay / Miami waterfront venue" /></div>
         <div class="reveal d1">
           <span class="eyebrow">Why Miami venues love working with us</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">(And why you will too.)</h2>

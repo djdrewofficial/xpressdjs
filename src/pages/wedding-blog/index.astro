@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import { phUri } from '../../lib/ph';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -16,7 +17,7 @@ const fmt = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric'
     eyebrow="Wedding Blog"
     titleHtml={`The Xpress<br>journal.`}
     sub="Music tips, planning advice, and South Florida wedding inspiration — love letters to couples who believe in the power of music to soundtrack their story."
-    image="https://xpressdjs.com/wp-content/uploads/2024/12/How-to-Keep-the-Dance-Floor-Packed-All-Night-xpressdjs.png"
+    image={phUri(2560, 1440, 'Wedding Blog — hero', 'Editorial wedding / music vibe')}
     alt="Wedding blog"
   />
 

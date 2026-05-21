@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 ---
 <Base title="The Experience | Xpress Entertainment" description="More than entertainment. This is how your wedding comes to life — intentional music, atmosphere, and the moments your guests will be talking about long after.">
 
@@ -8,7 +10,7 @@ import Hero from '../components/Hero.astro';
     eyebrow="The Xpress Entertainment Experience"
     titleHtml={`More than<br>entertainment.`}
     sub="This is how your wedding comes to life."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-954.jpg"
+    image={phUri(2560, 1440, 'The Experience — hero', 'Emotional wedding reception / packed dance floor')}
     alt="Wedding reception celebration"
     ctaText="Check Availability"
   />
@@ -42,7 +44,7 @@ import Hero from '../components/Hero.astro';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png" alt="Photo booth experience" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Photo booth fun" note="Guests laughing in the photo booth" /></div>
         <div class="reveal d1">
           <span class="eyebrow">The Visual Experience</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">What your guests see &amp; remember.</h2>
@@ -58,7 +60,7 @@ import Hero from '../components/Hero.astro';
   <section class="pad bg-light">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Atmosphere lighting and effects" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Atmosphere & lighting" note="Uplighting / effects transforming the room" /></div>
         <div class="reveal d1">
           <span class="eyebrow">The Atmosphere</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Energy you can feel.</h2>
@@ -80,7 +82,7 @@ import Hero from '../components/Hero.astro';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Wedding first dance moment" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Key wedding moment" note="First dance / emotional once-only moment" /></div>
         <div class="reveal d1">
           <span class="eyebrow">The Moments</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">The moments you only get once.</h2>

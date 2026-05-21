@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
+import { phUri } from '../lib/ph';
 ---
 <Base title="Careers | Xpress Entertainment — Work With Us" description="Get paid to have fun. Xpress Entertainment is a group of independent DJs and artists who curate the most extravagant Xperiences for our clients. Work with us.">
 
@@ -10,7 +11,7 @@ import CTA from '../components/CTA.astro';
     eyebrow="Work with us"
     titleHtml={`Get paid to<br>have fun.`}
     sub="Xpress Entertainment is a group of independent DJs and artists that have come together to form something special. We curate the most extravagant Xperiences for our clients and love every moment of it. If this sounds like you, we’d love to meet you."
-    image="https://xpressdjs.com/wp-content/uploads/2023/06/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-946-1024x683.jpg"
+    image={phUri(2560, 1440, 'Careers — hero', 'Team / behind-the-scenes at events')}
     alt="Xpress Entertainment team"
     ctaText="Apply Now"
     ctaHref="/check-availability"

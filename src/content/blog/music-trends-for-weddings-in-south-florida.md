@@ -3,7 +3,7 @@ title: Music Trends for Weddings in South Florida
 description: South Florida weddings have their own vibe — tropical energy meets multicultural roots. Here are the music trends keeping local dance floors full.
 date: 2024-11-27
 tag: Music Trends
-image: https://xpressdjs.com/wp-content/uploads/2024/10/Music-Trends-for-Weddings-in-South-Florida-xpressdjs.jpg
+image: /images/og-default.png
 author: Xpress Entertainment
 ---
 

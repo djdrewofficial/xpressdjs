@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import { phUri } from '../../lib/ph';
 
 const why = [
   ['Visually Stunning', 'Create a dazzling spark effect without the risks associated with fireworks or pyrotechnics.'],
@@ -17,7 +18,7 @@ const why = [
     eyebrow="Epic Extras"
     titleHtml={`Cold Sparks for<br>Unforgettable<br>Weddings`}
     sub="Whether it’s your grand entrance, first dance, or send-off, Cold Spark Machines create a breathtaking display of sparks that add drama and excitement to your big day."
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-1024x576.png"
+    image={phUri(2560, 1440, 'Cold Sparks — hero', 'Cold sparks raining over the first dance')}
     alt="Cold spark machines"
     ctaText="Check Availability"
   />

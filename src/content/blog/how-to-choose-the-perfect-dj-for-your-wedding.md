@@ -3,7 +3,7 @@ title: How to Choose the Perfect DJ for Your Wedding
 description: Your DJ runs the energy of your entire reception. Here's how to choose one who'll read the room, host with confidence, and keep your night flowing.
 date: 2024-10-15
 tag: Planning
-image: https://xpressdjs.com/wp-content/uploads/2024/10/How-to-Choose-the-Perfect-DJ-for-Your-Wedding-xpressdj.png
+image: /images/og-default.png
 author: Xpress Entertainment
 ---
 

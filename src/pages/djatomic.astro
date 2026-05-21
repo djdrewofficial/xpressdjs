@@ -4,6 +4,8 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
 import SocialFollow from '../components/SocialFollow.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const socials = [
   { platform: 'instagram', url: 'https://instagram.com/djatomicentertainment', handle: '@djatomicentertainment' },
@@ -22,15 +24,15 @@ const why = [
     eyebrow="South Florida's Wedding & Event DJ"
     titleHtml={`DJ <span class="serif-accent" style="font-style:italic">Atomic</span>`}
     sub="From luxury cruise ships to unforgettable South Florida weddings, DJ Atomic brings global experience and high-energy vibes to every celebration."
-    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
-    alt="DJ Atomic"
+    image={phUri(2560, 1440, 'DJ Atomic — page hero', 'Atomic performing / high-energy crowd')}
+    alt="DJ Atomic performing at a South Florida wedding"
     ctaText="Check Availability"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal" style="display:flex; align-items:center; justify-content:center; background:var(--ink-2);"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Atomic-Circle.png" alt="DJ Atomic" style="aspect-ratio:1; object-fit:contain;" /></div>
+        <div class="media reveal" style="background:var(--ink-2);"><Ph w={1000} h={1000} label="DJ Atomic headshot" note="Square studio headshot, clean background" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
         <div class="reveal d1">
           <span class="eyebrow">🌍 International Wedding & Event DJ Based in South Florida</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Over 600 Unforgettable Weddings</h2>

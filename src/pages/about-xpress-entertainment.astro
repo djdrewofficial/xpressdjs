@@ -1,12 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const team = [
-  { name: 'Drew Segura', role: 'Founder & Lead DJ', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/20-1024x1024.png' },
-  { name: 'Stephanie Estrada', role: 'Content Producer', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/11-1024x1024.png' },
-  { name: 'DJ Atomic', role: 'Wedding & Event Entertainer', img: 'https://xpressdjs.com/wp-content/uploads/2025/04/22-1-300x300.png' },
-  { name: 'Helen Fisher', role: 'Sales & Logistics', img: 'https://xpressdjs.com/wp-content/uploads/2025/01/IMG_0356-1024x1024.jpeg' },
+  { name: 'Drew Segura', role: 'Founder & Lead DJ', img: '/images/djs/drew-segura-headshot.png' },
+  { name: 'Stephanie Estrada', role: 'Content Producer', img: phUri(900, 1200, 'Stephanie Estrada', 'Team portrait headshot, 3:4') },
+  { name: 'DJ Atomic', role: 'Wedding & Event Entertainer', img: phUri(900, 1200, 'DJ Atomic', 'Team portrait headshot, 3:4') },
+  { name: 'Helen Fisher', role: 'Sales & Logistics', img: phUri(900, 1200, 'Helen Fisher', 'Team portrait headshot, 3:4') },
 ];
 
 const reasons = [
@@ -24,7 +26,7 @@ const reasons = [
     size="mid"
     eyebrow="About us"
     titleHtml={`Your Wedding's Secret Weapon<br><span class="serif-accent" style="font-style:italic">(Besides Love, of course)</span>`}
-    image="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg"
+    image={phUri(2560, 1440, 'About — hero', 'Team photo or wide celebration shot')}
     alt="Xpress Entertainment wedding"
     ctaText="Check Availability"
   />
@@ -39,7 +41,7 @@ const reasons = [
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Xpress Entertainment wedding" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Our story" note="Founder DJ-ing an early Xpress wedding" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">From a dream…</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">…to 100+ weddings a year.</h2>

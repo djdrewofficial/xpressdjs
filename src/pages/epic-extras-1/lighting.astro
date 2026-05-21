@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import { phUri } from '../../lib/ph';
 ---
 <Base title="Wedding Lighting Add-Ons | Uplighting, Monogram & Light Shows — Xpress Entertainment" description="Lighting transforms a simple space into an elegant, vibrant celebration. Uplighting, personalized monogram projections, and high-energy club-style light shows for South Florida weddings.">
 
@@ -10,7 +12,7 @@ import CTA from '../../components/CTA.astro';
     eyebrow="Epic Extras"
     titleHtml={`Lighting Add-Ons<br>for Your Wedding`}
     sub="Lighting plays a crucial role in setting the mood for your wedding, transforming a simple space into an elegant, vibrant celebration."
-    image="https://xpressdjs.com/wp-content/uploads/2024/01/Purple-Uplighting-1024x485.jpeg"
+    image={phUri(2560, 1440, 'Lighting — hero', 'Uplit reception / colorful wedding lighting')}
     alt="Wedding uplighting"
     ctaText="Check Availability"
   />
@@ -25,7 +27,7 @@ import CTA from '../../components/CTA.astro';
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/01/Purple-Uplighting-1024x485.jpeg" alt="Uplighting" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Uplighting" note="Uplights glowing on venue walls" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">Uplighting</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Set the Mood for Elegance</h2>
@@ -39,7 +41,7 @@ import CTA from '../../components/CTA.astro';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-8-1024x576.png" alt="Monogram projection" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Monogram projection" note="Custom monogram on dance floor / wall" /></div>
         <div class="reveal d1">
           <span class="eyebrow">Monogram Projections</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Personalize Your Big Day</h2>
@@ -53,7 +55,7 @@ import CTA from '../../components/CTA.astro';
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-954-1024x683.jpg" alt="Club-style light show" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Club-style light show" note="Moving heads / lasers on a packed floor" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">Club-Style Light Show</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Bring the Party to Life</h2>

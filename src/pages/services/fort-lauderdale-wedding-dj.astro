@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import { phUri } from '../../lib/ph';
 
 const why = [
   ['Experienced DJs', 'With over 8 years of experience in the wedding industry, we know what it takes to create a memorable wedding reception.'],
@@ -18,7 +20,7 @@ const vibo = ['Organize and manage wedding details efficiently', 'Set up your we
     eyebrow="Fort Lauderdale, FL"
     titleHtml={`Fort Lauderdale<br>Wedding DJ Services`}
     sub="Your Dream Wedding Soundtrack Starts Here. Whether you’re hosting an intimate ceremony or a grand celebration, our Fort Lauderdale wedding DJs bring the passion and expertise needed to keep your guests dancing all night long."
-    image="https://xpressdjs.com/wp-content/uploads/2024/08/1-_-HEADER-1024x683.jpg"
+    image={phUri(2560, 1440, 'Fort Lauderdale wedding DJ — hero', 'Fort Lauderdale waterfront wedding / dance floor')}
     alt="Fort Lauderdale wedding"
     ctaText="Check Availability"
   />
@@ -62,7 +64,7 @@ const vibo = ['Organize and manage wedding details efficiently', 'Set up your we
       <div class="sec-head reveal"><span class="eyebrow">Meet Our Wedding DJs</span><h2 class="h-xl">Get to know the team that will rock your wedding.</h2></div>
       <div class="cards" style="grid-template-columns:repeat(2,1fr);">
         <a class="card reveal" href="/dj-drew-segura" style="aspect-ratio:auto; min-height:340px;"><img src="/images/djs/drew-segura-headshot.png" alt="DJ Drew Segura" style="object-fit:cover; background:var(--tint-2);" /><div class="card-body"><h3>DJ Drew Segura</h3><p style="max-height:none; opacity:1;">With a passion for creating high-energy dance floors, DJ Drew has delivered unforgettable weddings in Fort Lauderdale since 2016. Bilingual in English and Spanish, he can curate the perfect vibe for diverse crowds.</p></div></a>
-        <a class="card reveal d1" href="/djatomic" style="aspect-ratio:auto; min-height:340px;"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Atomic-Circle.png" alt="DJ Atomic" style="object-fit:contain; background:var(--tint-2);" /><div class="card-body"><h3>DJ Atomic</h3><p style="max-height:none; opacity:1;">DJ Atomic brings nearly a decade of experience to weddings and events, specializing in Reggaeton, Dancehall, Soca, and multicultural celebrations.</p></div></a>
+        <a class="card reveal d1" href="/djatomic" style="aspect-ratio:auto; min-height:340px;"><Ph w={1000} h={1000} label="DJ Atomic headshot" note="Square studio headshot" style="object-fit:cover; background:var(--tint-2);" /><div class="card-body"><h3>DJ Atomic</h3><p style="max-height:none; opacity:1;">DJ Atomic brings nearly a decade of experience to weddings and events, specializing in Reggaeton, Dancehall, Soca, and multicultural celebrations.</p></div></a>
       </div>
     </div>
   </section>

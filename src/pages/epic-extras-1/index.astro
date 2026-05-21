@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import { phUri } from '../../lib/ph';
 
 const extras = [
   { t: '☁️ Dancing on the Clouds', s: 'Feel like you’re in a dream.', d: 'This low-lying fog creates a cloud-like floor during your first dance or special moment—ideal for romantic vibes and stunning photos.', use: '💭 Top use: First dance, slow songs, dreamy wedding vibes', href: '/epic-extras-1/dancing-on-the-clouds' },
@@ -18,7 +20,7 @@ const extras = [
     eyebrow="Epic Extras"
     titleHtml={`Add That <span class="serif-accent" style="font-style:italic">✨ Extra Touch ✨</span><br>to Your Wedding Day`}
     sub="At Xpress Entertainment, we’re all about those wow moments that make your wedding feel completely yours. From lighting to custom visuals, these wedding add-ons are designed to enhance your experience, impress your guests, and keep the energy going all night long."
-    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
+    image={phUri(2560, 1440, 'Epic Extras — hero', 'Cold sparks / cinematic wedding moment')}
     alt="Epic Extras"
     ctaText="Check Availability"
   />
@@ -29,7 +31,7 @@ const extras = [
       <div class="cards">
         {extras.map((e, i) => (
           <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={e.href} style="aspect-ratio:auto; min-height:340px;">
-            <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt={e.t} />
+            <Ph w={1200} h={900} label={e.t} note="Feature photo for this extra" />
             <div class="card-body">
               <h3 style="font-size:1.4rem;">{e.t}</h3>
               <p style="max-height:none; opacity:1; margin:8px 0;"><strong style="color:#fff;">{e.s}</strong> {e.d}</p>

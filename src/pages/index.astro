@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
+import Ph from '../components/Ph.astro';
+import { phUri } from '../lib/ph';
 
 const faqs = [
   { q: 'How early should we book our wedding DJ?', a: ['We recommend booking your wedding DJ at least 9 to 18 months in advance—especially if your wedding falls during peak season (Spring or Fall in South Florida). Xpress Entertainment DJs often book up quickly because we only take on a limited number of weddings each weekend to ensure each event gets the attention it deserves. Booking early gives you the best chance to secure your preferred DJ and allows more time for personalized planning using our exclusive app, Vibo DJ.'] },
@@ -22,7 +24,7 @@ const faqs = [
     size="full"
     eyebrow="Miami · Fort Lauderdale · Palm Beach"
     titleHtml={`The <span class="serif-accent" style="font-style:italic">Ultimate</span><br>Wedding Experience`}
-    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    image={phUri(2560, 1440, 'Homepage hero', "Couple's first dance / packed dance floor — your best photo")}
     alt="The Ultimate Wedding Experience"
     ctaText="View Prices & Packages"
     ctaHref="/pricing"
@@ -78,7 +80,7 @@ const faqs = [
 
   <!-- VIBE -->
   <section class="showcase">
-    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="South Florida wedding celebration" />
+    <Ph w={2000} h={1100} label="Vibe / dance floor band" note="Full-width emotional wedding crowd shot" />
     <div class="wrap" style="max-width:900px;">
       <blockquote class="reveal" style="max-width:none;">We set the vibe — you bring it to life. ✨</blockquote>
       <p class="lead reveal d1" style="color:#e9e2f5; margin:24px auto 30px; text-align:center;">At Xpress, we don't just show up and press play. We create a vibe, keep your people dancing, and make sure every single moment feels like you. From the first song to the final send-off, we've got you. Whether you're planning a beachside wedding in Miami or a chic indoor celebration in Boca, we'll make sure your day is seamless, joyful, and totally unforgettable.</p>
@@ -105,7 +107,7 @@ const faqs = [
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Vibo DJ planning" /></div>
+        <div class="media reveal"><Ph w={1200} h={900} label="Vibo planning app" note="Couple using the Vibo DJ app / phone mockup" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">Planning made easy</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">🎵 Curate Your Soundtrack with Vibo DJ</h2>
