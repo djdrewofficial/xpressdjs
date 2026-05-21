@@ -11,6 +11,46 @@ const {
 // Social scrapers need an absolute URL. Resolve relative paths against the
 // site domain; pass-through any already-absolute URL.
 const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? Astro.url).href;
+
+// Site-wide LocalBusiness structured data (helps Google's local pack,
+// knowledge panel, and rich results). Renders invisibly in <head>.
+const SITE_ORIGIN = Astro.site ? Astro.site.origin : 'https://xpressdjs.com';
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EntertainmentBusiness',
+  '@id': `${SITE_ORIGIN}/#business`,
+  name: 'Xpress Entertainment',
+  legalName: 'Xpress Entertainment Corp.',
+  alternateName: 'Xpress DJs',
+  description: "South Florida's award-winning wedding DJ & entertainment company serving Miami, Fort Lauderdale, Palm Beach, and the Florida Keys.",
+  url: `${SITE_ORIGIN}/`,
+  telephone: '+1-954-233-0698',
+  email: 'events@xpressdjs.com',
+  logo: `${SITE_ORIGIN}/logo.svg`,
+  image: `${SITE_ORIGIN}/images/og-default.png`,
+  priceRange: '$$',
+  slogan: 'The Ultimate Wedding Experience',
+  award: 'WeddingWire Best of Weddings',
+  knowsLanguage: ['en', 'es'],
+  founder: { '@type': 'Person', name: 'Drew Segura' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Pembroke Pines',
+    addressRegion: 'FL',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 26.0078, longitude: -80.2963 },
+  areaServed: [
+    { '@type': 'City', name: 'Miami' },
+    { '@type': 'City', name: 'Fort Lauderdale' },
+    { '@type': 'City', name: 'West Palm Beach' },
+    { '@type': 'City', name: 'Miami Beach' },
+    { '@type': 'City', name: 'Boca Raton' },
+    { '@type': 'AdministrativeArea', name: 'The Florida Keys' },
+  ],
+  knowsAbout: ['Wedding DJ', 'Master of Ceremonies', 'Photo Booth Rental', 'Uplighting', 'Cold Sparks', 'Dancing on the Clouds', 'Bilingual DJ'],
+  sameAs: ['https://www.instagram.com/xpressdjs'],
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +71,7 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(businessSchema)} />
 </head>
 <body>
   <Nav />
