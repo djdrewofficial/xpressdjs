@@ -1,0 +1,30 @@
+---
+/*
+  Trust / credibility strip. Uses only facts already true per the site copy
+  (WeddingWire Best of Weddings ×2, 150+ weddings/yr, insured, bilingual,
+  8+ yrs). Swap any item for an official award badge image when available
+  (The Knot / WeddingWire give you an embed/image in your vendor dashboard),
+  and replace "Five-Star Rated" with your real Google rating + count.
+*/
+const items = [
+  { stars: true, text: 'Five-Star Rated' },
+  { icon: '🏆', text: 'WeddingWire Best of Weddings' },
+  { icon: '💍', text: '150+ Weddings a Year' },
+  { icon: '🛡️', text: 'Licensed & Insured' },
+  { icon: '🌎', text: 'Bilingual DJs' },
+];
+---
+<section class="trustbar">
+  <div class="wrap">
+    <div class="trustbar-inner reveal">
+      {items.map((it) => (
+        <div class="trust-item">
+          {it.stars
+            ? <span class="trust-stars" aria-hidden="true">★★★★★</span>
+            : <span class="trust-icon" aria-hidden="true">{it.icon}</span>}
+          <span class="trust-text">{it.text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
+import TrustBar from '../components/TrustBar.astro';
 
 const faqs = [
   { q: 'How early should we book our wedding DJ?', a: ['We recommend booking your wedding DJ at least 9 to 18 months in advance—especially if your wedding falls during peak season (Spring or Fall in South Florida). Xpress Entertainment DJs often book up quickly because we only take on a limited number of weddings each weekend to ensure each event gets the attention it deserves. Booking early gives you the best chance to secure your preferred DJ and allows more time for personalized planning using our exclusive app, Vibo DJ.'] },
@@ -29,6 +30,8 @@ const faqs = [
     ctaText2="Check Out Reviews"
     ctaHref2="#reviews"
   />
+
+  <TrustBar />
 
   <Marquee items={["Wedding DJs","Master of Ceremonies","Photo Booths","Cold Sparks","Dancing on the Clouds","Uplighting"]} />
 

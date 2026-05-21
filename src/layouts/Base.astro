@@ -6,8 +6,11 @@ import Footer from '../components/Footer.astro';
 const {
   title,
   description,
-  image = 'https://xpressdjs.com/wp-content/uploads/2025/03/Xpress-Entertainment-Website-Featured-Image.jpg',
+  image = '/images/og-default.png',
 } = Astro.props;
+// Social scrapers need an absolute URL. Resolve relative paths against the
+// site domain; pass-through any already-absolute URL.
+const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? Astro.url).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +22,12 @@ const {
   <link rel="canonical" href={Astro.url.href} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={image} />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
