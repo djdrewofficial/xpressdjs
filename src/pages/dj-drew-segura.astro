@@ -12,9 +12,9 @@ const socials = [
   { platform: 'youtube',    url: 'https://youtube.com/@djdrewofficial',    handle: '@djdrewofficial' },
   { platform: 'tiktok',     url: 'https://tiktok.com/@djdrewofficiall',    handle: '@djdrewofficiall' },
 ];
-const igPosts = [
-  'https://www.instagram.com/reel/DUw7-a3jepU/',
-  'https://www.instagram.com/reel/DT8j0FBERzN/',
+const reels = [
+  { url: 'https://www.instagram.com/reel/DUw7-a3jepU/', cover: '/images/social/drew-reel-1.jpg', handle: '@djdrewofficial' },
+  { url: 'https://www.instagram.com/reel/DT8j0FBERzN/', cover: '/images/social/drew-reel-2.jpg', handle: '@djdrewofficial' },
 ];
 
 const why = [
@@ -82,7 +82,7 @@ const why = [
     </div>
   </section>
 
-  <SocialFollow name="DJ Drew" links={socials} igPosts={igPosts} />
+  <SocialFollow name="DJ Drew" links={socials} reels={reels} />
 
   <CTA eyebrow="Book DJ Drew Segura" titleHtml={`Make it<br>unforgettable.`} />
 </Base>
