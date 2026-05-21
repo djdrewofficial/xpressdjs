@@ -1,0 +1,48 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<nav class="nav">
+  <a href="/" class="brand" aria-label="Xpress Entertainment — home">
+    <img class="brand-logo" src="/logo.svg" alt="Xpress Entertainment" width="150" height="62" />
+  </a>
+  <div class="nav-links">
+    <a href="/the-experience" class={isActive('/the-experience') ? 'active' : ''}>Experience</a>
+
+    <div class="nav-item">
+      <a href="/services/djs" class="dd-toggle">DJs <span class="car">▾</span></a>
+      <div class="dropdown"><div class="dropdown-inner">
+        <a href="/dj-drew-segura">DJ Drew Segura</a>
+        <a href="/djatomic">DJ Atomic</a>
+        <a href="/djphil">DJ Phil Santos</a>
+        <a href="/services/djs">All DJs →</a>
+      </div></div>
+    </div>
+
+    <div class="nav-item">
+      <a href="/services" class="dd-toggle">Services <span class="car">▾</span></a>
+      <div class="dropdown"><div class="dropdown-inner">
+        <a href="/services">All Services</a>
+        <a href="/south-florida-photo-booth-rental">Photo Booths</a>
+        <a href="/wedding-content-creator">Content Creator</a>
+        <a href="/vibo">Vibo Planning App</a>
+      </div></div>
+    </div>
+
+    <div class="nav-item">
+      <a href="/epic-extras-1" class="dd-toggle">Epic Extras <span class="car">▾</span></a>
+      <div class="dropdown"><div class="dropdown-inner">
+        <a href="/epic-extras-1">Overview</a>
+        <a href="/epic-extras-1/dancing-on-the-clouds">Dancing on the Clouds</a>
+        <a href="/epic-extras-1/cold-sparks">Cold Sparks</a>
+        <a href="/epic-extras-1/lighting">Lighting & Monogram</a>
+      </div></div>
+    </div>
+
+    <a href="/pricing" class={isActive('/pricing') ? 'active' : ''}>Pricing</a>
+    <a href="/wedding-blog" class={isActive('/wedding-blog') ? 'active' : ''}>Blog</a>
+    <a href="/about-xpress-entertainment" class={isActive('/about-xpress-entertainment') ? 'active' : ''}>About</a>
+    <a href="/check-availability" class="btn"><span>Check Your Date</span></a>
+  </div>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>

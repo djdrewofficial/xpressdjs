@@ -1,0 +1,29 @@
+---
+const {
+  eyebrow,
+  titleHtml,
+  sub,
+  image,
+  alt = '',
+  ctaText,
+  ctaHref = '/check-availability',
+  ctaText2,
+  ctaHref2,
+  size = 'tall',
+} = Astro.props;
+const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
+---
+<header class="hero" style={`min-height:${minh};`}>
+  <div class="hero-bg"><img src={image} alt={alt} /></div>
+  <div class="wrap">
+    {eyebrow && <span class="eyebrow light reveal">{eyebrow}</span>}
+    <h1 class="display reveal d1" set:html={titleHtml}></h1>
+    {sub && <p class="lead reveal d2">{sub}</p>}
+    {(ctaText || ctaText2) && (
+      <div class="hero-cta reveal d3">
+        {ctaText && <a href={ctaHref} class="btn"><span>{ctaText}</span> <span class="arrow">↗</span></a>}
+        {ctaText2 && <a href={ctaHref2} class="btn ghost"><span>{ctaText2}</span></a>}
+      </div>
+    )}
+  </div>
+</header>

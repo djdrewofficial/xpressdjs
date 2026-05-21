@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import CTA from '../../components/CTA.astro';
+
+const services = [
+  { t: 'Wedding DJs & MCs', d: 'Bilingual, open-format DJs who read the crowd and double as your MC — guiding every toast, intro, and transition.', img: 'https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg', href: '/services/djs', tag: 'The Sound' },
+  { t: 'Photo Booths', d: 'Lux & 360 booths with instant custom prints, shareable video, and an on-site attendant.', img: 'https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png', href: '/south-florida-photo-booth-rental', tag: 'The Keepsake' },
+  { t: 'Epic Extras', d: 'Cold sparks, dancing on the clouds, CO2 & confetti — the cinematic wow-moments.', img: 'https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png', href: '/epic-extras-1', tag: 'The Wow' },
+  { t: 'Lighting & Monogram', d: 'Uplighting, intelligent dance-floor lighting, and a custom monogram projection.', img: 'https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-8.png', href: '/epic-extras-1/lighting', tag: 'The Atmosphere' },
+  { t: 'Content Creator', d: 'Real-time Reels and photos delivered while your party is still going.', img: 'https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg', href: '/wedding-content-creator', tag: 'The Story' },
+  { t: 'Vibo Planning App', d: 'Plan every song and moment from your phone — built into your booking.', img: 'https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg', href: '/vibo', tag: 'The Plan' },
+];
+---
+<Base title="Wedding Entertainment Services in Miami & South Florida | Xpress Entertainment" description="Wedding DJs, MCs, photo booths, lighting, cold sparks & content creation — all from one award-winning South Florida team. Serving Miami, Fort Lauderdale & Palm Beach.">
+
+  <Hero
+    eyebrow="Everything, under one roof"
+    titleHtml={`Our wedding &<br>event <span class="serif-accent" style="font-style:italic">services.</span>`}
+    sub="Six ways we turn your celebration into the one everyone remembers — designed to work together as one seamless night."
+    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    alt="Wedding entertainment"
+    ctaText="Check Your Date"
+  />
+
+  <Marquee variant="alt" items={["Bilingual","Open-Format","Cinematic","Stress-Free","Award-Winning"]} />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">What we do</span><h2 class="h-xl">One team. Every detail.</h2></div>
+      <div class="cards">
+        {services.map((s, i) => (
+          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={s.href}>
+            <img src={s.img} alt={s.t} />
+            <span class="tag">{s.tag}</span>
+            <div class="card-body"><h3>{s.t}</h3><p>{s.d}</p></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Why South Florida couples choose us</span><h2 class="h-xl">Effortless, end to end.</h2></div>
+      <div class="values">
+        <div class="value reveal"><div class="vnum">150+</div><h3>Weddings a Year</h3><p>Experience you can hear in every transition and feel on every dance floor.</p></div>
+        <div class="value reveal d1"><div class="vnum">EN/ES</div><h3>Bilingual & Multicultural</h3><p>The cultural range to keep every generation — and both families — dancing.</p></div>
+        <div class="value reveal d2"><div class="vnum">★★</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings, every service from one trusted team.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Build your night" titleHtml={`Let's build<br>your night.`} />
+</Base>

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Base title="Wedding DJ Fort Lauderdale | Xpress Entertainment" description="Premium wedding DJ & MC services in Fort Lauderdale. Bilingual hosts, full production, photo booths & content creator add-ons. Check your date.">
+
+  <Hero
+    eyebrow="Fort Lauderdale, FL"
+    titleHtml={`Fort Lauderdale<br>wedding DJs.`}
+    sub="Your dream wedding soundtrack starts here. Whether you're hosting an intimate ceremony or a grand celebration, our Fort Lauderdale DJs bring the passion, energy, and professionalism."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg"
+    alt="Fort Lauderdale wedding"
+    ctaText="Check Your Date"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="Fort Lauderdale wedding reception" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">The perfect blend</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Music, energy, professionalism.</h2>
+          <p class="lead">We turn your Fort Lauderdale wedding into an unforgettable experience — reading the crowd in real time, hosting every moment, and keeping your dance floor full from cocktail hour to last call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">One team, every detail</span><h2 class="h-xl">More than a DJ.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>DJ + Bilingual MC</h3><p style="color:#d9d0ec;">One pro who spins and hosts — your night flows seamlessly start to finish.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Add Photo Booths & Extras</h3><p style="color:#d9d0ec;">Bundle lighting, cold sparks, and a 360 booth — all from one Fort Lauderdale team.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Award-Winning</h3><p style="color:#d9d0ec;">Two-time WeddingWire Best of Weddings, 150+ weddings a year across South Florida.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Fort Lauderdale" titleHtml={`Book your<br>FLL wedding DJ.`} />
+</Base>

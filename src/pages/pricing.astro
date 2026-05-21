@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+
+const extras = [
+  ['Ceremony Coverage', '$250'],
+  ['Uplighting (10-pack)', '$300'],
+  ['Monogram Projection', '$375'],
+  ['Cold Spark Machines (pair)', '$450'],
+  ['Dancing on the Clouds', '$450'],
+  ['CO2 Hand Guns', '$450'],
+  ['Ultimate Laser Experience', '$750'],
+  ['Club-Style Light Show', '$850'],
+  ['CO2 Cannons', '$875'],
+];
+---
+<Base title="Wedding DJ Pricing in South Florida | Xpress Entertainment" description="Transparent wedding DJ pricing from $2,500. Photo booths, lighting, cold sparks, dancing on the clouds & more. Serving Miami, Fort Lauderdale & Palm Beach.">
+
+  <Hero
+    size="mid"
+    eyebrow="Transparent pricing"
+    titleHtml={`How much does a<br>wedding DJ <span class="serif-accent" style="font-style:italic">cost?</span>`}
+    sub="Your wedding isn't a package — it's an experience. We build pricing around the DJ you choose and the moments you want to create. DJ services start at $2,500."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg"
+    alt="Wedding DJ booth"
+    ctaText="Check Your Date"
+  />
+
+  <!-- DJ PACKAGES -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">DJ packages</span><h2 class="h-xl">Choose your DJ.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <div class="vnum" style="color:var(--lavender);">Bilingual · EN / ES</div>
+          <h3 style="margin:10px 0;">DJ Drew Segura</h3>
+          <div style="font-family:var(--serif); font-size:3rem; color:var(--red); line-height:1;">$2,500</div>
+          <p style="color:#d9d0ec; margin-top:14px;">Founder &amp; lead DJ. Includes cocktail hour &amp; reception. Roots in American, Dominican &amp; Colombian cultures.</p>
+          <a href="/dj-drew-segura" class="textlink" style="margin-top:18px;">Meet Drew ↗</a>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <div class="vnum" style="color:var(--lavender);">Multicultural · International</div>
+          <h3 style="margin:10px 0;">DJ Atomic</h3>
+          <div style="font-family:var(--serif); font-size:3rem; color:var(--red); line-height:1;">$2,500</div>
+          <p style="color:#d9d0ec; margin-top:14px;">Multicultural style, flawless mixing, reads any room. Includes cocktail hour &amp; reception.</p>
+          <a href="/djatomic" class="textlink" style="margin-top:18px;">Meet Atomic ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPIC EXTRAS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Epic Extras (Add-Ons)</span><h2 class="h-xl">Add the wow.</h2></div>
+      <div class="reveal" style="max-width:680px; margin:0 auto;">
+        {extras.map(([name, price]) => (
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
+            <span style="font-size:1.1rem;">{name}</span>
+            <span style="font-family:var(--serif); font-size:1.5rem; color:var(--lavender);">{price}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO BOOTHS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Photo booth packages</span><h2 class="h-xl">Capture every frame.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>Lux Photo Booth</h3>
+          <div style="font-family:var(--serif); font-size:2.6rem; color:var(--red); line-height:1; margin:10px 0;">$875</div>
+          <p style="color:#d9d0ec;">4 hours · DSLR camera · custom prints · props · online gallery · on-site attendant.</p>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>360 Video Booth</h3>
+          <div style="font-family:var(--serif); font-size:2.6rem; color:var(--red); line-height:1; margin:10px 0;">$1,250</div>
+          <p style="color:#d9d0ec;">4 hours · 360° platform · LED lighting · instant social sharing · on-site attendant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Build your night" titleHtml={`Get your<br>custom quote.`} text="Tell us your date, venue, and vision — we'll send packages built around it." ctaText="Get Your Quote" />
+</Base>

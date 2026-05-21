@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const d = post.data;
+const fmt = d.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Base title={`${d.title} | Xpress Entertainment`} description={d.description} image={d.image}>
+
+  <header class="hero" style="min-height:58svh;">
+    <div class="hero-bg"><img src={d.image} alt={d.title} /></div>
+    <div class="wrap">
+      <span class="eyebrow light reveal">{d.tag} · {fmt}</span>
+      <h1 class="h-xl reveal d1" style="margin-top:16px;">{d.title}</h1>
+    </div>
+  </header>
+
+  <article class="pad bg-ink">
+    <div class="wrap" style="max-width:760px;">
+      <div class="post-body reveal"><Content /></div>
+      <div style="margin-top:54px;"><a href="/wedding-blog" class="textlink">← Back to the blog</a></div>
+    </div>
+  </article>
+
+  <CTA />
+
+  <style>
+    .post-body :global(h2) { font-family: var(--serif); font-size: 1.9rem; margin: 38px 0 14px; color: #fff; line-height: 1.1; }
+    .post-body :global(h3) { font-family: var(--serif); font-size: 1.4rem; margin: 28px 0 10px; color: #fff; }
+    .post-body :global(p) { color: var(--muted); margin-bottom: 18px; font-size: 1.08rem; line-height: 1.85; }
+    .post-body :global(ul), .post-body :global(ol) { color: var(--muted); margin: 0 0 20px 22px; }
+    .post-body :global(li) { margin-bottom: 10px; line-height: 1.7; }
+    .post-body :global(strong) { color: #fff; }
+    .post-body :global(a) { color: var(--red); text-decoration: underline; }
+    .post-body :global(blockquote) { border-left: 3px solid var(--red); padding-left: 22px; margin: 26px 0; font-family: var(--serif); font-size: 1.4rem; color: var(--lavender); }
+  </style>
+</Base>

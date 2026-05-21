@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Base title="Wedding DJs in South Florida | Xpress Entertainment" description="The best wedding DJs in South Florida — bilingual, open-format, and MC-ready. Serving Miami, Fort Lauderdale & Palm Beach. Meet our DJs and check your date.">
+
+  <Hero
+    eyebrow="Let's dance"
+    titleHtml={`Wedding DJs in<br>South Florida.`}
+    sub="Your DJ shouldn't just be a playlist. Our bilingual, open-format DJs read the crowd, host the night, and keep your dance floor packed from cocktail hour to last call."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg"
+    alt="Wedding DJ"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Meet the talent</span><h2 class="h-xl">DJs who run the whole night.</h2></div>
+      <div class="cards">
+        <a class="card reveal" href="/dj-drew-segura">
+          <img src="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Atomic.jpg" alt="DJ Drew Segura" />
+          <span class="tag">Founder</span>
+          <div class="card-body"><h3>DJ Drew Segura</h3><p>Bilingual (EN/ES), 8+ years, 100+ weddings/year. Reggaeton, Latin, Top 40, open-format.</p></div>
+        </a>
+        <a class="card reveal d1" href="/djatomic">
+          <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="DJ Atomic" />
+          <span class="tag">International</span>
+          <div class="card-body"><h3>DJ Atomic</h3><p>Multicultural style, flawless mixing, reads any room. Global experience, local heartbeat.</p></div>
+        </a>
+        <a class="card reveal d2" href="/djphil">
+          <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="DJ Phil Santos" />
+          <span class="tag">Multicultural</span>
+          <div class="card-body"><h3>DJ Phil Santos</h3><p>12+ years, trilingual (EN/ES/PT), Latin & open-format. Miami-based.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow light">What you get</span><h2 class="h-xl">More than music.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Bilingual MC</h3><p style="color:#d9d0ec;">Charismatic hosting in English & Spanish that keeps your night flowing and your guests engaged.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Open-Format Mixing</h3><p style="color:#d9d0ec;">Reggaeton, Latin, Top 40, hip-hop, and classics — seamlessly blended for every generation.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Vibo Planning</h3><p style="color:#d9d0ec;">Plan every must-play and do-not-play from your phone, long before the big day.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Lock your date" titleHtml={`Book your<br>DJ.`} />
+</Base>

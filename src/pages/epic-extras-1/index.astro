@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+
+const extras = [
+  { t: 'Dancing on the Clouds', d: 'A romantic, ethereal cloud for your first dance — like floating on air.', href: '/epic-extras-1/dancing-on-the-clouds' },
+  { t: 'Cold Spark Machines', d: 'Safe, indoor sparks for your grand entrance, first dance, or send-off.', href: '/epic-extras-1/cold-sparks' },
+  { t: 'Lighting & Monogram', d: 'Uplighting, dance-floor lighting, and a custom monogram projection.', href: '/epic-extras-1/lighting' },
+  { t: 'CO2 Hand Guns & Cannons', d: 'Blasts of fog when the beat drops — peak-energy crowd moments.', href: '/check-availability' },
+  { t: 'Ultimate Laser Experience', d: 'A club-style laser show that transforms your reception after dark.', href: '/check-availability' },
+  { t: 'Confetti & More', d: 'Confetti cannons and interactive touches for unforgettable peaks.', href: '/check-availability' },
+];
+---
+<Base title="Epic Extras for Your Wedding | Cold Sparks, Clouds & Lighting — Xpress Entertainment" description="Add that extra touch: cold sparks, dancing on the clouds, CO2, lasers, uplighting & custom monograms for South Florida weddings. The wow-moments your guests film.">
+
+  <Hero
+    eyebrow="Add that ✨ extra touch ✨"
+    titleHtml={`Epic <span class="serif-accent" style="font-style:italic">Extras.</span>`}
+    sub="The wow-moments that make your wedding feel completely yours — designed to impress your guests and keep the energy going all night long."
+    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
+    alt="Cold sparks and dancing on the clouds"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Most-loved add-ons</span><h2 class="h-xl">Make a moment.</h2></div>
+      <div class="cards">
+        {extras.map((e, i) => (
+          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={e.href} style="aspect-ratio:4/3;">
+            <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt={e.t} />
+            <div class="card-body"><h3 style="font-size:1.4rem;">{e.t}</h3><p>{e.d}</p></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Go big" titleHtml={`Make it<br>cinematic.`} />
+</Base>

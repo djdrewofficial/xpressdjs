@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+
+const faqs = [
+  ['How much space do I need?', 'The Lux Booth needs about an 8′×8′ area; the 360 Booth about 10′×10′ of flat space.'],
+  ['Do you include an attendant?', 'Always. Every booth comes with a friendly pro to guide your guests all night.'],
+  ['Do guests get prints?', 'Yes — the Lux Booth offers unlimited 2×6 or 4×6 prints plus digital downloads.'],
+  ['Can we customize the prints?', 'Absolutely — custom overlays, monograms, and your colors and date.'],
+];
+---
+<Base title="Photo Booth Rental Miami & Fort Lauderdale | Xpress Entertainment" description="Lux & 360 photo booths for South Florida weddings. Pro DSLR prints, custom overlays, instant social sharing, and an on-site attendant. From $875.">
+
+  <Hero
+    eyebrow="Miami · Fort Lauderdale · Palm Beach"
+    titleHtml={`Photo booths,<br>captured frame<br>by frame.`}
+    sub="The Ultimate Wedding Experience doesn't end on the dance floor — it lives on in every smile, pose, and playful moment inside our booths."
+    image="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png"
+    alt="Wedding photo booth"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Two ways to capture it</span><h2 class="h-xl">Choose your booth.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>The Lux Booth</h3>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:10px 0;">$875</div>
+          <p style="color:#d9d0ec;">4 hours · DSLR-quality camera · unlimited custom prints · props · black-and-white filters · online gallery · on-site attendant.</p>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>The 360 Booth</h3>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:10px 0;">$1,250</div>
+          <p style="color:#d9d0ec;">4 hours · 360° rotating platform · cinematic slow-motion · LED lighting · instant social sharing via text, email or QR · attendant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">Frequently asked.</h2></div>
+      <div style="max-width:760px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
+            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
+            <p style="color:#5a4f6e;">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Smile" titleHtml={`Add a booth<br>to your night.`} />
+</Base>

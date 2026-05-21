@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Wedding Content Creator | Real-Time Reels & Photos — Xpress Entertainment" description="Relive your South Florida wedding in real time. Our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes magic while your party is still going.">
+
+  <Hero
+    size="mid"
+    eyebrow="The Story"
+    titleHtml={`Wedding content,<br>in real time.`}
+    sub="Relive your day as it happens — through the lens of a content creator dedicated just to you. Forget waiting weeks for highlights."
+    image="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg"
+    alt="Wedding content creator"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg" alt="Wedding content creation" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Posted before the honeymoon</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Reels you'll actually post.</h2>
+          <p class="lead">Our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes moments <em>while your party is still going</em> — so you can share the magic the same night, not six weeks later.</p>
+          <p class="lead" style="margin-top:16px;">Vertical-first, social-ready, and shot to match the energy of your celebration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Capture it" titleHtml={`Relive it<br>in real time.`} />
+</Base>

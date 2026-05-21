@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Base title="Dancing on the Clouds | First Dance Cloud Effect — Xpress Entertainment" description="Dancing on the Clouds for your South Florida wedding first dance. A professional dry-ice cloud that makes you feel like you're floating on air.">
+
+  <Hero
+    size="mid"
+    eyebrow="Epic Extras"
+    titleHtml={`Dancing on<br>the clouds.`}
+    sub="Imagine your first dance as newlyweds, surrounded by a romantic, ethereal cloud that makes you feel like you're floating on air."
+    image="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png"
+    alt="Dancing on the clouds first dance"
+    ctaText="Add to My Wedding"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="First dance" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">The dream first dance</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Float through your first dance.</h2>
+          <p class="lead">Our professional-grade dry-ice machine creates a stunning, low-lying cloud that rolls across your dance floor — turning your first dance into a breathtaking, photo-worthy moment without any haze in the air.</p>
+          <p class="lead" style="margin-top:16px;">Starting at <strong style="color:#fff;">$450</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Your first dance" titleHtml={`Dance on<br>the clouds.`} ctaText="Check Availability" />
+</Base>

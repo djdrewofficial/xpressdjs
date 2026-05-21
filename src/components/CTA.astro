@@ -1,0 +1,19 @@
+---
+const {
+  eyebrow = "Let's talk",
+  titleHtml = 'Make it<br>unforgettable.',
+  text = "Tell us your date. We'll show you how effortless an unforgettable night can feel.",
+  ctaText = 'Check Your Date',
+  ctaHref = '/check-availability',
+} = Astro.props;
+---
+<section class="cta pad">
+  <div class="wrap">
+    <span class="eyebrow light reveal">{eyebrow}</span>
+    <h2 class="display reveal d1" set:html={titleHtml}></h2>
+    {text && <p class="lead reveal d2" style="margin:24px auto 0; text-align:center;">{text}</p>}
+    <div class="reveal d3" style="margin-top:36px;">
+      <a href={ctaHref} class="btn"><span>{ctaText}</span> <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>

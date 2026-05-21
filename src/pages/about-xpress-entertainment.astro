@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="About Xpress Entertainment | South Florida's Wedding DJs Since 2016" description="Meet the team behind 150+ South Florida weddings a year. Founded in 2016 by Drew Segura — award-winning, bilingual, and obsessed with your love story.">
+
+  <Hero
+    size="mid"
+    eyebrow="About us"
+    titleHtml={`Your wedding's<br>secret weapon.`}
+    sub="(Besides love, of course.) We're Xpress Entertainment — your go-to wedding DJ & entertainment team in South Florida, here to bring the vibe, guide the flow, and keep your party lit from the 'I do' to the last dance."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg"
+    alt="South Florida wedding celebration"
+    ctaText="Check Availability"
+  />
+
+  <!-- STORY -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Xpress Entertainment wedding" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">From a dream…</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">…to 150+ weddings a year.</h2>
+          <p class="lead">Xpress Entertainment started in 2016 as a one-person DJ operation at a Pompano Beach venue. Today we're one of the most-loved wedding entertainment companies in South Florida — and we've never lost the obsession that got us here: making your night feel like <em>you</em>.</p>
+          <p class="lead" style="margin-top:18px;">We're not just DJs. We're hosts, music curators, and party facilitators — with the multicultural range to read any room and keep every generation dancing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">The team bringing the magic</span><h2 class="h-xl">Meet the crew.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">DJ</div><h3>Drew Segura</h3><p style="color:#d9d0ec;">Founder &amp; Lead DJ. Bilingual (EN/ES), Dominican-American, and the engine behind the brand.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">DJ</div><h3>DJ Atomic</h3><p style="color:#d9d0ec;">Wedding &amp; event entertainer with global, multicultural range and flawless mixing.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">★</div><h3>Stephanie &amp; Helen</h3><p style="color:#d9d0ec;">Content production, sales &amp; logistics — the team making sure every detail is handled.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Why couples choose Xpress</span><h2 class="h-xl">More than a playlist.</h2></div>
+      <div class="values">
+        <div class="value reveal"><div class="vnum">01</div><h3>Bilingual & Multicultural</h3><p>Roots across American, Dominican, Colombian and Latin cultures — we keep both sides of the family on the floor.</p></div>
+        <div class="value reveal d1"><div class="vnum">02</div><h3>Custom Curation</h3><p>Your music, your moments — planned with you in the Vibo app, never copy-pasted from another wedding.</p></div>
+        <div class="value reveal d2"><div class="vnum">03</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings, 8+ years, and never a missed event.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Let's meet" titleHtml={`Let's make<br>magic.`} />
+</Base>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="DJ Phil Santos | Multicultural Wedding DJ in Miami" description="DJ Phil Santos — Miami-based multicultural wedding DJ with 12+ years of experience. Trilingual (EN/ES/PT), open-format, 250+ events and 35,000+ happy guests.">
+
+  <Hero
+    eyebrow="Multicultural DJ · Miami"
+    titleHtml={`DJ Phil<br>Santos.`}
+    sub="Based in Miami with 12+ years of experience, DJ Phil blends Latin and multicultural beats with crowd-favorite hits to create celebrations that get every guest on the dance floor."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Phil-Santos.jpg"
+    alt="DJ Phil Santos"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="DJ Phil Santos performing" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Open-format · Trilingual</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">A sound for every guest.</h2>
+          <p class="lead">An open-format DJ who effortlessly mixes all genres — Top 40, Latin, hip-hop, and classics from the 80s, 90s, and 2000s. Awarded Best DJ by Orlando Weekly and fluent in English, Spanish, and Portuguese.</p>
+          <p class="lead" style="margin-top:16px;">Beyond the booth, Phil is an exceptional MC and a meticulous planner — every detail of your music and flow aligned with your vision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat reveal"><div class="num" data-count="12" data-suffix="+">0</div><div class="label">Years of experience</div></div>
+        <div class="stat reveal d1"><div class="num" data-count="250" data-suffix="+">0</div><div class="label">Events performed</div></div>
+        <div class="stat reveal d2"><div class="num" data-count="35000" data-suffix="+">0</div><div class="label">Happy guests</div></div>
+        <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="label">Languages (EN/ES/PT)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book Phil" titleHtml={`Get the party<br>started.`} />
+</Base>

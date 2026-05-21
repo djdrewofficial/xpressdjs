@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="The Experience | Xpress Entertainment — Luxury South Florida Weddings" description="More than entertainment. The Xpress Entertainment experience: intentional music, atmosphere, and moments that turn your wedding into the night everyone remembers.">
+
+  <Hero
+    eyebrow="The Xpress Entertainment Experience"
+    titleHtml={`More than<br>entertainment.`}
+    sub="This is how your wedding comes to life — the music, the energy, and the moments your guests will be talking about long after the last song."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-954.jpg"
+    alt="Wedding reception celebration"
+    ctaText="Check Availability"
+  />
+
+  <!-- MEET OUR TEAM / PROMISE -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png" alt="Packed dance floor" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">We create moments</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">We don't just play music.</h2>
+          <p class="lead">Anyone can show up with speakers and a playlist. That's not what makes a wedding memorable. What people remember is how the night <em>moved</em> — and that's what we obsess over.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUSIC & ENERGY -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">The Music & Energy</span><h2 class="h-xl">Read the room. Run the night.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Intentional Transitions</h3><p style="color:#d9d0ec;">Every song flows into the next so the energy never dips and the dance floor never empties.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Energy Control, Not Chaos</h3><p style="color:#d9d0ec;">We build the night in waves — knowing when to push and when to let a moment breathe.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Music That Feels Personal</h3><p style="color:#d9d0ec;">Bilingual, open-format, and curated around your story — not a generic wedding playlist.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL / ATMOSPHERE -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks and clouds first dance" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">The Atmosphere</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Energy you can feel.</h2>
+          <p class="lead">The right lighting, effects, and pacing turn a beautiful space into an unforgettable experience. From uplighting and monograms to cold sparks and dancing on the clouds — your wedding should look as good as it feels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE MOMENTS -->
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2026/05/Michael-Andrews-Wedding.jpg" alt="First dance moment" />
+    <div class="wrap"><blockquote class="reveal">The moments you only get once — handled with care.</blockquote></div>
+  </section>
+
+  <!-- OUR APPROACH -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Our Approach</span><h2 class="h-xl">Calm, prepared, and intentional.</h2><p class="lead">Behind every great wedding experience is preparation you never see. We plan with you, coordinate with your vendors, and run your night so the only thing you have to do is enjoy it.</p></div>
+    </div>
+  </section>
+
+  <CTA titleHtml={`Let's create<br>something<br>unforgettable.`} />
+</Base>

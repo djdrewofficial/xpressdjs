@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Base title="Cold Spark Machines for Weddings | Xpress Entertainment" description="Cold spark machines for South Florida weddings — safe, indoor-friendly sparks for your grand entrance, first dance, and send-off. A breathtaking display of drama.">
+
+  <Hero
+    size="mid"
+    eyebrow="Epic Extras"
+    titleHtml={`Cold sparks for<br>unforgettable<br>weddings.`}
+    sub="Whether it's your grand entrance, first dance, or send-off, cold spark machines create a breathtaking display that adds drama and excitement to your big day."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design.png"
+    alt="Cold spark machines at a wedding"
+    ctaText="Add to My Wedding"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Safe. Indoor. Stunning.</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Sparks that don't burn.</h2>
+          <p class="lead">Cold spark machines use a special low-temperature effect that's safe for indoor venues — giving you all the drama of fireworks without the heat, smoke, or risk. Perfect for grand entrances and that jaw-dropping first-dance moment.</p>
+          <p class="lead" style="margin-top:16px;">Starting at <strong style="color:#fff;">$450</strong> per pair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Make an entrance" titleHtml={`Light up<br>the room.`} ctaText="Check Availability" />
+</Base>

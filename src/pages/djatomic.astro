@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="DJ Atomic | South Florida's International Wedding & Event DJ" description="DJ Atomic — international wedding & event DJ based in South Florida. 600+ events, multicultural style, flawless mixing, and the ability to read any room.">
+
+  <Hero
+    eyebrow="International Wedding & Event DJ"
+    titleHtml={`DJ <span class="serif-accent" style="font-style:italic">Atomic.</span>`}
+    sub="From luxury resorts and global stages to unforgettable South Florida weddings, DJ Atomic brings world-class experience and high-energy vibes to every celebration."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/DJ-Atomic.jpg"
+    alt="DJ Atomic"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="DJ Atomic performing" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">A world of sound</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Reads any room.</h2>
+          <p class="lead">With a track record of 600+ weddings and events, DJ Atomic is more than a DJ — he's a world-class entertainer with a local heartbeat. Known for his multicultural music style, flawless mixing, and the rare ability to feel exactly what a room needs next.</p>
+          <p class="lead" style="margin-top:16px;">From romantic first dances to peak-energy receptions, Atomic curates the perfect mix to keep your floor packed all night.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book Atomic" titleHtml={`Bring the<br>world to your<br>dance floor.`} />
+</Base>

@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Vibo: The Ultimate Wedding Music Planning App | Xpress Entertainment" description="Plan every song and moment of your South Florida wedding from your phone with Vibo — the music-planning app built into your Xpress Entertainment booking.">
+
+  <Hero
+    size="mid"
+    eyebrow="The Plan"
+    titleHtml={`Plan your music<br>with <span class="serif-accent" style="font-style:italic">Vibo.</span>`}
+    sub="We believe planning your wedding music should be fun, easy, and stress-free. That's why every booking includes Vibo — a cutting-edge app that lets you customize every song and moment from your phone."
+    image="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg"
+    alt="Wedding music planning"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Built into your booking</span><h2 class="h-xl">Your soundtrack, sorted.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Build Your Timeline</h3><p style="color:#d9d0ec;">Map every moment — ceremony, entrance, first dance, send-off — so nothing is left to chance.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Curate Every Song</h3><p style="color:#d9d0ec;">Import from Spotify or Apple Music, set must-plays and do-not-plays, and even let guests request.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Message Your DJ</h3><p style="color:#d9d0ec;">Everything in one place — your DJ sees your vision long before the big day.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Stress-free planning" titleHtml={`Start building<br>your playlist.`} />
+</Base>

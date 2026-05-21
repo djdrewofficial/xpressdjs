@@ -1,0 +1,9 @@
+---
+const { items = [], variant = '' } = Astro.props;
+const doubled = [...items, ...items];
+---
+<div class={`marquee ${variant}`} aria-hidden="true">
+  <div class="marquee-track">
+    {doubled.map((t) => <span>{t}</span>)}
+  </div>
+</div>

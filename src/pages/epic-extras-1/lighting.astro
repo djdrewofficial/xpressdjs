@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Base title="Wedding Lighting & Custom Monogram | Xpress Entertainment" description="Uplighting, intelligent dance-floor lighting, and custom monogram projection for South Florida weddings. Transform your venue the moment the sun goes down.">
+
+  <Hero
+    size="mid"
+    eyebrow="Epic Extras"
+    titleHtml={`Lighting &<br>monogram.`}
+    sub="Lighting sets the mood for your entire wedding — transforming a simple space into an elegant, vibrant celebration that's unmistakably yours."
+    image="https://xpressdjs.com/wp-content/uploads/2024/09/Untitled-design-8.png"
+    alt="Monogram projection and uplighting"
+    ctaText="Add to My Wedding"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Three ways to transform the room</span><h2 class="h-xl">Set the scene.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">01</div><h3>Uplighting</h3><p style="color:#d9d0ec;">Wash your venue's walls in your wedding colors — instantly warmer, richer, and more elegant. From $300 (10-pack).</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">02</div><h3>Custom Monogram</h3><p style="color:#d9d0ec;">Your initials or names projected over the dance floor — a personal signature on your big day. From $375.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><div class="vnum">03</div><h3>Intelligent Dance-Floor Lighting</h3><p style="color:#d9d0ec;">Music-synced lighting that turns your reception into a club-quality experience after dark.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="After dark" titleHtml={`Transform<br>your venue.`} ctaText="Check Availability" />
+</Base>

@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Xpress Entertainment | Miami & South Florida Wedding DJs" description="Award-winning, bilingual wedding DJs & entertainment in Miami, Fort Lauderdale & Palm Beach. DJs, MCs, photo booths, cold sparks & more. 150+ weddings a year.">
+
+  <Hero
+    size="full"
+    eyebrow="Miami · Fort Lauderdale · Palm Beach"
+    titleHtml={`Weddings people<br>don't stop<br><span class="serif-accent" style="font-style:italic">talking about.</span>`}
+    sub="From the first note of your ceremony to the last song of the night, we bring the DJs, MCs, photo booths, and production that turn a beautiful wedding into an unforgettable one — handled by one award-winning team."
+    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    alt="Packed wedding dance floor in South Florida"
+    ctaText="Check Your Date"
+    ctaText2="Explore the Experience"
+    ctaHref2="/the-experience"
+  />
+
+  <Marquee items={["Wedding DJs","Master of Ceremonies","Photo Booths","Cold Sparks","Dancing on the Clouds","Content Creation"]} />
+
+  <!-- INTRO + STATS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Why it matters</span>
+        <h2 class="h-xl">We don't just play music.<br>We create <span class="serif-accent" style="font-style:italic">moments.</span></h2>
+        <p class="lead">Anyone can show up with speakers and a playlist. What your guests remember is how the night <em>moved</em> — the timing, the energy, and the person behind the booth who knows exactly when to build a moment and when to let it breathe.</p>
+      </div>
+      <div class="stats">
+        <div class="stat reveal"><div class="num" data-count="150" data-suffix="+">0</div><div class="label">Weddings every single year across South Florida</div></div>
+        <div class="stat reveal d1"><div class="num" data-count="8" data-suffix="+">0</div><div class="label">Years and never once missed an event</div></div>
+        <div class="stat reveal d2"><div class="num" data-count="35000" data-suffix="+">0</div><div class="label">Guests kept on the dance floor</div></div>
+        <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="label">Languages spoken behind the mic</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow light">What we do</span>
+        <h2 class="h-xl">An experience, end to end.</h2>
+      </div>
+      <div class="cards">
+        <a class="card reveal" href="/services/djs">
+          <img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="Wedding DJ in action" />
+          <span class="tag">The Sound</span>
+          <div class="card-body"><h3>DJs & MCs</h3><p>Bilingual, open-format DJs who read the floor and host every toast, intro, and transition.</p></div>
+        </a>
+        <a class="card reveal d1" href="/south-florida-photo-booth-rental">
+          <img src="https://xpressdjs.com/wp-content/uploads/2025/10/Guest-enjoying-photobooth-.png" alt="Guests enjoying a photo booth" />
+          <span class="tag">The Keepsake</span>
+          <div class="card-body"><h3>Photo Booths</h3><p>Lux & 360 booths with instant prints, shareable video, and an on-site attendant.</p></div>
+        </a>
+        <a class="card reveal d2" href="/epic-extras-1">
+          <img src="https://xpressdjs.com/wp-content/uploads/2026/01/45CA2770-7A25-4DEC-BCCD-BB3E17FAEEAE.png" alt="Cold sparks and dancing on the clouds" />
+          <span class="tag">The Wow</span>
+          <div class="card-body"><h3>Epic Extras</h3><p>Cold sparks, dancing on the clouds, CO2 & confetti — cinematic moments your guests film.</p></div>
+        </a>
+      </div>
+      <div style="text-align:center; margin-top:50px;" class="reveal">
+        <a href="/services" class="btn"><span>See All Services</span> <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section class="showcase">
+    <img src="https://xpressdjs.com/wp-content/uploads/2025/02/Vista-Lago-Ballroom-Wedding.jpg" alt="Elegant South Florida wedding reception" />
+    <div class="wrap"><blockquote class="reveal">The night everyone remembers.</blockquote></div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="pad bg-light" id="why">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Why couples choose us</span>
+        <h2 class="h-xl">Trusted with the biggest night of their lives.</h2>
+      </div>
+      <div class="values">
+        <div class="value reveal"><div class="vnum">01</div><h3>Bilingual & Multicultural</h3><p>English, Spanish, and the cultural range to keep every generation — and both sides of the family — on the dance floor.</p></div>
+        <div class="value reveal d1"><div class="vnum">02</div><h3>One Team, Every Detail</h3><p>DJ, MC, photo booth, lighting, and effects under one roof. One timeline, one point of contact, zero stress.</p></div>
+        <div class="value reveal d2"><div class="vnum">03</div><h3>Award-Winning</h3><p>Two-time WeddingWire Best of Weddings winner with hundreds of five-star reviews across South Florida.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>

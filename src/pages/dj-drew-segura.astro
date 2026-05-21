@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="DJ Drew Segura | Bilingual Wedding DJ in Miami & South Florida" description="DJ Drew Segura — founder of Xpress Entertainment. 8+ years, 100+ weddings a year, bilingual (EN/ES), open-format. Reggaeton, Latin, Top 40 & more. Check availability.">
+
+  <Hero
+    eyebrow="Founder & Lead DJ"
+    titleHtml={`DJ Drew<br>Segura.`}
+    sub="From intimate beachside weddings to high-energy nightlife, Drew brings 8+ years of experience, a bilingual (English & Spanish) background, and unmatched open-format mixing to every celebration."
+    image="https://xpressdjs.com/wp-content/uploads/2025/04/xpress-djs-entertainment-party-wedding.png"
+    alt="DJ Drew Segura"
+    ctaText="Check Availability"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Kirsten_Quinten_Wedding-944.jpg" alt="DJ Drew Segura performing" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Storyteller · Host · Vibe curator</span>
+          <h2 class="h-lg" style="margin:14px 0 20px;">Multicultural by nature.</h2>
+          <p class="lead">With roots in American, Dominican, and Colombian cultures, Drew specializes in multicultural celebrations and serves over 100 couples a year across Miami, Fort Lauderdale, and West Palm Beach.</p>
+          <p class="lead" style="margin-top:16px;">Open-format mastery: Reggaeton, Merengue, Salsa, Freestyle, 2000s Hip-Hop, EDM, and Top 40 — seamlessly blended, with bilingual MC built in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat reveal"><div class="num" data-count="8" data-suffix="+">0</div><div class="label">Years behind the booth</div></div>
+        <div class="stat reveal d1"><div class="num" data-count="100" data-suffix="+">0</div><div class="label">Weddings every year</div></div>
+        <div class="stat reveal d2"><div class="num" data-count="2">0</div><div class="label">Languages on the mic (EN/ES)</div></div>
+        <div class="stat reveal d3"><div class="num" data-count="600" data-suffix="+">0</div><div class="label">Total events with the team</div></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Book Drew" titleHtml={`Make Drew your<br>secret weapon.`} />
+</Base>

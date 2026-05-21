@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Check Your Date | Xpress Entertainment — South Florida Wedding DJs" description="Check availability for your South Florida wedding. Bilingual DJs, photo booths & entertainment in Miami, Fort Lauderdale & Palm Beach. Call 954-233-0698.">
+
+  <header class="hero" style="min-height:60svh;">
+    <div class="hero-bg"><img src="https://xpressdjs.com/wp-content/uploads/2024/09/Hollie-Brittany-Wedding-by-Sara-Boyd-Photography-955.jpg" alt="South Florida wedding" /></div>
+    <div class="wrap">
+      <span class="eyebrow light reveal">Let's talk</span>
+      <h1 class="display reveal d1">Check<br>your date.</h1>
+      <p class="lead reveal d2">Popular dates book fast — we take a limited number of weddings each weekend. Tell us about your day and we'll be in touch within 24 hours.</p>
+    </div>
+  </header>
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Inquire</span>
+          <h2 class="h-lg" style="margin:14px 0 30px;">Start your night here.</h2>
+          <form id="availability-form">
+            <div class="field"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="First & last" required /></div>
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@email.com" required /></div>
+            <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" /></div>
+            <div class="field"><label for="date">Event Date</label><input type="date" id="date" name="date" /></div>
+            <div class="field"><label for="type">What are you planning?</label>
+              <select id="type" name="type"><option>Wedding</option><option>Quinceañera</option><option>Corporate Event</option><option>Private Party</option><option>Other</option></select>
+            </div>
+            <div class="field"><label for="msg">Tell us about your vision</label><textarea id="msg" name="msg" rows="4" placeholder="Venue, guest count, the vibe you're after..."></textarea></div>
+            <button type="submit" class="btn" style="width:100%; justify-content:center;"><span>Send Inquiry</span> <span class="arrow">↗</span></button>
+            <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">Demo form — connect to GoHighLevel (webhook or embed) to capture real leads.</p>
+          </form>
+        </div>
+        <div class="reveal d1">
+          <span class="eyebrow">Direct line</span>
+          <h2 class="h-lg" style="margin:14px 0 30px;">Or reach us now.</h2>
+          <a class="info-card" href="tel:9542330698" style="display:block;"><div class="k">Call or Text</div><div class="v">954 · 233 · 0698</div></a>
+          <a class="info-card" href="mailto:events@xpressdjs.com" style="display:block;"><div class="k">Email</div><div class="v">events@xpressdjs.com</div></a>
+          <div class="info-card"><div class="k">Service Area</div><div class="v" style="font-size:1.25rem;">Miami · Fort Lauderdale · Palm Beach · The Keys</div></div>
+          <div class="info-card"><div class="k">Based In</div><div class="v" style="font-size:1.25rem;">Pembroke Pines, FL</div></div>
+          <div style="display:flex; gap:14px; margin-top:24px;">
+            <a class="btn ghost" href="https://www.instagram.com/xpressdjs" target="_blank" rel="noopener"><span>Instagram</span></a>
+            <a class="btn ghost" href="https://www.youtube.com/@xpressdjs" target="_blank" rel="noopener"><span>YouTube</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta pad">
+    <div class="wrap">
+      <span class="eyebrow light reveal">The Ultimate Wedding Experience</span>
+      <h2 class="display reveal d1">See you on<br>the dance floor.</h2>
+    </div>
+  </section>
+</Base>

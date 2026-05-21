@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# build output (Cloudflare builds this for you)
+dist/
+.astro/
+
+# os / editor
+.DS_Store
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.*
