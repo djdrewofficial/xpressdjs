@@ -28,6 +28,30 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "Please agree to the SMS consent to continue." }, 422);
   }
 
+  // Cloudflare Turnstile (only enforced once TURNSTILE_SECRET_KEY is set)
+  if (env.TURNSTILE_SECRET_KEY) {
+    if (!data.turnstileToken) {
+      return json({ ok: false, error: "Anti-spam check failed — please try again." }, 403);
+    }
+    const verifyBody = new URLSearchParams();
+    verifyBody.append("secret", env.TURNSTILE_SECRET_KEY);
+    verifyBody.append("response", String(data.turnstileToken));
+    const ip = request.headers.get("CF-Connecting-IP");
+    if (ip) verifyBody.append("remoteip", ip);
+    try {
+      const verify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        body: verifyBody,
+      });
+      const result = await verify.json();
+      if (!result.success) {
+        return json({ ok: false, error: "Anti-spam check failed — please try again." }, 403);
+      }
+    } catch {
+      return json({ ok: false, error: "Couldn't verify anti-spam. Please retry." }, 502);
+    }
+  }
+
   const webhook = env.GHL_WEBHOOK_URL;
   if (!webhook) {
     return json({ ok: false, error: "Lead routing is not configured yet." }, 503);

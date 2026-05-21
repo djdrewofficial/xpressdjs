@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 
 const CONSENT_TEXT = "I consent to receive SMS notifications from Xpress Entertainment regarding my inquiries, bookings, and promotional offers. Message and data rates may apply. I understand that I can opt out at any time by replying 'STOP' to any message.";
 
+// Cloudflare Turnstile anti-spam. Set PUBLIC_TURNSTILE_SITE_KEY in the
+// Cloudflare Pages build env vars to switch it on; until then the form
+// works with the honeypot only.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+
 const eventTypeOther = [
   'Banquet','Bar Mitzvah','Bat Mitzvah','Birthday Party','Class Reunion','Community Celebration',
   'Company Holiday Party','Family Reunion','Graduation Celebration','Night Club / Bar Dance',
@@ -103,6 +108,8 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
               <span>{CONSENT_TEXT}</span>
             </label>
 
+            {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
+
             <p id="form-error" class="form-error" hidden></p>
             <button type="submit" class="btn" style="width:100%; justify-content:center;"><span class="btn-label">Send Inquiry</span> <span class="arrow">↗</span></button>
             <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">A team member will reach out to confirm availability for your date.</p>
@@ -134,7 +141,9 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
     </div>
   </section>
 
-  <script is:inline define:vars={{ CONSENT_TEXT }}>
+  {TURNSTILE_SITE_KEY && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <script is:inline define:vars={{ CONSENT_TEXT, TURNSTILE_SITE_KEY }}>
     (function () {
       var form = document.getElementById("lead-form");
       if (!form) return;
@@ -187,6 +196,17 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
         if ($("company").value) return; // honeypot tripped
         if (!form.checkValidity()) { form.reportValidity(); return; }
 
+        var tsToken = "";
+        if (TURNSTILE_SITE_KEY) {
+          var tsEl = form.querySelector('[name="cf-turnstile-response"]');
+          tsToken = tsEl ? tsEl.value : "";
+          if (!tsToken) {
+            errEl.textContent = "Please complete the anti-spam check below.";
+            errEl.hidden = false;
+            return;
+          }
+        }
+
         var btn = form.querySelector('button[type="submit"]');
         var label = form.querySelector(".btn-label");
         var orig = label.textContent;
@@ -213,6 +233,7 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
           notes: $("notes").value.trim(),
           smsConsent: $("smsConsent").checked,
           consentText: CONSENT_TEXT,
+          turnstileToken: tsToken,
         };
 
         fetch("/api/lead", {
@@ -230,12 +251,14 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
               errEl.textContent = (res.j && res.j.error) || "Something went wrong. Please call or text us at 954-233-0698.";
               errEl.hidden = false;
               btn.disabled = false; label.textContent = orig;
+              if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
             }
           })
           .catch(function () {
             errEl.textContent = "Network error. Please call or text us at 954-233-0698.";
             errEl.hidden = false;
             btn.disabled = false; label.textContent = orig;
+            if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
           });
       });
     })();
