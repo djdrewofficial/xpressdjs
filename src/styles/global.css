@@ -438,15 +438,6 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); p
 .reel-card:hover .reel-arrow { opacity: 1; transform: translate(3px,-3px); }
 @media (max-width: 980px) { .social-grid { grid-template-columns: 1fr; gap: 32px; } .reel-grid { justify-content: center; } }
 
-/* ---------- Trust bar ---------- */
-.trustbar { background: var(--ink-2); border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 22px 0; }
-.trustbar-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 40px; }
-.trust-item { display: flex; align-items: center; gap: 10px; }
-.trust-icon { font-size: 1.1rem; line-height: 1; }
-.trust-stars { color: #FFC83D; letter-spacing: 2px; font-size: 0.95rem; line-height: 1; }
-.trust-text { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
-@media (max-width: 700px) { .trustbar-inner { gap: 12px 22px; } .trust-text { font-size: 0.7rem; letter-spacing: 0.08em; } }
-
 /* ---------- Sample galleries ---------- */
 .ph {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
