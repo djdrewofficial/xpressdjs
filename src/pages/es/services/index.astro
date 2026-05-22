@@ -1,0 +1,108 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import Marquee from '../../../components/Marquee.astro';
+import CTA from '../../../components/CTA.astro';
+import Credit from '../../../components/Credit.astro';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const faqs = [
+  ['¿Ofrecen DJs y MCs bilingües?', 'Sí. Nuestros DJs animan en inglés y español, y leen con facilidad a las multitudes multiculturales, manteniendo en la pista de baile a todas las generaciones y a ambos lados de la familia.'],
+  ['¿Podemos combinar el DJ, la cabina de fotos y la iluminación?', 'Por supuesto: ese es justamente el punto. Reservar todo con un solo equipo significa un solo cronograma, un solo punto de contacto y una noche que fluye sin interrupciones desde la ceremonia hasta el último baile.'],
+  ['¿Con cuánta anticipación deberíamos reservar?', 'Aceptamos un número limitado de bodas cada fin de semana para mantener nuestra calidad alta, así que las fechas populares se reservan rápido. Consulta tu fecha lo antes posible para asegurarla.'],
+  ['¿Qué zonas cubren?', 'Todo el sur de Florida: Miami-Dade, Broward, Palm Beach y los Cayos de Florida.'],
+  ['¿Cómo obtenemos un precio?', 'Cuéntanos tu fecha y tu visión y te enviaremos precios y paquetes transparentes. Los servicios de DJ comienzan en $2,500.'],
+];
+---
+<Base title="Servicios de Entretenimiento para Bodas en Miami y el Sur de Florida | Xpress Entertainment" description="DJs de bodas, MCs, cabinas de fotos, iluminación, chispas frías y creación de contenido, todo de un solo equipo galardonado del sur de Florida. Atendemos Miami, Fort Lauderdale y Palm Beach.">
+
+  <Hero
+    eyebrow="Miami · Fort Lauderdale · Palm Beach"
+    titleHtml={`Bodas de las que la Gente<br>No Para de<br><span class="serif-accent" style="font-style:italic">Hablar</span>`}
+    sub="Desde la primera nota de tu ceremonia hasta la última canción de la noche, aportamos los DJs, MCs, cabinas de fotos y producción que convierten una boda hermosa en una inolvidable, todo a cargo de un solo equipo."
+    image="/images/heroes/services-hero.jpg"
+    alt="Novios bailando con sus invitados en su recepción de boda en Jupiter, Florida"
+    ctaText="Consulta tu Fecha"
+    ctaHref={L('/check-availability')}
+    creditName="Jupiter Wedding Photo"
+    creditHref="https://www.jupiterweddingphoto.com/"
+  />
+
+  <Marquee items={["Bilingüe","Formato Abierto","Cinematográfico","Sin Estrés","Galardonados"]} variant="alt" />
+
+  <!-- STAT BAND -->
+  <section class="bg-purple" style="padding-block:50px;">
+    <div class="wrap">
+      <div class="stats" style="border:none; padding-top:0;">
+        <div class="stat reveal"><div class="num">150+</div><div class="label" style="color:#fff;">Bodas cada año</div></div>
+        <div class="stat reveal d1"><div class="num">8+ años</div><div class="label" style="color:#fff;">Nunca hemos faltado a un evento</div></div>
+        <div class="stat reveal d2"><div class="num">Bilingües</div><div class="label" style="color:#fff;">DJs y MCs que hablan el idioma de tu gente</div></div>
+        <div class="stat reveal d3"><div class="num" style="font-size:clamp(1.8rem,3.4vw,2.6rem);">Galardonados</div><div class="label" style="color:#fff;">WeddingWire Best of Weddings</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Por qué importa</span><h2 class="h-xl">Cualquiera Puede Darle a Play. Nosotros Leemos el Ambiente.</h2><p class="lead" style="margin-inline:auto;">La diferencia entre una boda agradable y una inolvidable no es la lista de canciones, es el ritmo, la energía y la persona detrás de la cabina que sabe exactamente cuándo construir un momento y cuándo dejarlo respirar. Planeamos contigo, coordinamos con tus proveedores y dirigimos tu noche de principio a fin, para que lo único que tengas que hacer sea disfrutarla.</p></div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE ROWS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="srow reveal">
+        <figure class="media-fig"><div class="srow-media"><img src="/images/drew-newlyweds-dance-floor.jpg" alt="DJ Drew Segura bailando con los recién casados en la pista de baile de Vista Lago Ballroom" /></div><Credit variant="caption" align="left" name="E + B Photography and Film Co." href="https://www.ebphotographyandfilmco.com/" /></figure>
+        <div><span class="idx">EL SONIDO</span><h3>DJs y MCs Que Dirigen Toda la Noche</h3><p>Bilingües, de formato abierto e imposibles de ignorar. Tu DJ lee la pista en tiempo real y a la vez es el MC que guía cada presentación, brindis y transición, para que la energía nunca decaiga y nunca te sientas apurado.</p><a href={L('/services/djs')} class="textlink">Conoce a nuestros DJs →</a></div>
+      </div>
+      <div class="srow rev reveal">
+        <figure class="media-fig"><div class="srow-media"><img src="/images/photobooths-miami-broward.jpg" alt="Invitados de boda disfrutando de la cabina de fotos de Xpress Entertainment en una recepción en Miami" /></div><Credit variant="caption" name="Jupiter Wedding Photo" href="https://www.jupiterweddingphoto.com/" /></figure>
+        <div><span class="idx">EL RECUERDO</span><h3>Cabinas de Fotos Que Se Vuelven la Fiesta</h3><p>Nuestras cabinas Lux y 360 levantan a los invitados de sus asientos y los mandan a casa con algo real: impresiones personalizadas al instante, videos para compartir y un asistente en el lugar que se asegura de que cada foto grupal salga perfecta.</p><a href={L('/south-florida-photo-booth-rental')} class="textlink">Ve las cabinas →</a></div>
+      </div>
+      <div class="srow reveal">
+        <figure class="media-fig"><div class="srow-media"><img src="/images/sax-live-dance-floor.jpg" alt="Saxofonista en vivo tocando con Xpress Entertainment en la pista de baile de una boda" /></div><Credit variant="caption" align="left" name="Jupiter Wedding Photo" href="https://www.jupiterweddingphoto.com/" /></figure>
+        <div><span class="idx">EL ASOMBRO</span><h3>Momentos Que Parecen una Película</h3><p>Chispas frías cayendo sobre tu gran entrada. Bailando en las nubes para tu primer baile. Ráfagas de CO2 cuando entra el beat. Los toques cinematográficos que le facilitan el trabajo a tu fotógrafo y dejan boquiabiertos a tus invitados.</p><a href={L('/epic-extras-1')} class="textlink">Explora los Extras Épicos →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVERY DETAIL ONE TEAM -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Completa la experiencia</span><h2 class="h-xl">Cada Detalle, Un Solo Equipo</h2></div>
+      <div class="cards">
+        <a class="card reveal" href={L('/epic-extras-1/lighting')}><img src="/images/wedding-monogram.jpg" alt="Monograma de boda personalizado con las iniciales de la pareja proyectado en la pared del lugar" /><div class="card-body"><h3 style="font-size:1.4rem;">Iluminación y Monograma</h3><p>Iluminación ambiental, iluminación inteligente para la pista de baile y un monograma personalizado que transforma tu lugar al caer la noche.</p></div></a>
+        <a class="card reveal d1" href={L('/wedding-content-creator')}><img src="/images/wedding-content-creator.jpg" alt="Creador de contenido de boda capturando momentos detrás de cámaras en vivo en una recepción" /><div class="card-body"><h3 style="font-size:1.4rem;">Creador de Contenido de Bodas</h3><p>Reels y fotos capturados y entregados mientras tu fiesta sigue en marcha: contenido que de verdad querrás publicar.</p></div></a>
+        <a class="card reveal d2" href={L('/vibo')}><img src="/images/vibo-dj-app.jpg" alt="App de DJ Vibo para planear cada detalle del entretenimiento de tu boda" /><div class="card-body"><h3 style="font-size:1.4rem;">App de Planeación Vibo</h3><p>Planea cada canción y cada momento desde tu teléfono con Vibo, nuestra app de planeación musical sin estrés incluida en tu reserva.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="pad bg-purple">
+    <div class="wrap" style="max-width:820px; text-align:center;">
+      <span class="eyebrow light reveal">De confianza</span>
+      <h2 class="h-xl reveal d1" style="margin:14px 0 18px; color:#fff;">Las Parejas del Sur de Florida Nos Confían su Noche Más Importante</h2>
+      <p class="lead reveal d2" style="margin-inline:auto; color:#f6f2ff;">Más de 150 bodas al año. Dos veces ganadores del WeddingWire Best of Weddings. Cientos de reseñas de cinco estrellas de parejas en Miami, Fort Lauderdale y Palm Beach.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Bueno saberlo</span><h2 class="h-xl">Preguntas Que Nos Hacen las Parejas</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
+            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
+            <p style="color:#5a4f6e; line-height:1.8;">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA titleHtml={`Hagamos de Tu Boda<br>la Que Todos Recuerden`} text="Cuéntanos tu fecha. Te mostraremos lo natural que puede sentirse una noche inolvidable." ctaHref={L('/check-availability')} />
+</Base>

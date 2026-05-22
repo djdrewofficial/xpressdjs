@@ -1,0 +1,49 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const why = [
+  ['Ambiente Romántico', 'La niebla a ras del suelo crea una atmósfera romántica y de ensueño, perfecta para tu primer baile o cualquier momento clave de tu boda.'],
+  ['Segura y Antideslizante', 'Nuestra máquina de hielo seco produce una niebla que se mantiene en el suelo, evitando los riesgos de pisos resbaladizos o de bloquear la vista de tus invitados.'],
+  ['Perfecta para Fotos', 'Este efecto se ve increíble en las fotos, dándote imágenes impresionantes que atesorarás para siempre.'],
+  ['Versátil para Múltiples Momentos', 'Usada a menudo para el primer baile, también puede realzar grandes entradas, brindis especiales o tu salida de boda.'],
+];
+---
+<Base title="Bailando en las Nubes | Efecto de Nube para el Primer Baile — Xpress Entertainment" description="Bailando en las Nubes para tu boda en el sur de Florida: una máquina profesional de hielo seco crea una nube a ras del suelo para que sientas que flotas en el aire durante tu primer baile.">
+
+  <Hero
+    size="mid"
+    eyebrow="Extras Épicos"
+    titleHtml={`Bailando en las Nubes para<br>Tu <span class="serif-accent" style="font-style:italic">Boda de Ensueño</span>`}
+    sub="Imagina tu primer baile como recién casados, rodeados de una nube romántica y etérea que te hace sentir como si flotaras en el aire."
+    image="/images/heroes/dancing-on-the-clouds-hero.jpg"
+    alt="Recién casados compartiendo su primer baile mientras chispas frías y nubes los rodean"
+    ctaText="Consulta Disponibilidad"
+    creditName="Sid Rashlich"
+    creditHref="https://photovsl.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Con Bailando en las Nubes de Xpress Entertainment, este momento mágico puede ser tuyo. Nuestra máquina de hielo seco de grado profesional crea una impresionante niebla a ras del suelo que se mantiene cerca del piso, dando la ilusión de que bailas sobre una nube suave y esponjosa.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">Perfecto para bodas, este efecto agrega un toque de fantasía y elegancia a tu día especial. Ya sea para tu primer baile, una gran entrada o incluso durante un momento especial como el corte del pastel, Bailando en las Nubes dejará a tus invitados sin palabras y hará que tus fotos de boda sean inolvidables.</p>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Por qué es perfecto para tu gran día</span><h2 class="h-xl">Más que un efecto especial.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="max-width:820px; margin:34px auto 0; text-align:center;">Cuando rentas Bailando en las Nubes con Xpress Entertainment, cuentas con la experiencia de nuestro equipo para asegurar que se ejecute a la perfección. Trabajamos de cerca con tu salón y otros proveedores para garantizar que el efecto de nube realce tu momento sin interrumpir otros elementos de tu día.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Contáctanos para bailando en las nubes" titleHtml={`Baila sobre<br>las nubes.`} text="Cuéntanos tu fecha. Te mostraremos lo natural que puede sentirse una noche inolvidable." ctaText="Consulta Tu Fecha" ctaHref={L('/check-availability')} />
+</Base>

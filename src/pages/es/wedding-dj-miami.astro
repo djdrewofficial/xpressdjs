@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import { phUri } from '../../lib/ph';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const why = [
+  ['🎤 DJs y MCs bilingües', 'Hablamos inglés y español — así todos se sienten incluidos, sin importar su origen.'],
+  ['🎶 Playlists personalizadas', 'Aquí no hay playlists genéricas. Construimos la banda sonora de tu boda según tu gusto y tu vibra — desde Reggaetón y Top 40 hasta clásicos de los 2000, éxitos latinos, EDM y más.'],
+  ['📋 Flujo de evento impecable', 'Nos encargamos de las transiciones, los anuncios y la sincronización para que tú no tengas que hacerlo. Desde las señales de la ceremonia hasta la última canción, cubrimos cada momento.'],
+  ['✨ Tu estilo, tu fiesta', 'Traemos la energía cuando es hora de bailar y nos mantenemos elegantes cuando es hora del brindis. Nos adaptamos a tu energía y visión — no al revés.'],
+];
+---
+<Base title="DJ de Bodas en Miami | Lleno de Energía, Bilingüe y Siempre al Punto — Xpress Entertainment" description="¿Buscas un DJ de bodas de confianza en Miami? Xpress Entertainment aporta la música, la energía y la profesionalidad que tu boda necesita — DJs bilingües, playlists personalizadas, flujo impecable.">
+
+  <Hero
+    eyebrow="DJ de Bodas en Miami"
+    titleHtml={`Lleno de Energía. Bilingüe.<br><span class="serif-accent" style="font-style:italic">Siempre al Punto.</span>`}
+    sub="¿Buscas un DJ de bodas de confianza en Miami para convertir tu gran día en una celebración inolvidable? Xpress Entertainment aporta la música, la energía y la profesionalidad que tu boda necesita — desde la ceremonia hasta el último baile."
+    image={phUri(2560, 1440, 'DJ de bodas en Miami — hero', 'Boda en Miami / horizonte + pista de baile')}
+    alt="DJ de bodas en Miami"
+    ctaText="Consulta tu Fecha"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Hemos ayudado a cientos de parejas en todo Miami a crear bodas sin estrés y llenas de buena vibra que mantienen a los invitados bailando toda la noche. Ya sea que tu estilo sea relajado, lujoso o un poco de ambos — te tenemos cubierto.</p>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">💍 Por qué las parejas nos contratan como su DJ de bodas en Miami</span><h2 class="h-xl">Más que una playlist.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUES LOVE US -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><Ph w={1200} h={900} label="Lugar de bodas en Miami" note="Briza on the Bay / lugar frente al mar en Miami" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Por qué a los lugares de Miami les encanta trabajar con nosotros</span>
+          <h2 class="h-lg" style="margin:14px 0 16px;">(Y por qué a ti también te encantará.)</h2>
+          <p class="lead">Los buenos DJs hacen más que poner música — mantienen todo tu evento fluyendo sin problemas. Llegamos temprano, nos mantenemos en contacto con tus proveedores y nos aseguramos de que todos estén en la misma página. Antes de tu primer baile, coordinamos con tu fotógrafo. Antes de tu gran entrada, nos aseguramos de que el catering esté listo.</p>
+          <p class="lead" style="margin-top:14px;">Cuando la noche termina, recogemos, empacamos y no dejamos rastro — solo buenos recuerdos. Por eso lugares como Villa Toscana, Briza on the Bay, Vista Lago, Loews Miami Beach y Villa Woodbine confían en nosotros y nos recomiendan una y otra vez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TEASER -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Precios de DJ de Bodas en Miami</span><h2 class="h-xl">Paquetes personalizables.</h2><p class="lead">Todos nuestros paquetes de DJ de bodas en Miami son personalizables. Cuéntanos tu visión — te ayudaremos a armar el paquete perfecto.</p></div>
+      <div class="values">
+        <div class="value reveal"><h3>Xpress</h3><p>Perfecto para: Recepciones simples y divertidas. Cobertura: Hora del cóctel y recepción.</p></div>
+        <div class="value reveal d1"><h3>Xperience</h3><p>Perfecto para: Vibras elevadas con un toque de estilo.</p></div>
+        <div class="value reveal d2"><h3>Xperience Plus</h3><p>Perfecto para: Celebraciones que dejan sin aliento. Cobertura: Ceremonia, hora del cóctel y recepción.</p></div>
+      </div>
+      <div style="margin-top:40px;" class="reveal"><a href={L('/pricing')} class="btn"><span>Ver Precios</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+
+  <CTA eyebrow="💌 ¿Listo para reservar tu DJ de bodas en Miami?" titleHtml={`Te mereces<br>una Experiencia.`} text="Creemos el tipo de boda de la que tus invitados hablarán por años." />
+</Base>

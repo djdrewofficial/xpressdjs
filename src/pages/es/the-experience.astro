@@ -1,0 +1,146 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Credit from '../../components/Credit.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+---
+<Base title="La Experiencia | Xpress Entertainment" description="Más que entretenimiento. Así es como tu boda cobra vida — música intencional, ambiente y los momentos de los que tus invitados estarán hablando mucho después.">
+
+  <Hero
+    eyebrow="La Experiencia Xpress Entertainment"
+    titleHtml={`Más que<br>entretenimiento.`}
+    sub="Así es como tu boda cobra vida."
+    image="/images/heroes/experience-hero.jpg"
+    alt="El primer baile de una pareja con bailando en las nubes y máquinas de chispas frías"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <!-- WE CREATE MOMENTS -->
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;">
+        <span class="eyebrow">Creamos momentos</span>
+        <h2 class="h-xl">No solo ponemos música. Creamos momentos.</h2>
+      </div>
+      <p class="lead reveal d1">Cualquiera puede aparecer con bocinas y una lista de reproducción. Eso no es lo que hace memorable una boda. Lo que la gente recuerda es cómo fluyó la noche. Cuando el salón se sintió lleno. Cuando la pista de baile se mantuvo viva. Cuando todo simplemente encajó sin que nadie notara por qué. En eso nos enfocamos. Pensamos en el ritmo, las transiciones y la energía. Prestamos atención al público. Sabemos cuándo impulsar las cosas hacia adelante y cuándo dejar que un momento respire. Nada se siente forzado. Nada se siente al azar. Al final de la noche, los invitados no hablan de las canciones que pusiste. Hablan de lo mucho que se divirtieron.</p>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff; font-family:var(--serif); font-size:1.6rem;">Esa es la diferencia.</p>
+    </div>
+  </section>
+
+  <!-- MUSIC & ENERGY -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">La Música y la Energía</span><h2 class="h-xl">Cómo se mueve la noche.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Transiciones Intencionales</h3><p style="color:#d9d0ec;">Cada momento fluye con un propósito.</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Control de la Energía, No Caos</h3><p style="color:#d9d0ec;">Una pista de baile llena no tiene por qué sentirse descontrolada. Sabemos cómo elevar la energía sin perder el control del salón.</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Música Que Se Siente Personal</h3><p style="color:#d9d0ec;">Tu boda no suena como la de nadie más. La música refleja tu gusto, tu gente y tu historia.</p></div>
+        <div class="value reveal d3" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Presencia Tranquila Detrás de la Cabina</h3><p style="color:#d9d0ec;">Cuando ocurre algo inesperado, los invitados nunca lo notan. Nos mantenemos firmes, concentrados y en control para que la noche siga su curso.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE VISUAL EXPERIENCE -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/photobooth-bride-groom.jpg" alt="Una pareja disfrutando de su cabina de fotos con amigos en su boda en Jupiter" /></div>
+          <Credit variant="caption" name="Romina Raggio Photography" href="https://rominaraggio.com/" />
+        </figure>
+        <div class="reveal d1">
+          <span class="eyebrow">La Experiencia Visual</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Lo que tus invitados ven y recuerdan.</h2>
+          <p class="lead">Tu boda debe verse tan bien como se siente.</p>
+          <p class="lead" style="margin-top:14px;">Desde experiencias de cabina de fotos bellamente diseñadas hasta iluminación que transforma el salón, nos obsesionamos con los detalles que tus invitados notarán y fotografiarán.</p>
+          <p class="lead" style="margin-top:14px;">Estos no son simples "complementos". Son parte del ambiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ATMOSPHERE -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="split rev">
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/atmosphere-lighting.jpg" alt="Una pareja bailando toda la noche bajo la iluminación de la pista de baile" /></div>
+          <Credit variant="caption" align="left" name="Romina Raggio Photography" href="https://rominaraggio.com/" />
+        </figure>
+        <div class="reveal d1">
+          <span class="eyebrow">El Ambiente</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Energía que puedes sentir.</h2>
+          <p class="lead">El ambiente lo cambia todo.</p>
+          <p class="lead" style="margin-top:14px;">La iluminación, los efectos y el ritmo adecuados pueden convertir un espacio hermoso en una experiencia inolvidable. Diseñamos el entorno alrededor de tu celebración, realzando los momentos clave sin opacarlos.</p>
+          <p class="lead" style="margin-top:14px;">De lo romántico a lo lleno de energía, cada cambio se siente intencional.</p>
+          <ul style="margin:22px 0 0 20px; color:#5a4f6e; line-height:1.9;">
+            <li>Diseño de iluminación centrado en la pista de baile</li>
+            <li>Transiciones fluidas entre momentos</li>
+            <li>Energía elevada sin caos</li>
+            <li>Ambiente estilo club cuando llega la hora de la fiesta</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE MOMENTS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/couple-grand-entrance.jpg" alt="Una pareja de boda en Miami entra a su pista de baile para el primer baile" /></div>
+          <Credit variant="caption" name="Scribbled Moments Photography" href="https://www.scribbledmomentsphotography.com/" />
+        </figure>
+        <div class="reveal d1">
+          <span class="eyebrow">Los Momentos</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Los momentos que solo vives una vez.</h2>
+          <p class="lead">Tu boda no es una sola fiesta larga.</p>
+          <p class="lead" style="margin-top:14px;">La entrada al salón por primera vez. La pausa antes del primer baile. Ese instante antes de que se llene la pista de baile.</p>
+          <p class="lead" style="margin-top:14px;">Esos momentos merecen atención.</p>
+          <p class="lead" style="margin-top:14px;">Bajamos el ritmo cuando importa y aceleramos cuando llega la hora de celebrar. Le damos espacio a la emoción sin dejar que la noche pierda impulso. Nada se apresura. Nada se siente alargado. Cada transición tiene una razón.</p>
+          <p class="lead" style="margin-top:14px;">Trabajamos de cerca con tu planificadora, fotógrafo y locación para asegurarnos de que el ritmo sea el correcto, no solo en el papel, sino en la vida real.</p>
+          <p class="lead" style="margin-top:14px; color:#fff;">La mayoría de los invitados no podrán explicar por qué la noche se sintió tan bien. Simplemente sabrán que así fue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR APPROACH -->
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:820px; text-align:center;">
+      <span class="eyebrow light reveal">Nuestro Enfoque</span>
+      <h2 class="h-xl reveal d1" style="margin:16px 0 22px;">Tranquilo, preparado e intencional.</h2>
+      <p class="lead reveal d2" style="margin-inline:auto;">Detrás de cada gran experiencia de boda hay una preparación que nunca ves. Planeamos contigo, coordinamos con tus proveedores y nos encargamos de los detalles para que puedas estar plenamente presente el día de tu boda. Nuestro proceso está diseñado para reducir el estrés, no para aumentarlo.</p>
+      <p class="lead reveal d3" style="margin:18px auto 0; color:#fff; font-family:var(--serif); font-size:1.5rem;">Tú disfrutas la noche. Nosotros nos encargamos de todo lo demás.</p>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Para Quién Es Esto</span><h2 class="h-xl">Esta experiencia es para parejas que…</h2></div>
+      <ul style="max-width:760px; list-style:none; display:flex; flex-direction:column; gap:0;">
+        <li class="reveal" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Se preocupan profundamente por cómo se siente su boda</li>
+        <li class="reveal d1" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Quieren una pista de baile llena sin caos</li>
+        <li class="reveal d2" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Valoran el profesionalismo y la preparación</li>
+        <li class="reveal d3" style="display:flex; gap:18px; align-items:center; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.1); font-size:1.2rem;"><span style="color:var(--red); font-family:var(--serif); font-size:1.5rem;">✦</span> Quieren que sus invitados hablen de la noche — no de la logística</li>
+      </ul>
+      <p class="lead reveal" style="margin-top:30px; color:var(--purple); font-family:var(--serif); font-size:1.8rem;">Si eso suena como tú, estás en el lugar correcto.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="cta pad">
+    <div class="wrap" style="max-width:820px;">
+      <span class="eyebrow light reveal">Hablemos</span>
+      <h2 class="display reveal d1">Creemos<br>algo<br>inolvidable.</h2>
+      <p class="lead reveal d2" style="margin:26px auto 0; text-align:center; color:#e9e2f5;">Tu boda merece más que alguien que simplemente aparece y pone música. Merece un equipo que entienda el ritmo, la energía y la importancia de hacer cada momento bien.</p>
+      <p class="lead reveal d2" style="margin:18px auto 0; text-align:center; color:#e9e2f5;">Has pasado meses planeando este día. Mereces estar plenamente presente para vivirlo. Nosotros nos encargamos del resto.</p>
+      <p class="lead reveal d3" style="margin:18px auto 0; text-align:center; color:#e9e2f5;">Desde la primera conversación hasta la última canción de la noche, nuestro enfoque es simple: asegurarnos de que tu boda se sienta exactamente como la imaginaste. Si eso es lo que estás buscando, nos encantaría ser parte de tu día.</p>
+      <div class="reveal d3" style="margin-top:38px;"><a href={L('/check-availability')} class="btn"><span>Consulta Disponibilidad</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+</Base>

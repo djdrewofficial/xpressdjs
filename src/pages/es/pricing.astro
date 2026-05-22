@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const extras = [
+  'Cobertura de Ceremonia',
+  'Iluminación ambiental (Set de 10)',
+  'Proyección de Monograma',
+  'Máquinas de Chispas Frías (Par de 2)',
+  'Bailando en las Nubes',
+  'Show de Luces Estilo Club',
+  'Pistolas de CO2',
+  'Cañones de CO2',
+  'La Máxima Experiencia de Láser',
+];
+const lux = ['Cámara DSLR Cannon', 'Entrega y Desmontaje', 'Sesiones de Fotos Ilimitadas + Impresiones', 'Flash de Estudio', 'Accesorios de Calidad', 'Impresiones Instantáneas', 'Galería en Línea', 'Compartir por Mensaje de Texto', 'Asistente de Cabina de Fotos'];
+const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ilimitadas', 'Iluminación de Estudio', 'Postes Rojos y Dorados', 'Compartir en Redes Sociales', 'Compartir por Mensaje de Texto', 'Asistente de Cabina de Fotos'];
+---
+<Base title="Precios de DJ de Bodas | Xpress Entertainment — El Sur de Florida" description="¿Cuánto cuesta un DJ de bodas? La mayoría de las parejas invierten entre $1,750 y $3,500. Conoce a nuestros DJs, ve sus tarifas y crea tu Máxima Experiencia de Bodas.">
+
+  <Hero
+    size="mid"
+    eyebrow="Precios transparentes"
+    titleHtml={`¿Cuánto Cuesta<br>un <span class="serif-accent" style="font-style:italic">DJ de Bodas?</span>`}
+    sub="Tu boda no es un paquete. Es una experiencia, y el DJ que elijas juega un papel enorme en cómo se siente toda la noche."
+    image="/images/heroes/pricing-hero.jpg"
+    alt="Recién casados cantando junto a la música en la pista de baile de la boda"
+    ctaText="Consulta tu Fecha"
+    ctaHref={L('/check-availability')}
+    creditName="Sid Rashlich"
+    creditHref="https://photovsl.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">En Xpress Entertainment, construimos nuestros precios alrededor de una idea sencilla. Cada DJ tiene su propia personalidad, trayectoria y nivel de demanda, y el precio refleja la experiencia que aportan a tu celebración.</p>
+      <p class="lead reveal d1" style="margin-top:16px;">La mayoría de las parejas invierten entre $1,750 y $3,500, con nuestros DJs más nuevos y solicitados comenzando en el rango más bajo y nuestros DJs más requeridos y con más experiencia en lo más alto. Esto te da la libertad de elegir a la persona que se alinea con tu visión y la energía que quieres para el día de tu boda.</p>
+      <p class="lead reveal d2" style="margin-top:16px; color:#fff;">👉 Desplázate hacia abajo para conocer a los DJs, ver sus tarifas y comenzar a crear tu versión de La Máxima Experiencia de Bodas.</p>
+    </div>
+  </section>
+
+  <!-- DJ PRICING -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Conoce a los DJs</span><h2 class="h-xl">Elige tu DJ.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>DJ Drew Segura</h3>
+          <p style="color:#d9d0ec; margin:12px 0;">Un DJ de bodas y MC bilingüe con raíces en las culturas estadounidense, dominicana y colombiana. Reconocido por sus fenomenales habilidades como anfitrión y por mezclar culturas a la perfección.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,500</div>
+          <a href={L('/dj-drew-segura')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Drew ↗</a>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>DJ Atomic (Dimitri)</h3>
+          <p style="color:#d9d0ec; margin:12px 0;">Originario de Santa Lucía y ahora radicado en el sur de Florida, DJ Atomic es reconocido por su estilo musical multicultural, sus mezclas impecables y su capacidad para leer cualquier salón.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,500</div>
+          <a href={L('/djatomic')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Atomic ↗</a>
+        </div>
+      </div>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">(El precio incluye Hora del Cóctel y Recepción)</p>
+    </div>
+  </section>
+
+  <!-- EPIC EXTRAS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Extras Épicos (Complementos)</span><h2 class="h-xl">Eleva la experiencia.</h2><p class="lead" style="margin-inline:auto;">Un gran animador es el primer paso para crear una pista de baile épica en tu boda. Estos Extras Épicos elevarán tu Máxima Experiencia de Bodas.</p></div>
+      <div class="reveal" style="max-width:680px; margin:0 auto;">
+        {extras.map((name) => (
+          <div style="display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
+            <span style="color:var(--red); font-family:var(--serif);">✦</span><span style="font-size:1.15rem;">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOBOOTHS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Paquetes de Cabina de Fotos</span><h2 class="h-xl">Toca, Posa, Sonríe – Repite.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>Cabina de Fotos Lux</h3>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$875</div>
+          <p style="color:var(--lavender); margin-bottom:14px;">4 Horas</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{lux.map((i) => <li>✦ {i}</li>)}</ul>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <h3>Cabina de Video 360</h3>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$1,250</div>
+          <p style="color:var(--lavender); margin-bottom:14px;">4 Horas</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{threesixty.map((i) => <li>✦ {i}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Crea tu noche" titleHtml={`Crea tu Máxima<br>Experiencia de Bodas.`} ctaText="Consulta Disponibilidad" ctaHref={L('/check-availability')} />
+</Base>

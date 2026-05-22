@@ -1,10 +1,25 @@
 ---
+import { getLocale, localize } from '../i18n/ui';
+const locale = getLocale(Astro.url);
+const d = locale === 'es'
+  ? {
+      eyebrow: 'Hablemos',
+      titleHtml: 'Hagámoslo<br>inolvidable.',
+      text: 'Cuéntanos tu fecha. Te mostraremos lo fácil que puede sentirse una noche inolvidable.',
+      ctaText: 'Consulta tu Fecha',
+    }
+  : {
+      eyebrow: "Let's talk",
+      titleHtml: 'Make it<br>unforgettable.',
+      text: "Tell us your date. We'll show you how effortless an unforgettable night can feel.",
+      ctaText: 'Check Your Date',
+    };
 const {
-  eyebrow = "Let's talk",
-  titleHtml = 'Make it<br>unforgettable.',
-  text = "Tell us your date. We'll show you how effortless an unforgettable night can feel.",
-  ctaText = 'Check Your Date',
-  ctaHref = '/check-availability',
+  eyebrow = d.eyebrow,
+  titleHtml = d.titleHtml,
+  text = d.text,
+  ctaText = d.ctaText,
+  ctaHref = localize('/check-availability', locale),
 } = Astro.props;
 ---
 <section class="cta pad">

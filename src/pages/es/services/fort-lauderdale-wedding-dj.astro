@@ -1,0 +1,76 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+import Ph from '../../../components/Ph.astro';
+import { phUri } from '../../../lib/ph';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const why = [
+  ['DJs Experimentados', 'Con más de 8 años de experiencia en la industria de las bodas, sabemos lo que se necesita para crear una recepción de boda memorable.'],
+  ['DJs Bilingües', '¿Necesitas un DJ que pueda cambiar sin problemas entre inglés y español? Nuestro equipo es fluido y tiene experiencia en bodas multiculturales.'],
+  ['Listas Personalizadas', 'Tu día, tu música. Trabajamos contigo para crear una lista de reproducción que refleje tu estilo, desde primeros bailes románticos hasta pistas de baile repletas.'],
+  ['Equipo Profesional', 'Desde sistemas de sonido de alta calidad hasta iluminación impactante, traemos el equipo que marca la diferencia.'],
+  ['MCs Interactivos', '¡No solo un DJ! Ofrecemos servicios de MC para mantener la noche fluyendo con emoción, humor y participación.'],
+];
+const vibo = ['Organiza y gestiona los detalles de la boda con eficiencia', 'Configura el cronograma de tu boda y tus preferencias musicales', 'Brinda a tu DJ la información esencial del evento', 'Permite que los invitados aporten sugerencias de canciones', 'Personaliza distintas secciones de tu cronograma', 'Importa listas de reproducción desde plataformas como Spotify, Apple Music y otras'];
+---
+<Base title="Servicios de DJ de Bodas en Fort Lauderdale | Xpress Entertainment" description="La banda sonora de la boda de tus sueños empieza aquí. DJs de bodas de Fort Lauderdale experimentados y bilingües, con la pasión y la experiencia para mantener a tus invitados bailando toda la noche.">
+
+  <Hero
+    eyebrow="Fort Lauderdale, FL"
+    titleHtml={`Servicios de DJ de Bodas<br>en Fort Lauderdale`}
+    sub="La banda sonora de la boda de tus sueños empieza aquí. Ya sea que organices una ceremonia íntima o una gran celebración, nuestros DJs de bodas de Fort Lauderdale aportan la pasión y la experiencia necesarias para mantener a tus invitados bailando toda la noche."
+    image={phUri(2560, 1440, 'DJ de bodas en Fort Lauderdale — hero', 'Boda frente al mar en Fort Lauderdale / pista de baile')}
+    alt="Boda en Fort Lauderdale"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Por qué elegirnos</span><h2 class="h-xl">¿Por Qué Elegir a Xpress Entertainment para Tu Boda en Fort Lauderdale?</h2></div>
+      <div class="values">
+        {why.map((w, i) => (
+          <div class={`value reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{w[0]}</h3><p style="color:#d9d0ec;">{w[1]}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBO -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow light">La comunicación es clave</span><h2 class="h-xl">Te Presentamos la App de DJ Vibo</h2><p class="lead">En Xpress Entertainment, elevamos tu experiencia de planeación de boda a través de nuestra app personalizada de gestión de eventos. Esta herramienta fácil de usar está creada para agilizar tus selecciones musicales y el cronograma de tu boda, dándote el control total del proceso.</p></div>
+      <ul style="max-width:760px; columns:2; gap:30px; color:#d9d0ec; line-height:2; list-style:none; padding:0;">
+        {vibo.map((v) => <li>✦ {v}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Zonas que Atendemos</span><h2 class="h-xl">Por todo el sur de Florida.</h2></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Broward</h3></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>Miami</h3></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>West Palm</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET DJs -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Conoce a Nuestros DJs de Bodas</span><h2 class="h-xl">Conoce al equipo que pondrá a vibrar tu boda.</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <a class="card reveal" href={L('/dj-drew-segura')} style="aspect-ratio:auto; min-height:340px;"><img src="/images/djs/drew-segura-headshot.png" alt="DJ Drew Segura" style="object-fit:cover; background:var(--tint-2);" /><div class="card-body"><h3>DJ Drew Segura</h3><p style="max-height:none; opacity:1;">Con una pasión por crear pistas de baile llenas de energía, DJ Drew ha hecho realidad bodas inolvidables en Fort Lauderdale desde 2016. Bilingüe en inglés y español, sabe crear el ambiente perfecto para públicos diversos.</p></div></a>
+        <a class="card reveal d1" href={L('/djatomic')} style="aspect-ratio:auto; min-height:340px;"><Ph w={1000} h={1000} label="DJ Atomic headshot" note="Square studio headshot" style="object-fit:cover; background:var(--tint-2);" /><div class="card-body"><h3>DJ Atomic</h3><p style="max-height:none; opacity:1;">DJ Atomic aporta casi una década de experiencia a bodas y eventos, especializándose en reggaetón, dancehall, soca y celebraciones multiculturales.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Fort Lauderdale" titleHtml={`Reserva tu<br>DJ de bodas en FLL.`} ctaHref={L('/check-availability')} />
+</Base>

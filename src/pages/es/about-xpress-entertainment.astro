@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import { phUri } from '../../lib/ph';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const team = [
+  { name: 'Drew Segura', role: 'Fundador y DJ Principal', img: '/images/djs/drew-segura-headshot.png' },
+  { name: 'Laura Del Gordo', role: 'Gerente de Oficina', img: '/images/djs/laura-del-gordo-headshot.jpg' },
+  { name: 'Isabella Hernandez', role: 'Redes Sociales y Marketing', img: '/images/djs/isabella-hernandez-headshot.jpg' },
+  { name: 'Stephanie Estrada', role: 'Redes Sociales y Contenido', img: '/images/djs/stephanie-estrada-headshot.jpg' },
+  { name: 'Naqeeb Mohamed', role: 'Logística e Iluminación', img: '/images/djs/naqeeb-mohamed-headshot.jpg' },
+  { name: 'Ruben Catero', role: 'Logística y Cabina de Fotos', img: '/images/djs/ruben-catero-headshot.jpg' },
+  { name: 'Dimitri (DJ Atomic)', role: 'DJ y MC', img: '/images/djs/dj-atomic-headshot.jpg' },
+  { name: 'DJ ReRe', role: 'DJ y MC', img: '/images/djs/dj-rere-headshot.jpg' },
+];
+
+const reasons = [
+  { t: '🎧 Ambientes Musicales a tu Medida', d: 'Nada de listas genéricas: adaptamos cada momento a tu gusto y a la energía de tus invitados.' },
+  { t: '🕺 Pistas de Baile Llenas, Siempre', d: 'Leemos a la gente y mantenemos la fiesta encendida, desde tu tío hasta tus amigos de la universidad.' },
+  { t: '🌎 DJs Multiculturales y Bilingües', d: 'Nos especializamos en bodas multiculturales y hablamos inglés y español con fluidez.' },
+  { t: '🎤 Anfitriones Profesionales, No Solo DJs', d: 'Guiamos tu cronograma con fluidez: entradas, brindis, bailes y todos los momentos intermedios.' },
+  { t: '✨ Nuestros Extras Mágicos y Épicos', d: 'Desde cabinas de fotos hasta chispas frías e iluminación ambiental: traemos toda la diversión.' },
+  { t: '📍 Expertos en Bodas del Sur de Florida', d: 'Conocemos los venues, los proveedores y cómo hacer que tu celebración en el área de Miami sea impecable.' },
+];
+---
+<Base title="Nosotros | Xpress Entertainment — DJs de Bodas del Sur de Florida" description="De un sueño a más de 100 bodas al año. Conoce al equipo bilingüe y multicultural detrás de Xpress Entertainment, tu equipo de DJ de bodas de referencia en el sur de Florida.">
+
+  <Hero
+    size="mid"
+    eyebrow="Nosotros"
+    titleHtml={`El Arma Secreta de tu Boda<br><span class="serif-accent" style="font-style:italic">(Además del amor, por supuesto)</span>`}
+    image={phUri(2560, 1440, 'About — hero', 'Team photo or wide celebration shot')}
+    alt="Boda de Xpress Entertainment"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">¡Hola! Somos Xpress Entertainment, tu equipo de DJ de bodas de referencia en el sur de Florida. No estamos aquí solo para poner música: estamos aquí para traer el ambiente, guiar el ritmo y mantener tu fiesta encendida desde el “sí, acepto” hasta el último baile. Desde bodas románticas en el patio hasta venues de lujo en Miami y Fort Lauderdale, nos especializamos en crear momentos inolvidables a través de la música, la iluminación y la conexión con la gente.</p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="/images/xpress-team-photo.jpg" alt="El equipo de Xpress Entertainment en Top Golf durante su fiesta de Navidad" style="aspect-ratio:4/3;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">De un sueño…</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">…a más de 100 bodas al año.</h2>
+          <p class="lead">Xpress Entertainment comenzó en 2016 cuando Drew Segura, un apasionado DJ bilingüe, tomó su amor por la música y lo convirtió en un espectáculo de un solo hombre en un venue de bodas de Pompano Beach.</p>
+          <p class="lead" style="margin-top:14px;">Lo que comenzó pequeño rápidamente se convirtió en una de las compañías de entretenimiento de bodas más queridas del sur de Florida, conocida por nuestro enfoque personalizado, nuestro estilo multicultural y nuestra inigualable habilidad para leer a la gente.</p>
+          <p class="lead" style="margin-top:14px;">Ahora somos un equipo completo, animando más de 100 bodas al año, además de eventos corporativos y fiestas privadas en Miami, Fort Lauderdale, Weston y más allá.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">El equipo que trae la magia ✨</span><h2 class="h-xl">Conoce al equipo.</h2><p class="lead" style="margin-inline:auto;">Detrás de cada recepción épica hay un equipo que lo entiende. Somos más que DJs: somos anfitriones, curadores musicales y facilitadores de fiestas. Y sí, nos encanta lo que hacemos.</p></div>
+      <div class="cards" style="grid-template-columns:repeat(4,1fr);">
+        {team.map((m, i) => (
+          <div class={`card reveal ${i ? 'd' + i : ''}`} style="aspect-ratio:3/4;">
+            <img src={m.img} alt={m.name} />
+            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BRIDES CHOOSE -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Por qué las novias eligen Xpress 💖</span><h2 class="h-xl">6 Razones por las que Podríamos Ser tu Equipo de Boda Perfecto</h2></div>
+      <div class="values">
+        {reasons.map((r, i) => (
+          <div class={`value reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`}><h3>{r.t}</h3><p>{r.d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="cta pad">
+    <div class="wrap" style="max-width:820px;">
+      <span class="eyebrow light reveal">Hablemos</span>
+      <h2 class="display reveal d1">¿Listo para Hacer tu Evento Inolvidable?</h2>
+      <p class="lead reveal d2" style="margin:24px auto 0; text-align:center; color:#e9e2f5;">¡Estamos emocionados de trabajar contigo! Ya sea que estés planeando una boda, un evento corporativo o una fiesta, Xpress Entertainment está aquí para hacer realidad tu visión. Contáctanos hoy para conocer más sobre nuestros servicios o para agendar una consulta.</p>
+      <div class="reveal d3" style="margin-top:36px;"><a href={L('/check-availability')} class="btn"><span>Consulta Disponibilidad</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+</Base>

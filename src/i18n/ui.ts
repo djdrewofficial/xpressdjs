@@ -10,6 +10,26 @@ export const defaultLocale: Locale = 'en';
 // translated so the nav/footer/toggle automatically link to the /es version.
 export const translated = new Set<string>([
   '/',
+  '/the-experience',
+  '/pricing',
+  '/check-availability',
+  '/dj-drew-segura',
+  '/djatomic',
+  '/djphil',
+  '/services',
+  '/services/djs',
+  '/services/fort-lauderdale-wedding-dj',
+  '/epic-extras-1',
+  '/epic-extras-1/lighting',
+  '/epic-extras-1/dancing-on-the-clouds',
+  '/epic-extras-1/cold-sparks',
+  '/south-florida-photo-booth-rental',
+  '/wedding-content-creator',
+  '/vibo',
+  '/wedding-dj-miami',
+  '/about-xpress-entertainment',
+  '/careers',
+  '/privacy-policy',
 ]);
 
 /** Current locale from the URL ( /es/... => 'es', otherwise 'en' ). */

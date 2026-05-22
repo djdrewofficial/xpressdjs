@@ -1,0 +1,73 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+import Credit from '../../../components/Credit.astro';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+---
+<Base title="Complementos de Iluminación para Bodas | Iluminación Ambiental, Monograma y Shows de Luces — Xpress Entertainment" description="La iluminación transforma un espacio simple en una celebración elegante y vibrante. Iluminación ambiental, proyecciones de monograma personalizadas y shows de luces estilo club llenos de energía para bodas en el sur de Florida.">
+
+  <Hero
+    size="mid"
+    eyebrow="Extras Épicos"
+    titleHtml={`Complementos de Iluminación<br>para Tu Boda`}
+    sub="La iluminación juega un papel crucial para crear el ambiente de tu boda, transformando un espacio simple en una celebración elegante y vibrante."
+    image="/images/heroes/lighting-hero.jpg"
+    alt="Pista de baile llena mientras los recién casados bailan juntos en el centro en una boda en el sur de Florida"
+    ctaText="Consulta Disponibilidad"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">En Xpress Entertainment, ofrecemos una variedad de complementos de iluminación que dan vida a la visión de tu boda. Desde iluminación ambiental romántica hasta proyecciones de monograma personalizadas y shows de luces estilo club llenos de energía, nuestras opciones de iluminación crean el ambiente perfecto de principio a fin.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">Ya sea que quieras realzar la elegancia de tu recepción o convertir tu pista de baile en una experiencia estilo discoteca, nuestros servicios profesionales de iluminación están diseñados para combinar con tu estilo y temática.</p>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="/images/uplighting.jpg" alt="Iluminación ambiental ámbar en las paredes del salón mientras el padrino da su discurso" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">Iluminación Ambiental</span>
+          <h2 class="h-lg" style="margin:14px 0 16px;">Crea el Ambiente para la Elegancia</h2>
+          <p class="lead">Colocadas estratégicamente alrededor del salón, las luces ambientales proyectan un hermoso resplandor sobre paredes, columnas y decoración, transformando tu espacio en un entorno impresionante, personalizado para combinar con los colores de tu boda.</p>
+          <ul style="margin:18px 0 0 20px; color:#d9d0ec; line-height:1.9;"><li><strong style="color:#fff;">Colores Personalizables:</strong> combina con la temática de tu boda o crea una atmósfera específica.</li><li><strong style="color:#fff;">Transformación del Salón:</strong> resalta los elementos arquitectónicos y agrega profundidad a tu lugar.</li><li><strong style="color:#fff;">Perfecta para Fotos:</strong> un hermoso fondo para el corte del pastel, los brindis y el primer baile.</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal"><img src="/images/monogram-projection.jpg" alt="Monograma de boda personalizado proyectado en la pared de un salón de Miami" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">Proyecciones de Monograma</span>
+          <h2 class="h-lg" style="margin:14px 0 16px;">Personaliza Tu Gran Día</h2>
+          <p class="lead">Podemos proyectar tus iniciales, la fecha de tu boda o un diseño personalizado sobre la pista de baile, las paredes o el techo, agregando un toque personal a la decoración de tu boda, totalmente personalizable para adaptarse a tu estilo.</p>
+          <ul style="margin:18px 0 0 20px; color:var(--muted); line-height:1.9;"><li><strong style="color:#fff;">Toque Personalizado:</strong> tus nombres, la fecha de tu boda o un diseño personalizado para una declaración única.</li><li><strong style="color:#fff;">Ubicación Versátil:</strong> la pista de baile, detrás de la mesa principal o el techo.</li><li><strong style="color:#fff;">Elegante y Único:</strong> personaliza tu espacio sin saturar la decoración.</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <figure class="media-fig reveal"><div class="media"><img src="/images/club-style-light-show.jpg" alt="Pista de baile llena de energía bajo un show de luces estilo club en una boda" /></div><Credit variant="caption" align="left" name="Amarena Productions" href="https://amarenaproductions.com/" /></figure>
+        <div class="reveal d1">
+          <span class="eyebrow light">Show de Luces Estilo Club</span>
+          <h2 class="h-lg" style="margin:14px 0 16px;">Dale Vida a la Fiesta</h2>
+          <p class="lead">Cabezas móviles, láseres y luces LED de colores se sincronizan con la música para crear una experiencia de discoteca que tus invitados nunca olvidarán.</p>
+          <ul style="margin:18px 0 0 20px; color:#d9d0ec; line-height:1.9;"><li><strong style="color:#fff;">Atmósfera Llena de Energía:</strong> transforma tu pista de baile en un espacio vibrante y enérgico.</li><li><strong style="color:#fff;">Se Sincroniza con la Música:</strong> las luces se mueven y cambian al ritmo del beat.</li><li><strong style="color:#fff;">Efectos Personalizables:</strong> desde resplandores suaves hasta estroboscopios pulsantes y láseres.</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Contáctanos para complementos de iluminación" titleHtml={`Ilumina<br>tu día.`} text="Cuéntanos tu fecha. Te mostraremos lo natural que puede sentirse una noche inolvidable." ctaText="Consulta Tu Fecha" ctaHref={L('/check-availability')} />
+</Base>

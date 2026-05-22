@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const love = [
+  ['Comunicación sin estrés', 'Tu DJ tendrá todas las preferencias musicales definidas, asegurando un evento impecable.'],
+  ['Colabora con tu DJ e invitados', 'Recibe aportes de tu prometido(a), el cortejo nupcial o la familia.'],
+  ['Cronograma de boda organizado', 'Planifica cada momento clave, desde tu entrada a la ceremonia hasta el último baile.'],
+  ['Sugerencias de canciones y playlists', '¿Necesitas inspiración? Explora playlists seleccionadas para cada parte de tu boda.'],
+];
+const steps = [
+  ['Descarga la App', 'Te enviaremos un enlace privado para acceder a tu centro de planeación de boda.'],
+  ['Selecciona y organiza canciones', 'Elige la música para tu ceremonia, primer baile, recepción y más.'],
+  ['Involucra a amigos y familia', 'Permite que los invitados hagan peticiones antes de la boda.'],
+  ['Finaliza con tu DJ', '¡Revisamos tus selecciones, afinamos tu cronograma y nos preparamos para hacer vibrar tu noche!'],
+];
+---
+<Base title="Vibo DJ: App de Planeación de Música para Bodas | Xpress Entertainment" description="Lleva la planeación musical de tu boda al siguiente nivel con Vibo DJ — personaliza cada canción y momento de tu gran día desde tu teléfono y colabora con tu DJ en tiempo real.">
+
+  <Hero
+    size="mid"
+    eyebrow="El Plan"
+    titleHtml={`Planea tu música<br>con <span class="serif-accent" style="font-style:italic">Vibo DJ.</span>`}
+    sub="En Xpress Entertainment, creemos que planear la música de tu boda debería ser divertido, fácil y sin estrés. Por eso usamos Vibo DJ, una app de planeación musical de vanguardia que te permite personalizar cada canción y momento de tu gran día — todo desde tu teléfono."
+    image="/images/heroes/vibo-hero.jpg"
+    alt="Pareja mirando una laptop en el sofá mientras planean la música de su boda"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="/images/vibo-timeline-iphone.png" alt="Vibo DJ — app de planeación musical para bodas" /></div>
+        <div class="reveal d1">
+          <p class="lead">Con Vibo DJ, tú y tu pareja pueden colaborar en tiempo real, invitar a amigos y familia a sugerir canciones, y asegurarte de que la playlist de tu boda refleje tu estilo único. Ya sea que quieras crear una fiesta de baile llena de energía o un ambiente romántico e íntimo, Vibo DJ lo hace simple e interactivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Por qué las parejas aman Vibo DJ</span><h2 class="h-xl">Tu banda sonora, lista.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {love.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Cómo funciona Vibo DJ</span><h2 class="h-xl">Cuatro pasos sencillos.</h2></div>
+      <div class="steps" style="grid-template-columns:repeat(4,1fr);">
+        {steps.map(([t, d], i) => (
+          <div class={`step reveal ${i ? 'd' + i : ''}`}><div class="sn">{i + 1}</div><h4>{t}</h4><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:840px; text-align:center;">
+      <span class="eyebrow reveal">Vive la diferencia de Xpress Entertainment</span>
+      <h2 class="h-lg reveal d1" style="margin:14px 0 18px;">Más que solo DJs.</h2>
+      <p class="lead reveal d2" style="margin-inline:auto;">Somos expertos en música para bodas dedicados a hacer tu celebración inolvidable. Con Vibo DJ, nos aseguramos de que tu playlist sea personalizada, perfectamente sincronizada y repleta de tus canciones favoritas.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Planeación sin estrés" titleHtml={`Empieza a crear<br>tu playlist.`} />
+</Base>

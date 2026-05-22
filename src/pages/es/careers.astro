@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import { phUri } from '../../lib/ph';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+---
+<Base title="Empleo | Xpress Entertainment — Trabaja con Nosotros" description="Te pagamos por divertirte. Xpress Entertainment es un grupo de DJs y artistas independientes que crean las experiencias más extravagantes para nuestros clientes. Trabaja con nosotros.">
+
+  <Hero
+    size="mid"
+    eyebrow="Trabaja con nosotros"
+    titleHtml={`Te pagamos por<br>divertirte.`}
+    sub="Xpress Entertainment es un grupo de DJs y artistas independientes que se han unido para formar algo especial. Creamos las experiencias más extravagantes para nuestros clientes y disfrutamos cada momento. Si esto suena como tú, nos encantaría conocerte."
+    image={phUri(2560, 1440, 'Careers — hero', 'Team / behind-the-scenes at events')}
+    alt="Equipo de Xpress Entertainment"
+    ctaText="Postúlate Ahora"
+    ctaHref={L('/check-availability')}
+  />
+
+  <CTA eyebrow="Únete al equipo" titleHtml={`Trabaja con nosotros.`} text="Cuéntanos quién eres y a qué te dedicas: nos encantaría conocerte." ctaText="Ponte en Contacto" ctaHref={L('/check-availability')} />
+</Base>

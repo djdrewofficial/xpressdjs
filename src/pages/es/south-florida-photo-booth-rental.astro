@@ -1,0 +1,187 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import SampleGalleries from '../../components/SampleGalleries.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+// Build image objects from a filename base + list of alt texts.
+// Files live in /public/images/galleries/  ->  {base}-01.jpg ... and {base}-cover.jpg
+const G = (base, alts) =>
+  alts.map((alt, i) => ({ src: `/images/galleries/${base}-${String(i + 1).padStart(2, '0')}.jpg`, alt }));
+
+const galleries = [
+  {
+    id: 'lux-classics', title: 'Clásicas de Lux Booth', count: 10, imageSize: '1200 × 900',
+    cover: { src: '/images/galleries/lux-photo-booth-cover.jpg', alt: 'Invitados posando en la Lux Booth al aire libre en una boda en el sur de Florida' },
+    images: G('lux-photo-booth', [
+      'Recién casados sonriendo en la Lux Booth de bodas en Miami',
+      'Damas de honor posando con accesorios en la cabina de fotos al aire libre',
+      'Padrinos divirtiéndose en la cabina de fotos de la boda',
+      'Invitados de la boda riendo juntos en la Lux Booth',
+      'Novios haciendo una pose en la cabina de fotos al aire libre',
+      'Amigos celebrando en la cabina de fotos de boda en el sur de Florida',
+      'Foto grupal de la familia en la Lux Booth',
+      'Pareja posando con carteles en la cabina de fotos de la boda',
+      'Invitados con accesorios divertidos en la Lux Booth al aire libre',
+      'Foto grupal del cortejo nupcial en la Lux Booth',
+    ]),
+  },
+  {
+    id: 'glam-bw', title: 'Glam Blanco y Negro', count: 10, imageSize: '1200 × 900',
+    cover: { src: '/images/galleries/glam-photo-booth-bw-cover.jpg', alt: 'Retrato glam en blanco y negro en la cabina de fotos de una boda en el sur de Florida' },
+    images: G('glam-photo-booth-bw', [
+      'Retrato glam en blanco y negro de los recién casados en la cabina de fotos',
+      'Foto glam en blanco y negro de las damas de honor en la cabina de fotos',
+      'Retrato editorial en blanco y negro en la cabina de fotos de boda',
+      'Novio en una toma glam en blanco y negro en la cabina de fotos',
+      'Novia en un retrato glam en blanco y negro en la cabina de fotos',
+      'Pareja en una foto dramática en blanco y negro en la cabina de fotos',
+      'Invitados de la boda en un retrato glam en blanco y negro en la cabina',
+      'Foto grupal glam en blanco y negro en la cabina de fotos',
+      'Retrato elegante en blanco y negro en la cabina de fotos de boda',
+      'Recuerdo glam en blanco y negro de la cabina de fotos de la boda',
+    ]),
+  },
+  {
+    id: 'customized-designs', title: 'Diseños Personalizados', count: 14, imageSize: '1920 × 1280',
+    cover: { src: '/images/galleries/custom-photo-booth-design-cover.jpg', alt: 'Plantilla de impresión personalizada para la cabina de fotos de boda' },
+    images: G('custom-photo-booth-design', [
+      'Diseño de impresión personalizado de la cabina de fotos con los nombres y la fecha de la pareja',
+      'Plantilla de superposición con marca para la cabina de fotos de boda',
+      'Diseño de impresión personalizado con monograma para la cabina de fotos',
+      'Diseño de impresión temático personalizado para la cabina de fotos de boda',
+      'Plantilla de impresión personalizada con flores para una boda',
+      'Diseño de cabina de fotos personalizado y elegante en los colores de la boda',
+      'Plantilla de impresión moderna y minimalista para la cabina de fotos',
+      'Diseño de cabina de fotos personalizado con la marca del lugar',
+      'Diseño de cabina de fotos de boda con las iniciales de la pareja',
+      'Plantilla de impresión a medida para una boda en el sur de Florida',
+      'Plantilla de impresión geométrica personalizada para la cabina de fotos',
+      'Diseño de impresión personalizado con temática tropical para la cabina de fotos',
+      'Plantilla de impresión clásica con tipografía para la cabina de fotos',
+      'Diseño de impresión personalizado de la cabina de fotos con detalles dorados',
+    ]),
+  },
+  {
+    id: 'classic-strips', title: 'Tiras Clásicas de Cabina', count: 10, imageSize: '640 × 1920',
+    cover: { src: '/images/galleries/classic-photo-booth-strip-cover.jpg', alt: 'Tira vertical clásica de la cabina de fotos de boda' },
+    images: G('classic-photo-booth-strip', [
+      'Tira clásica en blanco y negro de la cabina de fotos de boda',
+      'Tira vertical de la cabina de fotos de los recién casados',
+      'Tira clásica de cuatro fotogramas de la cabina de fotos de boda',
+      'Invitados de la boda en una tira de cabina de fotos estilo vintage',
+      'Recuerdo de la tira clásica de la cabina de fotos de la pareja',
+      'Tira vertical divertida de la cabina de fotos con accesorios',
+      'Damas de honor en una tira clásica de la cabina de fotos',
+      'Tira clásica de la cabina de fotos con la fecha de la boda',
+      'Tira vertical de la cabina de fotos de boda con estilo retro',
+      'Invitados posando a lo largo de una tira clásica de la cabina de fotos',
+    ]),
+  },
+];
+
+const faqs = [
+  ['¿Cuánto espacio necesito?', 'Lux Booth: ≈ 8′×8′ | Cabina 360: ≈ 10′×10′ de superficie plana'],
+  ['¿Incluyen un asistente?', 'Siempre ✔️ Nuestras cabinas vienen con un profesional amable que guía a tus invitados.'],
+  ['¿Los invitados reciben impresiones?', 'Sí — la Lux Booth ofrece impresiones ilimitadas de 2×6 o 4×6 más descargas digitales. La Cabina 360 se enfoca en videos con compartido digital instantáneo.'],
+  ['¿Podemos personalizar las impresiones?', 'Por supuesto — combinaremos a la perfección los colores de tu boda o el logo de tu marca.'],
+  ['¿Qué áreas cubren?', '¡Sí! Cubrimos los condados de Miami-Dade y Palm Beach (puede aplicar una pequeña tarifa de viaje).'],
+];
+const steps = [
+  ['Elige tu Cabina', '360 o Lux (o ambas)'],
+  ['Personaliza tu Estilo', 'Elige tu superposición, fondo y temática.'],
+  ['Nosotros Montamos la Escena', 'Nuestro equipo se encarga de la entrega, el montaje y la operación.'],
+  ['Haz tu Mejor Pose', 'Toma la foto, gira y compártela al instante por mensaje o impresión.'],
+  ['Revive los Recuerdos', 'Recibe tu galería digital completa después del evento.'],
+];
+---
+<Base title="Renta de Cabina de Fotos en Miami y Fort Lauderdale | Xpress Entertainment" description="Cabinas de fotos Lux y 360 para bodas en el sur de Florida — cámaras con calidad DSLR, impresiones instantáneas, compartido en redes sociales y un asistente en sitio. La Máxima Experiencia de Bodas, capturada.">
+
+  <Hero
+    eyebrow="Cabinas de Fotos en Fort Lauderdale / Miami / Palm Beach"
+    titleHtml={`Capturado<br>Cuadro a <span class="serif-accent" style="font-style:italic">Cuadro</span>`}
+    sub="En Xpress Entertainment, La Máxima Experiencia de Bodas no termina en la pista de baile — vive en cada sonrisa, pose y momento divertido dentro de nuestras cabinas de fotos."
+    image="/images/heroes/photobooth-hero.jpg"
+    alt="Grupo de invitados posando en una cabina de fotos de Xpress Entertainment"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">Cada cabina está equipada con cámaras de nivel profesional, iluminación de estudio favorecedora y opciones de impresión instantánea y compartido digital, para que tus invitados sigan la diversión mucho después de que termine la noche.</p>
+      <p class="lead reveal d1" style="margin-top:14px;">Desde fotos románticas hasta tomas grupales hilarantes, nuestras cabinas se han convertido en el hogar del primer beso, la última risa y cada recuerdo entre ellos. Ya sea que estés creando una elegante pared glam en blanco y negro o un reel de celebración lleno de confeti, tus invitados se llevarán recuerdos tan hermosos como tu día mismo.</p>
+    </div>
+  </section>
+
+  <!-- TWO BOOTHS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Dos formas de capturarlo</span><h2 class="h-xl">Nuestras Cabinas</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>📸 La Lux Booth</h3>
+          <p style="color:var(--lavender); margin:6px 0 12px;">Clásica. Elegante. Atemporal.</p>
+          <p style="color:#d9d0ec;">Nuestra Lux Booth aporta ese look de estudio moderno a tu evento con cámaras de alta definición, iluminación favorecedora y plantillas de impresión preciosas. Los invitados pueden tomar fotos ilimitadas, crear GIFs o boomerangs, y llevarse impresiones instantáneas o copias digitales, todo diseñado para combinar con el ambiente de tu evento. El elegante diseño al aire libre encaja a la perfección en cualquier lugar de boda o fondo de fiesta.</p>
+          <p style="color:#fff; margin:16px 0 8px;">Lo destacado:</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;"><li>✦ Cámara con calidad DSLR para fotos nítidas</li><li>✦ Impresiones instantáneas (opcional) + descargas digitales</li><li>✦ Superposiciones personalizadas y plantillas con marca</li><li>✦ Filtro Glam opcional (blanco y negro estilo “Kardashian”)</li><li>✦ Asistente amable en sitio incluido</li></ul>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>✨ La Cabina 360</h3>
+          <p style="color:var(--lavender); margin:6px 0 12px;">Entra al centro de atención — literalmente.</p>
+          <p style="color:#d9d0ec;">Nuestra Cabina 360 crea videos en cámara lenta impresionantes que capturan a tus invitados desde todos los ángulos. Es una experiencia interactiva que hace que todos se sientan como una celebridad en la alfombra roja. Con cámaras de nivel estudio, iluminación dinámica y compartido instantáneo en redes sociales, cada giro se convierte en un momento que vale la pena revivir. Bodas que merecen un poco de wow extra.</p>
+          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; margin-top:16px;"><li>✦ Plataforma de video giratoria 360° con cámara lenta cinematográfica</li><li>✦ Compartido instantáneo por mensaje, correo o código QR</li><li>✦ Base LED con iluminación personalizable</li><li>✦ Operada por un asistente para una experiencia fluida</li><li>✦ Superposiciones, logos y efectos con marca opcionales</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Por qué elegir Xpress Entertainment</span><h2 class="h-lg">No solo dejamos una cabina; entregamos La Máxima Experiencia de Bodas.</h2></div>
+      <p class="lead reveal d1">En Xpress Entertainment, nuestras cabinas de fotos funcionan con cámaras de alta calidad, iluminación de nivel estudio y tecnología de compartido instantáneo que hacen que cada clic parezca una sesión de portada. Ya sea que estés girando en la Cabina 360 o haciendo una pose frente a la Lux Booth, tus invitados se llevarán recuerdos que se sienten tan premium como tu propia celebración.</p>
+      <p class="lead reveal d2" style="margin-top:14px;">Nuestro equipo ha animado cientos de bodas y eventos en todo el sur de Florida, desde azoteas de Miami hasta salones de Fort Lauderdale. Nos encargamos del montaje, la operación y el desmontaje, así que lo único que tienes que hacer es sonreír.</p>
+      <p class="lead reveal d2" style="margin-top:14px; color:#fff; font-family:var(--serif); font-size:1.5rem;">✨ Porque los recuerdos se desvanecen… pero las fotos duran para siempre.</p>
+    </div>
+  </section>
+
+  <!-- SAMPLE GALLERIES -->
+  <SampleGalleries
+    galleries={galleries}
+    eyebrow="Galerías de Muestra"
+    title="Mira la magia."
+    sub="Un vistazo a lo que tus invitados se llevan a casa — toca cualquier galería para hojear momentos reales de la cabina."
+  />
+
+  <!-- HOW IT WORKS -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Cómo Funciona</span><h2 class="h-xl">De "di whisky" a tu galería.</h2></div>
+      <div class="steps" style="grid-template-columns:repeat(5,1fr);">
+        {steps.map(([t, d], i) => (
+          <div class={`step reveal ${i ? 'd' + i : ''}`}><div class="sn">{i + 1}</div><h4>{t}</h4><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Bueno saberlo</span><h2 class="h-xl">Preguntas Frecuentes</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <h3 style="font-size:1.3rem; color:#fff; margin-bottom:8px;">{q}</h3>
+            <p style="color:var(--muted); line-height:1.8;">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="Consulta Disponibilidad" titleHtml={`Haz que tu pista de baile<br>sea inolvidable.`} text="Tu Máxima Experiencia de Bodas comienza aquí." />
+</Base>

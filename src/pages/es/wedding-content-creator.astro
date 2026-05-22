@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const forYou = [
+  { t: '🌿 Vives por los momentos espontáneos', d: 'Desde votos con lágrimas hasta el caos de la pista de baile — capturamos lo real que no verás en el video profesional.' },
+  { t: '💃 Te encanta compartir tu historia', d: 'Ya sea que estés planeando un mini documental, un tráiler de boda o simplemente Reels con onda — tenemos tu contenido cubierto.' },
+  { t: '📲 Quieres contenido, ya', d: 'Sin meses de espera. Recibe clips listos para redes en cuestión de días — o incluso Stories el mismo día.' },
+  { t: '🤳 Quieres una bestie con cámara', d: 'No un videógrafo rígido — un creativo que te anima, te acomoda el velo y consigue la toma.' },
+];
+const packages = [
+  { t: '📸 El Paquete Esenciales ✨', d: 'Perfecto para parejas que quieren contenido listo para redes rápido.' },
+  { t: '🎞️ La Experiencia Highlight 💫', d: 'Ideal si quieres una experiencia narrativa más profunda y un resumen para compartir.' },
+  { t: '🔥 El Paquete Social Total 🎉', d: 'La experiencia completa para parejas que aman el contenido y lo quieren todo.' },
+];
+---
+<Base title="Creador de Contenido para Bodas | Xpress Entertainment" description="Revive tu día en tiempo real — Reels, Stories y magia detrás de cámaras de alta calidad, capturados y entregados mientras tu boda en el sur de Florida sigue en marcha.">
+
+  <Hero
+    size="mid"
+    eyebrow="Creador de Contenido para Bodas"
+    titleHtml={`Revive tu día<br>en <span class="serif-accent" style="font-style:italic">tiempo real.</span>`}
+    sub="A través del lente de un creador de contenido dedicado solo a ti. Olvídate de esperar semanas para ver los momentos destacados de tu boda — nuestros creadores de contenido capturan y entregan Reels, Stories y magia detrás de cámaras de alta calidad mientras tu fiesta sigue en marcha."
+    image="/images/heroes/content-creator-hero.jpg"
+    alt="Novio bailando con los invitados en la pista de baile de la boda en blanco y negro"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+    creditName="E + B Photography and Film Co."
+    creditHref="https://www.ebphotographyandfilmco.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">💖 ¿Es esto para ti? Sin duda — si…</span><h2 class="h-xl">Eres nuestro tipo de pareja.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {forYou.map((f, i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{f.t}</h3><p style="color:#d9d0ec;">{f.d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Qué incluyen nuestros paquetes</span><h2 class="h-xl">🎬 Tu Día, a Tu Manera ✨</h2></div>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr);">
+        {packages.map((p, i) => (
+          <div class={`value reveal ${i ? 'd' + i : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;"><h3>{p.t}</h3><p style="color:#d9d0ec; margin-top:12px;">{p.d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="text-align:center; margin:34px auto 0; color:var(--lavender);">⭐️ Complementos y opciones personalizadas disponibles: ¿Necesitas cobertura más larga? ¿Quieres que filmemos la cena de ensayo o el bridal shower? Solo pregunta 💬</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Mira la onda" titleHtml={`Captúralo<br>en tiempo real.`} />
+</Base>

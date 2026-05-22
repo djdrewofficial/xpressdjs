@@ -6,6 +6,7 @@
     variant="overlay"  -> pinned to the bottom corner (for heroes / full-bleed)
     variant="caption"  -> a line under the photo (for inline images)
 */
+import { getLocale } from '../i18n/ui';
 interface Props {
   name?: string;
   href?: string;
@@ -16,10 +17,11 @@ interface Props {
 const { name, href, variant = 'caption', align = 'right', pos = 'bottom' } = Astro.props;
 const show = name && name.trim() && name.trim().toUpperCase() !== 'N/A';
 const linked = href && href.trim() && href.trim().toUpperCase() !== 'N/A';
+const label = getLocale(Astro.url) === 'es' ? 'Foto:' : 'Photo:';
 ---
 {show && (
   <span class={`credit credit-${variant}`} data-align={align} data-pos={pos}>
-    <span class="credit-label">Photo:</span>{' '}
+    <span class="credit-label">{label}</span>{' '}
     {linked
       ? <a href={href} target="_blank" rel="noopener noreferrer">{name}</a>
       : <span>{name}</span>}

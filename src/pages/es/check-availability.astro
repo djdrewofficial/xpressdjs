@@ -1,0 +1,267 @@
+---
+import Base from '../../layouts/Base.astro';
+import Ph from '../../components/Ph.astro';
+
+const CONSENT_TEXT = "Doy mi consentimiento para recibir notificaciones por SMS de Xpress Entertainment sobre mis consultas, reservas y ofertas promocionales. Pueden aplicar tarifas de mensajes y datos. Entiendo que puedo cancelar en cualquier momento respondiendo 'STOP' a cualquier mensaje.";
+
+// Cloudflare Turnstile anti-spam. Set PUBLIC_TURNSTILE_SITE_KEY in the
+// Cloudflare Pages build env vars to switch it on; until then the form
+// works with the honeypot only.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+
+const eventTypeOther = [
+  'Banquete','Bar Mitzvá','Bat Mitzvá','Fiesta de Cumpleaños','Reunión de Egresados','Celebración Comunitaria',
+  'Fiesta Navideña de Empresa','Reunión Familiar','Celebración de Graduación','Club Nocturno / Baile en Bar',
+  'Fiesta Privada','Quinceañera','PA / Refuerzo de Sonido','Baile Escolar','Sweet 16',
+  'Aniversario de Bodas','Otro / No Listado',
+];
+const relations = ["¡Soy la Novia!","¡Soy el Novio!","Soy un Familiar","Soy Planificador(a) / Coordinador(a) de Bodas"];
+---
+<Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración.">
+
+  <header class="hero" style="min-height:62svh;">
+    <div class="hero-bg"><Ph w={2560} h={1440} label="Check Availability — hero" note="South Florida wedding scene" /></div>
+    <div class="wrap">
+      <span class="eyebrow light reveal">Consulta la Disponibilidad de Xpress Entertainment</span>
+      <h1 class="h-xl reveal d1" style="margin:14px 0 18px;">Entonces, ¿quieres saber si estamos libres en tu fecha? 😏</h1>
+      <p class="lead reveal d2">¿Quieres saber si Xpress Entertainment está disponible? Lamentablemente, a diferencia de otros solteros, no estamos en Tinder. Pero puedes escribirnos por DM o llenar el formulario en esta página para que un miembro del equipo se comunique contigo y vea si estamos disponibles en tu fecha.</p>
+    </div>
+  </header>
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Consulta Disponibilidad ⬇️</span>
+          <h2 class="h-lg" style="margin:14px 0 30px;">Cuéntanos sobre tu día.</h2>
+
+          <form id="lead-form" novalidate>
+            <!-- honeypot: hidden from humans -->
+            <div aria-hidden="true" style="position:absolute; left:-9999px; height:0; overflow:hidden;">
+              <label>Empresa<input type="text" id="company" name="company" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="field-row">
+              <div class="field"><label for="firstName">Nombre *</label><input type="text" id="firstName" name="firstName" autocomplete="given-name" required /></div>
+              <div class="field"><label for="lastName">Apellido *</label><input type="text" id="lastName" name="lastName" autocomplete="family-name" required /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="phone">Teléfono *</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required /></div>
+              <div class="field"><label for="email">Correo electrónico *</label><input type="email" id="email" name="email" placeholder="tucorreo@email.com" autocomplete="email" required /></div>
+            </div>
+
+            <div class="field"><label for="eventType">¿Qué tipo de evento estás planeando? *</label>
+              <select id="eventType" name="eventType" required>
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="Wedding">Boda</option>
+                <option value="Corporate Event">Evento Corporativo</option>
+                <option value="Other">Otro</option>
+              </select>
+            </div>
+
+            <!-- shows when "Other" -->
+            <div class="field" id="grp-other" hidden>
+              <label for="eventTypeOther">¿Qué tipo de evento? (elige uno) *</label>
+              <select id="eventTypeOther" name="eventTypeOther" disabled>
+                <option value="" selected disabled>Selecciona una opción</option>
+                {eventTypeOther.map((o) => <option value={o}>{o}</option>)}
+              </select>
+            </div>
+
+            <div class="field"><label for="eventDate">Fecha del evento *</label><input type="date" id="eventDate" name="eventDate" required /></div>
+
+            <div class="field-row">
+              <div class="field"><label for="guests">Número estimado de invitados *</label><input type="number" min="1" id="guests" name="guests" required /><small class="hint">No necesitas el número final — solo un aproximado.</small></div>
+              <div class="field"><label for="startTime">Hora estimada de inicio *</label><input type="text" id="startTime" name="startTime" placeholder="ej. 6:00 PM" required /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="endTime">Hora estimada de finalización *</label><input type="text" id="endTime" name="endTime" placeholder="ej. 11:00 PM" required /></div>
+              <div class="field"><label for="venueName">Nombre del lugar *</label><input type="text" id="venueName" name="venueName" required /></div>
+            </div>
+            <div class="field"><label for="venueCity">Ciudad del lugar *</label><input type="text" id="venueCity" name="venueCity" required /></div>
+
+            <!-- shows when "Wedding" -->
+            <div class="field" id="grp-relation" hidden>
+              <label>Tu relación con la boda *</label>
+              <div class="radio-group">
+                {relations.map((r, i) => (
+                  <label class="radio"><input type="radio" name="relation" value={r} disabled /> <span>{r}</span></label>
+                ))}
+              </div>
+            </div>
+
+            <!-- shows once a relation is chosen -->
+            <div id="grp-partners" hidden>
+              <div class="field-row">
+                <div class="field"><label for="partner1First">Pareja 1 — Nombre *</label><input type="text" id="partner1First" name="partner1First" disabled /></div>
+                <div class="field"><label for="partner1Last">Pareja 1 — Apellido *</label><input type="text" id="partner1Last" name="partner1Last" disabled /></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="partner2First">Pareja 2 — Nombre *</label><input type="text" id="partner2First" name="partner2First" disabled /></div>
+                <div class="field"><label for="partner2Last">Pareja 2 — Apellido *</label><input type="text" id="partner2Last" name="partner2Last" disabled /></div>
+              </div>
+            </div>
+
+            <div class="field"><label for="notes">¿Algo más que quieras que sepamos?</label><textarea id="notes" name="notes" rows="4" placeholder="Ambiente, canciones imprescindibles, momentos especiales..."></textarea></div>
+
+            <label class="consent">
+              <input type="checkbox" id="smsConsent" name="smsConsent" required />
+              <span>{CONSENT_TEXT}</span>
+            </label>
+
+            {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
+
+            <p id="form-error" class="form-error" hidden></p>
+            <button type="submit" class="btn" style="width:100%; justify-content:center;"><span class="btn-label">Enviar Consulta</span> <span class="arrow">↗</span></button>
+            <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">Un miembro del equipo se comunicará contigo para confirmar la disponibilidad en tu fecha.</p>
+          </form>
+
+          <div id="form-success" hidden style="text-align:center; padding:40px 0;">
+            <div style="font-size:3rem; line-height:1;">🎉</div>
+            <h3 class="h-lg" style="margin:16px 0 10px;">¡Ya estás en nuestro radar!</h3>
+            <p class="lead">¡Gracias por escribirnos! Un miembro del equipo de Xpress Entertainment te llamará o te enviará un mensaje pronto para confirmar tu fecha. ¡Mantén tu teléfono cerca! 📲</p>
+          </div>
+        </div>
+
+        <div class="reveal d1">
+          <span class="eyebrow">O contáctanos ahora</span>
+          <h2 class="h-lg" style="margin:14px 0 30px;">Línea directa.</h2>
+          <a class="info-card" href="tel:9542330698" style="display:block;"><div class="k">Llama o Escríbenos</div><div class="v">954 · 233 · 0698</div></a>
+          <a class="info-card" href="mailto:events@xpressdjs.com" style="display:block;"><div class="k">Correo electrónico</div><div class="v">events@xpressdjs.com</div></a>
+          <div class="info-card"><div class="k">Área de Servicio</div><div class="v" style="font-size:1.25rem;">Miami · Fort Lauderdale · Palm Beach · Los Cayos</div></div>
+          <blockquote style="font-family:var(--serif); font-size:1.4rem; color:var(--lavender); border-left:3px solid var(--red); padding-left:20px; margin-top:24px; line-height:1.4;">“Oh, I wanna dance with somebody, I wanna feel the heat with somebody, Yeah! I wanna dance with somebody — with somebody who loves me.”</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta pad">
+    <div class="wrap">
+      <span class="eyebrow light reveal">La Máxima Experiencia de Bodas</span>
+      <h2 class="display reveal d1">Nos vemos en<br>la pista de baile.</h2>
+    </div>
+  </section>
+
+  {TURNSTILE_SITE_KEY && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <script is:inline define:vars={{ CONSENT_TEXT, TURNSTILE_SITE_KEY }}>
+    (function () {
+      var form = document.getElementById("lead-form");
+      if (!form) return;
+      var $ = function (id) { return document.getElementById(id); };
+
+      var eventType = $("eventType");
+      var grpOther = $("grp-other");
+      var grpRelation = $("grp-relation");
+      var grpPartners = $("grp-partners");
+      var otherSelect = $("eventTypeOther");
+      var relationRadios = form.querySelectorAll('input[name="relation"]');
+      var partnerInputs = ["partner1First", "partner1Last", "partner2First", "partner2Last"].map($);
+
+      function setGroup(group, fields, show) {
+        group.hidden = !show;
+        fields.forEach(function (el) {
+          el.disabled = !show;
+          if (show) el.setAttribute("required", "required");
+          else { el.removeAttribute("required"); if (el.type !== "radio") el.value = ""; el.checked = false; }
+        });
+      }
+
+      function syncEventType() {
+        var v = eventType.value;
+        setGroup(grpOther, [otherSelect], v === "Other");
+        var isWedding = v === "Wedding";
+        // relation radios
+        grpRelation.hidden = !isWedding;
+        relationRadios.forEach(function (r) {
+          r.disabled = !isWedding;
+          if (isWedding) r.setAttribute("required", "required");
+          else { r.removeAttribute("required"); r.checked = false; }
+        });
+        if (!isWedding) setGroup(grpPartners, partnerInputs, false);
+        else syncRelation();
+      }
+
+      function syncRelation() {
+        var chosen = Array.prototype.some.call(relationRadios, function (r) { return r.checked; });
+        setGroup(grpPartners, partnerInputs, chosen);
+      }
+
+      eventType.addEventListener("change", syncEventType);
+      relationRadios.forEach(function (r) { r.addEventListener("change", syncRelation); });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var errEl = $("form-error");
+        errEl.hidden = true;
+        if ($("company").value) return; // honeypot tripped
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        var tsToken = "";
+        if (TURNSTILE_SITE_KEY) {
+          var tsEl = form.querySelector('[name="cf-turnstile-response"]');
+          tsToken = tsEl ? tsEl.value : "";
+          if (!tsToken) {
+            errEl.textContent = "Por favor completa la verificación anti-spam de abajo.";
+            errEl.hidden = false;
+            return;
+          }
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        var label = form.querySelector(".btn-label");
+        var orig = label.textContent;
+        btn.disabled = true; label.textContent = "Enviando…";
+
+        var payload = {
+          firstName: $("firstName").value.trim(),
+          lastName: $("lastName").value.trim(),
+          phone: $("phone").value.trim(),
+          email: $("email").value.trim(),
+          eventType: eventType.value,
+          eventTypeOther: otherSelect.disabled ? "" : otherSelect.value,
+          eventDate: $("eventDate").value,
+          guests: $("guests").value,
+          startTime: $("startTime").value.trim(),
+          endTime: $("endTime").value.trim(),
+          venueName: $("venueName").value.trim(),
+          venueCity: $("venueCity").value.trim(),
+          relation: (form.querySelector('input[name="relation"]:checked') || {}).value || "",
+          partner1First: partnerInputs[0].value.trim(),
+          partner1Last: partnerInputs[1].value.trim(),
+          partner2First: partnerInputs[2].value.trim(),
+          partner2Last: partnerInputs[3].value.trim(),
+          notes: $("notes").value.trim(),
+          smsConsent: $("smsConsent").checked,
+          consentText: CONSENT_TEXT,
+          turnstileToken: tsToken,
+        };
+
+        fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
+          .then(function (res) {
+            if (res.ok) {
+              form.hidden = true;
+              $("form-success").hidden = false;
+              $("form-success").scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+              errEl.textContent = (res.j && res.j.error) || "Algo salió mal. Por favor llámanos o escríbenos al 954-233-0698.";
+              errEl.hidden = false;
+              btn.disabled = false; label.textContent = orig;
+              if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
+            }
+          })
+          .catch(function () {
+            errEl.textContent = "Error de red. Por favor llámanos o escríbenos al 954-233-0698.";
+            errEl.hidden = false;
+            btn.disabled = false; label.textContent = orig;
+            if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
+          });
+      });
+    })();
+  </script>
+</Base>

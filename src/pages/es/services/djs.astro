@@ -1,0 +1,81 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+import Credit from '../../../components/Credit.astro';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+---
+<Base title="DJs de Bodas en el Sur de Florida | Xpress Entertainment" description="Tu fuente de referencia para los mejores DJs de bodas en el sur de Florida. DJs profesionales y bilingües de orígenes diversos, comprometidos a hacer tu boda extraordinaria.">
+
+  <Hero
+    eyebrow="A bailar"
+    titleHtml={`DJs de Bodas en<br>el Sur de Florida`}
+    sub="Esto es lo que hacemos."
+    image="/images/heroes/dj-services-hero.jpg"
+    alt="Dos invitados de una boda divirtiéndose en medio de una pista de baile repleta"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal">¡Bienvenido a Xpress Entertainment, tu fuente de referencia para los mejores DJs de bodas en el sur de Florida! Entendemos que el día de tu boda es uno de los momentos más importantes de tu vida, y estamos aquí para asegurarnos de que esté lleno de música inolvidable y recuerdos llenos de alegría. Con un equipo de DJs profesionales y bilingües de orígenes diversos y una profunda pasión por la música, estamos comprometidos a hacer de la celebración de tu boda algo extraordinario.</p>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/dj-drew-djing.jpg" alt="DJ Drew Segura pinchando en una boda, mezclando en vivo" /></div>
+          <Credit variant="caption" name="Sid Rashlich" href="https://photovsl.com/" />
+        </figure>
+        <div class="reveal d1">
+          <span class="eyebrow light">Por qué elegirnos</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">¿Por Qué Elegir a Xpress Entertainment para Tu Boda?</h2>
+          <p class="lead">En Xpress Entertainment, nos especializamos en brindar servicios de DJ de bodas de primer nivel, adaptados a tu estilo y preferencias únicas. Nuestros DJs experimentados no son solo expertos en música; son maestros en crear el ambiente perfecto que mantiene a tus invitados bailando toda la noche. Ya sea que busques un ambiente sofisticado y elegante o una fiesta de baile llena de energía, te tenemos cubierto.</p>
+          <p class="lead" style="margin-top:14px;">Nos enorgullece tener un equipo de DJs que puede atender tanto a invitados de habla inglesa como española. Nuestros DJs provienen de orígenes culturales diversos, lo que nos permite mezclar sin esfuerzo distintos géneros y estilos musicales para que combinen con el tema y el público de tu boda. Desde clásicas canciones de amor hasta los últimos éxitos del momento, nos aseguramos de que cada momento del día de tu boda tenga la banda sonora perfecta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBO -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">La comunicación es clave</span><h2 class="h-xl">Te Presentamos la App de DJ Vibo</h2><p class="lead">En Xpress Entertainment, llevamos la experiencia de tu boda al siguiente nivel con nuestra app exclusiva de gestión de eventos. Esta app fácil de usar está diseñada para que la planeación de la música y el cronograma de tu boda sea fluida e interactiva, dándote el control total.</p></div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;"><p style="color:#d9d0ec;">🎵 Gestiona los Detalles de la Boda</p><p style="color:#d9d0ec;">📅 Gestiona el Cronograma y la Música de la Boda</p></div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;"><p style="color:#d9d0ec;">❓ Responde las Preguntas de Tus DJs</p><p style="color:#d9d0ec;">👥 Invita a los Invitados a Ayudar a Agregar Música</p></div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;"><p style="color:#d9d0ec;">🗂️ Gestiona Secciones dentro de tu cronograma</p><p style="color:#d9d0ec;">🎶 Importa Música / listas de reproducción desde Spotify, Apple Music y Más</p></div>
+      </div>
+      <p class="lead reveal" style="margin-top:30px; max-width:820px;">La app de Xpress Entertainment hace que planear la música de tu boda sea sencillo, colaborativo y agradable. Con todas estas herramientas al alcance de tu mano, puedes concentrarte en disfrutar tu gran día, sabiendo que cada detalle ha sido manejado por expertos.</p>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Zonas que Atendemos</span><h2 class="h-xl">Por todo el sur de Florida.</h2></div>
+      <div class="values">
+        <div class="value reveal"><h3>Broward</h3></div>
+        <div class="value reveal d1"><h3>Miami</h3></div>
+        <div class="value reveal d2"><h3>West Palm</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BRANDS -->
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:880px; text-align:center;">
+      <span class="eyebrow light reveal">Usamos marcas de confianza</span>
+      <h2 class="h-lg reveal d1" style="margin:14px 0 18px;">Impecable, siempre.</h2>
+      <p class="lead reveal d2" style="margin-inline:auto;">En Xpress Entertainment, priorizamos experiencias de boda impecables y dependemos exclusivamente de marcas reconocidas y de confianza para nuestro equipo. Al asociarnos con estas marcas consolidadas, garantizamos la ejecución perfecta de las bodas, sin dejar lugar a contratiempos. Nuestro compromiso de usar marcas de equipo de confianza refleja nuestra dedicación a hacer de cada boda una ocasión memorable y perfectamente orquestada.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Asegura tu fecha" titleHtml={`Reserva tu<br>DJ.`} ctaHref={L('/check-availability')} />
+</Base>
