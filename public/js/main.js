@@ -174,10 +174,11 @@
     });
   }
 
-  /* ---- Sample gallery modal ---- */
+  /* ---- Sample gallery lightbox (one photo at a time, arrows/swipe) ---- */
   var galleryCards = document.querySelectorAll(".gallery-card");
   if (galleryCards.length) {
-    var gModal = null, gGrid = null, gTitleEl = null, gLast = null;
+    var gModal = null, gImg = null, gTitleEl = null, gCounter = null, gPrev = null, gNext = null, gLast = null;
+    var gItems = [], gIndex = 0;
     function buildGModal() {
       gModal = document.createElement("div");
       gModal.className = "gallery-modal";
@@ -188,13 +189,44 @@
         '<div class="gallery-modal-inner">' +
         '<button class="gallery-modal-close" type="button" aria-label="Close gallery">&times;</button>' +
         '<h3 class="gallery-modal-title"></h3>' +
-        '<div class="gallery-modal-grid"></div>' +
+        '<div class="gallery-stage">' +
+        '<button class="gallery-nav gallery-prev" type="button" aria-label="Previous photo">‹</button>' +
+        '<div class="gallery-viewport"><img class="gallery-current" alt="" /></div>' +
+        '<button class="gallery-nav gallery-next" type="button" aria-label="Next photo">›</button>' +
+        '</div>' +
+        '<div class="gallery-counter"></div>' +
         "</div>";
       document.body.appendChild(gModal);
-      gGrid = gModal.querySelector(".gallery-modal-grid");
+      gImg = gModal.querySelector(".gallery-current");
       gTitleEl = gModal.querySelector(".gallery-modal-title");
+      gCounter = gModal.querySelector(".gallery-counter");
+      gPrev = gModal.querySelector(".gallery-prev");
+      gNext = gModal.querySelector(".gallery-next");
       gModal.querySelector(".gallery-modal-backdrop").addEventListener("click", closeGModal);
       gModal.querySelector(".gallery-modal-close").addEventListener("click", closeGModal);
+      gPrev.addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
+      gNext.addEventListener("click", function (e) { e.stopPropagation(); step(1); });
+      var vp = gModal.querySelector(".gallery-viewport");
+      var sx = 0, sy = 0;
+      vp.addEventListener("touchstart", function (e) { var t = e.changedTouches[0]; sx = t.clientX; sy = t.clientY; }, { passive: true });
+      vp.addEventListener("touchend", function (e) {
+        var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
+      }, { passive: true });
+    }
+    function render() {
+      if (!gItems.length) return;
+      var it = gItems[gIndex];
+      gImg.src = it.src; gImg.alt = it.alt || "";
+      gCounter.textContent = (gIndex + 1) + " / " + gItems.length;
+      var multi = gItems.length > 1;
+      gPrev.style.display = multi ? "" : "none";
+      gNext.style.display = multi ? "" : "none";
+    }
+    function step(dir) {
+      if (!gItems.length) return;
+      gIndex = (gIndex + dir + gItems.length) % gItems.length;
+      render();
     }
     function openGModal(id, title) {
       var source = document.getElementById("gsrc-" + id);
@@ -202,7 +234,11 @@
       if (!gModal) buildGModal();
       gLast = document.activeElement;
       gTitleEl.textContent = title || "Sample Gallery";
-      gGrid.innerHTML = source.innerHTML;
+      gItems = Array.prototype.map.call(source.querySelectorAll("img"), function (im) {
+        return { src: im.getAttribute("src"), alt: im.getAttribute("alt") };
+      });
+      gIndex = 0;
+      render();
       gModal.classList.add("open");
       document.body.style.overflow = "hidden";
       gModal.querySelector(".gallery-modal-close").focus();
@@ -210,7 +246,7 @@
     function closeGModal() {
       if (!gModal) return;
       gModal.classList.remove("open");
-      gGrid.innerHTML = "";
+      if (gImg) gImg.src = "";
       document.body.style.overflow = "";
       if (gLast && gLast.focus) gLast.focus();
     }
@@ -220,7 +256,10 @@
       });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && gModal && gModal.classList.contains("open")) closeGModal();
+      if (!gModal || !gModal.classList.contains("open")) return;
+      if (e.key === "Escape") closeGModal();
+      else if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "ArrowRight") step(1);
     });
   }
 
