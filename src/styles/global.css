@@ -215,6 +215,11 @@ section { position: relative; }
 .card .tag { position: absolute; top: 22px; left: 22px; z-index: 2; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); padding: 8px 14px; border-radius: 100px; }
 @media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .card-body p { max-height: 120px; opacity: 1; } }
+/* Epic Extras feature cards: strong overlay so text reads clearly; on hover the overlay + text fade to reveal the photo */
+.card-extra::after { background: linear-gradient(180deg, rgba(12,8,20,0.62) 0%, rgba(12,8,20,0.82) 55%, rgba(12,8,20,0.95) 100%); transition: opacity 0.45s var(--ease); }
+.card-extra:hover::after { opacity: 0.15; }
+.card-extra .card-body { transition: opacity 0.45s var(--ease), transform 0.5s var(--ease); }
+.card-extra:hover .card-body { opacity: 0; }
 
 /* ---------- Showcase / cinematic band ---------- */
 .showcase { height: 80vh; min-height: 520px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }

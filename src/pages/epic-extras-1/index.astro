@@ -32,7 +32,7 @@ const extras = [
       <div class="sec-head center reveal"><span class="eyebrow">Explore our most-loved extras</span><h2 class="h-xl">Make a moment.</h2></div>
       <div class="cards">
         {extras.map((e, i) => {
-          const cls = `card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`;
+          const cls = `card card-extra reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`;
           const card = (
             <a class={cls} href={e.href} style="aspect-ratio:auto; min-height:340px;">
               {e.img ? <img src={e.img} alt={e.alt} /> : <Ph w={1200} h={900} label={e.t} note="Feature photo for this extra" />}
