@@ -177,7 +177,7 @@
   /* ---- Sample gallery lightbox (one photo at a time, arrows/swipe) ---- */
   var galleryCards = document.querySelectorAll(".gallery-card");
   if (galleryCards.length) {
-    var gModal = null, gImg = null, gTitleEl = null, gCounter = null, gPrev = null, gNext = null, gLast = null;
+    var gModal = null, gImg = null, gTitleEl = null, gPrev = null, gNext = null, gLast = null;
     var gItems = [], gIndex = 0;
     function buildGModal() {
       gModal = document.createElement("div");
@@ -194,12 +194,10 @@
         '<div class="gallery-viewport"><img class="gallery-current" alt="" /></div>' +
         '<button class="gallery-nav gallery-next" type="button" aria-label="Next photo">›</button>' +
         '</div>' +
-        '<div class="gallery-counter"></div>' +
         "</div>";
       document.body.appendChild(gModal);
       gImg = gModal.querySelector(".gallery-current");
       gTitleEl = gModal.querySelector(".gallery-modal-title");
-      gCounter = gModal.querySelector(".gallery-counter");
       gPrev = gModal.querySelector(".gallery-prev");
       gNext = gModal.querySelector(".gallery-next");
       gModal.querySelector(".gallery-modal-backdrop").addEventListener("click", closeGModal);
@@ -218,7 +216,6 @@
       if (!gItems.length) return;
       var it = gItems[gIndex];
       gImg.src = it.src; gImg.alt = it.alt || "";
-      gCounter.textContent = (gIndex + 1) + " / " + gItems.length;
       var multi = gItems.length > 1;
       gPrev.style.display = multi ? "" : "none";
       gNext.style.display = multi ? "" : "none";
