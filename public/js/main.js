@@ -24,6 +24,7 @@
     function closeMenu() {
       burger.classList.remove("open");
       links.classList.remove("open");
+      if (nav) nav.classList.remove("menu-open");
       document.body.style.overflow = "";
       links.querySelectorAll(".nav-item.open").forEach(function (i) { i.classList.remove("open"); });
     }
@@ -31,6 +32,7 @@
       var willOpen = !links.classList.contains("open");
       burger.classList.toggle("open", willOpen);
       links.classList.toggle("open", willOpen);
+      if (nav) nav.classList.toggle("menu-open", willOpen);
       document.body.style.overflow = willOpen ? "hidden" : "";
       if (!willOpen) links.querySelectorAll(".nav-item.open").forEach(function (i) { i.classList.remove("open"); });
     });

@@ -124,6 +124,8 @@ section { position: relative; }
   transition: background 0.4s var(--ease), padding 0.4s var(--ease), backdrop-filter 0.4s;
 }
 .nav.scrolled { background: rgba(18,12,30,0.82); backdrop-filter: blur(14px); padding-block: 14px; box-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+/* While the mobile menu is open, drop backdrop-filter: it would make .nav the containing block for the fixed full-screen menu panel, clipping it to the bar. */
+.nav.menu-open { backdrop-filter: none; -webkit-backdrop-filter: none; }
 .brand { font-family: var(--serif); font-size: 1.5rem; letter-spacing: 0.04em; display: flex; align-items: center; gap: 2px; }
 .brand b { color: var(--red); }
 .brand small { font-family: var(--sans); font-size: 0.55rem; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; align-self: flex-end; padding-bottom: 6px; }
