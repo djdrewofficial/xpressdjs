@@ -12,8 +12,22 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const d = post.data;
 const fmt = d.date.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' });
+const SITE = 'https://xpressdjs.com';
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  inLanguage: 'es',
+  image: d.image ? new URL(d.image, SITE).href : undefined,
+  author: { '@type': 'Organization', name: d.author || 'Xpress Entertainment' },
+  publisher: { '@type': 'Organization', name: 'Xpress Entertainment', logo: { '@type': 'ImageObject', url: `${SITE}/logo.svg` } },
+  mainEntityOfPage: Astro.url.href,
+};
 ---
 <Base title={`${d.title} | Xpress Entertainment`} description={d.description} image={d.image}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
 
   <header class="hero" style="min-height:58svh;">
     <div class="hero-bg"><img src={d.image} alt={d.title} /></div>

@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
 import CTA from '../../components/CTA.astro';
 import Credit from '../../components/Credit.astro';
+import FaqSchema from '../../components/FaqSchema.astro';
 
 const faqs = [
   ['Do you offer bilingual DJs and MCs?', 'Yes. Our DJs host in English and Spanish and read multicultural crowds with ease — keeping every generation, and both sides of the family, on the dance floor.'],
@@ -12,6 +13,7 @@ const faqs = [
   ['What areas do you serve?', 'All of South Florida — Miami-Dade, Broward, Palm Beach, and the Florida Keys.'],
   ['How do we get a price?', 'Tell us your date and your vision and we’ll send transparent pricing and packages. DJ services start at $2,500.'],
 ];
+const faqItems = faqs.map(([q, a]) => ({ q, a }));
 ---
 <Base title="Wedding Entertainment Services in Miami & South Florida | Xpress Entertainment" description="Wedding DJs, MCs, photo booths, lighting, cold sparks & content creation — all from one award-winning South Florida team. Serving Miami, Fort Lauderdale & Palm Beach.">
 
@@ -100,6 +102,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <FaqSchema items={faqItems} />
 
   <CTA titleHtml={`Let's Make Your Wedding<br>the One Everyone Remembers`} text="Tell us your date. We'll show you how effortless an unforgettable night can feel." />
 </Base>

@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
 import Credit from '../../components/Credit.astro';
 import SocialFollow from '../../components/SocialFollow.astro';
+import FaqSchema from '../../components/FaqSchema.astro';
 import { socials } from '../../lib/socials';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
@@ -20,6 +21,7 @@ const faqs = [
   { q: '¿Aceptan pedidos de canciones de los invitados durante el evento?', a: ['Sí—pero solo si tú quieres. A algunas parejas les encanta cuando los invitados hacen pedidos, mientras que otras prefieren mantener un ambiente curado. Seguimos tu preferencia y usamos nuestro criterio para mantener la energía adecuada. A través de nuestra app, puedes permitir o restringir los pedidos con anticipación, y los filtraremos en vivo para asegurarnos de que nada se cuele de tu lista de canciones prohibidas.'] },
   { q: '¿Qué mejoras de iluminación y sonido ofrecen?', a: ['Xpress Entertainment ofrece una variedad de extras épicos para elevar el ambiente de tu boda, incluyendo:'], list: ['Iluminación ambiental inalámbrica para transformar tu espacio de recepción', 'Iluminación de pista de baile para esa experiencia estilo club', 'Proyección de monograma con sus nombres o logo', 'Máquinas de Chispas Frías (¡fuegos artificiales interiores!)', 'Efecto Bailando en las Nubes', 'Cabinas de fotos'], after: 'Te guiaremos sobre qué mejoras se adaptan mejor a tu lugar, visión y presupuesto.' },
 ];
+const faqItems = faqs.map((f) => ({ q: f.q, a: [...f.a, ...(f.list || []), f.after].filter(Boolean).join(' ') }));
 ---
 <Base title="Xpress Entertainment | La Máxima Experiencia de Bodas — DJs de Bodas en el Sur de Florida" description="Con más de 150 bodas al año en todo el sur de Florida, Xpress Entertainment es la opción favorita para parejas que buscan un DJ de bodas de primer nivel y galardonado. Premiados por WeddingWire Best of Weddings.">
 
@@ -148,6 +150,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <FaqSchema items={faqItems} />
 
   <!-- 5 REASONS -->
   <section class="pad bg-ink">

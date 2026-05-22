@@ -4,6 +4,7 @@ import Hero from '../../../components/Hero.astro';
 import Marquee from '../../../components/Marquee.astro';
 import CTA from '../../../components/CTA.astro';
 import Credit from '../../../components/Credit.astro';
+import FaqSchema from '../../../components/FaqSchema.astro';
 import { localize } from '../../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -14,6 +15,7 @@ const faqs = [
   ['¿Qué zonas cubren?', 'Todo el sur de Florida: Miami-Dade, Broward, Palm Beach y los Cayos de Florida.'],
   ['¿Cómo obtenemos un precio?', 'Cuéntanos tu fecha y tu visión y te enviaremos precios y paquetes transparentes. Los servicios de DJ comienzan en $2,500.'],
 ];
+const faqItems = faqs.map(([q, a]) => ({ q, a }));
 ---
 <Base title="Servicios de Entretenimiento para Bodas en Miami y el Sur de Florida | Xpress Entertainment" description="DJs de bodas, MCs, cabinas de fotos, iluminación, chispas frías y creación de contenido, todo de un solo equipo galardonado del sur de Florida. Atendemos Miami, Fort Lauderdale y Palm Beach.">
 
@@ -103,6 +105,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <FaqSchema items={faqItems} />
 
   <CTA titleHtml={`Hagamos de Tu Boda<br>la Que Todos Recuerden`} text="Cuéntanos tu fecha. Te mostraremos lo natural que puede sentirse una noche inolvidable." ctaHref={L('/check-availability')} />
 </Base>

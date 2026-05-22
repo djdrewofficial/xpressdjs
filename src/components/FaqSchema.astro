@@ -1,0 +1,18 @@
+---
+/* Emits FAQPage structured data (rich results) from a list of Q&A pairs. */
+interface Props { items: { q: string; a: string }[]; }
+const { items } = Astro.props;
+const clean = (items || []).filter((i) => i && i.q && i.a);
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: clean.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+{clean.length > 0 && (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(data)} />
+)}
