@@ -4,8 +4,6 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
 import SocialFollow from '../components/SocialFollow.astro';
-import Ph from '../components/Ph.astro';
-import { phUri } from '../lib/ph';
 
 const socials = [
   { platform: 'instagram', url: 'https://instagram.com/djatomicentertainment', handle: '@djatomicentertainment' },
@@ -24,15 +22,17 @@ const why = [
     eyebrow="South Florida's Wedding & Event DJ"
     titleHtml={`DJ <span class="serif-accent" style="font-style:italic">Atomic</span>`}
     sub="From luxury cruise ships to unforgettable South Florida weddings, DJ Atomic brings global experience and high-energy vibes to every celebration."
-    image={phUri(2560, 1440, 'DJ Atomic — page hero', 'Atomic performing / high-energy crowd')}
-    alt="DJ Atomic performing at a South Florida wedding"
+    image="/images/heroes/dj-atomic-hero.jpg"
+    alt="DJ Atomic — Miami & Fort Lauderdale wedding DJ & MC"
     ctaText="Check Availability"
+    creditName="Leo Photographer"
+    creditHref="https://leophotographer.com"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal" style="background:var(--ink-2);"><Ph w={1000} h={1000} label="DJ Atomic headshot" note="Square studio headshot, clean background" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/djs/dj-atomic-headshot.jpg" alt="DJ Atomic headshot — Miami & Fort Lauderdale wedding DJ & MC" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
         <div class="reveal d1">
           <span class="eyebrow">🌍 International Wedding & Event DJ Based in South Florida</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Over 600 Unforgettable Weddings</h2>

@@ -3,10 +3,10 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
 import Ph from '../../components/Ph.astro';
-import { phUri } from '../../lib/ph';
+import Credit from '../../components/Credit.astro';
 
 const extras = [
-  { t: '☁️ Dancing on the Clouds', s: 'Feel like you’re in a dream.', d: 'This low-lying fog creates a cloud-like floor during your first dance or special moment—ideal for romantic vibes and stunning photos.', use: '💭 Top use: First dance, slow songs, dreamy wedding vibes', href: '/epic-extras-1/dancing-on-the-clouds' },
+  { t: '☁️ Dancing on the Clouds', s: 'Feel like you’re in a dream.', d: 'This low-lying fog creates a cloud-like floor during your first dance or special moment—ideal for romantic vibes and stunning photos.', use: '💭 Top use: First dance, slow songs, dreamy wedding vibes', href: '/epic-extras-1/dancing-on-the-clouds', img: '/images/dancing-on-the-clouds.jpg', alt: 'Couple sharing their first dance on the clouds at their Miami wedding', credit: 'Sid Rashlich', creditHref: 'https://photovsl.com/' },
   { t: '✨ Cold Spark Machines', s: 'Sparks fly—safely.', d: 'These cold spark machines create an indoor-safe, dramatic effect without fire or smoke. Use them for your first dance, entrance, or a major party moment.', use: '✨ Perfect for: Indoor venues, outdoor parties, and those dramatic wow moments you’ll never forget', href: '/epic-extras-1/cold-sparks' },
   { t: '🎨 Custom Monogram Design & Projection', s: 'Put your love in lights.', d: 'Display your initials, wedding logo, or a fully custom design on the dance floor, backdrop, or venue wall. A sleek, stylish detail that makes your celebration feel truly personal.', use: '📸 Popular for: Elegant entrances, photo ops, and branding your big day', href: '/epic-extras-1/lighting' },
   { t: '🧊 CO2 Guns & Cannons', s: 'Time to hype up the party.', d: 'Our CO2 effects shoot out quick bursts of fog, adding excitement and movement to the dance floor. Totally safe and totally unforgettable.', use: '🎉 Perfect for: Grand entrances, late-night dance sets, and surprise DJ moments', href: '/check-availability' },
@@ -20,25 +20,33 @@ const extras = [
     eyebrow="Epic Extras"
     titleHtml={`Add That <span class="serif-accent" style="font-style:italic">✨ Extra Touch ✨</span><br>to Your Wedding Day`}
     sub="At Xpress Entertainment, we’re all about those wow moments that make your wedding feel completely yours. From lighting to custom visuals, these wedding add-ons are designed to enhance your experience, impress your guests, and keep the energy going all night long."
-    image={phUri(2560, 1440, 'Epic Extras — hero', 'Cold sparks / cinematic wedding moment')}
-    alt="Epic Extras"
+    image="/images/heroes/epic-extras-hero.jpg"
+    alt="Couple dancing as cold sparks fly behind them at a South Florida wedding"
     ctaText="Check Availability"
+    creditName="The Schau Photography"
+    creditHref="https://theschau.com/"
   />
 
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="sec-head center reveal"><span class="eyebrow">Explore our most-loved extras</span><h2 class="h-xl">Make a moment.</h2></div>
       <div class="cards">
-        {extras.map((e, i) => (
-          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={e.href} style="aspect-ratio:auto; min-height:340px;">
-            <Ph w={1200} h={900} label={e.t} note="Feature photo for this extra" />
-            <div class="card-body">
-              <h3 style="font-size:1.4rem;">{e.t}</h3>
-              <p style="max-height:none; opacity:1; margin:8px 0;"><strong style="color:#fff;">{e.s}</strong> {e.d}</p>
-              <p style="max-height:none; opacity:1; color:var(--lavender); font-size:0.85rem;">{e.use}</p>
-            </div>
-          </a>
-        ))}
+        {extras.map((e, i) => {
+          const cls = `card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`;
+          const card = (
+            <a class={cls} href={e.href} style="aspect-ratio:auto; min-height:340px;">
+              {e.img ? <img src={e.img} alt={e.alt} /> : <Ph w={1200} h={900} label={e.t} note="Feature photo for this extra" />}
+              <div class="card-body">
+                <h3 style="font-size:1.4rem;">{e.t}</h3>
+                <p style="max-height:none; opacity:1; margin:8px 0;"><strong style="color:#fff;">{e.s}</strong> {e.d}</p>
+                <p style="max-height:none; opacity:1; color:var(--lavender); font-size:0.85rem;">{e.use}</p>
+              </div>
+            </a>
+          );
+          return e.credit
+            ? <div class="card-cell">{card}<Credit variant="overlay" pos="top" name={e.credit} href={e.creditHref} /></div>
+            : card;
+        })}
       </div>
     </div>
   </section>

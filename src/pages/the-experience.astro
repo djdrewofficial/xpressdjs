@@ -1,8 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import Ph from '../components/Ph.astro';
-import { phUri } from '../lib/ph';
+import Credit from '../components/Credit.astro';
 ---
 <Base title="The Experience | Xpress Entertainment" description="More than entertainment. This is how your wedding comes to life — intentional music, atmosphere, and the moments your guests will be talking about long after.">
 
@@ -10,8 +9,8 @@ import { phUri } from '../lib/ph';
     eyebrow="The Xpress Entertainment Experience"
     titleHtml={`More than<br>entertainment.`}
     sub="This is how your wedding comes to life."
-    image={phUri(2560, 1440, 'The Experience — hero', 'Emotional wedding reception / packed dance floor')}
-    alt="Wedding reception celebration"
+    image="/images/heroes/experience-hero.jpg"
+    alt="A couple's first dance with dancing on the clouds and cold spark machines"
     ctaText="Check Availability"
   />
 
@@ -44,7 +43,10 @@ import { phUri } from '../lib/ph';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Photo booth fun" note="Guests laughing in the photo booth" /></div>
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/photobooth-bride-groom.jpg" alt="A couple enjoying their photo booth with friends at their Jupiter wedding" /></div>
+          <Credit variant="caption" name="Romina Raggio Photography" href="https://rominaraggio.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">The Visual Experience</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">What your guests see &amp; remember.</h2>
@@ -60,7 +62,10 @@ import { phUri } from '../lib/ph';
   <section class="pad bg-light">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><Ph w={1200} h={900} label="Atmosphere & lighting" note="Uplighting / effects transforming the room" /></div>
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/atmosphere-lighting.jpg" alt="A couple dancing the night away under the dance floor lighting" /></div>
+          <Credit variant="caption" align="left" name="Romina Raggio Photography" href="https://rominaraggio.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">The Atmosphere</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Energy you can feel.</h2>
@@ -82,7 +87,10 @@ import { phUri } from '../lib/ph';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Key wedding moment" note="First dance / emotional once-only moment" /></div>
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/couple-grand-entrance.jpg" alt="Miami wedding couple enters their dance floor for the first dance" /></div>
+          <Credit variant="caption" name="Scribbled Moments Photography" href="https://www.scribbledmomentsphotography.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">The Moments</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">The moments you only get once.</h2>

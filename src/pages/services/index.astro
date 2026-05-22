@@ -3,8 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
-import { phUri } from '../../lib/ph';
+import Credit from '../../components/Credit.astro';
 
 const faqs = [
   ['Do you offer bilingual DJs and MCs?', 'Yes. Our DJs host in English and Spanish and read multicultural crowds with ease — keeping every generation, and both sides of the family, on the dance floor.'],
@@ -20,9 +19,11 @@ const faqs = [
     eyebrow="Miami · Fort Lauderdale · Palm Beach"
     titleHtml={`Weddings People<br>Don't Stop<br><span class="serif-accent" style="font-style:italic">Talking About</span>`}
     sub="From the first note of your ceremony to the last song of the night, we bring the DJs, MCs, photo booths, and production that turn a beautiful wedding into an unforgettable one — all handled by one team."
-    image={phUri(2560, 1440, 'Services — hero', 'DJ + crowd / full-production wedding')}
-    alt="South Florida wedding entertainment"
+    image="/images/heroes/services-hero.jpg"
+    alt="Bride and groom dancing with guests at their Jupiter, Florida wedding reception"
     ctaText="Check Your Date"
+    creditName="Jupiter Wedding Photo"
+    creditHref="https://www.jupiterweddingphoto.com/"
   />
 
   <Marquee items={["Bilingual","Open-Format","Cinematic","Stress-Free","Award-Winning"]} variant="alt" />
@@ -50,15 +51,15 @@ const faqs = [
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="srow reveal">
-        <div class="srow-media"><Ph w={1200} h={900} label="DJs & MCs" note="DJ/MC running the reception" /></div>
+        <figure class="media-fig"><div class="srow-media"><img src="/images/drew-newlyweds-dance-floor.jpg" alt="DJ Drew Segura dancing with newlyweds on the dance floor at Vista Lago Ballroom" /></div><Credit variant="caption" align="left" name="E + B Photography and Film Co." href="https://www.ebphotographyandfilmco.com/" /></figure>
         <div><span class="idx">THE SOUND</span><h3>DJs & MCs Who Run the Whole Night</h3><p>Bilingual, open-format, and impossible to ignore. Your DJ reads the floor in real time and doubles as the MC who guides every introduction, toast, and transition — so the energy never drops and you never feel rushed.</p><a href="/services/djs" class="textlink">Meet our DJs →</a></div>
       </div>
       <div class="srow rev reveal">
-        <div class="srow-media"><Ph w={1200} h={900} label="Photo booths" note="Guests in the Lux / 360 booth" /></div>
+        <figure class="media-fig"><div class="srow-media"><img src="/images/photobooths-miami-broward.jpg" alt="Wedding guests enjoying the Xpress Entertainment photo booth at a Miami reception" /></div><Credit variant="caption" name="Jupiter Wedding Photo" href="https://www.jupiterweddingphoto.com/" /></figure>
         <div><span class="idx">THE KEEPSAKE</span><h3>Photo Booths That Become the Party</h3><p>Our Lux and 360 booths pull guests off their seats and send them home with something real — instant custom prints, shareable videos, and an on-site attendant making sure every group shot lands.</p><a href="/south-florida-photo-booth-rental" class="textlink">See the booths →</a></div>
       </div>
       <div class="srow reveal">
-        <div class="srow-media"><Ph w={1200} h={900} label="Epic Extras" note="Cold sparks / cinematic moment" /></div>
+        <figure class="media-fig"><div class="srow-media"><img src="/images/sax-live-dance-floor.jpg" alt="Live saxophone player performing with Xpress Entertainment on the wedding dance floor" /></div><Credit variant="caption" align="left" name="Jupiter Wedding Photo" href="https://www.jupiterweddingphoto.com/" /></figure>
         <div><span class="idx">THE WOW</span><h3>Moments That Look Like a Movie</h3><p>Cold sparks raining over your grand entrance. Dancing on the clouds for your first dance. CO2 blasts when the beat drops. The cinematic touches that make your photographer’s job easy and your guests’ jaws drop.</p><a href="/epic-extras-1" class="textlink">Explore Epic Extras →</a></div>
       </div>
     </div>
@@ -69,9 +70,9 @@ const faqs = [
     <div class="wrap">
       <div class="sec-head center reveal"><span class="eyebrow">Complete the experience</span><h2 class="h-xl">Every Detail, One Team</h2></div>
       <div class="cards">
-        <a class="card reveal" href="/epic-extras-1/lighting"><Ph w={1200} h={900} label="Lighting & Monogram" note="Uplighting + monogram on the dance floor" /><div class="card-body"><h3 style="font-size:1.4rem;">Lighting & Monogram</h3><p>Uplighting, intelligent dance-floor lighting, and a custom monogram that transforms your venue after dark.</p></div></a>
-        <a class="card reveal d1" href="/wedding-content-creator"><Ph w={1200} h={900} label="Content Creator" note="Creator filming reels at a wedding" /><div class="card-body"><h3 style="font-size:1.4rem;">Wedding Content Creator</h3><p>Reels and photos captured and delivered while your party is still going — content you’ll actually want to post.</p></div></a>
-        <a class="card reveal d2" href="/vibo"><Ph w={1200} h={900} label="Vibo Planning App" note="Couple using the Vibo app / phone" /><div class="card-body"><h3 style="font-size:1.4rem;">Vibo Planning App</h3><p>Plan every song and moment from your phone with Vibo, our stress-free music planning app built into your booking.</p></div></a>
+        <a class="card reveal" href="/epic-extras-1/lighting"><img src="/images/wedding-monogram.jpg" alt="Custom wedding monogram with the couple's initials projected on the venue wall" /><div class="card-body"><h3 style="font-size:1.4rem;">Lighting & Monogram</h3><p>Uplighting, intelligent dance-floor lighting, and a custom monogram that transforms your venue after dark.</p></div></a>
+        <a class="card reveal d1" href="/wedding-content-creator"><img src="/images/wedding-content-creator.jpg" alt="Wedding content creator capturing behind-the-scenes moments live at a reception" /><div class="card-body"><h3 style="font-size:1.4rem;">Wedding Content Creator</h3><p>Reels and photos captured and delivered while your party is still going — content you’ll actually want to post.</p></div></a>
+        <a class="card reveal d2" href="/vibo"><img src="/images/vibo-dj-app.jpg" alt="Vibo DJ app for planning every detail of your wedding entertainment" /><div class="card-body"><h3 style="font-size:1.4rem;">Vibo Planning App</h3><p>Plan every song and moment from your phone with Vibo, our stress-free music planning app built into your booking.</p></div></a>
       </div>
     </div>
   </section>

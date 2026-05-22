@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import { phUri } from '../lib/ph';
 
 const forYou = [
   { t: '🌿 You live for the candid moments', d: 'From teary-eyed vows to dance floor chaos — we capture the real stuff you won’t see in the pro video.' },
@@ -23,9 +22,11 @@ const packages = [
     eyebrow="Wedding Content Creator"
     titleHtml={`Relive your day<br>in <span class="serif-accent" style="font-style:italic">real-time.</span>`}
     sub="Through the lens of a content creator dedicated just to you. Forget waiting weeks to see your wedding highlights — our content creators capture and deliver high-quality Reels, Stories, and behind-the-scenes magic while your party is still going."
-    image={phUri(2560, 1440, 'Content Creator — hero', 'Creator filming reels at a wedding')}
-    alt="Wedding content creator"
+    image="/images/heroes/content-creator-hero.jpg"
+    alt="Groom dancing with guests on the wedding dance floor in black and white"
     ctaText="Check Availability"
+    creditName="E + B Photography and Film Co."
+    creditHref="https://www.ebphotographyandfilmco.com/"
   />
 
   <section class="pad bg-ink">

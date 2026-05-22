@@ -2,8 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
-import { phUri } from '../../lib/ph';
+import Credit from '../../components/Credit.astro';
 ---
 <Base title="Wedding DJs in South Florida | Xpress Entertainment" description="Your go-to source for the best wedding DJs in South Florida. Professional, bilingual DJs from diverse backgrounds, committed to making your wedding extraordinary.">
 
@@ -11,9 +10,11 @@ import { phUri } from '../../lib/ph';
     eyebrow="Let's dance"
     titleHtml={`Wedding DJs in<br>South Florida`}
     sub="This is what we do."
-    image={phUri(2560, 1440, 'Wedding DJs — hero', 'DJ + packed South Florida wedding dance floor')}
-    alt="Wedding DJ"
+    image="/images/heroes/dj-services-hero.jpg"
+    alt="Two wedding guests having fun in the middle of a packed dance floor"
     ctaText="Check Availability"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
   />
 
   <section class="pad bg-ink">
@@ -25,7 +26,10 @@ import { phUri } from '../../lib/ph';
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="DJ performing" note="DJ working a packed wedding dance floor" /></div>
+        <figure class="media-fig reveal">
+          <div class="media"><img src="/images/dj-drew-djing.jpg" alt="DJ Drew Segura DJing a wedding, mixing live" /></div>
+          <Credit variant="caption" name="Sid Rashlich" href="https://photovsl.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow light">Why choose us</span>
           <h2 class="h-lg" style="margin:14px 0 18px;">Why Choose Xpress Entertainment for Your Wedding?</h2>

@@ -1,4 +1,5 @@
 ---
+import Credit from './Credit.astro';
 const {
   eyebrow,
   titleHtml,
@@ -10,11 +11,14 @@ const {
   ctaText2,
   ctaHref2,
   size = 'tall',
+  creditName,
+  creditHref,
 } = Astro.props;
 const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
 ---
 <header class="hero" style={`min-height:${minh};`}>
   <div class="hero-bg"><img src={image} alt={alt} /></div>
+  <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
     {eyebrow && <span class="eyebrow light reveal">{eyebrow}</span>}
     <h1 class="display reveal d1" set:html={titleHtml}></h1>

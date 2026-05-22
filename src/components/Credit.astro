@@ -1,0 +1,27 @@
+---
+/*
+  Small, slight photographer credit. Renders nothing when there's no
+  photographer (name empty or "N/A"). The name links to the photographer's
+  site and opens in a new tab.
+    variant="overlay"  -> pinned to the bottom corner (for heroes / full-bleed)
+    variant="caption"  -> a line under the photo (for inline images)
+*/
+interface Props {
+  name?: string;
+  href?: string;
+  variant?: 'overlay' | 'caption';
+  align?: 'left' | 'right';
+  pos?: 'bottom' | 'top';
+}
+const { name, href, variant = 'caption', align = 'right', pos = 'bottom' } = Astro.props;
+const show = name && name.trim() && name.trim().toUpperCase() !== 'N/A';
+const linked = href && href.trim() && href.trim().toUpperCase() !== 'N/A';
+---
+{show && (
+  <span class={`credit credit-${variant}`} data-align={align} data-pos={pos}>
+    <span class="credit-label">Photo:</span>{' '}
+    {linked
+      ? <a href={href} target="_blank" rel="noopener noreferrer">{name}</a>
+      : <span>{name}</span>}
+  </span>
+)}

@@ -20,16 +20,34 @@
   var burger = document.querySelector(".burger");
   var links = document.querySelector(".nav-links");
   if (burger && links) {
+    var isMobileNav = function () { return window.matchMedia("(max-width: 940px)").matches; };
+    function closeMenu() {
+      burger.classList.remove("open");
+      links.classList.remove("open");
+      document.body.style.overflow = "";
+      links.querySelectorAll(".nav-item.open").forEach(function (i) { i.classList.remove("open"); });
+    }
     burger.addEventListener("click", function () {
-      burger.classList.toggle("open");
-      links.classList.toggle("open");
-      document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+      var willOpen = !links.classList.contains("open");
+      burger.classList.toggle("open", willOpen);
+      links.classList.toggle("open", willOpen);
+      document.body.style.overflow = willOpen ? "hidden" : "";
+      if (!willOpen) links.querySelectorAll(".nav-item.open").forEach(function (i) { i.classList.remove("open"); });
+    });
+    /* On mobile, a group toggle (DJs / Services / Epic Extras) expands its
+       submenu instead of navigating away, and keeps the menu open. */
+    links.querySelectorAll(".dd-toggle").forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        if (!isMobileNav()) return;
+        e.preventDefault();
+        var item = t.closest(".nav-item");
+        if (item) item.classList.toggle("open");
+      });
     });
     links.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
-        burger.classList.remove("open");
-        links.classList.remove("open");
-        document.body.style.overflow = "";
+        if (a.classList.contains("dd-toggle") && isMobileNav()) return;
+        closeMenu();
       });
     });
   }
