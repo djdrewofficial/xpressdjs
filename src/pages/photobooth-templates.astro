@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Choose Your Photo Booth Template | Xpress Entertainment" description="Browse and select your custom photo booth print template for your South Florida wedding or event — pick the perfect design to match your celebration.">
+
+  <section class="pad bg-ink" style="padding-top:130px;">
+    <div class="wrap">
+      <div class="sec-head reveal" style="max-width:760px;">
+        <span class="eyebrow">Photo Booths</span>
+        <h1 class="h-xl">Choose Your Photo Booth Template</h1>
+        <p class="lead">Browse our photo booth print designs below and select the template you'd love for your event. Found a favorite? Let your DJ know and we'll lock it in.</p>
+      </div>
+      <div class="tb-embed reveal">
+        <iframe srcdoc="Loading..." onload="this.removeAttribute('srcdoc')" src="https://templatesbooth.com/widget-embed/?key=MjY2Mw%3D%3D" scrolling="yes" width="100%" height="2200px" frameborder="0" id="tb-widget-embed-98faddd055"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .tb-embed { margin-top: 30px; border-radius: var(--radius); overflow: hidden; background: #fff; }
+  .tb-embed iframe { display: block; width: 100%; border: 0; }
+</style>

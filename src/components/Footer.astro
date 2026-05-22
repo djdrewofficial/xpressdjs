@@ -3,6 +3,7 @@ import { getLocale, localize, t } from '../i18n/ui';
 const locale = getLocale(Astro.url);
 const L = (p) => localize(p, locale);
 const f = t(locale).foot;
+const n = t(locale).nav;
 ---
 <footer>
   <div class="foot-grid">
@@ -23,6 +24,7 @@ const f = t(locale).foot;
       <h5>{f.servicesHead}</h5>
       <a href={L('/services/djs')}>{f.weddingDjs}</a>
       <a href={L('/south-florida-photo-booth-rental')}>{f.photoBooths}</a>
+      <a href={L('/photobooth-templates')}>{n.photoTemplates}</a>
       <a href={L('/epic-extras-1')}>{f.epicExtras}</a>
       <a href={L('/wedding-content-creator')}>{f.contentCreator}</a>
       <a href={L('/vibo')}>{f.viboPlanning}</a>

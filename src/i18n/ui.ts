@@ -24,6 +24,7 @@ export const translated = new Set<string>([
   '/epic-extras-1/dancing-on-the-clouds',
   '/epic-extras-1/cold-sparks',
   '/south-florida-photo-booth-rental',
+  '/photobooth-templates',
   '/wedding-content-creator',
   '/vibo',
   '/wedding-dj-miami',
@@ -65,7 +66,7 @@ type NavDict = {
   experience: string; djs: string; services: string; epicExtras: string;
   pricing: string; blog: string; about: string; checkDate: string;
   djDrew: string; djAtomic: string; djPhil: string; allDjs: string;
-  allServices: string; photoBooths: string; contentCreator: string; vibo: string;
+  allServices: string; photoBooths: string; photoTemplates: string; contentCreator: string; vibo: string;
   overview: string; clouds: string; coldSparks: string; lighting: string;
 };
 type FootDict = {
@@ -82,7 +83,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       experience: 'Experience', djs: 'DJs', services: 'Services', epicExtras: 'Epic Extras',
       pricing: 'Pricing', blog: 'Blog', about: 'About', checkDate: 'Check Your Date',
       djDrew: 'DJ Drew Segura', djAtomic: 'DJ Atomic', djPhil: 'DJ Phil Santos', allDjs: 'All DJs →',
-      allServices: 'All Services', photoBooths: 'Photo Booths', contentCreator: 'Content Creator', vibo: 'Vibo Planning App',
+      allServices: 'All Services', photoBooths: 'Photo Booths', photoTemplates: 'Photo Booth Templates', contentCreator: 'Content Creator', vibo: 'Vibo Planning App',
       overview: 'Overview', clouds: 'Dancing on the Clouds', coldSparks: 'Cold Sparks', lighting: 'Lighting & Monogram',
     },
     foot: {
@@ -101,7 +102,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       experience: 'Experiencia', djs: 'DJs', services: 'Servicios', epicExtras: 'Extras Épicos',
       pricing: 'Precios', blog: 'Blog', about: 'Nosotros', checkDate: 'Consulta tu Fecha',
       djDrew: 'DJ Drew Segura', djAtomic: 'DJ Atomic', djPhil: 'DJ Phil Santos', allDjs: 'Todos los DJs →',
-      allServices: 'Todos los Servicios', photoBooths: 'Cabinas de Fotos', contentCreator: 'Creador de Contenido', vibo: 'App de Planeación Vibo',
+      allServices: 'Todos los Servicios', photoBooths: 'Cabinas de Fotos', photoTemplates: 'Plantillas de Cabina', contentCreator: 'Creador de Contenido', vibo: 'App de Planeación Vibo',
       overview: 'Resumen', clouds: 'Bailando en las Nubes', coldSparks: 'Chispas Frías', lighting: 'Iluminación y Monograma',
     },
     foot: {
