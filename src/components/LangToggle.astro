@@ -1,0 +1,36 @@
+---
+import { getLocale, toEnPath, translated, t } from '../i18n/ui';
+const locale = getLocale(Astro.url);
+const enPath = toEnPath(Astro.url.pathname);
+// Where the toggle points: EN->ES (to the translated page if it exists, else
+// the Spanish home); ES->EN (the English page always exists).
+const href =
+  locale === 'en'
+    ? (translated.has(enPath) ? (enPath === '/' ? '/es/' : '/es' + enPath) : '/es/')
+    : enPath;
+const label = t(locale).toggle;
+const ariaLang = locale === 'en' ? 'es' : 'en';
+---
+<a class="lang-toggle" href={href} hreflang={ariaLang} aria-label={label}>
+  <span class="lang-toggle-globe" aria-hidden="true">🌐</span>
+  <span>{label}</span>
+</a>
+
+<style>
+  .lang-toggle {
+    position: fixed; left: 18px; bottom: 18px; z-index: 900;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 15px; border-radius: 999px;
+    background: rgba(20, 13, 30, 0.72); color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em;
+    text-decoration: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .lang-toggle:hover { background: rgba(254, 58, 59, 0.92); border-color: transparent; transform: translateY(-2px); }
+  .lang-toggle-globe { font-size: 1rem; line-height: 1; }
+  @media (max-width: 600px) {
+    .lang-toggle { left: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.78rem; }
+  }
+</style>

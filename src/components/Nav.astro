@@ -1,48 +1,53 @@
 ---
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+import { getLocale, toEnPath, localize, t } from '../i18n/ui';
+const locale = getLocale(Astro.url);
+const enPath = toEnPath(Astro.url.pathname);
+const path = enPath;
 const isActive = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+const L = (p) => localize(p, locale);
+const n = t(locale).nav;
 ---
 <nav class="nav">
-  <a href="/" class="brand" aria-label="Xpress Entertainment — home">
+  <a href={L('/')} class="brand" aria-label="Xpress Entertainment — home">
     <img class="brand-logo" src="/logo.svg" alt="Xpress Entertainment" width="150" height="62" />
   </a>
   <div class="nav-links">
-    <a href="/the-experience" class={isActive('/the-experience') ? 'active' : ''}>Experience</a>
+    <a href={L('/the-experience')} class={isActive('/the-experience') ? 'active' : ''}>{n.experience}</a>
 
     <div class="nav-item">
-      <a href="/services/djs" class="dd-toggle">DJs <span class="car">▾</span></a>
+      <a href={L('/services/djs')} class="dd-toggle">{n.djs} <span class="car">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
-        <a href="/dj-drew-segura">DJ Drew Segura</a>
-        <a href="/djatomic">DJ Atomic</a>
-        <a href="/djphil">DJ Phil Santos</a>
-        <a href="/services/djs">All DJs →</a>
+        <a href={L('/dj-drew-segura')}>{n.djDrew}</a>
+        <a href={L('/djatomic')}>{n.djAtomic}</a>
+        <a href={L('/djphil')}>{n.djPhil}</a>
+        <a href={L('/services/djs')}>{n.allDjs}</a>
       </div></div>
     </div>
 
     <div class="nav-item">
-      <a href="/services" class="dd-toggle">Services <span class="car">▾</span></a>
+      <a href={L('/services')} class="dd-toggle">{n.services} <span class="car">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
-        <a href="/services">All Services</a>
-        <a href="/south-florida-photo-booth-rental">Photo Booths</a>
-        <a href="/wedding-content-creator">Content Creator</a>
-        <a href="/vibo">Vibo Planning App</a>
+        <a href={L('/services')}>{n.allServices}</a>
+        <a href={L('/south-florida-photo-booth-rental')}>{n.photoBooths}</a>
+        <a href={L('/wedding-content-creator')}>{n.contentCreator}</a>
+        <a href={L('/vibo')}>{n.vibo}</a>
       </div></div>
     </div>
 
     <div class="nav-item">
-      <a href="/epic-extras-1" class="dd-toggle">Epic Extras <span class="car">▾</span></a>
+      <a href={L('/epic-extras-1')} class="dd-toggle">{n.epicExtras} <span class="car">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
-        <a href="/epic-extras-1">Overview</a>
-        <a href="/epic-extras-1/dancing-on-the-clouds">Dancing on the Clouds</a>
-        <a href="/epic-extras-1/cold-sparks">Cold Sparks</a>
-        <a href="/epic-extras-1/lighting">Lighting & Monogram</a>
+        <a href={L('/epic-extras-1')}>{n.overview}</a>
+        <a href={L('/epic-extras-1/dancing-on-the-clouds')}>{n.clouds}</a>
+        <a href={L('/epic-extras-1/cold-sparks')}>{n.coldSparks}</a>
+        <a href={L('/epic-extras-1/lighting')}>{n.lighting}</a>
       </div></div>
     </div>
 
-    <a href="/pricing" class={isActive('/pricing') ? 'active' : ''}>Pricing</a>
-    <a href="/wedding-blog" class={isActive('/wedding-blog') ? 'active' : ''}>Blog</a>
-    <a href="/about-xpress-entertainment" class={isActive('/about-xpress-entertainment') ? 'active' : ''}>About</a>
-    <a href="/check-availability" class="btn"><span>Check Your Date</span></a>
+    <a href={L('/pricing')} class={isActive('/pricing') ? 'active' : ''}>{n.pricing}</a>
+    <a href={L('/wedding-blog')} class={isActive('/wedding-blog') ? 'active' : ''}>{n.blog}</a>
+    <a href={L('/about-xpress-entertainment')} class={isActive('/about-xpress-entertainment') ? 'active' : ''}>{n.about}</a>
+    <a href={L('/check-availability')} class="btn"><span>{n.checkDate}</span></a>
   </div>
   <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>

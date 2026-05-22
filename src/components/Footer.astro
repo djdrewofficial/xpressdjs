@@ -1,38 +1,42 @@
 ---
+import { getLocale, localize, t } from '../i18n/ui';
+const locale = getLocale(Astro.url);
+const L = (p) => localize(p, locale);
+const f = t(locale).foot;
 ---
 <footer>
   <div class="foot-grid">
     <div class="foot-col">
       <img class="brand-logo foot-logo" src="/logo.svg" alt="Xpress Entertainment" width="180" height="74" />
-      <p style="color:var(--muted); max-width:34ch;">South Florida's award-winning wedding DJ &amp; entertainment company. Pembroke Pines, FL.</p>
+      <p style="color:var(--muted); max-width:34ch;">{f.tagline}</p>
     </div>
     <div class="foot-col">
-      <h5>Explore</h5>
-      <a href="/">Home</a>
-      <a href="/the-experience">The Experience</a>
-      <a href="/services">Services</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/wedding-blog">Wedding Blog</a>
-      <a href="/about-xpress-entertainment">About</a>
+      <h5>{f.explore}</h5>
+      <a href={L('/')}>{f.home}</a>
+      <a href={L('/the-experience')}>{f.theExperience}</a>
+      <a href={L('/services')}>{f.services}</a>
+      <a href={L('/pricing')}>{f.pricing}</a>
+      <a href={L('/wedding-blog')}>{f.weddingBlog}</a>
+      <a href={L('/about-xpress-entertainment')}>{f.about}</a>
     </div>
     <div class="foot-col">
-      <h5>Services</h5>
-      <a href="/services/djs">Wedding DJs</a>
-      <a href="/south-florida-photo-booth-rental">Photo Booths</a>
-      <a href="/epic-extras-1">Epic Extras</a>
-      <a href="/wedding-content-creator">Content Creator</a>
-      <a href="/vibo">Vibo Planning</a>
+      <h5>{f.servicesHead}</h5>
+      <a href={L('/services/djs')}>{f.weddingDjs}</a>
+      <a href={L('/south-florida-photo-booth-rental')}>{f.photoBooths}</a>
+      <a href={L('/epic-extras-1')}>{f.epicExtras}</a>
+      <a href={L('/wedding-content-creator')}>{f.contentCreator}</a>
+      <a href={L('/vibo')}>{f.viboPlanning}</a>
     </div>
     <div class="foot-col">
-      <h5>Contact</h5>
+      <h5>{f.contact}</h5>
       <a href="tel:9542330698">954·233·0698</a>
       <a href="mailto:events@xpressdjs.com">events@xpressdjs.com</a>
-      <a href="/check-availability">Check Availability</a>
+      <a href={L('/check-availability')}>{f.checkAvailability}</a>
       <a href="https://www.instagram.com/xpressdjs" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© <span data-year>2026</span> Xpress Entertainment Corp. All rights reserved.</span>
-    <span>The Ultimate Wedding Experience.</span>
+    <span>© <span data-year>2026</span> Xpress Entertainment Corp. {f.rightsSuffix}</span>
+    <span>{f.tagline2}</span>
   </div>
 </footer>

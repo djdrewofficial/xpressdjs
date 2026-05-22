@@ -2,12 +2,17 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import LangToggle from '../components/LangToggle.astro';
+import { getLocale, toEnPath, hasES } from '../i18n/ui';
 
 const {
   title,
   description,
   image = '/images/og-default.png',
 } = Astro.props;
+
+const locale = getLocale(Astro.url);
+const enPath = toEnPath(Astro.url.pathname);
 // Social scrapers need an absolute URL. Resolve relative paths against the
 // site domain; pass-through any already-absolute URL.
 const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? Astro.url).href;
@@ -15,6 +20,8 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? 
 // Site-wide LocalBusiness structured data (helps Google's local pack,
 // knowledge panel, and rich results). Renders invisibly in <head>.
 const SITE_ORIGIN = Astro.site ? Astro.site.origin : 'https://xpressdjs.com';
+const altEn = SITE_ORIGIN + enPath;
+const altEs = SITE_ORIGIN + (enPath === '/' ? '/es/' : '/es' + enPath);
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': 'EntertainmentBusiness',
@@ -53,7 +60,7 @@ const businessSchema = {
 };
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={locale}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,6 +69,14 @@ const businessSchema = {
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={Astro.url.href} />
+  {hasES(enPath) && (
+    <>
+      <link rel="alternate" hreflang="en" href={altEn} />
+      <link rel="alternate" hreflang="es" href={altEs} />
+      <link rel="alternate" hreflang="x-default" href={altEn} />
+    </>
+  )}
+  <meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_US'} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
@@ -79,6 +94,7 @@ const businessSchema = {
   <Nav />
   <slot />
   <Footer />
+  <LangToggle />
   <script is:inline src="/js/main.js"></script>
   <!-- GoHighLevel chat widget -->
   <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="67e471068265f49a8cbc5a50"></script>

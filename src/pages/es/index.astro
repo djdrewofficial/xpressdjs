@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import Credit from '../../components/Credit.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const faqs = [
+  { q: '¿Con cuánta anticipación debemos reservar nuestro DJ de bodas?', a: ['Recomendamos reservar tu DJ de bodas con al menos 9 a 18 meses de anticipación—especialmente si tu boda cae en temporada alta (primavera u otoño en el sur de Florida). Los DJs de Xpress Entertainment suelen llenarse rápido porque solo aceptamos un número limitado de bodas cada fin de semana para asegurar que cada evento reciba la atención que merece. Reservar con anticipación te da la mejor oportunidad de asegurar tu DJ preferido y permite más tiempo para una planeación personalizada con nuestra app exclusiva, Vibo DJ.'] },
+  { q: '¿Qué incluye su paquete estándar de DJ (música, iluminación, servicios de MC)?', a: ['Nuestro paquete más popular es el Paquete Express, que incluye:'], list: ['Un DJ/MC profesional por hasta 6 horas', 'Sistema de sonido completo para la ceremonia, la hora del cóctel y la recepción', 'Micrófono inalámbrico para el oficiante y los brindis', 'Servicios de MC para todos los momentos importantes (presentaciones, primer baile, discursos, etc.)'], after: 'También ofrecemos paquetes mejorados como el Xperience y Xperience Plus, que incluyen extras como iluminación, cabinas de fotos, Bailando en las Nubes y máquinas de Chispas Frías. Cada pareja obtiene acceso a nuestra app de planeación donde pueden crear playlists, programar momentos clave y colaborar con su DJ.' },
+  { q: '¿Podemos dar una lista de canciones imprescindibles y prohibidas?', a: ['¡Por supuesto! Uno de nuestros valores fundamentales en Xpress Entertainment es la personalización. A través de nuestra app de planeación Vibo DJ, podrás agregar tus canciones imprescindibles, tu lista de canciones prohibidas y tus preferencias de ambiente para cada parte de tu boda. Incluso puedes involucrar a tus invitados con nuestra función de pedidos de canciones. Esto nos ayuda a crear una banda sonora que refleje tu personalidad y mantenga la pista de baile llena.'] },
+  { q: '¿El DJ servirá como maestro de ceremonias (MC) para los anuncios y el cronograma?', a: ['¡Sí! Todos nuestros DJs están capacitados y tienen experiencia actuando como tu Maestro de Ceremonias. Desde tu gran entrada hasta el corte del pastel y el último baile, nos aseguraremos de que cada anuncio se haga de forma profesional y con energía. Trabajamos de cerca con tu planificador, coordinador o equipo del lugar para mantener todo a tiempo—para que puedas concentrarte en disfrutar la noche.'] },
+  { q: '¿Tienen equipo de respaldo y cuál es el plan de contingencia?', a: ['¡100%! Nos tomamos en serio la confiabilidad. Todos nuestros DJs llevan equipo de respaldo—incluyendo micrófonos, bocinas y laptops—para que tu evento nunca pierda el ritmo. También tenemos una lista de DJs profesionales listos para intervenir si alguna vez surgiera una emergencia. En más de 8 años haciendo bodas, nunca hemos faltado a una sola, y planeamos que siga así.'] },
+  { q: '¿Cuánto tiempo necesitan para el montaje, la prueba de sonido y el desmontaje?', a: ['Normalmente llegamos de 1.5 a 2 horas antes de la hora de inicio programada para tener tiempo suficiente para el montaje, la prueba de sonido y la coordinación con tu lugar y proveedores. El desmontaje siempre se hace de forma silenciosa y profesional después de que termina tu evento y está incluido en todos nuestros paquetes—sin cargos sorpresa.'] },
+  { q: '¿Están asegurados y cuál es su política de cancelación/reembolso?', a: ['Sí, Xpress Entertainment está totalmente asegurado y puede proporcionar un Certificado de Seguro (COI) a tu lugar cuando lo soliciten. En cuanto a las cancelaciones, requerimos un acuerdo firmado y un depósito no reembolsable para asegurar tu fecha. Si tus planes cambian, con gusto trabajaremos contigo para reprogramar o transferir tu paquete a una nueva fecha según disponibilidad.'] },
+  { q: '¿Cuánta experiencia tienen sus DJs con bodas y lugares locales?', a: ['Nuestros DJs realizan en conjunto más de 100 bodas al año y han trabajado en casi todos los lugares importantes del sur de Florida—desde elegantes salones en Miami y Fort Lauderdale hasta resorts frente al mar en los Cayos y Palm Beach. Sabemos cómo leer públicos diversos, manejar playlists multiculturales y encargarnos de la logística con facilidad. Además, nuestros DJs bilingües son un gran éxito en bodas latinas, caribeñas y mixtas.'] },
+  { q: '¿Aceptan pedidos de canciones de los invitados durante el evento?', a: ['Sí—pero solo si tú quieres. A algunas parejas les encanta cuando los invitados hacen pedidos, mientras que otras prefieren mantener un ambiente curado. Seguimos tu preferencia y usamos nuestro criterio para mantener la energía adecuada. A través de nuestra app, puedes permitir o restringir los pedidos con anticipación, y los filtraremos en vivo para asegurarnos de que nada se cuele de tu lista de canciones prohibidas.'] },
+  { q: '¿Qué mejoras de iluminación y sonido ofrecen?', a: ['Xpress Entertainment ofrece una variedad de extras épicos para elevar el ambiente de tu boda, incluyendo:'], list: ['Iluminación ambiental inalámbrica para transformar tu espacio de recepción', 'Iluminación de pista de baile para esa experiencia estilo club', 'Proyección de monograma con sus nombres o logo', 'Máquinas de Chispas Frías (¡fuegos artificiales interiores!)', 'Efecto Bailando en las Nubes', 'Cabinas de fotos'], after: 'Te guiaremos sobre qué mejoras se adaptan mejor a tu lugar, visión y presupuesto.' },
+];
+---
+<Base title="Xpress Entertainment | La Máxima Experiencia de Bodas — DJs de Bodas en el Sur de Florida" description="Con más de 150 bodas al año en todo el sur de Florida, Xpress Entertainment es la opción favorita para parejas que buscan un DJ de bodas de primer nivel y galardonado. Premiados por WeddingWire Best of Weddings.">
+
+  <Hero
+    size="full"
+    eyebrow="Miami · Fort Lauderdale · Palm Beach"
+    titleHtml={`La <span class="serif-accent" style="font-style:italic">Máxima</span><br>Experiencia de Bodas`}
+    image="/images/heroes/homepage-hero.jpg"
+    alt="Novios de Miami divirtiéndose en la pista de baile de su boda"
+    imgFocus="30% 50%"
+    ctaText="Ver Precios y Paquetes"
+    ctaHref={L('/pricing')}
+    ctaText2="Ver Reseñas"
+    ctaHref2="#reviews"
+    creditName="E + B Photography and Film Co."
+    creditHref="https://www.ebphotographyandfilmco.com/"
+  />
+
+  <Marquee items={["DJs de Bodas","Maestro de Ceremonias","Cabinas de Fotos","Chispas Frías","Bailando en las Nubes","Iluminación"]} />
+
+  <!-- WHY CHOOSE -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Por qué elegirnos</span>
+        <h2 class="h-xl">¿Por Qué Elegir Xpress Entertainment?</h2>
+        <p class="lead">Con más de 150 bodas celebradas cada año en todo el sur de Florida, Xpress Entertainment es la opción favorita para parejas que buscan un DJ de bodas de primer nivel. Nos enorgullece nuestro servicio galardonado, habiendo ganado el premio Best of Weddings de WeddingWire dos años seguidos. La decoración será impresionante, la comida deliciosa, y juntos ¡encenderemos la pista de baile! Nuestros DJs con experiencia saben leer al público, manteniendo la energía alta y la pista llena toda la noche.</p>
+      </div>
+      <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat reveal"><div class="num" data-count="150" data-suffix="+">0</div><div class="label">Bodas por año</div></div>
+        <div class="stat reveal d1"><div class="num" data-count="3000" data-suffix="+">0</div><div class="label">Personas Bailando</div></div>
+        <div class="stat reveal d2"><div class="num" data-count="100" data-suffix="+">0</div><div class="label">Reseñas positivas</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT MAKES US DIFFERENT -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow light">Lo que nos hace diferentes</span>
+        <h2 class="h-xl">✨ Lo Que Hace Diferente a Xpress Entertainment ✨</h2>
+        <p class="lead" style="margin-inline:auto;">El entretenimiento de tu boda debe sentirse tan inolvidable como tu historia de amor. Así es como lo logramos.</p>
+      </div>
+      <div class="values">
+        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>💍 Comienza Con Tu <span class="serif-accent" style="font-style:italic">Historia de Amor</span></h3>
+          <p style="color:#d9d0ec;">Como tu DJ de bodas de confianza en el sur de Florida, nos tomamos el tiempo de conocerte — tu estilo musical, tu energía y tu historia de amor. Ya sea que planees una boda de lujo, una celebración en el patio o un evento multicultural, diseñamos una experiencia personalizada que refleja quiénes son como pareja, desde la primera canción hasta el último baile.</p>
+        </div>
+        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>🤝 Construido Sobre <span class="serif-accent" style="font-style:italic">Confianza e Intención</span></h3>
+          <p style="color:#d9d0ec;">Con cientos de bodas en nuestro haber, sabemos cómo hacer que tu día fluya sin problemas y sin estrés. Pero nunca tratamos ningún evento como “una boda más”. Desde cronogramas personalizados hasta anuncios impecables, nuestros DJs aportan profesionalismo, pasión y un amor genuino por lo que hacemos. Muchos de nuestros DJs son bilingües, lo que nos ayuda a conectar con familias diversas y mantener a todos en la pista de baile.</p>
+        </div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff;">
+          <h3>💫 Diseñado Para Ser <span class="serif-accent" style="font-style:italic">Inolvidable</span></h3>
+          <p style="color:#d9d0ec;">No solo ponemos música — creamos entretenimiento de bodas inolvidable. Ya sea con chispas frías, iluminación, bailando en las nubes o el remix perfecto en el momento justo, estamos aquí para crear momentos de los que la gente hablará mucho después del lanzamiento del ramo. Si buscas un DJ de bodas en el sur de Florida que traiga la fiesta y la elegancia — encontraste a tu equipo.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:50px;" class="reveal">
+        <a href={L('/services')} class="btn"><span>Ver Nuestros Servicios</span> <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBE -->
+  <section class="showcase">
+    <img src="/images/vibing-on-the-dance-floor.jpg" alt="Pareja de Miami disfrutando con su familia en la pista de baile" />
+    <Credit variant="overlay" name="The Schau Photography" href="https://theschau.com/" />
+    <div class="wrap" style="max-width:900px;">
+      <blockquote class="reveal" style="max-width:none;">Creamos el ambiente — tú le das vida. ✨</blockquote>
+      <p class="lead reveal d1" style="color:#e9e2f5; margin:24px auto 30px; text-align:center;">En Xpress, no solo llegamos y le damos play. Creamos un ambiente, mantenemos a tu gente bailando y nos aseguramos de que cada momento se sienta como tú. Desde la primera canción hasta la despedida final, te tenemos cubierto. Ya sea que planees una boda frente al mar en Miami o una elegante celebración bajo techo en Boca, nos aseguraremos de que tu día sea impecable, alegre y totalmente inolvidable.</p>
+      <div class="reveal d2" style="text-align:center;"><a href={L('/check-availability')} class="btn"><span>Consulta Disponibilidad</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS CALLOUT -->
+  <section class="pad bg-ink" id="reviews">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Gente real, fiestas reales</span>
+        <h2 class="h-lg">No solo lo decimos nosotros …</h2>
+        <p class="lead" style="margin-inline:auto;">Gente Real, Fiestas Reales, Sin Mentiras. Mira estos resúmenes en video de otras increíbles personas fiesteras que la pasaron de maravilla con nuestro equipo.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px;">
+          <a href="https://www.zola.com/wedding-vendors/wedding-bands-djs/xpress-djs--2" target="_blank" rel="noopener" class="btn"><span>Ver Más Reseñas</span> <span class="arrow">↗</span></a>
+          <a href={L('/check-availability')} class="btn ghost"><span>Consulta Disponibilidad</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBO -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal"><img src="/images/vibo-timeline-iphone.png" alt="Vibo DJ — app de planeación musical para bodas" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">Planeación fácil</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">🎵 Organiza Tu Banda Sonora con Vibo DJ</h2>
+          <p class="lead">Hacemos que planear sea fácil — y realmente divertido — con la app Vibo DJ, tu centro personal para todo lo musical.</p>
+          <ul style="list-style:none; margin:24px 0; display:flex; flex-direction:column; gap:14px;">
+            <li class="lead" style="margin:0;">✨ Crea tu playlist — agrega canciones, compártelas con tus invitados y marca tus imprescindibles</li>
+            <li class="lead" style="margin:0;">💌 Mantente sincronizado — chatea con tu DJ, envía actualizaciones y siéntete tranquilo</li>
+            <li class="lead" style="margin:0;">🎶 Organiza tu día — desde la ceremonia hasta el último baile, cada canción en su lugar</li>
+          </ul>
+          <a href={L('/vibo')} class="btn"><span>Comienza a Crear Tu Playlist</span> <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Bueno saber</span><h2 class="h-xl">Preguntas Frecuentes</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map((f, i) => (
+          <details class={`faq reveal ${i % 2 ? 'd1' : ''}`}>
+            <summary>{f.q}</summary>
+            <div class="faq-a">
+              {f.a.map((p) => <p>{p}</p>)}
+              {f.list && <ul>{f.list.map((li) => <li>{li}</li>)}</ul>}
+              {f.after && <p>{f.after}</p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 REASONS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Por qué las parejas confían en nosotros</span><h2 class="h-xl">💍 5 Razones Por Las Que Las Parejas Confían en Xpress Entertainment</h2></div>
+      <div style="max-width:880px; display:flex; flex-direction:column; gap:4px;">
+        <div class="reason reveal"><span class="rn">1</span><p><strong>¿Ambiente de boda en Miami? Te tenemos cubierto.</strong> Sabemos cómo traer la fiesta a las bodas del sur de Florida — desde azoteas en Brickell hasta recepciones frente al mar.</p></div>
+        <div class="reason reveal"><span class="rn">2</span><p><strong>Entretenimiento completo de boda, de principio a fin.</strong> Desde micrófonos para la ceremonia hasta playlists para la hora del cóctel y pistas de baile épicas, nos encargamos de todo.</p></div>
+        <div class="reason reveal"><span class="rn">3</span><p><strong>Somos expertos en recepciones de boda.</strong> Nuestros DJs saben leer el ambiente, animar a tus invitados y mantener la energía fluyendo toda la noche.</p></div>
+        <div class="reason reveal"><span class="rn">4</span><p><strong>DJs y MCs bilingües = invitados felices.</strong> En inglés o español, nos aseguramos de que <em>todos</em> se sientan incluidos y conectados.</p></div>
+        <div class="reason reveal"><span class="rn">5</span><p><strong>Un equipo, una misión: tu mejor noche.</strong> Con servicios de DJ y MC de primer nivel para bodas, hacemos que tu historia de amor suene increíble — literalmente.</p></div>
+      </div>
+      <div style="margin-top:46px;" class="reveal"><a href={L('/check-availability')} class="btn"><span>Consulta Disponibilidad</span> <span class="arrow">↗</span></a></div>
+    </div>
+  </section>
+
+  <style>
+    .faq { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 6px 0; }
+    .faq summary { cursor: pointer; list-style: none; font-family: var(--serif); font-size: 1.35rem; color: var(--purple); padding: 22px 40px 22px 0; position: relative; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 1.8rem; color: var(--red); transition: transform 0.3s var(--ease); }
+    .faq[open] summary::after { transform: rotate(45deg); }
+    .faq-a { padding: 0 0 24px; }
+    .faq-a p { color: #5a4f6e; margin-bottom: 14px; line-height: 1.8; }
+    .faq-a ul { color: #5a4f6e; margin: 0 0 14px 22px; }
+    .faq-a li { margin-bottom: 8px; line-height: 1.7; }
+    .reason { display: flex; gap: 22px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .reason .rn { font-family: var(--serif); font-size: 2rem; color: var(--red); line-height: 1; min-width: 40px; }
+    .reason p { color: var(--muted); line-height: 1.8; }
+    .reason strong { color: #fff; }
+  </style>
+</Base>
