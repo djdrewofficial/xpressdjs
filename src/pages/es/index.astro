@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
 import Credit from '../../components/Credit.astro';
+import SocialFollow from '../../components/SocialFollow.astro';
+import { socials } from '../../lib/socials';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -161,6 +163,8 @@ const faqs = [
       <div style="margin-top:46px;" class="reveal"><a href={L('/check-availability')} class="btn"><span>Consulta Disponibilidad</span> <span class="arrow">↗</span></a></div>
     </div>
   </section>
+
+  <SocialFollow name="Xpress Entertainment" links={socials} />
 
   <style>
     .faq { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 6px 0; }

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
+import SocialFollow from '../../components/SocialFollow.astro';
+import { socials } from '../../lib/socials';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -86,6 +88,8 @@ const reasons = [
       </div>
     </div>
   </section>
+
+  <SocialFollow name="Xpress Entertainment" links={socials} />
 
   <!-- CLOSING -->
   <section class="cta pad">

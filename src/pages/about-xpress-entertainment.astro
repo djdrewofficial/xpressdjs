@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import SocialFollow from '../components/SocialFollow.astro';
+import { socials } from '../lib/socials';
 
 const team = [
   { name: 'Drew Segura', role: 'Founder & Lead DJ', img: '/images/djs/drew-segura-headshot.png' },
@@ -83,6 +85,8 @@ const reasons = [
       </div>
     </div>
   </section>
+
+  <SocialFollow name="Xpress Entertainment" links={socials} eyebrow="Stay connected" />
 
   <!-- CLOSING -->
   <section class="cta pad">
