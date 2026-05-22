@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import { phUri } from '../lib/ph';
 
 const extras = [
   'Ceremony Coverage',
@@ -25,9 +24,11 @@ const threesixty = ['360 Booth', 'Delivery & Breakdown', 'Unlimited Video Sessio
     eyebrow="Transparent pricing"
     titleHtml={`How Much Do<br>Wedding DJs <span class="serif-accent" style="font-style:italic">Cost?</span>`}
     sub="Your wedding is not a package. It is an experience, and the DJ you choose plays a huge role in how the entire night feels."
-    image={phUri(2560, 1440, 'Pricing — hero', 'Celebration / packed dance floor')}
-    alt="Wedding DJ booth"
+    image="/images/heroes/pricing-hero.jpg"
+    alt="Newlyweds singing along to the music on the wedding dance floor"
     ctaText="Check Your Date"
+    creditName="Sid Rashlich"
+    creditHref="https://photovsl.com/"
   />
 
   <section class="pad bg-ink">
