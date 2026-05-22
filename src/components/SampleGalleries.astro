@@ -13,9 +13,10 @@
   How playback works: each gallery's tiles live in a hidden source <div>
   (#gsrc-<id>); main.js clones them into the modal grid on click.
 */
+type Img = string | { src: string; alt?: string };
 interface Gallery {
   id: string; title: string; count: number;
-  cover?: string; images?: string[];
+  cover?: Img; images?: Img[];
   coverSize?: string; imageSize?: string;
 }
 interface Props { galleries: Gallery[]; eyebrow?: string; title?: string; sub?: string; }
@@ -27,6 +28,9 @@ const {
 } = Astro.props;
 const COVER = '1200 × 900';
 const IMG = '1080 × 1080';
+const srcOf = (x?: Img) => (typeof x === 'string' ? x : x?.src);
+const altOf = (x: Img | undefined, fallback: string) =>
+  x && typeof x !== 'string' && x.alt ? x.alt : fallback;
 ---
 <section class="pad bg-deep">
   <div class="wrap">
@@ -39,7 +43,7 @@ const IMG = '1080 × 1080';
       {galleries.map((g) => (
         <button class="gallery-card reveal" data-gallery={g.id} data-title={g.title} aria-label={`View ${g.title} sample gallery`}>
           {g.cover
-            ? <img src={g.cover} alt={`${g.title} cover`} loading="lazy" decoding="async" />
+            ? <img src={srcOf(g.cover)} alt={altOf(g.cover, `${g.title} cover`)} loading="lazy" decoding="async" />
             : <span class="ph ph-cover"><strong>{g.coverSize || COVER}</strong><em>{g.id}-cover.jpg</em></span>}
           <span class="gallery-card-shade" aria-hidden="true"></span>
           <span class="gallery-card-body">
@@ -56,7 +60,7 @@ const IMG = '1080 × 1080';
     <div class="gallery-source" id={`gsrc-${g.id}`} hidden>
       {Array.from({ length: g.count }).map((_, i) => (
         g.images?.[i]
-          ? <img src={g.images[i]} alt={`${g.title} sample ${i + 1}`} loading="lazy" decoding="async" />
+          ? <img src={srcOf(g.images[i])} alt={altOf(g.images[i], `${g.title} sample ${i + 1}`)} loading="lazy" decoding="async" />
           : <span class="ph ph-square"><strong>{g.imageSize || IMG}</strong><em>{g.id}-{String(i + 1).padStart(2, '0')}.jpg</em></span>
       ))}
     </div>

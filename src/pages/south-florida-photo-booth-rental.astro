@@ -4,11 +4,76 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import SampleGalleries from '../components/SampleGalleries.astro';
 
+// Build image objects from a filename base + list of alt texts.
+// Files live in /public/images/galleries/  ->  {base}-01.jpg ... and {base}-cover.jpg
+const G = (base, alts) =>
+  alts.map((alt, i) => ({ src: `/images/galleries/${base}-${String(i + 1).padStart(2, '0')}.jpg`, alt }));
+
 const galleries = [
-  { id: 'lux-classics',       title: 'Lux Booth Classics',        count: 10, imageSize: '1200 × 900' },
-  { id: 'glam-bw',            title: 'Glam Black & White',        count: 10, imageSize: '1200 × 900' },
-  { id: 'customized-designs', title: 'Customized Designs',        count: 10, imageSize: '1920 × 1280' },
-  { id: 'classic-strips',     title: 'Classic Photobooth Strips', count: 10, imageSize: '640 × 1920' },
+  {
+    id: 'lux-classics', title: 'Lux Booth Classics', count: 10, imageSize: '1200 × 900',
+    cover: { src: '/images/galleries/lux-photo-booth-cover.jpg', alt: 'Guests posing in the open-air Lux photo booth at a South Florida wedding' },
+    images: G('lux-photo-booth', [
+      'Newlyweds smiling in the Lux wedding photo booth in Miami',
+      'Bridesmaids posing with props in the open-air photo booth',
+      'Groomsmen having fun in the wedding photo booth',
+      'Wedding guests laughing together in the Lux photo booth',
+      'Bride and groom striking a pose in the open-air photo booth',
+      'Friends celebrating in the South Florida wedding photo booth',
+      'Family group photo in the Lux photo booth',
+      'Couple posing with signs in the wedding photo booth',
+      'Guests with playful props in the Lux open-air photo booth',
+      'Wedding party group shot in the Lux photo booth',
+    ]),
+  },
+  {
+    id: 'glam-bw', title: 'Glam Black & White', count: 10, imageSize: '1200 × 900',
+    cover: { src: '/images/galleries/glam-photo-booth-bw-cover.jpg', alt: 'Glam black-and-white photo booth portrait at a South Florida wedding' },
+    images: G('glam-photo-booth-bw', [
+      'Black-and-white glam photo booth portrait of the newlyweds',
+      'Glam black-and-white photo of bridesmaids in the photo booth',
+      'Editorial black-and-white wedding photo booth portrait',
+      'Groom in a glam black-and-white photo booth shot',
+      'Bride in a glam black-and-white photo booth portrait',
+      'Couple in a dramatic black-and-white photo booth photo',
+      'Wedding guests in a glam black-and-white booth portrait',
+      'Black-and-white glam group photo in the photo booth',
+      'Stylish black-and-white wedding photo booth portrait',
+      'Glam black-and-white photo booth keepsake from the wedding',
+    ]),
+  },
+  {
+    id: 'customized-designs', title: 'Customized Designs', count: 10, imageSize: '1920 × 1280',
+    cover: { src: '/images/galleries/custom-photo-booth-design-cover.jpg', alt: 'Custom-designed wedding photo booth print template' },
+    images: G('custom-photo-booth-design', [
+      "Custom photo booth print design with the couple's names and date",
+      'Branded wedding photo booth overlay template',
+      'Personalized monogram photo booth print layout',
+      'Custom-themed wedding photo booth print design',
+      'Floral custom photo booth print template for a wedding',
+      'Elegant custom photo booth design in the wedding colors',
+      'Modern minimalist photo booth print template',
+      'Custom photo booth layout with venue branding',
+      "Wedding photo booth design featuring the couple's initials",
+      'Bespoke photo booth print template for a South Florida wedding',
+    ]),
+  },
+  {
+    id: 'classic-strips', title: 'Classic Photobooth Strips', count: 10, imageSize: '640 × 1920',
+    cover: { src: '/images/galleries/classic-photo-booth-strip-cover.jpg', alt: 'Classic vertical wedding photo booth strip' },
+    images: G('classic-photo-booth-strip', [
+      'Classic black-and-white wedding photo booth strip',
+      'Vertical photo booth strip of the newlyweds',
+      'Classic four-frame wedding photo booth strip',
+      'Wedding guests in a vintage-style photo booth strip',
+      "Couple's classic photo booth strip keepsake",
+      'Fun vertical photo booth strip with props',
+      'Bridesmaids in a classic photo booth strip',
+      'Classic photo booth strip with the wedding date',
+      'Retro-style vertical wedding photo booth strip',
+      'Guests posing across a classic photo booth strip',
+    ]),
+  },
 ];
 
 const faqs = [
