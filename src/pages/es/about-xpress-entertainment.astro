@@ -66,7 +66,7 @@ const reasons = [
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="sec-head center reveal"><span class="eyebrow">El equipo que trae la magia ✨</span><h2 class="h-xl">Conoce al equipo.</h2><p class="lead" style="margin-inline:auto;">Detrás de cada recepción épica hay un equipo que lo entiende. Somos más que DJs: somos anfitriones, curadores musicales y facilitadores de fiestas. Y sí, nos encanta lo que hacemos.</p></div>
-      <div class="cards" style="grid-template-columns:repeat(4,1fr);">
+      <div class="cards team-grid">
         {team.map((m, i) => (
           <div class={`card reveal ${i ? 'd' + i : ''}`} style="aspect-ratio:3/4;">
             <img src={m.img} alt={m.name} />

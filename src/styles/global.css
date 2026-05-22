@@ -224,6 +224,17 @@ section { position: relative; }
 .card .tag { position: absolute; top: 22px; left: 22px; z-index: 2; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); padding: 8px 14px; border-radius: 100px; }
 @media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .card-body p { max-height: 120px; opacity: 1; } }
+/* Team headshots: 4-up grid on desktop, swipeable one-at-a-time carousel on mobile */
+.cards.team-grid { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 860px) {
+  .cards.team-grid {
+    display: flex; grid-template-columns: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    gap: 16px; padding-bottom: 14px; scroll-padding-inline: 24px;
+  }
+  .cards.team-grid > .card { flex: 0 0 80%; scroll-snap-align: center; }
+  .cards.team-grid > .card .card-body h3 { font-size: 1.6rem; }
+}
 /* Epic Extras feature cards: strong overlay so text reads clearly; on hover the overlay + text fade to reveal the photo */
 .card-extra::after { background: linear-gradient(180deg, rgba(12,8,20,0.62) 0%, rgba(12,8,20,0.82) 55%, rgba(12,8,20,0.95) 100%); transition: opacity 0.45s var(--ease); }
 .card-extra:hover::after { opacity: 0.15; }
