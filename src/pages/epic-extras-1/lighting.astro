@@ -2,9 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
 import Credit from '../../components/Credit.astro';
-import { phUri } from '../../lib/ph';
 ---
 <Base title="Wedding Lighting Add-Ons | Uplighting, Monogram & Light Shows — Xpress Entertainment" description="Lighting transforms a simple space into an elegant, vibrant celebration. Uplighting, personalized monogram projections, and high-energy club-style light shows for South Florida weddings.">
 
@@ -13,9 +11,11 @@ import { phUri } from '../../lib/ph';
     eyebrow="Epic Extras"
     titleHtml={`Lighting Add-Ons<br>for Your Wedding`}
     sub="Lighting plays a crucial role in setting the mood for your wedding, transforming a simple space into an elegant, vibrant celebration."
-    image={phUri(2560, 1440, 'Lighting — hero', 'Uplit reception / colorful wedding lighting')}
-    alt="Wedding uplighting"
+    image="/images/heroes/lighting-hero.jpg"
+    alt="Crowded dance floor as the newlyweds dance together in the center at a South Florida wedding"
     ctaText="Check Availability"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
   />
 
   <section class="pad bg-ink">
