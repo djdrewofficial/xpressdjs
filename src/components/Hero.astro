@@ -13,11 +13,12 @@ const {
   size = 'tall',
   creditName,
   creditHref,
+  imgFocus,
 } = Astro.props;
 const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
 ---
 <header class="hero" style={`min-height:${minh};`}>
-  <div class="hero-bg"><img src={image} alt={alt} /></div>
+  <div class="hero-bg"><img src={image} alt={alt} style={imgFocus ? `--hero-focus:${imgFocus}` : undefined} /></div>
   <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
     {eyebrow && <span class="eyebrow light reveal">{eyebrow}</span>}
