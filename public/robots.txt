@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://xpressdjs.com/sitemap-index.xml
+Sitemap: https://xpressdjs.com/sitemap.xml
