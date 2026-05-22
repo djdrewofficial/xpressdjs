@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+
+const posts = (await getCollection('blogEs')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<Base title="Blog de Bodas | Xpress Entertainment — Consejos para Bodas en el Sur de Florida" description="Consejos musicales, ideas de planeación e inspiración para bodas del sur de Florida del equipo de Xpress Entertainment. Mantén tu pista de baile llena y tu día sin estrés.">
+
+  <Hero
+    size="mid"
+    eyebrow="Blog de Bodas"
+    titleHtml={`El diario de<br>Xpress.`}
+    sub="Consejos musicales, ideas de planeación e inspiración para bodas del sur de Florida — cartas de amor para parejas que creen en el poder de la música para musicalizar su historia."
+    image="/images/heroes/wedding-blog-hero.jpg"
+    alt="Novios compartiendo su primer baile en la pista de su boda"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="cards">
+        {posts.map((p, i) => (
+          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={`/es/wedding-blog/${p.slug}`}>
+            <img src={p.data.image} alt={p.data.title} />
+            <span class="tag">{p.data.tag}</span>
+            <div class="card-body">
+              <h3 style="font-size:1.35rem;">{p.data.title}</h3>
+              <p>{p.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="¿Listos para planear?" titleHtml={`Hablemos<br>de tu día.`} />
+</Base>

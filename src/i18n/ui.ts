@@ -30,6 +30,10 @@ export const translated = new Set<string>([
   '/about-xpress-entertainment',
   '/careers',
   '/privacy-policy',
+  '/wedding-blog',
+  '/wedding-blog/how-to-choose-the-perfect-dj-for-your-wedding',
+  '/wedding-blog/how-to-keep-the-dance-floor-packed-all-night',
+  '/wedding-blog/music-trends-for-weddings-in-south-florida',
 ]);
 
 /** Current locale from the URL ( /es/... => 'es', otherwise 'en' ). */
