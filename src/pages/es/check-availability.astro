@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Ph from '../../components/Ph.astro';
+import Credit from '../../components/Credit.astro';
 
 const CONSENT_TEXT = "Doy mi consentimiento para recibir notificaciones por SMS de Xpress Entertainment sobre mis consultas, reservas y ofertas promocionales. Pueden aplicar tarifas de mensajes y datos. Entiendo que puedo cancelar en cualquier momento respondiendo 'STOP' a cualquier mensaje.";
 
@@ -20,7 +20,8 @@ const relations = ["¡Soy la Novia!","¡Soy el Novio!","Soy un Familiar","Soy Pl
 <Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración.">
 
   <header class="hero" style="min-height:62svh;">
-    <div class="hero-bg"><Ph w={2560} h={1440} label="Check Availability — hero" note="South Florida wedding scene" /></div>
+    <div class="hero-bg"><img src="/images/heroes/check-availability-hero.jpg" alt="Invitados de boda disfrutando en la pista de baile" /></div>
+    <Credit variant="overlay" name="Leo Photographer" href="https://leophotographer.com" />
     <div class="wrap">
       <span class="eyebrow light reveal">Consulta la Disponibilidad de Xpress Entertainment</span>
       <h1 class="h-xl reveal d1" style="margin:14px 0 18px;">Entonces, ¿quieres saber si estamos libres en tu fecha? 😏</h1>
