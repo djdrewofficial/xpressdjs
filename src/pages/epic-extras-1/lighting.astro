@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
 import Ph from '../../components/Ph.astro';
+import Credit from '../../components/Credit.astro';
 import { phUri } from '../../lib/ph';
 ---
 <Base title="Wedding Lighting Add-Ons | Uplighting, Monogram & Light Shows — Xpress Entertainment" description="Lighting transforms a simple space into an elegant, vibrant celebration. Uplighting, personalized monogram projections, and high-energy club-style light shows for South Florida weddings.">
@@ -27,7 +28,7 @@ import { phUri } from '../../lib/ph';
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Uplighting" note="Uplights glowing on venue walls" /></div>
+        <div class="media reveal"><img src="/images/uplighting.jpg" alt="Amber uplighting on the venue walls as the best man gives his speech" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">Uplighting</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Set the Mood for Elegance</h2>
@@ -41,7 +42,7 @@ import { phUri } from '../../lib/ph';
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split rev">
-        <div class="media reveal"><Ph w={1200} h={900} label="Monogram projection" note="Custom monogram on dance floor / wall" /></div>
+        <div class="media reveal"><img src="/images/monogram-projection.jpg" alt="Custom wedding monogram projected on the wall of a Miami venue" /></div>
         <div class="reveal d1">
           <span class="eyebrow">Monogram Projections</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Personalize Your Big Day</h2>
@@ -55,7 +56,7 @@ import { phUri } from '../../lib/ph';
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Club-style light show" note="Moving heads / lasers on a packed floor" /></div>
+        <figure class="media-fig reveal"><div class="media"><img src="/images/club-style-light-show.jpg" alt="Packed dance floor full of energy under a club-style light show at a wedding" /></div><Credit variant="caption" align="left" name="Amarena Productions" href="https://amarenaproductions.com/" /></figure>
         <div class="reveal d1">
           <span class="eyebrow light">Club-Style Light Show</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Bring the Party to Life</h2>
