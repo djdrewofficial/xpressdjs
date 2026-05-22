@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import { phUri } from '../lib/ph';
 
 const team = [
   { name: 'Drew Segura', role: 'Founder & Lead DJ', img: '/images/djs/drew-segura-headshot.png' },
@@ -29,8 +28,10 @@ const reasons = [
     size="mid"
     eyebrow="About us"
     titleHtml={`Your Wedding's Secret Weapon<br><span class="serif-accent" style="font-style:italic">(Besides Love, of course)</span>`}
-    image={phUri(2560, 1440, 'About — hero', 'Team photo or wide celebration shot')}
-    alt="Xpress Entertainment wedding"
+    image="/images/heroes/about-hero.jpg"
+    alt="Newlyweds kissing in the middle of the dance floor surrounded by their loved ones"
+    creditName="Cassandra Trcka Photography"
+    creditHref="https://www.cassandratrckaphotography.com/"
     ctaText="Check Availability"
   />
 

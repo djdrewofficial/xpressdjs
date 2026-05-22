@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
-import { phUri } from '../../lib/ph';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -31,8 +30,10 @@ const reasons = [
     size="mid"
     eyebrow="Nosotros"
     titleHtml={`El Arma Secreta de tu Boda<br><span class="serif-accent" style="font-style:italic">(Además del amor, por supuesto)</span>`}
-    image={phUri(2560, 1440, 'About — hero', 'Team photo or wide celebration shot')}
-    alt="Boda de Xpress Entertainment"
+    image="/images/heroes/about-hero.jpg"
+    alt="Novios besándose en medio de la pista de baile rodeados de sus seres queridos"
+    creditName="Cassandra Trcka Photography"
+    creditHref="https://www.cassandratrckaphotography.com/"
     ctaText="Consulta Disponibilidad"
     ctaHref={L('/check-availability')}
   />
