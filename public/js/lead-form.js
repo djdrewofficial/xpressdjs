@@ -1,11 +1,17 @@
 /* Multi-step "Check Availability" lead form. Page provides window.__leadCfg:
    { consentText, turnstileKey, i18n: { sending, antispam, error, network } }
 
-   Progressive capture: the moment a client clears step 1 (contact + SMS
-   consent) we POST a partial lead to /api/lead so GoHighLevel has it even if
-   they bail before finishing. Each later step sends an updated snapshot. There
-   is no separate "send" button — finishing step 3 just sends the complete
-   record and shows the thank-you. */
+   Capture model (no manual "submit" button — only Back / Next):
+   - The instant a visitor clears step 1 (contact + SMS consent) we POST an
+     INCOMPLETE lead to /api/lead so GoHighLevel has it immediately. The 5-min
+     "did they finish?" wait lives in GHL, not here, because a browser timer
+     dies the moment they close the tab.
+   - Advancing through later steps sends richer incomplete snapshots.
+   - Hiding/closing the tab flushes the latest snapshot (sendBeacon) so any
+     half-typed step still reaches GHL.
+   - A best-effort 5-min idle timer also flushes the latest snapshot while the
+     tab is still open.
+   - The final "Next" on the last step sends the COMPLETE record + thank-you. */
 (function () {
   var cfg = window.__leadCfg || {};
   var t = cfg.i18n || {};
@@ -17,7 +23,7 @@
   var dots = [].slice.call(document.querySelectorAll(".stepper .step-dot"));
   var backBtn = form.querySelector('[data-nav="back"]');
   var nextBtn = form.querySelector('[data-nav="next"]');
-  var finishBtn = form.querySelector('[data-nav="finish"]');
+  var lastIndex = steps.length - 1;
   var current = 0;
 
   function show(i) {
@@ -28,8 +34,6 @@
       d.classList.toggle("done", idx < i);
     });
     if (backBtn) backBtn.hidden = i === 0;
-    if (nextBtn) nextBtn.hidden = i === steps.length - 1;
-    if (finishBtn) finishBtn.hidden = i !== steps.length - 1;
     var f = steps[i].querySelector("input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled])");
     if (f) { try { f.focus({ preventScroll: true }); } catch (e) {} }
   }
@@ -85,7 +89,7 @@
   if (eventType) eventType.addEventListener("change", syncEventType);
   relationRadios.forEach(function (r) { r.addEventListener("change", syncRelation); });
 
-  // ---- Payload + progressive send -------------------------------------------
+  // ---- Payload --------------------------------------------------------------
   function buildPayload(stage, complete) {
     var tsToken = "";
     if (complete && cfg.turnstileKey) {
@@ -121,69 +125,99 @@
     };
   }
 
-  // Send each partial stage at most once. Fire-and-forget: never block the UI
-  // and never surface partial errors — the final complete send carries all the
-  // same data anyway, so a dropped partial just loses the early-capture safety
-  // net for that one stage.
-  var sentStage = {};
-  function capturePartial(stage) {
-    if (sentStage[stage]) return;
+  // ---- Progressive / abandonment capture ------------------------------------
+  // A lead is only worth sending once we have the minimum GHL requires.
+  function mvlReady() {
+    return !!($("firstName") && $("firstName").value.trim() &&
+              $("phone") && $("phone").value.trim() &&
+              $("email") && $("email").value.trim() &&
+              $("smsConsent") && $("smsConsent").checked);
+  }
+
+  var dirty = false;        // unsent field changes exist
+  var sentComplete = false; // final record already sent
+  var idleTimer = null;
+  var IDLE_MS = 5 * 60 * 1000;
+
+  function flushIncomplete(useBeacon) {
+    if (sentComplete || !mvlReady() || !dirty) return;
     if ($("company") && $("company").value) return; // honeypot tripped
-    sentStage[stage] = true;
+    dirty = false;
+    var body = JSON.stringify(buildPayload("step-" + (current + 1), false));
+    if (useBeacon && navigator.sendBeacon) {
+      try {
+        if (navigator.sendBeacon("/api/lead", new Blob([body], { type: "application/json" }))) return;
+      } catch (e) {}
+    }
     try {
-      fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(buildPayload(stage, false)),
-        keepalive: true,
-      }).catch(function () {});
+      fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
     } catch (e) {}
   }
 
-  if (nextBtn) nextBtn.addEventListener("click", function () {
-    if (!validStep(current)) return;
-    // current 0 => just finished step 1; 1 => just finished step 2
-    capturePartial(current === 0 ? "step-1" : "step-2");
-    show(current + 1);
-  });
-  if (backBtn) backBtn.addEventListener("click", function () { if (current > 0) show(current - 1); });
+  function resetIdle() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(function () { flushIncomplete(false); }, IDLE_MS);
+  }
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (!validStep(current)) return;
+  form.addEventListener("input", function () { dirty = true; resetIdle(); });
+  form.addEventListener("change", function () { dirty = true; resetIdle(); });
+
+  // Flush the latest snapshot when the visitor leaves / backgrounds the tab.
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") flushIncomplete(true);
+  });
+  window.addEventListener("pagehide", function () { flushIncomplete(true); });
+
+  // ---- Final (complete) submission ------------------------------------------
+  function submitComplete() {
     var errEl = $("form-error"); if (errEl) errEl.hidden = true;
     if ($("company") && $("company").value) return; // honeypot tripped
     if (!form.checkValidity()) { form.reportValidity(); return; }
-
     if (cfg.turnstileKey) {
       var tsEl = form.querySelector('[name="cf-turnstile-response"]');
       if (!tsEl || !tsEl.value) { errEl.textContent = t.antispam; errEl.hidden = false; return; }
     }
 
-    var label = finishBtn.querySelector(".btn-label"); var orig = label.textContent;
-    finishBtn.disabled = true; label.textContent = t.sending;
+    var label = nextBtn.querySelector(".btn-label"); var orig = label ? label.textContent : "";
+    nextBtn.disabled = true; if (label) label.textContent = t.sending;
+    if (idleTimer) clearTimeout(idleTimer);
 
     fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(buildPayload("complete", true)) })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
       .then(function (res) {
         if (res.ok) {
+          sentComplete = true; dirty = false;
           form.hidden = true;
           $("form-success").hidden = false;
           $("form-success").scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
           errEl.textContent = (res.j && res.j.error) || t.error;
           errEl.hidden = false;
-          finishBtn.disabled = false; label.textContent = orig;
+          nextBtn.disabled = false; if (label) label.textContent = orig;
           if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
         }
       })
       .catch(function () {
         errEl.textContent = t.network;
         errEl.hidden = false;
-        finishBtn.disabled = false; label.textContent = orig;
+        nextBtn.disabled = false; if (label) label.textContent = orig;
         if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
       });
+  }
+
+  // ---- Navigation (handles click + Enter via form submit) -------------------
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!validStep(current)) return;
+    if (current < lastIndex) {
+      // First valid step-1 advance is the critical immediate capture for GHL.
+      flushIncomplete(false);
+      show(current + 1);
+    } else {
+      submitComplete();
+    }
   });
+  if (backBtn) backBtn.addEventListener("click", function () { if (current > 0) show(current - 1); });
 
   show(0);
 })();
