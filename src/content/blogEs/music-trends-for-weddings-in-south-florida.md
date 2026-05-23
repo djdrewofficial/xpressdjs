@@ -3,7 +3,7 @@ title: Tendencias Musicales para Bodas en el Sur de Florida
 description: Las bodas del sur de Florida tienen su propio estilo — energía tropical con raíces multiculturales. Estas son las tendencias musicales que mantienen llenas las pistas locales.
 date: 2024-11-27
 tag: Tendencias Musicales
-image: /images/og-default.png
+image: /images/vibing-on-the-dance-floor.jpg
 author: Xpress Entertainment
 ---
 

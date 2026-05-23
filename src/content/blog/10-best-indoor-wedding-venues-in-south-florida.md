@@ -3,7 +3,7 @@ title: The 10 Best Indoor Wedding Venues in South Florida
 description: Summer in South Florida brings scorching heat — here are 10 stunning air-conditioned indoor wedding venues that blend beauty, comfort, and sophistication.
 date: 2024-05-01
 tag: South Florida Wedding Venues
-image: /images/og-default.png
+image: /images/heroes/services-hero.jpg
 author: Xpress Entertainment
 ---
 

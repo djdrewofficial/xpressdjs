@@ -3,7 +3,7 @@ title: "Unique Wedding Music Ideas: Going Beyond the Traditional"
 description: Make your wedding unforgettable with unique music ideas — cultural music, live instruments, custom mashups, themed playlists, and surprise performances.
 date: 2024-10-02
 tag: Music Tips
-image: /images/og-default.png
+image: /images/atmosphere-lighting.jpg
 author: Xpress Entertainment
 ---
 

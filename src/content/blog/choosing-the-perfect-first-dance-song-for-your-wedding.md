@@ -3,7 +3,7 @@ title: Choosing the Perfect First Dance Song for Your Wedding
 description: Your first dance song sets the tone for your love story. Here's how to choose one that reflects your relationship, personalities, and the moment.
 date: 2024-05-02
 tag: Music Tips
-image: /images/og-default.png
+image: /images/dancing-on-the-clouds.jpg
 author: Xpress Entertainment
 ---
 

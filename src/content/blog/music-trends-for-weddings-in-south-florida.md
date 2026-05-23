@@ -3,7 +3,7 @@ title: Music Trends for Weddings in South Florida
 description: South Florida weddings have their own vibe — tropical energy meets multicultural roots. Here are the music trends keeping local dance floors full.
 date: 2024-11-27
 tag: Music Trends
-image: /images/og-default.png
+image: /images/vibing-on-the-dance-floor.jpg
 author: Xpress Entertainment
 ---
 

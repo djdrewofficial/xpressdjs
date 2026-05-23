@@ -3,7 +3,7 @@ title: Cómo Elegir el DJ Perfecto para Tu Boda
 description: Tu DJ maneja la energía de toda tu recepción. Así eliges a uno que sepa leer al público, conducir con confianza y mantener tu noche fluyendo.
 date: 2024-10-15
 tag: Planeación
-image: /images/og-default.png
+image: /images/dj-drew-djing.jpg
 author: Xpress Entertainment
 ---
 

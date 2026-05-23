@@ -3,7 +3,7 @@ title: 30 Stunning Outdoor Wedding Venues in South Florida
 description: From garden estates to beachfront resorts, here are 30 breathtaking outdoor wedding venues across South Florida — perfect for a magical fall wedding.
 date: 2024-08-22
 tag: South Florida Wedding Venues
-image: /images/og-default.png
+image: /images/couple-grand-entrance.jpg
 author: Xpress Entertainment
 ---
 

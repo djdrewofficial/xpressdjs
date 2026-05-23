@@ -3,7 +3,7 @@ title: Incorporating Your Cultural Background into Your Wedding Music
 description: Honor your heritage on your wedding day with traditional ceremony music, cultural dances, bilingual playlists, and fusion mixes that celebrate who you are.
 date: 2024-12-11
 tag: Music Tips
-image: /images/og-default.png
+image: /images/heroes/about-hero.jpg
 author: Xpress Entertainment
 ---
 

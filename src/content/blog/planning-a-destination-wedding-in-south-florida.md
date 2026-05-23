@@ -3,7 +3,7 @@ title: Planning a Destination Wedding in South Florida
 description: Plan a destination wedding in South Florida — choosing locations, securing accommodations, hiring local vendors, prepping for weather, and embracing local culture.
 date: 2024-05-15
 tag: Planning
-image: /images/og-default.png
+image: /images/heroes/experience-hero.jpg
 author: Xpress Entertainment
 ---
 

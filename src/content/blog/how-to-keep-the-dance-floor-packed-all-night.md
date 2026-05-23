@@ -3,7 +3,7 @@ title: How to Keep the Dance Floor Packed All Night
 description: A packed dance floor is the hallmark of a great wedding. Here's how the right DJ keeps your guests dancing from the first song to the last call.
 date: 2025-01-08
 tag: Wedding Tips
-image: /images/og-default.png
+image: /images/heroes/dj-services-hero.jpg
 author: Xpress Entertainment
 ---
 

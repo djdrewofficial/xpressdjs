@@ -3,7 +3,7 @@ title: How to Create a Personalized Wedding Soundtrack
 description: Work with your DJ to build a personalized wedding soundtrack that tells your love story — from the ceremony and first dance to the final song of the night.
 date: 2024-12-04
 tag: Music Tips
-image: /images/og-default.png
+image: /images/heroes/pricing-hero.jpg
 author: Xpress Entertainment
 ---
 

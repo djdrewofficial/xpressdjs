@@ -3,7 +3,7 @@ title: "DJ vs. Live Band: Which is Right for Your Wedding?"
 description: DJ or live band for your wedding? We break down atmosphere, music variety, space, budget, and energy to help you make the best choice for your big day.
 date: 2024-09-11
 tag: Wedding Tips
-image: /images/og-default.png
+image: /images/sax-live-dance-floor.jpg
 author: Xpress Entertainment
 ---
 

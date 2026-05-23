@@ -3,7 +3,7 @@ title: "The Role of a DJ in a Wedding: More Than Just Music"
 description: A wedding DJ does far more than play music — they MC, read the crowd, run sound, curate playlists, and solve problems to keep your day on track.
 date: 2024-09-18
 tag: Wedding Tips
-image: /images/og-default.png
+image: /images/heroes/dj-drew-hero.jpg
 author: Xpress Entertainment
 ---
 

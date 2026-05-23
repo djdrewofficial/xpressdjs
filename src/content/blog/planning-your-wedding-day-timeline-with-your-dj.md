@@ -3,7 +3,7 @@ title: Planning Your Wedding Day Timeline with Your DJ
 description: Plan a seamless wedding day timeline with your DJ — from pre-ceremony music to the grand exit — so every key moment flows effortlessly.
 date: 2024-10-23
 tag: Planning
-image: /images/og-default.png
+image: /images/drew-newlyweds-dance-floor.jpg
 author: Xpress Entertainment
 ---
 

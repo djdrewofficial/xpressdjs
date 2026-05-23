@@ -3,7 +3,7 @@ title: Legal Requirements for Getting Married in Florida
 description: A practical guide to the legal requirements for getting married in Florida — from marriage license rules to permits for beach, state park, and private venues.
 date: 2024-05-15
 tag: Planning
-image: /images/og-default.png
+image: /images/heroes/wedding-blog-hero.jpg
 author: Xpress Entertainment
 ---
 

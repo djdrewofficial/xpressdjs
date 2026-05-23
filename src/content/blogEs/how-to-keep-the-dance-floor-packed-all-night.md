@@ -3,7 +3,7 @@ title: Cómo Mantener la Pista de Baile Llena Toda la Noche
 description: Una pista de baile llena es el sello de una gran boda. Así es como el DJ correcto mantiene a tus invitados bailando desde la primera canción hasta la última.
 date: 2025-01-08
 tag: Consejos de Boda
-image: /images/og-default.png
+image: /images/heroes/dj-services-hero.jpg
 author: Xpress Entertainment
 ---
 
