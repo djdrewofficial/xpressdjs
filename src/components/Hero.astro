@@ -34,11 +34,11 @@ const focusStyle = imgFocus ? `--hero-focus:${imgFocus}` : undefined;
   </div>
   <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
-    {eyebrow && <span class="eyebrow light reveal">{eyebrow}</span>}
-    <h1 class="display reveal d1" set:html={titleHtml}></h1>
-    {sub && <p class="lead reveal d2">{sub}</p>}
+    {eyebrow && <span class="eyebrow light hero-in">{eyebrow}</span>}
+    <h1 class="display hero-in" set:html={titleHtml}></h1>
+    {sub && <p class="lead hero-in">{sub}</p>}
     {(ctaText || ctaText2) && (
-      <div class="hero-cta reveal d3">
+      <div class="hero-cta hero-in">
         {ctaText && <a href={ctaHref} class="btn"><span>{ctaText}</span> <span class="arrow">↗</span></a>}
         {ctaText2 && <a href={ctaHref2} class="btn ghost"><span>{ctaText2}</span></a>}
       </div>
