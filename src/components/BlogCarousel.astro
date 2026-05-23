@@ -1,0 +1,37 @@
+---
+/*
+  A single blog category as an infinite, auto-scrolling horizontal loop
+  (same seamless technique as <Marquee/>: two identical halves animated to
+  -50%). Pauses on hover so cards stay clickable. Each card shows a small
+  photographer credit. Reduced-motion users get a normal scrollable strip.
+*/
+import { creditFor } from '../lib/credits';
+import Credit from './Credit.astro';
+const { title, posts = [], hrefBase = '/wedding-blog', reverse = false } = Astro.props;
+// Repeat the posts so even small categories fill the row, then duplicate that
+// "half" so the -50% scroll loops seamlessly.
+const half = [];
+while (half.length < 8 && posts.length) half.push(...posts);
+const track = [...half, ...half];
+const dur = Math.max(28, half.length * 6);
+---
+{posts.length > 0 && (
+  <section class="blog-cat">
+    <div class="wrap"><h2 class="h-lg blog-cat-title">{title}</h2></div>
+    <div class="blog-strip">
+      <div class="blog-track" style={`animation-duration:${dur}s; animation-direction:${reverse ? 'reverse' : 'normal'};`}>
+        {track.map((p) => {
+          const c = creditFor(p.data.image);
+          return (
+            <a class="card blog-card" href={`${hrefBase}/${p.slug}`} aria-label={p.data.title}>
+              <img src={p.data.image} alt={p.data.title} loading="lazy" decoding="async" />
+              <span class="tag">{p.data.tag}</span>
+              {c && <Credit variant="overlay" pos="top" name={c.name} />}
+              <div class="card-body"><h3 style="font-size:1.2rem;">{p.data.title}</h3></div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}

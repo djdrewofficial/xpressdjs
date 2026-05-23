@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import CTA from '../../../components/CTA.astro';
+import Credit from '../../../components/Credit.astro';
+import { creditFor } from '../../../lib/credits';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blogEs');
@@ -31,6 +33,7 @@ const articleSchema = {
 
   <header class="hero" style="min-height:58svh;">
     <div class="hero-bg"><img src={d.image} alt={d.title} /></div>
+    {creditFor(d.image) && <Credit variant="overlay" name={creditFor(d.image).name} href={creditFor(d.image).href} />}
     <div class="wrap">
       <span class="eyebrow light hero-in">{d.tag} · {fmt}</span>
       <h1 class="h-xl hero-in" style="margin-top:16px;">{d.title}</h1>

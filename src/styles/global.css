@@ -186,6 +186,20 @@ section { position: relative; }
 .marquee span::after { content: "✦"; font-size: 0.7em; color: rgba(255,255,255,0.6); }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
+/* ---------- Blog category carousels (infinite loop) ---------- */
+.blog-cat { padding-block: 20px; }
+.blog-cat-title { margin-bottom: 20px; }
+.blog-strip { overflow: hidden; }
+.blog-track { display: flex; gap: 22px; width: max-content; animation: scroll 40s linear infinite; will-change: transform; }
+.blog-strip:hover .blog-track { animation-play-state: paused; }
+.blog-card { flex: 0 0 300px; aspect-ratio: 4/5; }
+.blog-card .card-body p { display: none; }
+@media (max-width: 600px) { .blog-card { flex-basis: 80vw; } }
+@media (prefers-reduced-motion: reduce) {
+  .blog-strip { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .blog-track { animation: none; }
+}
+
 /* ---------- Section heads ---------- */
 .sec-head { max-width: 760px; margin-bottom: clamp(40px, 5vw, 70px); }
 .sec-head.center { margin-inline: auto; text-align: center; }

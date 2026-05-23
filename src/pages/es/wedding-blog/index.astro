@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Hero from '../../../components/Hero.astro';
 import CTA from '../../../components/CTA.astro';
+import BlogCarousel from '../../../components/BlogCarousel.astro';
 
 const posts = (await getCollection('blogEs')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -22,20 +23,7 @@ const posts = (await getCollection('blogEs')).sort(
   />
 
   <section class="pad bg-ink">
-    <div class="wrap">
-      <div class="cards">
-        {posts.map((p, i) => (
-          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={`/es/wedding-blog/${p.slug}`}>
-            <img src={p.data.image} alt={p.data.title} />
-            <span class="tag">{p.data.tag}</span>
-            <div class="card-body">
-              <h3 style="font-size:1.35rem;">{p.data.title}</h3>
-              <p>{p.data.description}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
+    <BlogCarousel title="Lecturas para tu boda" posts={posts} hrefBase="/es/wedding-blog" />
   </section>
 
   <CTA eyebrow="¿Listos para planear?" titleHtml={`Hablemos<br>de tu día.`} />

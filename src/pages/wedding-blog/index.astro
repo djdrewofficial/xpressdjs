@@ -3,11 +3,18 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import BlogCarousel from '../../components/BlogCarousel.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const fmt = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+const order = ['Music Tips', 'Wedding Tips', 'Planning', 'South Florida Wedding Venues'];
+const byCat = {};
+for (const p of posts) (byCat[p.data.tag] ||= []).push(p);
+const cats = [
+  ...order.filter((c) => byCat[c]),
+  ...Object.keys(byCat).filter((c) => !order.includes(c)),
+];
 ---
 <Base title="Wedding Blog | Xpress Entertainment — South Florida Wedding Tips" description="Music tips, planning advice, and South Florida wedding inspiration from the Xpress Entertainment team. Keep your dance floor packed and your day stress-free.">
 
@@ -23,20 +30,9 @@ const fmt = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric'
   />
 
   <section class="pad bg-ink">
-    <div class="wrap">
-      <div class="cards">
-        {posts.map((p, i) => (
-          <a class={`card reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} href={`/wedding-blog/${p.slug}`}>
-            <img src={p.data.image} alt={p.data.title} />
-            <span class="tag">{p.data.tag}</span>
-            <div class="card-body">
-              <h3 style="font-size:1.35rem;">{p.data.title}</h3>
-              <p>{p.data.description}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
+    {cats.map((c, i) => (
+      <BlogCarousel title={c} posts={byCat[c]} hrefBase="/wedding-blog" reverse={i % 2 === 1} />
+    ))}
   </section>
 
   <CTA eyebrow="Ready to plan?" titleHtml={`Let's talk<br>about your day.`} />
