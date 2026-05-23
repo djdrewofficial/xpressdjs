@@ -1,0 +1,52 @@
+# Cloudflare Pages redirects — preserve SEO from the old WordPress URLs.
+# Format: <from>  <to>  <status>
+
+# --- Pages that moved / were renamed ---
+/services/wedding-djs-in-miami/                       /wedding-dj-miami/                              301
+/epic-extras-1/epic-extras-2/cold-sparks/            /epic-extras-1/cold-sparks/                     301
+/epic-extras-1/epic-extras-2/dancing-on-the-clouds/  /epic-extras-1/dancing-on-the-clouds/           301
+/epic-extras-1/epic-extras-2/lighting/               /epic-extras-1/lighting/                        301
+/book-now/                                            /check-availability/                            301
+/check-avalibility-2/                                 /check-availability/                            301
+/check-avalibility-confirmation/                      /check-availability/                            301
+/privacy/                                             /privacy-policy/                                301
+/djdelfibiedma/                                       /services/djs/                                  301
+
+# --- Blog posts now under /wedding-blog/ (already on the new site) ---
+/how-to-choose-the-perfect-dj-for-your-wedding/       /wedding-blog/how-to-choose-the-perfect-dj-for-your-wedding/  301
+/how-to-keep-the-dance-floor-packed-all-night/        /wedding-blog/how-to-keep-the-dance-floor-packed-all-night/   301
+/how-to-keep-the-dance-floor-packed-all-night-2/      /wedding-blog/how-to-keep-the-dance-floor-packed-all-night/   301
+/music-trends-for-weddings-in-south-florida/          /wedding-blog/music-trends-for-weddings-in-south-florida/     301
+
+# --- Migrated evergreen posts (recreated under /wedding-blog/, same slug) ---
+/10-best-indoor-wedding-venues-in-south-florida/      /wedding-blog/10-best-indoor-wedding-venues-in-south-florida/      301
+/30-stunning-outdoor-wedding-venues-in-south-florida/ /wedding-blog/30-stunning-outdoor-wedding-venues-in-south-florida/ 301
+/choosing-the-perfect-first-dance-song-for-your-wedding/ /wedding-blog/choosing-the-perfect-first-dance-song-for-your-wedding/ 301
+/dj-vs-live-band-which-is-right-for-your-wedding/     /wedding-blog/dj-vs-live-band-which-is-right-for-your-wedding/     301
+/how-to-create-a-personalized-wedding-soundtrack/    /wedding-blog/how-to-create-a-personalized-wedding-soundtrack/    301
+/incorporating-your-cultural-background-into-your-wedding-music/ /wedding-blog/incorporating-your-cultural-background-into-your-wedding-music/ 301
+/legal-requirements-for-getting-married-in-florida/  /wedding-blog/legal-requirements-for-getting-married-in-florida/  301
+/planning-a-destination-wedding-in-south-florida/    /wedding-blog/planning-a-destination-wedding-in-south-florida/    301
+/planning-your-wedding-day-timeline-with-your-dj/    /wedding-blog/planning-your-wedding-day-timeline-with-your-dj/    301
+/the-role-of-a-dj-in-a-wedding-more-than-just-music/ /wedding-blog/the-role-of-a-dj-in-a-wedding-more-than-just-music/ 301
+/unique-wedding-music-ideas-going-beyond-the-traditional/ /wedding-blog/unique-wedding-music-ideas-going-beyond-the-traditional/ 301
+/wedding-dj-horror-stories-and-how-to-avoid-them/    /wedding-blog/wedding-dj-horror-stories-and-how-to-avoid-them/    301
+
+# --- Posts not migrated -> closest relevant page ---
+/how-wedding-music-trends-have-changed-over-the-years/ /wedding-blog/music-trends-for-weddings-in-south-florida/ 301
+/wedding-music-trends-whats-in-and-whats-out/         /wedding-blog/music-trends-for-weddings-in-south-florida/ 301
+/top-wedding-songs-for-2024-the-ultimate-guide-to-your-perfect-playlist/ /wedding-blog/ 301
+/trending-i-dos-top-tiktok-wedding-trends-of-2024/   /wedding-blog/                                  301
+/behind-the-scenes-a-day-in-the-life-of-a-wedding-dj/ /wedding-blog/                                 301
+/the-importance-of-a-good-sound-system-for-your-wedding/ /wedding-blog/                              301
+/how-to-balance-your-wedding-music/                  /wedding-blog/                                  301
+/keeping-your-guests-comfortable-at-an-outdoor-wedding/ /wedding-blog/                               301
+/south-floridas-best-wedding-venues-for-music-and-dancing/ /wedding-blog/                            301
+/vista-lago-ballroom/                                /wedding-blog/                                  301
+/drew-segura-venue-spotlight-wyndham-deerfield-beach/ /wedding-blog/                                 301
+/drew-segura-vendor-spotlight-christy-clark-photography/ /wedding-blog/                              301
+/drew-segura-vendor-spotlight-ramos-events/          /wedding-blog/                                  301
+
+# --- WordPress category & tag archives (no equivalent) ---
+/category/*                                           /wedding-blog/                                  301
+/tag/*                                                /wedding-blog/                                  301
