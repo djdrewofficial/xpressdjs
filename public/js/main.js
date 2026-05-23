@@ -272,4 +272,30 @@
       setTimeout(function () { if (btn) btn.textContent = orig; }, 4000);
     });
   }
+
+  /* ---- Blog category carousels (arrow scrolling + arrow state) ---- */
+  document.querySelectorAll(".blog-cat").forEach(function (cat) {
+    var strip = cat.querySelector(".blog-strip");
+    var arrows = cat.querySelectorAll(".blog-arrow");
+    if (!strip || !arrows.length) return;
+    function amount() {
+      var card = strip.querySelector(".blog-card");
+      return card ? card.getBoundingClientRect().width + 22 : 320;
+    }
+    function sync() {
+      var max = strip.scrollWidth - strip.clientWidth - 2;
+      arrows.forEach(function (a) {
+        var dir = parseInt(a.getAttribute("data-dir"), 10);
+        a.disabled = dir < 0 ? strip.scrollLeft <= 0 : strip.scrollLeft >= max;
+      });
+    }
+    arrows.forEach(function (a) {
+      a.addEventListener("click", function () {
+        strip.scrollBy({ left: parseInt(a.getAttribute("data-dir"), 10) * amount(), behavior: "smooth" });
+      });
+    });
+    strip.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync, { passive: true });
+    sync();
+  });
 })();
