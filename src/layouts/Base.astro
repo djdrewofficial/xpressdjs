@@ -87,7 +87,8 @@ const businessSchema = {
   <meta name="twitter:image" content={ogImage} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" /></noscript>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(businessSchema)} />
 </head>
 <body>
@@ -96,7 +97,25 @@ const businessSchema = {
   <Footer />
   <LangToggle />
   <script is:inline src="/js/main.js"></script>
-  <!-- GoHighLevel chat widget -->
-  <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="67e471068265f49a8cbc5a50"></script>
+  <!-- GoHighLevel chat widget — deferred off the critical path (loads on first
+       interaction, or 4s after load) so it doesn't slow LCP/first paint. -->
+  <script is:inline>
+    (function () {
+      var loaded = false;
+      function loadChat() {
+        if (loaded) return; loaded = true;
+        var s = document.createElement('script');
+        s.src = 'https://widgets.leadconnectorhq.com/loader.js';
+        s.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+        s.setAttribute('data-widget-id', '67e471068265f49a8cbc5a50');
+        document.body.appendChild(s);
+      }
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function (e) {
+        window.addEventListener(e, loadChat, { once: true, passive: true });
+      });
+      if ('requestIdleCallback' in window) requestIdleCallback(loadChat, { timeout: 5000 });
+      else window.addEventListener('load', function () { setTimeout(loadChat, 4000); });
+    })();
+  </script>
 </body>
 </html>

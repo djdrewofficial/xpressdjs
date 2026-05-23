@@ -16,9 +16,22 @@ const {
   imgFocus,
 } = Astro.props;
 const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
+const isJpg = /\.jpe?g$/i.test(image);
+const webpFull = isJpg ? image.replace(/\.jpe?g$/i, '.webp') : null;
+const webpSm = isJpg ? image.replace(/\.jpe?g$/i, '-1280.webp') : null;
+const focusStyle = imgFocus ? `--hero-focus:${imgFocus}` : undefined;
 ---
 <header class="hero" style={`min-height:${minh};`}>
-  <div class="hero-bg"><img src={image} alt={alt} style={imgFocus ? `--hero-focus:${imgFocus}` : undefined} /></div>
+  <div class="hero-bg">
+    {webpFull ? (
+      <picture>
+        <source type="image/webp" srcset={`${webpSm} 1280w, ${webpFull} 2560w`} sizes="100vw" />
+        <img src={image} alt={alt} fetchpriority="high" decoding="async" style={focusStyle} />
+      </picture>
+    ) : (
+      <img src={image} alt={alt} fetchpriority="high" decoding="async" style={focusStyle} />
+    )}
+  </div>
   <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
     {eyebrow && <span class="eyebrow light reveal">{eyebrow}</span>}
