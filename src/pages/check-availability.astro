@@ -76,6 +76,11 @@ const leadCfg = {
                   <label class="radio"><input type="radio" name="commLanguage" value="Spanish" /> <span>Español</span></label>
                 </div>
               </div>
+
+              <label class="consent">
+                <input type="checkbox" id="smsConsent" name="smsConsent" required />
+                <span>{CONSENT_TEXT}</span>
+              </label>
             </div>
 
             <!-- STEP 2 — Event info -->
@@ -136,11 +141,6 @@ const leadCfg = {
               </div>
               <div class="field"><label for="notes">Anything else you'd like us to know?</label><textarea id="notes" name="notes" rows="4" placeholder="Vibe, must-play songs, special moments..."></textarea></div>
 
-              <label class="consent">
-                <input type="checkbox" id="smsConsent" name="smsConsent" required />
-                <span>{CONSENT_TEXT}</span>
-              </label>
-
               {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
             </div>
 
@@ -148,7 +148,7 @@ const leadCfg = {
             <div class="form-nav">
               <button type="button" class="btn ghost" data-nav="back" hidden><span>← Back</span></button>
               <button type="button" class="btn" data-nav="next"><span>Next</span> <span class="arrow">↗</span></button>
-              <button type="submit" class="btn" data-nav="submit" hidden><span class="btn-label">Send Inquiry</span> <span class="arrow">↗</span></button>
+              <button type="submit" class="btn" data-nav="finish" hidden><span class="btn-label">Finish</span> <span class="arrow">↗</span></button>
             </div>
             <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">A team member will reach out to confirm availability for your date.</p>
           </form>

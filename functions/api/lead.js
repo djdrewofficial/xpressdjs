@@ -20,7 +20,12 @@ export async function onRequestPost({ request, env }) {
   // Honeypot: real users never fill this. Pretend success so bots don't retry.
   if (data.company) return json({ ok: true });
 
-  // Minimum viable lead
+  // Minimum viable lead. The form captures progressively: as soon as a client
+  // clears step 1 we get a partial lead (contact + consent, event/venue still
+  // blank) so an AI agent can follow up; later steps send richer snapshots and
+  // the final one is flagged complete.
+  const complete = data.complete === true || data.stage === "complete";
+
   if (!data.firstName || !data.phone || !data.email) {
     return json({ ok: false, error: "Please fill in your name, phone, and email." }, 422);
   }
@@ -28,8 +33,10 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "Please agree to the SMS consent to continue." }, 422);
   }
 
-  // Cloudflare Turnstile (only enforced once TURNSTILE_SECRET_KEY is set)
-  if (env.TURNSTILE_SECRET_KEY) {
+  // Cloudflare Turnstile — only gate the final complete submission. Partial
+  // captures (steps 1–2) rely on the honeypot so anti-spam never blocks the
+  // early lead capture. Only enforced once TURNSTILE_SECRET_KEY is set.
+  if (complete && env.TURNSTILE_SECRET_KEY) {
     if (!data.turnstileToken) {
       return json({ ok: false, error: "Anti-spam check failed — please try again." }, 403);
     }
@@ -80,7 +87,11 @@ export async function onRequestPost({ request, env }) {
     notes: str(data.notes),
     smsConsent: data.smsConsent ? "Yes" : "No",
     consentText: str(data.consentText),
-    tag: "hot lead - step 1",
+    // Workflow routing: branch your GHL automations on `complete`/`leadStage`.
+    // Incomplete → AI agent gathers the rest; complete → booking agent.
+    leadStage: str(data.stage) || "step-1",
+    complete: complete ? "Yes" : "No",
+    tag: complete ? "lead complete - ready to book" : "lead incomplete - needs followup",
     source: "Website — Check Availability",
     submittedAt: new Date().toISOString(),
   };
