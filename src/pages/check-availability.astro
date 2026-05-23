@@ -16,6 +16,17 @@ const eventTypeOther = [
   'Wedding Anniversary','Other / Not Listed',
 ];
 const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a Wedding Planner / Coordinator"];
+
+const leadCfg = {
+  consentText: CONSENT_TEXT,
+  turnstileKey: TURNSTILE_SITE_KEY,
+  i18n: {
+    sending: 'Sending…',
+    antispam: 'Please complete the anti-spam check below.',
+    error: 'Something went wrong. Please call or text us at 954-233-0698.',
+    network: 'Network error. Please call or text us at 954-233-0698.',
+  },
+};
 ---
 <Base title="Check Availability | Xpress Entertainment — South Florida Wedding DJs" description="So, you want to know if we're free on your date? Fill out the form and a team member will reach out to see if Xpress Entertainment is available for your celebration.">
 
@@ -23,9 +34,9 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
     <div class="hero-bg"><img src="/images/heroes/check-availability-hero.jpg" alt="Wedding guests enjoying themselves on the dance floor" /></div>
     <Credit variant="overlay" name="Leo Photographer" href="https://leophotographer.com" />
     <div class="wrap">
-      <span class="eyebrow light reveal">Check Xpress Entertainment Availability</span>
-      <h1 class="h-xl reveal d1" style="margin:14px 0 18px;">So, you want to know if we're free on your date? 😏</h1>
-      <p class="lead reveal d2">Want to know if Xpress Entertainment is available? Unfortunately unlike other singles we arent on Tinder. However, you can slide in our DMs or fill out the form on this page to have a team member reach out and see if we are available on your date.</p>
+      <span class="eyebrow light hero-in">Check Xpress Entertainment Availability</span>
+      <h1 class="h-xl hero-in" style="margin:14px 0 18px;">So, you want to know if we're free on your date? 😏</h1>
+      <p class="lead hero-in">Want to know if Xpress Entertainment is available? Unfortunately unlike other singles we arent on Tinder. However, you can slide in our DMs or fill out the form on this page to have a team member reach out and see if we are available on your date.</p>
     </div>
   </header>
 
@@ -34,7 +45,13 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
       <div class="contact-grid">
         <div class="reveal">
           <span class="eyebrow">Check Availability ⬇️</span>
-          <h2 class="h-lg" style="margin:14px 0 30px;">Tell us about your day.</h2>
+          <h2 class="h-lg" style="margin:14px 0 24px;">Tell us about your day.</h2>
+
+          <div class="stepper" aria-hidden="true">
+            <span class="step-dot active"><b>1</b><span class="lbl">Your info</span></span>
+            <span class="step-dot"><b>2</b><span class="lbl">Event</span></span>
+            <span class="step-dot"><b>3</b><span class="lbl">Venue &amp; notes</span></span>
+          </div>
 
           <form id="lead-form" novalidate>
             <!-- honeypot: hidden from humans -->
@@ -42,78 +59,97 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
               <label>Company<input type="text" id="company" name="company" tabindex="-1" autocomplete="off" /></label>
             </div>
 
-            <div class="field-row">
-              <div class="field"><label for="firstName">First Name *</label><input type="text" id="firstName" name="firstName" autocomplete="given-name" required /></div>
-              <div class="field"><label for="lastName">Last Name *</label><input type="text" id="lastName" name="lastName" autocomplete="family-name" required /></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label for="phone">Phone *</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required /></div>
-              <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required /></div>
-            </div>
-
-            <div class="field"><label for="eventType">What type of event are you planning? *</label>
-              <select id="eventType" name="eventType" required>
-                <option value="" selected disabled>Select one</option>
-                <option value="Wedding">Wedding</option>
-                <option value="Corporate Event">Corporate Event</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <!-- shows when "Other" -->
-            <div class="field" id="grp-other" hidden>
-              <label for="eventTypeOther">What type of event? (pick one) *</label>
-              <select id="eventTypeOther" name="eventTypeOther" disabled>
-                <option value="" selected disabled>Select one</option>
-                {eventTypeOther.map((o) => <option value={o}>{o}</option>)}
-              </select>
+            <!-- STEP 1 — Client info -->
+            <div class="form-step" data-step="1">
+              <div class="field-row">
+                <div class="field"><label for="firstName">First Name *</label><input type="text" id="firstName" name="firstName" autocomplete="given-name" required /></div>
+                <div class="field"><label for="lastName">Last Name *</label><input type="text" id="lastName" name="lastName" autocomplete="family-name" required /></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="phone">Phone *</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required /></div>
+                <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required /></div>
+              </div>
+              <div class="field">
+                <label>Preferred language for communication *</label>
+                <div class="radio-group">
+                  <label class="radio"><input type="radio" name="commLanguage" value="English" required /> <span>English</span></label>
+                  <label class="radio"><input type="radio" name="commLanguage" value="Spanish" /> <span>Español</span></label>
+                </div>
+              </div>
             </div>
 
-            <div class="field"><label for="eventDate">Date of event *</label><input type="date" id="eventDate" name="eventDate" required /></div>
+            <!-- STEP 2 — Event info -->
+            <div class="form-step" data-step="2" hidden>
+              <div class="field"><label for="eventType">What type of event are you planning? *</label>
+                <select id="eventType" name="eventType" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option value="Wedding">Wedding</option>
+                  <option value="Corporate Event">Corporate Event</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
 
-            <div class="field-row">
-              <div class="field"><label for="guests">Estimated # of guests *</label><input type="number" min="1" id="guests" name="guests" required /><small class="hint">No final headcount needed — just a ballpark.</small></div>
-              <div class="field"><label for="startTime">Estimated start time *</label><input type="text" id="startTime" name="startTime" placeholder="e.g. 6:00 PM" required /></div>
-            </div>
-            <div class="field-row">
+              <div class="field" id="grp-other" hidden>
+                <label for="eventTypeOther">What type of event? (pick one) *</label>
+                <select id="eventTypeOther" name="eventTypeOther" disabled>
+                  <option value="" selected disabled>Select one</option>
+                  {eventTypeOther.map((o) => <option value={o}>{o}</option>)}
+                </select>
+              </div>
+
+              <div class="field"><label for="eventDate">Date of event *</label><input type="date" id="eventDate" name="eventDate" required /></div>
+
+              <div class="field-row">
+                <div class="field"><label for="guests">Estimated # of guests *</label><input type="number" min="1" id="guests" name="guests" required /><small class="hint">No final headcount needed — just a ballpark.</small></div>
+                <div class="field"><label for="startTime">Estimated start time *</label><input type="text" id="startTime" name="startTime" placeholder="e.g. 6:00 PM" required /></div>
+              </div>
               <div class="field"><label for="endTime">Estimated end time *</label><input type="text" id="endTime" name="endTime" placeholder="e.g. 11:00 PM" required /></div>
-              <div class="field"><label for="venueName">Name of venue *</label><input type="text" id="venueName" name="venueName" required /></div>
-            </div>
-            <div class="field"><label for="venueCity">City of venue *</label><input type="text" id="venueCity" name="venueCity" required /></div>
 
-            <!-- shows when "Wedding" -->
-            <div class="field" id="grp-relation" hidden>
-              <label>Your relation to the wedding *</label>
-              <div class="radio-group">
-                {relations.map((r, i) => (
-                  <label class="radio"><input type="radio" name="relation" value={r} disabled /> <span>{r}</span></label>
-                ))}
+              <!-- shows when "Wedding" -->
+              <div class="field" id="grp-relation" hidden>
+                <label>Your relation to the wedding *</label>
+                <div class="radio-group">
+                  {relations.map((r) => (
+                    <label class="radio"><input type="radio" name="relation" value={r} disabled /> <span>{r}</span></label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- shows once a relation is chosen -->
+              <div id="grp-partners" hidden>
+                <div class="field-row">
+                  <div class="field"><label for="partner1First">Partner 1 — First name *</label><input type="text" id="partner1First" name="partner1First" disabled /></div>
+                  <div class="field"><label for="partner1Last">Partner 1 — Last name *</label><input type="text" id="partner1Last" name="partner1Last" disabled /></div>
+                </div>
+                <div class="field-row">
+                  <div class="field"><label for="partner2First">Partner 2 — First name *</label><input type="text" id="partner2First" name="partner2First" disabled /></div>
+                  <div class="field"><label for="partner2Last">Partner 2 — Last name *</label><input type="text" id="partner2Last" name="partner2Last" disabled /></div>
+                </div>
               </div>
             </div>
 
-            <!-- shows once a relation is chosen -->
-            <div id="grp-partners" hidden>
+            <!-- STEP 3 — Venue & notes -->
+            <div class="form-step" data-step="3" hidden>
               <div class="field-row">
-                <div class="field"><label for="partner1First">Partner 1 — First name *</label><input type="text" id="partner1First" name="partner1First" disabled /></div>
-                <div class="field"><label for="partner1Last">Partner 1 — Last name *</label><input type="text" id="partner1Last" name="partner1Last" disabled /></div>
+                <div class="field"><label for="venueName">Name of venue *</label><input type="text" id="venueName" name="venueName" required /></div>
+                <div class="field"><label for="venueCity">City of venue *</label><input type="text" id="venueCity" name="venueCity" required /></div>
               </div>
-              <div class="field-row">
-                <div class="field"><label for="partner2First">Partner 2 — First name *</label><input type="text" id="partner2First" name="partner2First" disabled /></div>
-                <div class="field"><label for="partner2Last">Partner 2 — Last name *</label><input type="text" id="partner2Last" name="partner2Last" disabled /></div>
-              </div>
+              <div class="field"><label for="notes">Anything else you'd like us to know?</label><textarea id="notes" name="notes" rows="4" placeholder="Vibe, must-play songs, special moments..."></textarea></div>
+
+              <label class="consent">
+                <input type="checkbox" id="smsConsent" name="smsConsent" required />
+                <span>{CONSENT_TEXT}</span>
+              </label>
+
+              {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
             </div>
-
-            <div class="field"><label for="notes">Anything else you'd like us to know?</label><textarea id="notes" name="notes" rows="4" placeholder="Vibe, must-play songs, special moments..."></textarea></div>
-
-            <label class="consent">
-              <input type="checkbox" id="smsConsent" name="smsConsent" required />
-              <span>{CONSENT_TEXT}</span>
-            </label>
-
-            {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
 
             <p id="form-error" class="form-error" hidden></p>
-            <button type="submit" class="btn" style="width:100%; justify-content:center;"><span class="btn-label">Send Inquiry</span> <span class="arrow">↗</span></button>
+            <div class="form-nav">
+              <button type="button" class="btn ghost" data-nav="back" hidden><span>← Back</span></button>
+              <button type="button" class="btn" data-nav="next"><span>Next</span> <span class="arrow">↗</span></button>
+              <button type="submit" class="btn" data-nav="submit" hidden><span class="btn-label">Send Inquiry</span> <span class="arrow">↗</span></button>
+            </div>
             <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">A team member will reach out to confirm availability for your date.</p>
           </form>
 
@@ -144,125 +180,6 @@ const relations = ["I'm A Bride!","I'm a Groom!","I'm a Family Member","I'm a We
   </section>
 
   {TURNSTILE_SITE_KEY && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
-
-  <script is:inline define:vars={{ CONSENT_TEXT, TURNSTILE_SITE_KEY }}>
-    (function () {
-      var form = document.getElementById("lead-form");
-      if (!form) return;
-      var $ = function (id) { return document.getElementById(id); };
-
-      var eventType = $("eventType");
-      var grpOther = $("grp-other");
-      var grpRelation = $("grp-relation");
-      var grpPartners = $("grp-partners");
-      var otherSelect = $("eventTypeOther");
-      var relationRadios = form.querySelectorAll('input[name="relation"]');
-      var partnerInputs = ["partner1First", "partner1Last", "partner2First", "partner2Last"].map($);
-
-      function setGroup(group, fields, show) {
-        group.hidden = !show;
-        fields.forEach(function (el) {
-          el.disabled = !show;
-          if (show) el.setAttribute("required", "required");
-          else { el.removeAttribute("required"); if (el.type !== "radio") el.value = ""; el.checked = false; }
-        });
-      }
-
-      function syncEventType() {
-        var v = eventType.value;
-        setGroup(grpOther, [otherSelect], v === "Other");
-        var isWedding = v === "Wedding";
-        // relation radios
-        grpRelation.hidden = !isWedding;
-        relationRadios.forEach(function (r) {
-          r.disabled = !isWedding;
-          if (isWedding) r.setAttribute("required", "required");
-          else { r.removeAttribute("required"); r.checked = false; }
-        });
-        if (!isWedding) setGroup(grpPartners, partnerInputs, false);
-        else syncRelation();
-      }
-
-      function syncRelation() {
-        var chosen = Array.prototype.some.call(relationRadios, function (r) { return r.checked; });
-        setGroup(grpPartners, partnerInputs, chosen);
-      }
-
-      eventType.addEventListener("change", syncEventType);
-      relationRadios.forEach(function (r) { r.addEventListener("change", syncRelation); });
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var errEl = $("form-error");
-        errEl.hidden = true;
-        if ($("company").value) return; // honeypot tripped
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-
-        var tsToken = "";
-        if (TURNSTILE_SITE_KEY) {
-          var tsEl = form.querySelector('[name="cf-turnstile-response"]');
-          tsToken = tsEl ? tsEl.value : "";
-          if (!tsToken) {
-            errEl.textContent = "Please complete the anti-spam check below.";
-            errEl.hidden = false;
-            return;
-          }
-        }
-
-        var btn = form.querySelector('button[type="submit"]');
-        var label = form.querySelector(".btn-label");
-        var orig = label.textContent;
-        btn.disabled = true; label.textContent = "Sending…";
-
-        var payload = {
-          firstName: $("firstName").value.trim(),
-          lastName: $("lastName").value.trim(),
-          phone: $("phone").value.trim(),
-          email: $("email").value.trim(),
-          eventType: eventType.value,
-          eventTypeOther: otherSelect.disabled ? "" : otherSelect.value,
-          eventDate: $("eventDate").value,
-          guests: $("guests").value,
-          startTime: $("startTime").value.trim(),
-          endTime: $("endTime").value.trim(),
-          venueName: $("venueName").value.trim(),
-          venueCity: $("venueCity").value.trim(),
-          relation: (form.querySelector('input[name="relation"]:checked') || {}).value || "",
-          partner1First: partnerInputs[0].value.trim(),
-          partner1Last: partnerInputs[1].value.trim(),
-          partner2First: partnerInputs[2].value.trim(),
-          partner2Last: partnerInputs[3].value.trim(),
-          notes: $("notes").value.trim(),
-          smsConsent: $("smsConsent").checked,
-          consentText: CONSENT_TEXT,
-          turnstileToken: tsToken,
-        };
-
-        fetch("/api/lead", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        })
-          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
-          .then(function (res) {
-            if (res.ok) {
-              form.hidden = true;
-              $("form-success").hidden = false;
-              $("form-success").scrollIntoView({ behavior: "smooth", block: "center" });
-            } else {
-              errEl.textContent = (res.j && res.j.error) || "Something went wrong. Please call or text us at 954-233-0698.";
-              errEl.hidden = false;
-              btn.disabled = false; label.textContent = orig;
-              if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
-            }
-          })
-          .catch(function () {
-            errEl.textContent = "Network error. Please call or text us at 954-233-0698.";
-            errEl.hidden = false;
-            btn.disabled = false; label.textContent = orig;
-            if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
-          });
-      });
-    })();
-  </script>
+  <script is:inline define:vars={{ leadCfg }}>window.__leadCfg = leadCfg;</script>
+  <script is:inline src="/js/lead-form.js"></script>
 </Base>

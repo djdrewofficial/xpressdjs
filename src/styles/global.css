@@ -335,6 +335,17 @@ section { position: relative; }
 .field input:disabled, .field select:disabled { opacity: 0.5; }
 .field .hint { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--muted); letter-spacing: 0; text-transform: none; font-weight: 400; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+/* Multi-step lead form */
+.form-step[hidden] { display: none; }
+.stepper { display: flex; gap: 8px; margin-bottom: 26px; }
+.stepper .step-dot { flex: 1; display: flex; align-items: center; gap: 9px; font-size: 0.82rem; color: var(--muted); padding: 10px 12px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; background: rgba(255,255,255,0.03); transition: border-color 0.25s var(--ease), color 0.25s var(--ease); }
+.stepper .step-dot b { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.14); color: #fff; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; flex: none; transition: background 0.25s var(--ease); }
+.stepper .step-dot.active { border-color: var(--red); color: #fff; }
+.stepper .step-dot.active b { background: var(--red); }
+.stepper .step-dot.done b { background: var(--purple); }
+.form-nav { display: flex; gap: 12px; margin-top: 6px; }
+.form-nav .btn { flex: 1; justify-content: center; }
+@media (max-width: 520px) { .stepper .step-dot .lbl { display: none; } .stepper .step-dot { justify-content: center; padding: 10px; } }
 @media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
 .radio-group { display: flex; flex-direction: column; gap: 10px; }
 .radio { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.95rem; color: #fff; }

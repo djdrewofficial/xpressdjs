@@ -63,6 +63,7 @@ export async function onRequestPost({ request, env }) {
     lastName: str(data.lastName),
     email: str(data.email),
     phone: str(data.phone),
+    commLanguage: str(data.commLanguage),
     eventType: str(data.eventType),
     eventTypeOther: str(data.eventTypeOther),
     eventDate: str(data.eventDate),
