@@ -32,14 +32,14 @@ const articleSchema = {
   <header class="hero" style="min-height:58svh;">
     <div class="hero-bg"><img src={d.image} alt={d.title} /></div>
     <div class="wrap">
-      <span class="eyebrow light reveal">{d.tag} · {fmt}</span>
-      <h1 class="h-xl reveal d1" style="margin-top:16px;">{d.title}</h1>
+      <span class="eyebrow light hero-in">{d.tag} · {fmt}</span>
+      <h1 class="h-xl hero-in" style="margin-top:16px;">{d.title}</h1>
     </div>
   </header>
 
   <article class="pad bg-ink">
     <div class="wrap" style="max-width:760px;">
-      <div class="post-body reveal"><Content /></div>
+      <div class="post-body"><Content /></div>
       <div style="margin-top:54px;"><a href="/wedding-blog" class="textlink">← Back to the blog</a></div>
     </div>
   </article>

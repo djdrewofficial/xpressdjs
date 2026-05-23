@@ -64,7 +64,7 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
     reveals.forEach(function (r) { io.observe(r); });
   } else {
     reveals.forEach(function (r) { r.classList.add("in"); });
