@@ -11,6 +11,8 @@
 /check-avalibility-confirmation/                      /check-availability/                            301
 /privacy/                                             /privacy-policy/                                301
 /djdelfibiedma/                                       /services/djs/                                  301
+/djatomic/                                            /services/djs/                                  301
+/es/djatomic/                                         /es/services/djs/                               301
 
 # --- Blog posts now under /wedding-blog/ (already on the new site) ---
 /how-to-choose-the-perfect-dj-for-your-wedding/       /wedding-blog/how-to-choose-the-perfect-dj-for-your-wedding/  301

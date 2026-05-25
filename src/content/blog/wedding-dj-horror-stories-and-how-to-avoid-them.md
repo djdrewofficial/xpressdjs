@@ -3,7 +3,7 @@ title: Wedding DJ Horror Stories and How to Avoid Them
 description: Real wedding DJ horror stories — unprepared DJs, wrong songs, and DJs who can't read the crowd — plus practical tips on how to avoid each pitfall.
 date: 2024-10-09
 tag: Wedding Tips
-image: /images/heroes/dj-atomic-hero.jpg
+image: /images/vibing-on-the-dance-floor.jpg
 author: Xpress Entertainment
 ---
 
