@@ -6,9 +6,17 @@ const SITE = 'https://xpressdjs.com';
 // Unlisted/private pages to keep out of the sitemap.
 const exclude = new Set(['/photobooth-templates']);
 
+// Indexable English-only pages (no Spanish translation) — emitted without
+// hreflang alternates so we never point search engines at a missing /es page.
+const enOnly = ['/lgbtq-wedding-dj-south-florida'];
+
 export const GET: APIRoute = () => {
   const routes = Array.from(translated).filter((r) => !exclude.has(r));
   const blocks: string[] = [];
+
+  for (const r of enOnly) {
+    blocks.push(`<url><loc>${SITE + r}</loc></url>`);
+  }
 
   for (const r of routes) {
     const en = SITE + r;
