@@ -370,6 +370,8 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); p
 .foot-col h5 { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); margin-bottom: 16px; }
 .foot-col a { display: block; color: var(--muted); margin-bottom: 10px; transition: color 0.3s; font-size: 0.95rem; }
 .foot-col a:hover { color: #fff; }
+.foot-welcome-row { max-width: var(--maxw); margin: 26px auto 0; text-align: center; }
+.foot-welcome { display: inline-block; height: 40px; width: auto; opacity: 0.95; }
 .foot-bottom { max-width: var(--maxw); margin: 24px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 0.82rem; }
 
 /* ---------- Scroll reveal ---------- */

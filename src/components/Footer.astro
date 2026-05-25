@@ -9,7 +9,6 @@ const f = t(locale).foot;
     <div class="foot-col">
       <img class="brand-logo foot-logo" src="/logo.svg" alt="Xpress Entertainment" width="180" height="74" />
       <p style="color:var(--muted); max-width:34ch;">{f.tagline}</p>
-      <img class="foot-welcome" src="/images/all-are-welcome-here-badge.png" alt="All are welcome here — Xpress Entertainment is a proud, inclusive wedding vendor that warmly serves all LGBTQ couples." width="200" height="44" loading="lazy" style="margin-top:18px; display:block;" />
     </div>
     <div class="foot-col">
       <h5>{f.explore}</h5>
@@ -35,6 +34,9 @@ const f = t(locale).foot;
       <a href={L('/check-availability')}>{f.checkAvailability}</a>
       <a href="https://www.instagram.com/xpressdjs" target="_blank" rel="noopener">Instagram</a>
     </div>
+  </div>
+  <div class="foot-welcome-row">
+    <img class="foot-welcome" src="/images/all-are-welcome-here-badge.png" alt="All are welcome here — Xpress Entertainment is a proud, inclusive wedding vendor that warmly serves all LGBTQ couples." width="200" height="44" loading="lazy" />
   </div>
   <div class="foot-bottom">
     <span>© <span data-year>2026</span> Xpress Entertainment Corp. {f.rightsSuffix}</span>
