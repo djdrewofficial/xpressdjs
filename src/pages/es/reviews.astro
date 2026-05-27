@@ -2,26 +2,40 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
+import VideoLightbox from '../../components/VideoLightbox.astro';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
-// Reseñas de marcador de posición. Reemplaza con reseñas reales cuando las recopilemos.
 const reviews = [
   { quote: 'Xpress Entertainment hizo que nuestra boda se sintiera como una verdadera fiesta. Drew leyó el ambiente perfectamente y mantuvo la pista llena del primer al último tema.', name: 'Sofia y Mateo', event: 'Boda · Miami', source: 'Google' },
   { quote: 'Se encargaron de cada transición, cada anuncio, cada pequeño detalle, así nosotros pudimos disfrutar el momento. Nuestros invitados todavía nos hablan de la música.', name: 'Emma y James', event: 'Boda · Fort Lauderdale', source: 'The Knot' },
   { quote: 'Bilingües, profesionales y realmente divertidos. Nuestros papás de Colombia se sintieron incluidos toda la noche. Vale cada centavo.', name: 'Camila y Daniel', event: 'Boda · Coral Gables', source: 'WeddingWire' },
-  { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Google' },
+  { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Zola' },
+];
+
+const platforms = [
+  { name: 'Google',       short: 'G',   rating: '5.0', count: '120+ reseñas', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'WeddingWire',  short: 'WW',  rating: '5.0', count: '90+ reseñas',  url: 'https://www.weddingwire.com/biz/xpress-entertainment-corp',           accent: '#E91E63' },
+  { name: 'The Knot',     short: 'TK',  rating: '5.0', count: '80+ reseñas',  url: 'https://www.theknot.com/marketplace/xpress-entertainment-corp',       accent: '#2E2E5C' },
+  { name: 'Zola',         short: 'Z',   rating: '5.0', count: '40+ reseñas',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+];
+
+const vlogs = [
+  { id: 'IfiDx2t5OZI', label: 'Boda en vivo · Vista Lago Ballroom' },
+  { id: '8jkro4IHl2g', label: 'Pista de baile llena' },
+  { id: '10994qjwqx8', label: 'Energía de fiesta de bodas' },
+  { id: 'vub-gogjGhQ', label: 'Primer baile y entrada triunfal' },
 ];
 ---
 <Base
   title="Reseñas | Xpress Entertainment — Parejas Reales, Bodas Reales"
-  description="Mira lo que las parejas dicen de Xpress Entertainment. Reseñas reales de bodas en Miami, Fort Lauderdale y Palm Beach.">
+  description="Mira lo que las parejas dicen de Xpress Entertainment en Google, WeddingWire, The Knot y Zola, y disfruta los videos reales de las bodas que hicimos vibrar en el sur de Florida.">
 
   <Hero
     size="mid"
-    eyebrow="Reseñas"
+    eyebrow="Reseñas y Prueba Social"
     titleHtml={`La pista de baile<br><span class="serif-accent" style="font-style:italic">lo dijo mejor.</span>`}
-    sub="Cientos de parejas nos han confiado su día más importante. Esto es lo que dijeron cuando sus invitados se fueron a casa con los pies cansados y la sonrisa enorme."
+    sub="Cientos de parejas nos han confiado su día más importante. Lee lo que dijeron y luego mira las fiestas de las que están hablando."
     image="/images/heroes/wedding-blog-hero.jpg"
     alt="Invitados bailando en la boda bajo luces de cadena"
     creditName="Romina Raggio Photography"
@@ -46,19 +60,69 @@ const reviews = [
   </section>
 
   <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">⭐ Reseñas verificadas</span><h2 class="h-xl">Léenos en cada plataforma.</h2><p class="lead">Estamos orgullosos de cada pista de baile. Mira las reseñas verificadas de parejas en la plataforma que más te guste.</p></div>
+
+      <div class="platforms-grid">
+        {platforms.map((p, i) => (
+          <a href={p.url} target="_blank" rel="noopener noreferrer" class={`platform-card reveal ${['','d1','d2','d3'][i] || ''}`} style={`--platform-accent:${p.accent};`}>
+            <span class="platform-mark">{p.short}</span>
+            <span class="platform-name">{p.name}</span>
+            <span class="platform-stars" aria-label={`${p.rating} estrellas`}>★★★★★</span>
+            <span class="platform-rating">{p.rating} · {p.count}</span>
+            <span class="platform-cta">Ver en {p.name} <span class="arrow">↗</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Wedding Vlog</span><h2 class="h-xl">Dale play. Mira la fiesta.</h2><p class="lead">Bodas reales, pistas de baile reales, momentos reales. El tipo de noche que cada pareja espera tener.</p></div>
+      <div class="vlog-grid">
+        {vlogs.map((v, i) => (
+          <VideoLightbox compact id={v.id} label={v.label} class={['','d1','d2','d3'][i] || ''} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
     <div class="wrap" style="max-width:720px; text-align:center;">
       <div class="reveal">
-        <span class="eyebrow light">⭐ Reseñas verificadas</span>
-        <h2 class="h-lg" style="margin:14px 0 16px;">Lee todas las reseñas.</h2>
-        <p class="lead">Estamos orgullosos de cada pista de baile que hemos llenado. Lee todas nuestras reseñas en Google, The Knot y WeddingWire, y luego vuelve y reserva tu fecha.</p>
-        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
-          <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" class="btn"><span>Ver Reseñas de Google</span> <span class="arrow">↗</span></a>
-          <a href={L('/check-availability')} class="btn ghost"><span>Consulta tu Fecha</span></a>
+        <span class="eyebrow light">¿Trabajaste con nosotros recientemente?</span>
+        <h2 class="h-lg" style="margin:14px 0 16px;">Déjanos una reseña.</h2>
+        <p class="lead">Si te ayudamos a hacer tu día inolvidable, una reseña rápida en Google, WeddingWire, The Knot o Zola hace muchísimo. Mil gracias 💛</p>
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+          {platforms.map((p) => (
+            <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn ghost"><span>{p.name}</span> <span class="arrow">↗</span></a>
+          ))}
         </div>
-        <p style="margin-top:22px; font-size:0.85rem; color:var(--muted);">¿Trabajaste con nosotros recientemente? <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" style="color:var(--lavender); text-decoration:underline;">Déjanos una reseña</a> — significa muchísimo.</p>
       </div>
     </div>
   </section>
 
   <CTA eyebrow="💌 ¿Lista para ser la próxima pareja feliz?" titleHtml={`Vamos a llenar<br>tu pista de baile.`} text="Consulta nuestra disponibilidad para tu fecha y empieza a planear la fiesta que tus invitados recordarán." ctaText="Consulta tu Fecha" ctaHref={L('/check-availability')} />
 </Base>
+
+<style>
+  .platforms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 28px; }
+  @media (max-width: 900px) { .platforms-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .platforms-grid { grid-template-columns: 1fr; } }
+
+  .platform-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 28px 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: #fff; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; }
+  .platform-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at top, var(--platform-accent, #fff) 0%, transparent 60%); opacity: 0.10; transition: opacity 0.25s ease; }
+  .platform-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.22); }
+  .platform-card:hover::before { opacity: 0.18; }
+  .platform-mark { width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--platform-accent, #fff); color: #fff; font-family: var(--serif); font-weight: 700; font-size: 1.3rem; box-shadow: 0 10px 24px rgba(0,0,0,0.35); margin-bottom: 6px; }
+  .platform-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
+  .platform-stars { color: #ffd166; letter-spacing: 0.1em; font-size: 1.05rem; }
+  .platform-rating { color: var(--lavender); font-size: 0.85rem; letter-spacing: 0.05em; }
+  .platform-cta { margin-top: 8px; font-size: 0.92rem; color: #fff; opacity: 0.92; }
+  .platform-cta .arrow { display: inline-block; margin-left: 4px; transition: transform 0.2s; }
+  .platform-card:hover .platform-cta .arrow { transform: translate(3px, -3px); }
+
+  .vlog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 28px; }
+  @media (max-width: 640px) { .vlog-grid { grid-template-columns: 1fr; } }
+</style>
