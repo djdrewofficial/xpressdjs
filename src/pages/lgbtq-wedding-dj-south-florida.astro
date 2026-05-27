@@ -2,9 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import Ph from '../components/Ph.astro';
+import Credit from '../components/Credit.astro';
 import FaqSchema from '../components/FaqSchema.astro';
-import { phUri } from '../lib/ph';
 
 const why = [
   ['🏳️‍🌈 All Are Welcome Here', "We’re not just okay with it. We’re genuinely happy to be there. Every couple and every guest is welcome at our events, and that’s been true since day one. If you want an inclusive wedding DJ in Miami or anywhere nearby, you’ve found one."],
@@ -37,8 +36,10 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
     eyebrow="LGBTQ Wedding DJ · South Florida"
     titleHtml={`Love is love.<br><span class="serif-accent" style="font-style:italic">Let’s celebrate it.</span>`}
     sub="We’re a wedding DJ company that celebrates every couple, all over South Florida. If you’re getting married in Miami, Fort Lauderdale, or West Palm Beach, we’d love to be the reason your dance floor stays full all night."
-    image={phUri(2560, 1440, 'LGBTQ wedding celebration — hero', 'Two grooms / two brides celebrating on a packed dance floor')}
-    alt="LGBTQ wedding DJ in South Florida, two grooms celebrating on the dance floor"
+    image="/images/lgbtq-first-dance-clouds-cold-sparks.jpg"
+    alt="LGBTQ+ newlyweds celebrating their first dance on the clouds and with cold spark machines"
+    creditName="Amarena Productions"
+    creditHref="https://amarenaproductions.com/"
     ctaText="Check Your Date"
   />
 
@@ -64,7 +65,10 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Same-sex couple first dance" note="Two grooms or two brides sharing a first dance" /></div>
+        <figure class="reveal" style="margin:0;">
+          <div class="media"><img src="/images/lesbian-couple-first-dance.jpg" alt="Lesbian couple sharing their first dance during their wedding" /></div>
+          <Credit variant="caption" name="La Vie Studios" href="http://www.laviestudios.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">A wedding that feels like you</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Your day, your way.</h2>
@@ -91,7 +95,10 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="LGBTQ wedding dance floor" note="Packed, joyful dance floor at an LGBTQ wedding" /></div>
+        <figure class="reveal" style="margin:0;">
+          <div class="media"><img src="/images/gay-couple-dance-floor.jpg" alt="Gay couple enjoying their wedding on the dance floor" /></div>
+          <Credit variant="caption" name="Amarena Productions" href="https://amarenaproductions.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">Bilingual · Inclusive · A whole lot of fun</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Everyone on the dance floor.</h2>

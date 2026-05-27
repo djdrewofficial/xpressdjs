@@ -16,6 +16,9 @@ export const imageCredits: Record<string, Credit> = {
   '/images/couple-grand-entrance.jpg': { name: 'Scribbled Moments Photography', href: 'https://www.scribbledmomentsphotography.com/' },
   '/images/heroes/about-hero.jpg': { name: 'Cassandra Trcka Photography', href: 'https://www.cassandratrckaphotography.com/' },
   '/images/drew-newlyweds-dance-floor.jpg': { name: 'E + B Photography and Film Co.', href: 'https://www.ebphotographyandfilmco.com/' },
+  '/images/lgbtq-first-dance-clouds-cold-sparks.jpg': { name: 'Amarena Productions', href: 'https://amarenaproductions.com/' },
+  '/images/lesbian-couple-first-dance.jpg': { name: 'La Vie Studios', href: 'http://www.laviestudios.com/' },
+  '/images/gay-couple-dance-floor.jpg': { name: 'Amarena Productions', href: 'https://amarenaproductions.com/' },
 };
 
 export function creditFor(src?: string): Credit | undefined {
