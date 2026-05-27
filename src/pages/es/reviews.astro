@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+// Reseñas de marcador de posición. Reemplaza con reseñas reales cuando las recopilemos.
+const reviews = [
+  { quote: 'Xpress Entertainment hizo que nuestra boda se sintiera como una verdadera fiesta. Drew leyó el ambiente perfectamente y mantuvo la pista llena del primer al último tema.', name: 'Sofia y Mateo', event: 'Boda · Miami', source: 'Google' },
+  { quote: 'Se encargaron de cada transición, cada anuncio, cada pequeño detalle, así nosotros pudimos disfrutar el momento. Nuestros invitados todavía nos hablan de la música.', name: 'Emma y James', event: 'Boda · Fort Lauderdale', source: 'The Knot' },
+  { quote: 'Bilingües, profesionales y realmente divertidos. Nuestros papás de Colombia se sintieron incluidos toda la noche. Vale cada centavo.', name: 'Camila y Daniel', event: 'Boda · Coral Gables', source: 'WeddingWire' },
+  { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Google' },
+];
+---
+<Base
+  title="Reseñas | Xpress Entertainment — Parejas Reales, Bodas Reales"
+  description="Mira lo que las parejas dicen de Xpress Entertainment. Reseñas reales de bodas en Miami, Fort Lauderdale y Palm Beach.">
+
+  <Hero
+    size="mid"
+    eyebrow="Reseñas"
+    titleHtml={`La pista de baile<br><span class="serif-accent" style="font-style:italic">lo dijo mejor.</span>`}
+    sub="Cientos de parejas nos han confiado su día más importante. Esto es lo que dijeron cuando sus invitados se fueron a casa con los pies cansados y la sonrisa enorme."
+    image="/images/heroes/wedding-blog-hero.jpg"
+    alt="Invitados bailando en la boda bajo luces de cadena"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+    ctaText="Consulta tu Fecha"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">De bodas reales</span><h2 class="h-xl">Lo que dicen las parejas.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {reviews.map((r, i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <p style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#fff; line-height:1.5;">"{r.quote}"</p>
+            <p style="margin-top:18px; color:var(--lavender); font-weight:600;">{r.name}</p>
+            <p style="color:var(--muted); font-size:0.85rem; letter-spacing:0.04em;">{r.event} · vía {r.source}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:720px; text-align:center;">
+      <div class="reveal">
+        <span class="eyebrow light">⭐ Reseñas verificadas</span>
+        <h2 class="h-lg" style="margin:14px 0 16px;">Lee todas las reseñas.</h2>
+        <p class="lead">Estamos orgullosos de cada pista de baile que hemos llenado. Lee todas nuestras reseñas en Google, The Knot y WeddingWire, y luego vuelve y reserva tu fecha.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+          <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" class="btn"><span>Ver Reseñas de Google</span> <span class="arrow">↗</span></a>
+          <a href={L('/check-availability')} class="btn ghost"><span>Consulta tu Fecha</span></a>
+        </div>
+        <p style="margin-top:22px; font-size:0.85rem; color:var(--muted);">¿Trabajaste con nosotros recientemente? <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" style="color:var(--lavender); text-decoration:underline;">Déjanos una reseña</a> — significa muchísimo.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="💌 ¿Lista para ser la próxima pareja feliz?" titleHtml={`Vamos a llenar<br>tu pista de baile.`} text="Consulta nuestra disponibilidad para tu fecha y empieza a planear la fiesta que tus invitados recordarán." ctaText="Consulta tu Fecha" ctaHref={L('/check-availability')} />
+</Base>

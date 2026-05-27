@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+
+// Placeholder testimonials. Swap with real reviews as we collect them.
+// Each entry: { quote, name, event, source }
+const reviews = [
+  { quote: "Xpress Entertainment made our wedding feel like a real party. Drew read the room perfectly and kept the dance floor packed from the first song to the last.", name: 'Sofia & Mateo', event: 'Wedding · Miami', source: 'Google' },
+  { quote: 'They handled every transition, every announcement, every little detail so we could just be present. Our guests are still texting us about the music.', name: 'Emma & James', event: 'Wedding · Fort Lauderdale', source: 'The Knot' },
+  { quote: 'Bilingual, professional, and genuinely fun. Our parents from Colombia felt completely included all night. Worth every penny.', name: 'Camila & Daniel', event: 'Wedding · Coral Gables', source: 'WeddingWire' },
+  { quote: "We added cold sparks and dancing on the clouds and it was unreal. The photos came out incredible and the vibe was next-level.", name: 'Ashley & Marcus', event: 'Wedding · Palm Beach', source: 'Google' },
+];
+---
+<Base
+  title="Reviews | Xpress Entertainment — Real Couples, Real Weddings"
+  description="See what couples are saying about Xpress Entertainment. Real reviews from real weddings across Miami, Fort Lauderdale, and Palm Beach.">
+
+  <Hero
+    size="mid"
+    eyebrow="Reviews"
+    titleHtml={`The dance floor<br><span class="serif-accent" style="font-style:italic">said it best.</span>`}
+    sub="Hundreds of couples have trusted us with their biggest day. Here's what they had to say after their guests went home with sore feet and big smiles."
+    image="/images/heroes/wedding-blog-hero.jpg"
+    alt="Wedding guests dancing under string lights"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+    ctaText="Check Your Date"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">From real weddings</span><h2 class="h-xl">What couples are saying.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {reviews.map((r, i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <p style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#fff; line-height:1.5;">"{r.quote}"</p>
+            <p style="margin-top:18px; color:var(--lavender); font-weight:600;">{r.name}</p>
+            <p style="color:var(--muted); font-size:0.85rem; letter-spacing:0.04em;">{r.event} · via {r.source}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:720px; text-align:center;">
+      <div class="reveal">
+        <span class="eyebrow light">⭐ Verified reviews</span>
+        <h2 class="h-lg" style="margin:14px 0 16px;">Read every review.</h2>
+        <p class="lead">We're proud of every dance floor we've packed. Read all our reviews on Google, The Knot, and WeddingWire — then come back and lock in your date.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+          <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" class="btn"><span>Read Google Reviews</span> <span class="arrow">↗</span></a>
+          <a href="/check-availability" class="btn ghost"><span>Check Your Date</span></a>
+        </div>
+        <p style="margin-top:22px; font-size:0.85rem; color:var(--muted);">Recently worked with us? <a href="https://g.page/r/xpressdjs/review" target="_blank" rel="noopener noreferrer" style="color:var(--lavender); text-decoration:underline;">Leave us a review</a> — it means the world.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTA eyebrow="💌 Ready to be the next happy couple?" titleHtml={`Let's pack<br>your dance floor.`} text="Check our availability for your date and start planning the party your guests will remember." />
+</Base>
