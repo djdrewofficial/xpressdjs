@@ -2,8 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import Ph from '../components/Ph.astro';
-import { phUri } from '../lib/ph';
+import Credit from '../components/Credit.astro';
 
 const why = [
   ['🎤 Bilingual DJs & MCs', 'We speak both English and Spanish — so everyone feels included, no matter their background.'],
@@ -18,8 +17,10 @@ const why = [
     eyebrow="Miami Wedding DJ"
     titleHtml={`High-Energy. Bilingual.<br><span class="serif-accent" style="font-style:italic">Always On Point.</span>`}
     sub="Looking for a trusted Miami Wedding DJ to turn your big day into an unforgettable celebration? Xpress Entertainment brings the music, energy, and professionalism your wedding needs — from the ceremony to the last dance."
-    image={phUri(2560, 1440, 'Miami wedding DJ — hero', 'Miami wedding / skyline + dance floor')}
-    alt="Miami wedding DJ"
+    image="/images/heroes/check-availability-hero.jpg"
+    alt="Miami wedding guests on a packed dance floor"
+    creditName="Leo Photographer"
+    creditHref="https://leophotographer.com"
     ctaText="Check Your Date"
   />
 
@@ -45,7 +46,10 @@ const why = [
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Miami wedding venue" note="Briza on the Bay / Miami waterfront venue" /></div>
+        <figure class="reveal" style="margin:0;">
+          <div class="media"><img src="/images/drew-newlyweds-dance-floor.jpg" alt="Newlyweds dancing with their guests at a Miami wedding" /></div>
+          <Credit variant="caption" name="E + B Photography and Film Co." href="https://www.ebphotographyandfilmco.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">Why Miami venues love working with us</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">(And why you will too.)</h2>

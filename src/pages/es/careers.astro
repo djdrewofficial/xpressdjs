@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import { phUri } from '../../lib/ph';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 ---
@@ -13,8 +12,10 @@ const L = (p) => localize(p, 'es');
     eyebrow="Trabaja con nosotros"
     titleHtml={`Te pagamos por<br>divertirte.`}
     sub="Xpress Entertainment es un grupo de DJs y artistas independientes que se han unido para formar algo especial. Creamos las experiencias más extravagantes para nuestros clientes y disfrutamos cada momento. Si esto suena como tú, nos encantaría conocerte."
-    image={phUri(2560, 1440, 'Careers — hero', 'Team / behind-the-scenes at events')}
-    alt="Equipo de Xpress Entertainment"
+    image="/images/heroes/about-hero.jpg"
+    alt="El equipo de Xpress Entertainment detrás de escenas en una boda"
+    creditName="Cassandra Trcka Photography"
+    creditHref="https://www.cassandratrckaphotography.com/"
     ctaText="Postúlate Ahora"
     ctaHref={L('/check-availability')}
   />

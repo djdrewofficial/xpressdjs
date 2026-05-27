@@ -2,8 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
-import { phUri } from '../../lib/ph';
+import Credit from '../../components/Credit.astro';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -20,7 +19,9 @@ const why = [
     eyebrow="DJ de Bodas en Miami"
     titleHtml={`Lleno de Energía. Bilingüe.<br><span class="serif-accent" style="font-style:italic">Siempre al Punto.</span>`}
     sub="¿Buscas un DJ de bodas de confianza en Miami para convertir tu gran día en una celebración inolvidable? Xpress Entertainment aporta la música, la energía y la profesionalidad que tu boda necesita — desde la ceremonia hasta el último baile."
-    image={phUri(2560, 1440, 'DJ de bodas en Miami — hero', 'Boda en Miami / horizonte + pista de baile')}
+    image="/images/heroes/check-availability-hero.jpg"
+    creditName="Leo Photographer"
+    creditHref="https://leophotographer.com"
     alt="DJ de bodas en Miami"
     ctaText="Consulta tu Fecha"
     ctaHref={L('/check-availability')}
@@ -48,7 +49,10 @@ const why = [
   <section class="pad bg-ink">
     <div class="wrap">
       <div class="split">
-        <div class="media reveal"><Ph w={1200} h={900} label="Lugar de bodas en Miami" note="Briza on the Bay / lugar frente al mar en Miami" /></div>
+        <figure class="reveal" style="margin:0;">
+          <div class="media"><img src="/images/drew-newlyweds-dance-floor.jpg" alt="Recién casados bailando con sus invitados en una boda en Miami" /></div>
+          <Credit variant="caption" name="E + B Photography and Film Co." href="https://www.ebphotographyandfilmco.com/" />
+        </figure>
         <div class="reveal d1">
           <span class="eyebrow">Por qué a los lugares de Miami les encanta trabajar con nosotros</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">(Y por qué a ti también te encantará.)</h2>

@@ -2,7 +2,6 @@
 import Base from '../../../layouts/Base.astro';
 import Hero from '../../../components/Hero.astro';
 import CTA from '../../../components/CTA.astro';
-import { phUri } from '../../../lib/ph';
 import { localize } from '../../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -21,8 +20,10 @@ const vibo = ['Organiza y gestiona los detalles de la boda con eficiencia', 'Con
     eyebrow="Fort Lauderdale, FL"
     titleHtml={`Servicios de DJ de Bodas<br>en Fort Lauderdale`}
     sub="La banda sonora de la boda de tus sueños empieza aquí. Ya sea que organices una ceremonia íntima o una gran celebración, nuestros DJs de bodas de Fort Lauderdale aportan la pasión y la experiencia necesarias para mantener a tus invitados bailando toda la noche."
-    image={phUri(2560, 1440, 'DJ de bodas en Fort Lauderdale — hero', 'Boda frente al mar en Fort Lauderdale / pista de baile')}
-    alt="Boda en Fort Lauderdale"
+    image="/images/heroes/wedding-blog-hero.jpg"
+    alt="Pista de baile de boda en el sur de Florida"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
     ctaText="Consulta Disponibilidad"
     ctaHref={L('/check-availability')}
   />

@@ -1,11 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import Ph from '../components/Ph.astro';
+import Credit from '../components/Credit.astro';
 ---
 <Base title="Privacy Policy | Xpress Entertainment" description="Xpress Entertainment's privacy policy. How we collect, store, and protect your information, our SMS opt-in/opt-out terms, and how we use the Vibo planning app.">
 
   <header class="hero" style="min-height:46svh;">
-    <div class="hero-bg"><Ph w={2560} h={1440} label="Privacy — hero" note="Subtle wedding background" /></div>
+    <div class="hero-bg">
+      <picture>
+        <source type="image/webp" srcset="/images/heroes/dj-services-hero-1280.webp 1280w, /images/heroes/dj-services-hero.webp 2560w" sizes="100vw" />
+        <img src="/images/heroes/dj-services-hero.jpg" alt="Wedding dance floor background" decoding="async" />
+      </picture>
+    </div>
+    <Credit variant="overlay" name="Romina Raggio Photography" href="https://rominaraggio.com/" />
     <div class="wrap">
       <span class="eyebrow light reveal">Legal</span>
       <h1 class="h-xl reveal d1" style="margin-top:14px;">Privacy Policy</h1>

@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import { phUri } from '../../lib/ph';
 
 const why = [
   ['Experienced DJs', 'With over 8 years of experience in the wedding industry, we know what it takes to create a memorable wedding reception.'],
@@ -19,8 +18,10 @@ const vibo = ['Organize and manage wedding details efficiently', 'Set up your we
     eyebrow="Fort Lauderdale, FL"
     titleHtml={`Fort Lauderdale<br>Wedding DJ Services`}
     sub="Your Dream Wedding Soundtrack Starts Here. Whether you’re hosting an intimate ceremony or a grand celebration, our Fort Lauderdale wedding DJs bring the passion and expertise needed to keep your guests dancing all night long."
-    image={phUri(2560, 1440, 'Fort Lauderdale wedding DJ — hero', 'Fort Lauderdale waterfront wedding / dance floor')}
-    alt="Fort Lauderdale wedding"
+    image="/images/heroes/wedding-blog-hero.jpg"
+    alt="Wedding dance floor in South Florida"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
     ctaText="Check Availability"
   />
 
