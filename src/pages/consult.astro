@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Book a Consult | Xpress Entertainment" description="Book a quick consult with the Xpress Entertainment team to talk through your wedding or event. Pick a time that works for you below.">
+
+  <section class="pad bg-ink" style="padding-top:130px;">
+    <div class="wrap">
+      <div class="sec-head reveal" style="max-width:760px;">
+        <span class="eyebrow">Book a Consult</span>
+        <h1 class="h-xl">Let's chat about your day.</h1>
+        <p class="lead">Pick a time below and we'll hop on a quick consult to talk through your wedding or event — your vision, your vibe, and how Xpress Entertainment can make it unforgettable.</p>
+      </div>
+      <div class="booking-embed reveal">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/VusY7T1D0DLoYTQ1uNJ5" style="width:100%; border:none; overflow:hidden; min-height:780px;" scrolling="no" id="VusY7T1D0DLoYTQ1uNJ5_1779909572365"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</Base>
+
+<style>
+  .booking-embed { margin-top: 30px; border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,0.35); }
+  .booking-embed iframe { display: block; width: 100%; border: 0; }
+</style>
