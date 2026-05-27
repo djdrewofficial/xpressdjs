@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+
+const links = [
+  { label: 'Book a Creative Planning Meeting', href: '/drewplanning',                          emoji: '📅', primary: true },
+  { label: 'Check Availability',                 href: '/check-availability',                  emoji: '💍' },
+  { label: 'About Drew Segura',                  href: '/dj-drew-segura',                      emoji: '🎧' },
+  { label: 'Xpress Entertainment',               href: '/',                                    emoji: '✨' },
+  { label: 'View Pricing',                       href: '/pricing',                             emoji: '💲' },
+  { label: 'Wedding Blog',                       href: '/wedding-blog',                        emoji: '✍️' },
+  { label: 'Call or Text · 954 · 233 · 0698',    href: 'tel:9542330698',                       emoji: '📲' },
+  { label: 'Email · drew@xpressdjs.com',         href: 'mailto:drew@xpressdjs.com',            emoji: '✉️' },
+];
+
+const socials = [
+  { label: 'Instagram',  href: 'https://instagram.com/djdrewofficial' },
+  { label: 'TikTok',     href: 'https://tiktok.com/@djdrewofficiall' },
+  { label: 'YouTube',    href: 'https://youtube.com/@djdrewofficial' },
+  { label: 'Mixcloud',   href: 'https://mixcloud.com/djdrewofficial' },
+  { label: 'SoundCloud', href: 'https://soundcloud.com/djdrewofficial' },
+];
+---
+<Base title="Drew Segura · Links" description="Drew Segura — founder & lead DJ at Xpress Entertainment. Book a Creative Planning Meeting, check availability, listen to mixes, and follow Drew across socials." noindex={true}>
+
+  <main class="link-tree">
+    <div class="lt-wrap">
+      <img src="/logo.svg" alt="Xpress Entertainment" class="lt-logo" />
+      <h1 class="lt-name">Drew Segura</h1>
+      <p class="lt-tagline">Founder & Lead DJ</p>
+      <p class="lt-sub">Xpress Entertainment · South Florida</p>
+
+      <div class="lt-buttons">
+        {links.map((l) => (
+          <a href={l.href} class={`lt-btn ${l.primary ? 'primary' : ''}`}>
+            <span class="lt-emo">{l.emoji}</span>
+            <span class="lt-text">{l.label}</span>
+            <span class="lt-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="lt-socials">
+        {socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer" class="lt-social">{s.label}</a>
+        ))}
+      </div>
+
+      <p class="lt-foot">© <span data-year>2026</span> Xpress Entertainment Corp.</p>
+    </div>
+  </main>
+
+  <style is:global>
+    body:has(.link-tree) nav.nav,
+    body:has(.link-tree) footer,
+    body:has(.link-tree) .lang-toggle { display: none !important; }
+    body:has(.link-tree) { background: radial-gradient(ellipse at top, #1a112d 0%, #0a0612 70%) fixed; }
+  </style>
+
+  <style>
+    .link-tree { min-height: 100svh; display: flex; align-items: flex-start; justify-content: center; padding: 56px 22px 80px; }
+    .lt-wrap { width: 100%; max-width: 440px; text-align: center; }
+    .lt-logo { height: 54px; width: auto; margin: 0 auto 16px; display: block; filter: brightness(0) invert(1); opacity: 0.85; }
+    .lt-name { font-family: var(--serif); font-size: 2.2rem; color: #fff; margin: 0 0 4px; line-height: 1.1; letter-spacing: 0.01em; }
+    .lt-tagline { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--lavender); margin: 0 0 6px; }
+    .lt-sub { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 30px; }
+
+    .lt-buttons { display: flex; flex-direction: column; gap: 12px; margin: 0 0 32px; }
+    .lt-btn {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 18px; border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff; text-decoration: none; font-weight: 600;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    }
+    .lt-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.24); }
+    .lt-btn.primary { background: var(--red); border-color: transparent; box-shadow: 0 12px 30px rgba(254, 58, 59, 0.35); }
+    .lt-btn.primary:hover { background: #ff5152; }
+    .lt-emo { font-size: 1.15rem; line-height: 1; flex-shrink: 0; }
+    .lt-text { flex: 1; text-align: left; font-size: 0.98rem; }
+    .lt-arrow { opacity: 0.55; font-size: 0.95rem; }
+
+    .lt-socials { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 0 0 26px; }
+    .lt-social { color: var(--muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 0; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .lt-social:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    .lt-foot { color: var(--muted); font-size: 0.74rem; margin-top: 14px; letter-spacing: 0.05em; }
+
+    @media (max-width: 420px) {
+      .lt-name { font-size: 1.85rem; }
+      .lt-tagline { font-size: 1.05rem; }
+      .lt-text { font-size: 0.92rem; }
+    }
+  </style>
+</Base>

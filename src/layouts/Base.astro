@@ -9,6 +9,7 @@ const {
   title,
   description,
   image = '/images/og-default.png',
+  noindex = false,
 } = Astro.props;
 
 const locale = getLocale(Astro.url);
@@ -68,6 +69,7 @@ const businessSchema = {
   <link rel="apple-touch-icon" href="/favicon.png" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="canonical" href={Astro.url.href} />
   {hasES(enPath) && (
     <>
