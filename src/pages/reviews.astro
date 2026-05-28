@@ -19,9 +19,11 @@ const curated = [
 // Filters to 5-star, sorts newest first.
 let liveReviews = [];
 let gRating = null, gTotal = null;
+let gDebug = '';
 const G_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 const G_PLACE = import.meta.env.GOOGLE_PLACE_ID;
 if (!G_KEY || !G_PLACE) {
+  gDebug = `missing-env key=${G_KEY ? 'yes' : 'no'} place=${G_PLACE ? 'yes' : 'no'}`;
   console.warn('[reviews] Google env vars missing (GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID) — using curated fallback');
 } else {
   try {
@@ -32,6 +34,7 @@ if (!G_KEY || !G_PLACE) {
     });
     const data = await res.json();
     if (!res.ok) {
+      gDebug = `err ${res.status} ${(data && data.error && data.error.status) || ''} placelen=${G_PLACE.length}`;
       console.warn('[reviews] Places API error', res.status, JSON.stringify(data).slice(0, 400));
     } else {
       gRating = data.rating ?? null;
@@ -46,9 +49,11 @@ if (!G_KEY || !G_PLACE) {
           event: (r.relativePublishTimeDescription || 'Google review') + ' · Google',
           source: 'Google',
         }));
+      gDebug = `ok returned=${(data.reviews || []).length} fivestar=${liveReviews.length} rating=${gRating}`;
       console.log(`[reviews] Google OK — ${(data.reviews || []).length} returned, ${liveReviews.length} five-star kept`);
     }
   } catch (e) {
+    gDebug = 'fetch-failed ' + (e && e.message ? e.message.slice(0, 80) : '');
     console.warn('[reviews] Google fetch failed:', e && e.message);
   }
 }
@@ -72,6 +77,8 @@ const vlogs = [
 <Base
   title="Reviews | Xpress Entertainment — Real Couples, Real Weddings"
   description="See what couples are saying about Xpress Entertainment on Google and Zola, plus real wedding vlog highlights from across South Florida.">
+
+  <div hidden data-reviews-debug={gDebug}></div>
 
   <Hero
     size="mid"
