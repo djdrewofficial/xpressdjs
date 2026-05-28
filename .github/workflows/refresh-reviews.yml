@@ -1,0 +1,21 @@
+name: Weekly review refresh
+
+on:
+  schedule:
+    - cron: '0 13 * * 1'   # Mondays ~09:00 ET (13:00 UTC)
+  workflow_dispatch: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "CF_DEPLOY_HOOK secret is not set yet — skipping the rebuild."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"
+          echo "Triggered a Cloudflare Pages rebuild — fresh reviews incoming."
