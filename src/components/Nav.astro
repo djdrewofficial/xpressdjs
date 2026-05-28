@@ -27,15 +27,19 @@ const n = t(locale).nav;
       <a href={L('/services')} class="dd-toggle">{n.services} <span class="car">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
         <a href={L('/services')}>{n.allServices}</a>
-        <a href={L('/south-florida-photo-booth-rental')}>{n.photoBooths}</a>
-        <a href={L('/glam-booth')}>{n.glamBooth}</a>
         <a href={L('/wedding-content-creator')}>{n.contentCreator}</a>
         <a href={L('/vibo')}>{n.vibo}</a>
         <a href={L('/epic-extras-1')}>{n.epicExtras}</a>
       </div></div>
     </div>
 
-    <a href={L('/south-florida-photo-booth-rental')} class={isActive('/south-florida-photo-booth-rental') ? 'active' : ''}>{n.photoBooths}</a>
+    <div class="nav-item">
+      <a href={L('/south-florida-photo-booth-rental')} class={`dd-toggle ${isActive('/south-florida-photo-booth-rental') || isActive('/glam-booth') ? 'active' : ''}`}>{n.photoBooths} <span class="car">▾</span></a>
+      <div class="dropdown"><div class="dropdown-inner">
+        <a href={L('/south-florida-photo-booth-rental')}>{n.photoBooths}</a>
+        <a href={L('/glam-booth')}>{n.glamBooth}</a>
+      </div></div>
+    </div>
     <a href={L('/pricing')} class={isActive('/pricing') ? 'active' : ''}>{n.pricing}</a>
     <a href={L('/reviews')} class={isActive('/reviews') ? 'active' : ''}>{n.reviews}</a>
     <span class="nav-social">
