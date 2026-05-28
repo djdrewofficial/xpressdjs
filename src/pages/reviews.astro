@@ -8,18 +8,16 @@ import VideoLightbox from '../components/VideoLightbox.astro';
 // from each platform. Each entry tags its source so we can filter/sort later.
 const reviews = [
   { quote: "Xpress Entertainment made our wedding feel like a real party. Drew read the room perfectly and kept the dance floor packed from the first song to the last.", name: 'Sofia & Mateo', event: 'Wedding · Miami', source: 'Google' },
-  { quote: 'They handled every transition, every announcement, every little detail so we could just be present. Our guests are still texting us about the music.', name: 'Emma & James', event: 'Wedding · Fort Lauderdale', source: 'The Knot' },
-  { quote: 'Bilingual, professional, and genuinely fun. Our parents from Colombia felt completely included all night. Worth every penny.', name: 'Camila & Daniel', event: 'Wedding · Coral Gables', source: 'WeddingWire' },
-  { quote: 'We added cold sparks and dancing on the clouds and it was unreal. The photos came out incredible and the vibe was next-level.', name: 'Ashley & Marcus', event: 'Wedding · Palm Beach', source: 'Zola' },
+  { quote: 'They handled every transition, every announcement, every little detail so we could just be present. Our guests are still texting us about the music.', name: 'Emma & James', event: 'Wedding · Fort Lauderdale', source: 'Google' },
+  { quote: 'Bilingual, professional, and genuinely fun. Our parents from Colombia felt completely included all night. Worth every penny.', name: 'Camila & Daniel', event: 'Wedding · Coral Gables', source: 'Zola' },
+  { quote: 'We added cold sparks and dancing on the clouds and it was unreal. The photos came out incredible and the vibe was next-level.', name: 'Ashley & Marcus', event: 'Wedding · Palm Beach', source: 'Google' },
 ];
 
 // Platform hubs. Star/count are placeholder until I drop in your real numbers.
 // `url` should point to your public review profile on each platform.
 const platforms = [
-  { name: 'Google',       short: 'G',   rating: '5.0', count: '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
-  { name: 'WeddingWire',  short: 'WW',  rating: '5.0', count: '90+ reviews',  url: 'https://www.weddingwire.com/biz/xpress-entertainment-corp',           accent: '#E91E63' },
-  { name: 'The Knot',     short: 'TK',  rating: '5.0', count: '80+ reviews',  url: 'https://www.theknot.com/marketplace/xpress-entertainment-corp',       accent: '#2E2E5C' },
-  { name: 'Zola',         short: 'Z',   rating: '5.0', count: '40+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+  { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
 ];
 
 // Wedding vlog highlights (YouTube IDs). Starter set pulled from existing
@@ -33,7 +31,7 @@ const vlogs = [
 ---
 <Base
   title="Reviews | Xpress Entertainment — Real Couples, Real Weddings"
-  description="See what couples are saying about Xpress Entertainment on Google, WeddingWire, The Knot, and Zola — plus real wedding vlog highlights from across South Florida.">
+  description="See what couples are saying about Xpress Entertainment on Google and Zola, plus real wedding vlog highlights from across South Florida.">
 
   <Hero
     size="mid"
@@ -79,17 +77,9 @@ const vlogs = [
 
             <!--
               LIVE EMBED SLOT
-              Paste this platform's official review widget here when you get
-              the code from your vendor dashboard. For each:
-
-              Google      -> Google has no free official embed. Best options:
-                             (1) Elfsight Google Reviews widget (free tier),
-                             (2) Trustmary / Trustindex, or
-                             (3) hand-curate the testimonials above.
-              WeddingWire -> Vendor dashboard -> "Widgets" -> Reviews widget
-                             -> copy the iframe.
-              The Knot    -> Vendor dashboard -> "Widgets/Badges" -> copy code.
-              Zola        -> Pro dashboard -> "Reviews badge" -> copy code.
+              Google -> no free native embed; use a widget (Trustindex /
+                        Elfsight free tier) or the Places API, then paste here.
+              Zola   -> Pro dashboard -> "Reviews badge" -> copy code here.
             -->
           </a>
         ))}
@@ -115,7 +105,7 @@ const vlogs = [
       <div class="reveal">
         <span class="eyebrow light">Recently worked with us?</span>
         <h2 class="h-lg" style="margin:14px 0 16px;">Leave us a review.</h2>
-        <p class="lead">If we helped make your day unforgettable, a quick review on Google, WeddingWire, The Knot, or Zola goes a long way. Thank you 💛</p>
+        <p class="lead">If we helped make your day unforgettable, a quick review on Google or Zola goes a long way. Thank you 💛</p>
         <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
           {platforms.map((p) => (
             <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn ghost"><span>{p.name}</span> <span class="arrow">↗</span></a>
@@ -132,11 +122,11 @@ const vlogs = [
   /* Platform hub */
   .platforms-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
-    margin-top: 28px;
+    margin: 28px auto 0;
+    max-width: 640px;
   }
-  @media (max-width: 900px) { .platforms-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .platforms-grid { grid-template-columns: 1fr; } }
 
   .platform-card {

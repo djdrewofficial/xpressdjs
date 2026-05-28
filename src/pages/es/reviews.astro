@@ -8,16 +8,14 @@ const L = (p) => localize(p, 'es');
 
 const reviews = [
   { quote: 'Xpress Entertainment hizo que nuestra boda se sintiera como una verdadera fiesta. Drew leyó el ambiente perfectamente y mantuvo la pista llena del primer al último tema.', name: 'Sofia y Mateo', event: 'Boda · Miami', source: 'Google' },
-  { quote: 'Se encargaron de cada transición, cada anuncio, cada pequeño detalle, así nosotros pudimos disfrutar el momento. Nuestros invitados todavía nos hablan de la música.', name: 'Emma y James', event: 'Boda · Fort Lauderdale', source: 'The Knot' },
-  { quote: 'Bilingües, profesionales y realmente divertidos. Nuestros papás de Colombia se sintieron incluidos toda la noche. Vale cada centavo.', name: 'Camila y Daniel', event: 'Boda · Coral Gables', source: 'WeddingWire' },
-  { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Zola' },
+  { quote: 'Se encargaron de cada transición, cada anuncio, cada pequeño detalle, así nosotros pudimos disfrutar el momento. Nuestros invitados todavía nos hablan de la música.', name: 'Emma y James', event: 'Boda · Fort Lauderdale', source: 'Google' },
+  { quote: 'Bilingües, profesionales y realmente divertidos. Nuestros papás de Colombia se sintieron incluidos toda la noche. Vale cada centavo.', name: 'Camila y Daniel', event: 'Boda · Coral Gables', source: 'Zola' },
+  { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Google' },
 ];
 
 const platforms = [
-  { name: 'Google',       short: 'G',   rating: '5.0', count: '120+ reseñas', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
-  { name: 'WeddingWire',  short: 'WW',  rating: '5.0', count: '90+ reseñas',  url: 'https://www.weddingwire.com/biz/xpress-entertainment-corp',           accent: '#E91E63' },
-  { name: 'The Knot',     short: 'TK',  rating: '5.0', count: '80+ reseñas',  url: 'https://www.theknot.com/marketplace/xpress-entertainment-corp',       accent: '#2E2E5C' },
-  { name: 'Zola',         short: 'Z',   rating: '5.0', count: '40+ reseñas',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+  { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reseñas', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reseñas',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
 ];
 
 const vlogs = [
@@ -29,7 +27,7 @@ const vlogs = [
 ---
 <Base
   title="Reseñas | Xpress Entertainment — Parejas Reales, Bodas Reales"
-  description="Mira lo que las parejas dicen de Xpress Entertainment en Google, WeddingWire, The Knot y Zola, y disfruta los videos reales de las bodas que hicimos vibrar en el sur de Florida.">
+  description="Mira lo que las parejas dicen de Xpress Entertainment en Google y Zola, y disfruta los videos reales de las bodas que hicimos vibrar en el sur de Florida.">
 
   <Hero
     size="mid"
@@ -93,7 +91,7 @@ const vlogs = [
       <div class="reveal">
         <span class="eyebrow light">¿Trabajaste con nosotros recientemente?</span>
         <h2 class="h-lg" style="margin:14px 0 16px;">Déjanos una reseña.</h2>
-        <p class="lead">Si te ayudamos a hacer tu día inolvidable, una reseña rápida en Google, WeddingWire, The Knot o Zola hace muchísimo. Mil gracias 💛</p>
+        <p class="lead">Si te ayudamos a hacer tu día inolvidable, una reseña rápida en Google o Zola hace muchísimo. Mil gracias 💛</p>
         <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
           {platforms.map((p) => (
             <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn ghost"><span>{p.name}</span> <span class="arrow">↗</span></a>
@@ -107,8 +105,7 @@ const vlogs = [
 </Base>
 
 <style>
-  .platforms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 28px; }
-  @media (max-width: 900px) { .platforms-grid { grid-template-columns: repeat(2, 1fr); } }
+  .platforms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 28px auto 0; max-width: 640px; }
   @media (max-width: 480px) { .platforms-grid { grid-template-columns: 1fr; } }
 
   .platform-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 28px 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: #fff; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; }
