@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import SocialFollow from '../../components/SocialFollow.astro';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const socials = [
+  { platform: 'instagram',  url: 'https://instagram.com/DJReRe',        handle: '@DJReRe' },
+  { platform: 'youtube',    url: 'https://youtube.com/DjReRe7',         handle: '@DjReRe7' },
+  { platform: 'facebook',   url: 'https://facebook.com/ReReTheDJ',      handle: 'ReReTheDJ' },
+  { platform: 'mixcloud',   url: 'https://www.mixcloud.com/DJReRe/',    handle: 'DJReRe' },
+  { platform: 'soundcloud', url: 'https://soundcloud.com/djrere7',      handle: 'djrere7' },
+];
+
+const why = [
+  ['🎧 DJ y MC de formato abierto', 'Desde las vibras lounge de la hora del cóctel hasta la energía total de la pista, ReRe mezcla Top 40, Hip-Hop, R&B, Pop, EDM, House, Latin, Reggaetón, Dembow, Afrobeat y throwbacks para cualquier público.'],
+  ['🎤 Fuerte presencia como MC y anfitriona', 'Cálida, segura y cautivadora en el micrófono. Un título en Periodismo de Iowa State University respalda su talento natural como anfitriona y oradora.'],
+  ['✨ Alta energía pero pulida', 'Hype real con un toque profesional y elegante — ideal para bodas, eventos corporativos y quinces selectos que quieren personalidad sin nada genérico.'],
+  ['🎚️ Experta en leer el ambiente', 'Enérgica, dinámica y versátil, ReRe adapta cada momento a tu público — desde la cena y los sets lounge hasta la última canción de la noche.'],
+];
+---
+<Base
+  title="DJ ReRe | DJ de Bodas y Eventos de Formato Abierto, Premiada — Xpress Entertainment"
+  description="DJ ReRe — DJ y MC internacional de formato abierto, premiada y con base en el sur de Florida. Más de 15 años en bodas, eventos corporativos y celebraciones privadas. Alta energía, pulida y con personalidad.">
+
+  <Hero
+    eyebrow="DJ y MC Internacional Premiada"
+    titleHtml={`DJ ReRe`}
+    sub="Una DJ y MC de formato abierto con gran personalidad y habilidades de anfitriona pulidas — moviéndose sin esfuerzo entre momentos lounge elegantes y la energía total de la pista en bodas, eventos corporativos y celebraciones privadas en el sur de Florida."
+    image="/images/heroes/dj-services-hero.jpg"
+    alt="Una pista de baile llena en una boda del sur de Florida"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/djs/dj-rere-headshot.jpg" alt="DJ ReRe — DJ internacional de formato abierto para bodas y eventos" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">🎤 DJ y MC Internacional de Formato Abierto · Sur de Florida</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Más de 15 años de personalidad, estilo y energía</h2>
+          <p class="lead">DJ ReRe es una DJ y MC internacional de formato abierto, premiada y con base en el sur de Florida. Con más de 15 años tras las tornamesas, ha llevado su energía a bodas, eventos corporativos, activaciones de marcas de lujo, vida nocturna y grandes escenarios — y sabe exactamente cómo leer el ambiente y crear una verdadera vibra.</p>
+          <p class="lead" style="margin-top:14px;">Pulida pero llena de energía, ReRe es la DJ para parejas y planificadores que quieren personalidad y estilo sin nada genérico. Mantiene a los invitados activos, la pista llena y toda la noche se siente divertida y sin esfuerzo.</p>
+          <a href="https://djrere.com/" target="_blank" rel="noopener noreferrer" class="textlink" style="margin-top:16px; display:inline-block;">Más en djrere.com ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">🔥 Por qué reservan a DJ ReRe</span><h2 class="h-xl">Personalidad, estilo y energía.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="reveal" style="text-align:center; margin-top:26px; color:var(--muted); font-size:0.92rem;">DJ ReRe anima en inglés. ¿Necesitas servicios de MC bilingüe? Pregúntanos y confirmamos qué es posible para tu evento.</p>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:900px;">
+      <blockquote class="reveal" style="font-family:var(--serif); font-size:clamp(1.4rem,3vw,2.4rem); color:var(--lavender); text-align:center; max-width:none; line-height:1.4;">Desde momentos lounge elegantes hasta una pista de baile llena — Top 40, Hip-Hop, R&B, Latin, Afrobeat, House y throwbacks, todo a la medida de tu público.</blockquote>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Más allá de la cabina</span><h2 class="h-lg">Una anfitriona tan afilada como sus mezclas</h2></div>
+      <p class="lead reveal d1">La confianza de ReRe en el micrófono no es casualidad. Con un título en Periodismo de Iowa State University, es una anfitriona y oradora natural que sabe cómo guiar tu evento manteniendo la energía genuina y emocionante.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;"><li>🎤 Una MC pulida que mantiene tu itinerario en orden</li><li>🌍 Una DJ internacional de formato abierto con conocimiento musical global</li><li>✨ Personalidad y estilo que hacen que toda la noche se sienta premium</li><li>🔥 La capacidad de pasar de lo elegante a la alta energía en un instante</li></ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">Con ReRe tras la cabina, obtienes una DJ y anfitriona que aporta la vibra, lee el ambiente y hace que tu pista de baile se sienta divertida, con estilo e inolvidable.</p>
+    </div>
+  </section>
+
+  <SocialFollow name="DJ ReRe" links={socials} />
+
+  <CTA eyebrow="Reserva a DJ ReRe" titleHtml={`Trae la<br>energía.`} ctaText="Consulta Disponibilidad" ctaHref={L('/check-availability')} />
+</Base>

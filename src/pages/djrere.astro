@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+import SocialFollow from '../components/SocialFollow.astro';
+
+const socials = [
+  { platform: 'instagram',  url: 'https://instagram.com/DJReRe',        handle: '@DJReRe' },
+  { platform: 'youtube',    url: 'https://youtube.com/DjReRe7',         handle: '@DjReRe7' },
+  { platform: 'facebook',   url: 'https://facebook.com/ReReTheDJ',      handle: 'ReReTheDJ' },
+  { platform: 'mixcloud',   url: 'https://www.mixcloud.com/DJReRe/',    handle: 'DJReRe' },
+  { platform: 'soundcloud', url: 'https://soundcloud.com/djrere7',      handle: 'djrere7' },
+];
+
+const why = [
+  ['🎧 Open-Format DJ & MC', 'From cocktail-hour lounge vibes to peak-time party energy, ReRe blends Top 40, Hip-Hop, R&B, Pop, EDM, House, Latin, Reggaeton, Dembow, Afrobeat, and throwbacks for any crowd.'],
+  ['🎤 Strong MC & Hype-Host Presence', 'Warm, confident, and engaging on the mic. A journalism degree from Iowa State University backs up her natural skill as a host and public speaker.'],
+  ['✨ High-Energy but Polished', 'Real hype with a professional, elegant touch — a great fit for weddings, corporate events, and select quinces that want personality without anything generic.'],
+  ['🎚️ Room-Reading Pro', 'Energetic, dynamic, and versatile, ReRe curates every moment to your crowd — from dinner and lounge sets to the last song of the night.'],
+];
+---
+<Base
+  title="DJ ReRe | Award-Winning Open-Format Wedding & Event DJ — Xpress Entertainment"
+  description="DJ ReRe — award-winning international open-format DJ & MC based in South Florida. 15+ years across weddings, corporate events, and private celebrations. High-energy, polished, and personality-forward.">
+
+  {/* TODO: swap the hero for a real DJ ReRe performance photo when available. */}
+  <Hero
+    eyebrow="Award-Winning International DJ & MC"
+    titleHtml={`DJ ReRe`}
+    sub="An open-format DJ and MC with a big personality and polished hosting skills — moving effortlessly between elegant lounge moments and full dance-floor energy at weddings, corporate events, and private celebrations across South Florida."
+    image="/images/heroes/dj-services-hero.jpg"
+    alt="A packed South Florida wedding dance floor"
+    ctaText="Check Availability"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/djs/dj-rere-headshot.jpg" alt="DJ ReRe — international open-format wedding & event DJ" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">🎤 International Open-Format DJ & MC · South Florida</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">15+ Years of Personality, Style & Dance-Floor Energy</h2>
+          <p class="lead">DJ ReRe is an award-winning international open-format DJ and MC based in South Florida. With over 15 years behind the decks, she's brought her energy to weddings, corporate events, luxury brand activations, nightlife, and major stages — and she knows exactly how to read a room and create a real vibe.</p>
+          <p class="lead" style="margin-top:14px;">Polished but high-energy, ReRe is the DJ for couples and planners who want personality and style without anything generic. She keeps guests engaged, the dance floor full, and the whole night feeling fun and effortless.</p>
+          <a href="https://djrere.com/" target="_blank" rel="noopener noreferrer" class="textlink" style="margin-top:16px; display:inline-block;">More at djrere.com ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">🔥 Why Couples & Planners Book DJ ReRe</span><h2 class="h-xl">Personality, style & energy.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="reveal" style="text-align:center; margin-top:26px; color:var(--muted); font-size:0.92rem;">DJ ReRe hosts in English. Need bilingual MC services? Just ask — we'll confirm what we can do for your event.</p>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:900px;">
+      <blockquote class="reveal" style="font-family:var(--serif); font-size:clamp(1.4rem,3vw,2.4rem); color:var(--lavender); text-align:center; max-width:none; line-height:1.4;">From elegant lounge moments to a packed dance floor — Top 40, Hip-Hop, R&B, Latin, Afrobeat, House, and throwbacks, all tailored to your crowd.</blockquote>
+    </div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Beyond the Booth</span><h2 class="h-lg">A Host as Sharp as Her Mixes</h2></div>
+      <p class="lead reveal d1">ReRe's confidence on the mic isn't an accident. With a journalism degree from Iowa State University, she's a natural host and public speaker who knows how to guide your event while keeping the energy genuine and exciting.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;"><li>🎤 A polished MC who keeps your timeline on track</li><li>🌍 An international open-format DJ with global music knowledge</li><li>✨ Personality and style that make the whole night feel premium</li><li>🔥 The ability to move from elegant to high-energy in a beat</li></ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">With ReRe behind the booth, you get a DJ and host who brings the vibe, reads the room, and makes your dance floor feel fun, stylish, and unforgettable.</p>
+    </div>
+  </section>
+
+  <SocialFollow name="DJ ReRe" links={socials} />
+
+  <CTA eyebrow="Book DJ ReRe" titleHtml={`Bring the<br>energy.`} />
+</Base>
