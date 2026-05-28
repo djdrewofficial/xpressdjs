@@ -8,59 +8,59 @@ const L = (p) => localize(p, 'es');
 
 const gallery = [1, 2, 3, 4, 5, 6].map((n) => ({
   src: `/images/galleries/glam-photo-booth-bw-0${n}.jpg`,
-  alt: `Retrato en blanco y negro y cámara lenta de la Glam Booth de Xpress Entertainment en una boda del sur de Florida (${n} de 6)`,
+  alt: `Retrato glam en blanco y negro de la Glam Booth de Xpress Entertainment en una boda del sur de Florida (${n} de 6)`,
 }));
 
 const steps = [
-  ['01 · Entra', "Iluminación profesional, un fondo editorial impecable y tres segundos para dar tu mejor cara. Eso es todo."],
-  ['02 · Slow-mo + glam con IA', "Captura en cámara lenta a alta velocidad de cuadros, en blanco y negro nítido, con un retoque de IA que favorece a todos sin borrar a nadie."],
-  ['03 · Compartir al instante', "Acerca el teléfono o escanea un QR y el clip llega a tu galería en segundos. Listo para la story."],
+  ['01 · Entra', "Iluminación profesional, un fondo editorial impecable y unos segundos para dar tu mejor cara. Eso es todo."],
+  ['02 · Captura glam', "Un retrato nítido en blanco y negro con iluminación de alta moda, y un retoque de IA que favorece a todos sin borrar a nadie."],
+  ['03 · Compartir al instante', "Acerca el teléfono o escanea un QR y la foto llega a tu galería en segundos. Lista para la story."],
 ];
 
 const features = [
-  ['🎥 Captura en cámara lenta', "Cámara de alta velocidad de cuadros y obturador cinematográfico. Cada parpadeo y cada sonrisa, sostenidos un instante más."],
+  ['📸 Iluminación de alta moda', "Iluminación de estudio y un fondo limpio que convierten a cada invitado en una portada de revista."],
   ['💎 Suavizado de piel con IA', "Un retoque sutil que hace que todos se vean increíbles. Filtros que no se sienten como filtros."],
   ['🖤 Acabado en blanco y negro', "Editorial, atemporal y se ve hermoso junto a la galería de tu fotógrafo."],
-  ['📱 Texto / AirDrop / QR al instante', "Sin fila para imprimir, sin esperar. El clip llega al teléfono de tus invitados en segundos."],
-  ['🎀 Marca personalizada', "Tu monograma, hashtag o marca del evento integrados en cada clip. Hecho para tu día."],
+  ['📱 Texto / AirDrop / QR al instante', "Sin fila para imprimir, sin esperar. La foto llega al teléfono de tus invitados en segundos."],
+  ['🎀 Marca personalizada', "Tu monograma, hashtag o marca del evento integrados en cada foto. Hecho para tu día."],
   ['👋 Atendida por una estilista', "Una persona real opera la cabina, anima a tus invitados y mantiene la fila en movimiento."],
 ];
 
 const occasions = ['Bodas', 'Sweet 16 y Quinces', 'Fiestas de Compromiso', 'Activaciones de Marca', 'Galas Corporativas', 'Eventos de Influencers'];
 
 const faqs = [
-  { q: '¿Qué es una Glam Booth?', a: "Es la cabina fotográfica en blanco y negro y cámara lenta que has visto en bodas de celebridades y eventos de marca. Tus invitados entran, posan unos segundos y se llevan un clip impresionante para compartir." },
-  { q: "¿En qué se diferencia de una cabina tradicional?", a: "Una cabina tradicional te da impresiones grupales divertidas. La Glam Booth te da retratos editoriales en cámara lenta con suavizado de piel y un acabado en blanco y negro. Vibra distinta, resultado distinto. Muchas parejas reservan las dos juntas." },
-  { q: "¿Pueden personalizarla para nuestro evento?", a: "Sí. Integramos tu monograma, hashtag o marca del evento en cada clip y coordinamos contigo el fondo para que combine con el lugar." },
+  { q: '¿Qué es una Glam Booth?', a: "Es la cabina fotográfica editorial en blanco y negro que has visto en bodas de celebridades y eventos de marca. Tus invitados entran, posan unos segundos y se llevan un retrato glam impresionante para compartir." },
+  { q: "¿En qué se diferencia de una cabina tradicional?", a: "Una cabina tradicional te da impresiones grupales divertidas. La Glam Booth te da retratos editoriales en blanco y negro con iluminación de alta moda y suavizado de piel con IA. Vibra distinta, resultado distinto. Muchas parejas reservan las dos juntas." },
+  { q: "¿Pueden personalizarla para nuestro evento?", a: "Sí. Integramos tu monograma, hashtag o marca del evento en cada foto y coordinamos contigo el fondo para que combine con el lugar." },
   { q: "¿Dónde ofrecen la Glam Booth?", a: "En todo el sur de Florida: Miami, Fort Lauderdale, Palm Beach, los Cayos y todo lo que hay en medio." },
 ];
 const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 ---
 <Base
-  title="Glam Booth | Cabina en Cámara Lenta Blanco y Negro — Xpress Entertainment"
-  description="La Glam Booth de Xpress Entertainment: retratos en cámara lenta, blanco y negro editorial y suavizado de piel con IA para bodas y eventos en el sur de Florida.">
+  title="Glam Booth | Cabina de Fotos Glam Blanco y Negro — Xpress Entertainment"
+  description="La Glam Booth de Xpress Entertainment: retratos glam editoriales en blanco y negro con iluminación de alta moda y suavizado de piel con IA para bodas y eventos en el sur de Florida.">
 
   <div class="glam-page">
     <Hero
       size="tall"
       eyebrow="Glam Booth"
-      titleHtml={`Un momento, en cámara lenta.<br><span class="serif-accent" style="font-style:italic">En blanco y negro.</span>`}
-      sub="Retratos editoriales en cámara lenta con suavizado de piel con IA. El tipo de experiencia que tus amigos compartirán toda la semana."
+      titleHtml={`Posa para la cámara.<br><span class="serif-accent" style="font-style:italic">En blanco y negro.</span>`}
+      sub="Retratos glam editoriales en blanco y negro con iluminación de alta moda y suavizado de piel con IA. El tipo de experiencia que tus amigos compartirán toda la semana."
       image="/images/galleries/glam-photo-booth-bw-cover.jpg"
-      alt="Invitada de boda capturada en un retrato en blanco y negro en cámara lenta de la Glam Booth de Xpress Entertainment"
+      alt="Invitada de boda capturada en un retrato glam en blanco y negro de la Glam Booth de Xpress Entertainment"
       ctaText="Súmala a tu Evento"
       ctaHref={L('/check-availability')}
     />
 
     <section class="pad bg-ink">
       <div class="wrap" style="max-width:880px;">
-        <p class="lead reveal" style="text-align:center;">Piensa en el Met Gala. Piensa en ese clip en cámara lenta que todos se llevan de una boda de celebridades. Llevamos esa cabina a tu evento con iluminación profesional, retoque con IA y entrega instantánea al teléfono para que tus invitados la tengan en su galería antes de que cambie la canción.</p>
+        <p class="lead reveal" style="text-align:center;">Piensa en el Met Gala. Piensa en ese retrato glam en blanco y negro que todos se llevan de una boda de celebridades. Llevamos esa cabina a tu evento con iluminación profesional, retoque con IA y entrega instantánea al teléfono para que tus invitados tengan su foto en su galería antes de que cambie la canción.</p>
       </div>
     </section>
 
     <section class="pad bg-deep">
       <div class="wrap">
-        <div class="sec-head center reveal"><span class="eyebrow light">Cómo funciona</span><h2 class="h-xl">Tres segundos, un clip espectacular.</h2></div>
+        <div class="sec-head center reveal"><span class="eyebrow light">Cómo funciona</span><h2 class="h-xl">Unos segundos, una foto espectacular.</h2></div>
         <div class="values" style="grid-template-columns:repeat(3,1fr);">
           {steps.map(([t, d], i) => (
             <div class={`value reveal ${['', 'd1', 'd2'][i]}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
@@ -74,7 +74,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 
     <section class="pad bg-ink">
       <div class="wrap">
-        <div class="sec-head reveal"><span class="eyebrow">El look</span><h2 class="h-xl">Editorial. Cinematográfico. Listo para compartir.</h2></div>
+        <div class="sec-head reveal"><span class="eyebrow">El look</span><h2 class="h-xl">Editorial. Atemporal. Listo para compartir.</h2></div>
         <div class="glam-grid">
           {gallery.map((g, i) => (
             <div class={`media reveal ${['','d1','d2','','d1','d2'][i]}`}>
@@ -140,7 +140,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
     </section>
     <FaqSchema items={faqItems} />
 
-    <CTA eyebrow="🤍 ¿Lista para el momento en cámara lenta?" titleHtml={`Suma la Glam Booth<br>a tu día.`} text="Cuéntanos tu fecha y lugar. Nosotros nos encargamos de la parte cinematográfica." ctaText="Súmala a tu Evento" ctaHref={L('/check-availability')} />
+    <CTA eyebrow="🤍 ¿Lista para el momento glam?" titleHtml={`Suma la Glam Booth<br>a tu día.`} text="Cuéntanos tu fecha y lugar. Nosotros nos encargamos de la parte glam." ctaText="Súmala a tu Evento" ctaHref={L('/check-availability')} />
   </div>
 </Base>
 

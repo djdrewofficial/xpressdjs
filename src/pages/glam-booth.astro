@@ -6,64 +6,65 @@ import FaqSchema from '../components/FaqSchema.astro';
 
 const gallery = [1, 2, 3, 4, 5, 6].map((n) => ({
   src: `/images/galleries/glam-photo-booth-bw-0${n}.jpg`,
-  alt: `Black and white slow-motion portrait from the Xpress Entertainment Glam Booth at a South Florida wedding (${n} of 6)`,
+  alt: `Black and white glam portrait from the Xpress Entertainment Glam Booth at a South Florida wedding (${n} of 6)`,
 }));
 
 // Three step "how it works" beats — match what top glam booth providers
 // emphasize: pose, ai beauty, instant share.
 const steps = [
-  ['01 · Step in', "Studio-grade lighting, a clean editorial backdrop, and three seconds to give us your best face. That's it."],
-  ['02 · Slow-mo + AI glam', "A high frame-rate capture in crisp black and white, then a skin-smoothing pass that flatters everyone without erasing them."],
-  ['03 · Instant share', "Tap a phone or scan a QR and the slow-mo lands in your camera roll seconds later. Ready for the story."],
+  ['01 · Step in', "Studio-grade lighting, a clean editorial backdrop, and a few seconds to give us your best face. That's it."],
+  ['02 · Glam capture', "A crisp black-and-white portrait under high-fashion lighting, then a skin-smoothing pass that flatters everyone without erasing them."],
+  ['03 · Instant share', "Tap a phone or scan a QR and the photo lands in your camera roll seconds later. Ready for the story."],
 ];
 
 // Features grid — synthesized from what's selling on top glam booth pages
-// (slow-mo, AI beauty, b/w editorial, instant share, custom prints, attended).
+// (high-fashion lighting, AI beauty, b/w editorial, instant share, custom
+// branding, attended).
 const features = [
-  ['🎥 Slow-motion capture', "High frame-rate camera, cinematic shutter, every blink and laugh held a beat longer."],
+  ['📸 High-fashion lighting', "Studio key lighting and a clean backdrop that turn every guest into a magazine cover."],
   ['💎 AI skin smoothing', "A subtle beauty pass that makes everyone look their best. No filters that feel like filters."],
   ['🖤 Black & white finish', "Editorial, timeless, and your photographer will love the way it looks alongside their gallery."],
-  ['📱 Instant text / AirDrop / QR', "No printing line, no waiting. The slow-mo lands in your guests' phones in seconds."],
-  ['🎀 Custom branded overlay', "Your monogram, hashtag, or event mark layered into every clip. Built for your day."],
+  ['📱 Instant text / AirDrop / QR', "No printing line, no waiting. The photo lands in your guests' phones in seconds."],
+  ['🎀 Custom branded overlay', "Your monogram, hashtag, or event mark layered onto every photo. Built for your day."],
   ['👋 Stylist-attended', "A real human runs the booth, hypes your guests, and keeps the line moving."],
 ];
 
 const occasions = ['Weddings', 'Sweet 16s & Quinces', 'Engagement Parties', 'Brand Activations', 'Corporate Galas', 'Influencer Events'];
 
 const faqs = [
-  { q: 'What is a Glam Booth?', a: "It's the slow-motion, editorial black-and-white photo booth you've seen at celebrity weddings and brand events. Your guests step in, strike a pose, and walk away with a stunning shareable clip a few seconds later." },
-  { q: "How is it different from a regular photo booth?", a: "A regular booth gives you fun group prints. A Glam Booth gives you cinematic slow-motion portraits with skin-smoothing AI and an editorial black-and-white finish. Different vibe, different result, often paired together at the same event." },
-  { q: "Can we customize it for our event?", a: "Yes. We layer your monogram, hashtag, or event mark into every clip, and we'll work with you on the backdrop so it fits the look of your venue." },
+  { q: 'What is a Glam Booth?', a: "It's the high-fashion, editorial black-and-white photo booth you've seen at celebrity weddings and brand events. Your guests step in, strike a pose, and walk away with a stunning, share-ready glam portrait a few seconds later." },
+  { q: "How is it different from a regular photo booth?", a: "A regular booth gives you fun group prints. A Glam Booth gives you editorial black-and-white portraits with high-fashion studio lighting and skin-smoothing AI. Different vibe, different result, often paired together at the same event." },
+  { q: "Can we customize it for our event?", a: "Yes. We layer your monogram, hashtag, or event mark onto every photo, and we'll work with you on the backdrop so it fits the look of your venue." },
   { q: "Where do you offer the Glam Booth?", a: "All over South Florida: Miami, Fort Lauderdale, Palm Beach, the Keys, and everywhere in between." },
 ];
 const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 ---
 <Base
-  title="Glam Booth | Slow-Mo Black & White Photo Booth — Xpress Entertainment"
-  description="The Glam Booth from Xpress Entertainment: cinematic slow-motion, editorial black-and-white portraits, and AI skin-smoothing for weddings and events across South Florida.">
+  title="Glam Booth | Black & White Glam Photo Booth — Xpress Entertainment"
+  description="The Glam Booth from Xpress Entertainment: editorial black-and-white glam portraits with high-fashion studio lighting and AI skin-smoothing for weddings and events across South Florida.">
 
   <div class="glam-page">
     <Hero
       size="tall"
       eyebrow="Glam Booth"
-      titleHtml={`A moment, slowed down.<br><span class="serif-accent" style="font-style:italic">In black and white.</span>`}
-      sub="Slow-motion, editorial portraits with skin-smoothing AI. The kind of guest experience your friends will be reposting for a week."
+      titleHtml={`Strike a pose.<br><span class="serif-accent" style="font-style:italic">In black and white.</span>`}
+      sub="Editorial black-and-white glam portraits with high-fashion studio lighting and skin-smoothing AI. The kind of guest experience your friends will be reposting for a week."
       image="/images/galleries/glam-photo-booth-bw-cover.jpg"
-      alt="A wedding guest captured in a black-and-white slow-motion glam booth portrait by Xpress Entertainment"
+      alt="A wedding guest captured in a black-and-white glam booth portrait by Xpress Entertainment"
       ctaText="Add It to Your Event"
     />
 
     <!-- INTRO -->
     <section class="pad bg-ink">
       <div class="wrap" style="max-width:880px;">
-        <p class="lead reveal" style="text-align:center;">Think Met Gala. Think the slow-mo video everyone takes home from a celebrity wedding. We bring that booth to your event with studio lighting, an AI beauty pass, and instant phone delivery so your guests have it in their camera roll before the next song drops.</p>
+        <p class="lead reveal" style="text-align:center;">Think Met Gala. Think the black-and-white glam portrait everyone takes home from a celebrity wedding. We bring that booth to your event with studio lighting, an AI beauty pass, and instant phone delivery so your guests have their photo in their camera roll before the next song drops.</p>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
     <section class="pad bg-deep">
       <div class="wrap">
-        <div class="sec-head center reveal"><span class="eyebrow light">How it works</span><h2 class="h-xl">Three seconds, one stunning clip.</h2></div>
+        <div class="sec-head center reveal"><span class="eyebrow light">How it works</span><h2 class="h-xl">A few seconds, one stunning photo.</h2></div>
         <div class="values" style="grid-template-columns:repeat(3,1fr);">
           {steps.map(([t, d], i) => (
             <div class={`value reveal ${['', 'd1', 'd2'][i]}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
@@ -78,7 +79,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
     <!-- THE LOOK (gallery strip) -->
     <section class="pad bg-ink">
       <div class="wrap">
-        <div class="sec-head reveal"><span class="eyebrow">The look</span><h2 class="h-xl">Editorial. Cinematic. Instantly shareable.</h2></div>
+        <div class="sec-head reveal"><span class="eyebrow">The look</span><h2 class="h-xl">Editorial. Timeless. Instantly shareable.</h2></div>
         <div class="glam-grid">
           {gallery.map((g, i) => (
             <div class={`media reveal ${['','d1','d2','','d1','d2'][i]}`}>
@@ -148,7 +149,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
     </section>
     <FaqSchema items={faqItems} />
 
-    <CTA eyebrow="🤍 Ready for the slow-mo moment?" titleHtml={`Add the Glam Booth<br>to your day.`} text="Tell us your date and venue. We'll handle the cinematic part." />
+    <CTA eyebrow="🤍 Ready for the glam moment?" titleHtml={`Add the Glam Booth<br>to your day.`} text="Tell us your date and venue. We'll handle the glam part." />
   </div>
 </Base>
 
