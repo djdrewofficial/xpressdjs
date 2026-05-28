@@ -1,0 +1,174 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import FaqSchema from '../../components/FaqSchema.astro';
+import { phUri, } from '../../lib/ph';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const steps = [
+  ['01 · Entra', "Iluminación profesional, un fondo editorial impecable y tres segundos para dar tu mejor cara. Eso es todo."],
+  ['02 · Slow-mo + glam con IA', "Captura en cámara lenta a alta velocidad de cuadros, en blanco y negro nítido, con un retoque de IA que favorece a todos sin borrar a nadie."],
+  ['03 · Compartir al instante', "Acerca el teléfono o escanea un QR y el clip llega a tu galería en segundos. Listo para la story."],
+];
+
+const features = [
+  ['🎥 Captura en cámara lenta', "Cámara de alta velocidad de cuadros y obturador cinematográfico. Cada parpadeo y cada sonrisa, sostenidos un instante más."],
+  ['💎 Suavizado de piel con IA', "Un retoque sutil que hace que todos se vean increíbles. Filtros que no se sienten como filtros."],
+  ['🖤 Acabado en blanco y negro', "Editorial, atemporal y se ve hermoso junto a la galería de tu fotógrafo."],
+  ['📱 Texto / AirDrop / QR al instante', "Sin fila para imprimir, sin esperar. El clip llega al teléfono de tus invitados en segundos."],
+  ['🎀 Marca personalizada', "Tu monograma, hashtag o marca del evento integrados en cada clip. Hecho para tu día."],
+  ['👋 Atendida por una estilista', "Una persona real opera la cabina, anima a tus invitados y mantiene la fila en movimiento."],
+];
+
+const occasions = ['Bodas', 'Sweet 16 y Quinces', 'Fiestas de Compromiso', 'Activaciones de Marca', 'Galas Corporativas', 'Eventos de Influencers'];
+
+const faqs = [
+  { q: '¿Qué es una Glam Booth?', a: "Es la cabina fotográfica en blanco y negro y cámara lenta que has visto en bodas de celebridades y eventos de marca. Tus invitados entran, posan unos segundos y se llevan un clip impresionante para compartir." },
+  { q: "¿En qué se diferencia de una cabina tradicional?", a: "Una cabina tradicional te da impresiones grupales divertidas. La Glam Booth te da retratos editoriales en cámara lenta con suavizado de piel y un acabado en blanco y negro. Vibra distinta, resultado distinto. Muchas parejas reservan las dos juntas." },
+  { q: "¿Pueden personalizarla para nuestro evento?", a: "Sí. Integramos tu monograma, hashtag o marca del evento en cada clip y coordinamos contigo el fondo para que combine con el lugar." },
+  { q: "¿Dónde ofrecen la Glam Booth?", a: "En todo el sur de Florida: Miami, Fort Lauderdale, Palm Beach, los Cayos y todo lo que hay en medio." },
+];
+const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
+---
+<Base
+  title="Glam Booth | Cabina en Cámara Lenta Blanco y Negro — Xpress Entertainment"
+  description="La Glam Booth de Xpress Entertainment: retratos en cámara lenta, blanco y negro editorial y suavizado de piel con IA para bodas y eventos en el sur de Florida.">
+
+  <div class="glam-page">
+    <Hero
+      size="tall"
+      eyebrow="Glam Booth"
+      titleHtml={`Un momento, en cámara lenta.<br><span class="serif-accent" style="font-style:italic">En blanco y negro.</span>`}
+      sub="Retratos editoriales en cámara lenta con suavizado de piel con IA. El tipo de experiencia que tus amigos compartirán toda la semana."
+      image={phUri(2560, 1440, 'Glam Booth hero', 'Retrato B&N de alta luz de una invitada en una glam booth en cámara lenta')}
+      alt="Invitada de boda capturada en un retrato en blanco y negro en cámara lenta de la glam booth"
+      ctaText="Súmala a tu Evento"
+      ctaHref={L('/check-availability')}
+    />
+
+    <section class="pad bg-ink">
+      <div class="wrap" style="max-width:880px;">
+        <p class="lead reveal" style="text-align:center;">Piensa en el Met Gala. Piensa en ese clip en cámara lenta que todos se llevan de una boda de celebridades. Llevamos esa cabina a tu evento con iluminación profesional, retoque con IA y entrega instantánea al teléfono para que tus invitados la tengan en su galería antes de que cambie la canción.</p>
+      </div>
+    </section>
+
+    <section class="pad bg-deep">
+      <div class="wrap">
+        <div class="sec-head center reveal"><span class="eyebrow light">Cómo funciona</span><h2 class="h-xl">Tres segundos, un clip espectacular.</h2></div>
+        <div class="values" style="grid-template-columns:repeat(3,1fr);">
+          {steps.map(([t, d], i) => (
+            <div class={`value reveal ${['', 'd1', 'd2'][i]}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+              <h3 style="font-family:var(--serif); font-size:1.5rem;">{t}</h3>
+              <p style="color:#d9d0ec; margin-top:10px;">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pad bg-ink">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="eyebrow">El look</span><h2 class="h-xl">Editorial. Cinematográfico. Listo para compartir.</h2></div>
+        <div class="glam-grid">
+          <div class="media reveal"><Ph w={900} h={1200} label="Retrato Glam Booth" note="Retrato editorial en B&N de una invitada" /></div>
+          <div class="media reveal d1"><Ph w={900} h={1200} label="Pareja en slow-mo" note="Novios capturados en B&N en cámara lenta" /></div>
+          <div class="media reveal d2"><Ph w={900} h={1200} label="Bridal party" note="Grupo del cortejo de novia en slow-mo" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad bg-deep">
+      <div class="wrap">
+        <div class="sec-head center reveal"><span class="eyebrow light">Qué incluye</span><h2 class="h-xl">Hecha como una portada de revista.</h2></div>
+        <div class="values" style="grid-template-columns:repeat(2,1fr);">
+          {features.map(([t, d], i) => (
+            <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+              <h3>{t}</h3>
+              <p style="color:#d9d0ec;">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pad bg-ink">
+      <div class="wrap" style="max-width:920px;">
+        <div class="sec-head center reveal"><span class="eyebrow">Hecha para</span><h2 class="h-xl">Las noches que la gente postea.</h2></div>
+        <ul class="glam-occasions reveal">
+          {occasions.map((o) => <li>{o}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="pad bg-deep">
+      <div class="wrap">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow light">Combínala con</span>
+            <h2 class="h-lg" style="margin:14px 0 16px; color:#fff;">Una cabina tradicional también.</h2>
+            <p class="lead" style="color:#d9d0ec;">La Glam Booth le da a cada invitado su momento solo. Una cabina tradicional te da las impresiones grupales divertidas para llevar a casa. Muchas parejas reservan las dos y las colocan en lados opuestos del salón para que las filas fluyan.</p>
+            <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a href={L('/south-florida-photo-booth-rental')} class="btn"><span>Ver Nuestras Cabinas</span> <span class="arrow">↗</span></a>
+              <a href={L('/epic-extras-1')} class="btn ghost"><span>Extras Épicos</span></a>
+            </div>
+          </div>
+          <div class="media reveal d1"><Ph w={1200} h={900} label="Photobooth + Glam Booth lado a lado" note="Salón con ambas cabinas instaladas" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad bg-ink">
+      <div class="wrap" style="max-width:880px;">
+        <div class="sec-head center reveal"><span class="eyebrow">Bueno saber</span><h2 class="h-xl">Preguntas frecuentes.</h2></div>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          {faqs.map((f, i) => (
+            <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+              <h3 style="font-size:1.15rem;">{f.q}</h3>
+              <p style="color:#d9d0ec; margin-top:8px;">{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    <FaqSchema items={faqItems} />
+
+    <CTA eyebrow="🤍 ¿Lista para el momento en cámara lenta?" titleHtml={`Suma la Glam Booth<br>a tu día.`} text="Cuéntanos tu fecha y lugar. Nosotros nos encargamos de la parte cinematográfica." ctaText="Súmala a tu Evento" ctaHref={L('/check-availability')} />
+  </div>
+</Base>
+
+<style is:global>
+  .glam-page { animation: glam-saturate 3.6s cubic-bezier(.7,.05,.4,1) 0.3s forwards; }
+  @keyframes glam-saturate {
+    0%   { filter: saturate(1.08) contrast(1.02); }
+    100% { filter: saturate(0)    contrast(1.06); }
+  }
+  .glam-page::before {
+    content: "";
+    position: fixed; left: 0; right: 0; top: 0; height: 6px;
+    background: linear-gradient(90deg, var(--red) 0%, #DBAAE1 50%, var(--red) 100%);
+    box-shadow: 0 0 28px rgba(254, 58, 59, 0.55), 0 0 14px rgba(219, 170, 225, 0.45);
+    z-index: 1000; pointer-events: none;
+    animation: glam-wave 3.6s cubic-bezier(.7,.05,.4,1) 0.3s forwards;
+  }
+  @keyframes glam-wave {
+    0%   { top: 0;        opacity: 1; }
+    92%  {                opacity: 1; }
+    100% { top: 100svh;   opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glam-page { animation: none; filter: saturate(0) contrast(1.06); }
+    .glam-page::before { display: none; }
+  }
+</style>
+
+<style>
+  .glam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+  .glam-grid .media { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 14px; }
+  .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 760px) { .glam-grid { grid-template-columns: 1fr 1fr; } .glam-grid .media:nth-child(3) { display: none; } }
+  .glam-occasions { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .glam-occasions li { padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.95rem; letter-spacing: 0.02em; background: rgba(255,255,255,0.04); }
+</style>
