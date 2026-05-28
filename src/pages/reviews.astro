@@ -20,8 +20,8 @@ const sourceIcon = {
 };
 
 const platforms = [
-  { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
-  { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+  { name: 'Google',  icon: '/images/google-review-icon.png', rating: '5.0', count: '100+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'Zola',    icon: '/images/best-of-zola-2025.png',  rating: '5.0', count: '15+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
 ];
 
 // Wedding vlog highlights (YouTube IDs). Starter set pulled from existing
@@ -74,7 +74,7 @@ const vlogs = [
       <div class="platforms-grid">
         {platforms.map((p, i) => (
           <a href={p.url} target="_blank" rel="noopener noreferrer" class={`platform-card reveal ${['','d1','d2','d3'][i] || ''}`} style={`--platform-accent:${p.accent};`}>
-            <span class="platform-mark">{p.short}</span>
+            <img class="platform-mark-img" src={p.icon} alt={`${p.name} reviews`} loading="lazy" />
             <span class="platform-name">{p.name}</span>
             <span class="platform-stars" aria-label={`${p.rating} stars`}>★★★★★</span>
             <span class="platform-rating">{p.rating} · {p.count}</span>
@@ -155,13 +155,10 @@ const vlogs = [
   .platform-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.22); }
   .platform-card:hover::before { opacity: 0.18; }
 
-  .platform-mark {
-    width: 52px; height: 52px; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--platform-accent, #fff); color: #fff;
-    font-family: var(--serif); font-weight: 700; font-size: 1.3rem;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    margin-bottom: 6px;
+  .platform-mark-img {
+    width: 56px; height: 56px; object-fit: contain;
+    display: block; margin: 0 auto 6px;
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35));
   }
   .platform-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
   .platform-stars { color: #ffd166; letter-spacing: 0.1em; font-size: 1.05rem; }
