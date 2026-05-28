@@ -4,65 +4,18 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import VideoLightbox from '../components/VideoLightbox.astro';
 
-// Curated fallback testimonials — shown only if the live Google pull below
-// isn't configured yet or returns nothing.
-const curated = [
+// Featured testimonials. (A live Google reviews widget will be embedded in the
+// section below — see the GOOGLE REVIEWS WIDGET slot in the markup.)
+const reviews = [
   { quote: "Xpress Entertainment made our wedding feel like a real party. Drew read the room perfectly and kept the dance floor packed from the first song to the last.", name: 'Sofia & Mateo', event: 'Wedding · Miami', source: 'Google' },
   { quote: 'They handled every transition, every announcement, every little detail so we could just be present. Our guests are still texting us about the music.', name: 'Emma & James', event: 'Wedding · Fort Lauderdale', source: 'Google' },
   { quote: 'Bilingual, professional, and genuinely fun. Our parents from Colombia felt completely included all night. Worth every penny.', name: 'Camila & Daniel', event: 'Wedding · Coral Gables', source: 'Zola' },
   { quote: 'We added cold sparks and dancing on the clouds and it was unreal. The photos came out incredible and the vibe was next-level.', name: 'Ashley & Marcus', event: 'Wedding · Palm Beach', source: 'Google' },
 ];
 
-// LIVE Google reviews, fetched at BUILD TIME. The API key lives in a
-// Cloudflare Pages env var (GOOGLE_PLACES_API_KEY) and is only used here at
-// build — it is never shipped to the browser. Set GOOGLE_PLACE_ID too.
-// Filters to 5-star, sorts newest first.
-let liveReviews = [];
-let gRating = null, gTotal = null;
-let gDebug = '';
-const G_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
-const G_PLACE = import.meta.env.GOOGLE_PLACE_ID;
-if (!G_KEY || !G_PLACE) {
-  gDebug = `missing-env key=${G_KEY ? 'yes' : 'no'} place=${G_PLACE ? 'yes' : 'no'}`;
-  console.warn('[reviews] Google env vars missing (GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID) — using curated fallback');
-} else {
-  try {
-    // Places API (New). Legacy maps.googleapis.com/.../details is disabled for
-    // newer Google Cloud projects, so we use the v1 endpoint.
-    const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(G_PLACE)}?languageCode=en`, {
-      headers: { 'X-Goog-Api-Key': G_KEY, 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' },
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      gDebug = `err ${res.status} ${(data && data.error && data.error.status) || ''} placelen=${G_PLACE.length}`;
-      console.warn('[reviews] Places API error', res.status, JSON.stringify(data).slice(0, 400));
-    } else {
-      gRating = data.rating ?? null;
-      gTotal = data.userRatingCount ?? null;
-      liveReviews = (data.reviews || [])
-        .filter((r) => r.rating === 5 && r.text && r.text.text && r.text.text.trim())
-        .sort((a, b) => new Date(b.publishTime || 0) - new Date(a.publishTime || 0))
-        .slice(0, 6)
-        .map((r) => ({
-          quote: r.text.text.trim(),
-          name: (r.authorAttribution && r.authorAttribution.displayName) || 'Google reviewer',
-          event: (r.relativePublishTimeDescription || 'Google review') + ' · Google',
-          source: 'Google',
-        }));
-      gDebug = `ok returned=${(data.reviews || []).length} fivestar=${liveReviews.length} rating=${gRating}`;
-      console.log(`[reviews] Google OK — ${(data.reviews || []).length} returned, ${liveReviews.length} five-star kept`);
-    }
-  } catch (e) {
-    gDebug = 'fetch-failed ' + (e && e.message ? e.message.slice(0, 80) : '');
-    console.warn('[reviews] Google fetch failed:', e && e.message);
-  }
-}
-const reviews = liveReviews.length ? liveReviews : curated;
-
-// Platform hubs. Google's rating/count auto-fill from the live pull when set.
 const platforms = [
-  { name: 'Google',  short: 'G',  rating: gRating ? gRating.toFixed(1) : '5.0', count: gTotal ? `${gTotal} reviews` : '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
-  { name: 'Zola',    short: 'Z',  rating: '5.0',                                 count: '40+ reviews',                                  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+  { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
 ];
 
 // Wedding vlog highlights (YouTube IDs). Starter set pulled from existing
@@ -77,8 +30,6 @@ const vlogs = [
 <Base
   title="Reviews | Xpress Entertainment — Real Couples, Real Weddings"
   description="See what couples are saying about Xpress Entertainment on Google and Zola, plus real wedding vlog highlights from across South Florida.">
-
-  <div hidden data-reviews-debug={gDebug}></div>
 
   <Hero
     size="mid"

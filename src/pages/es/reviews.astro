@@ -6,56 +6,18 @@ import VideoLightbox from '../../components/VideoLightbox.astro';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
-// Fallback curado — se muestra solo si la consulta en vivo de Google no está
-// configurada o no devuelve nada.
-const curated = [
+// Testimonios destacados. (Abajo se incrustará un widget de reseñas de Google
+// en vivo — ver el espacio GOOGLE REVIEWS WIDGET en el marcado.)
+const reviews = [
   { quote: 'Xpress Entertainment hizo que nuestra boda se sintiera como una verdadera fiesta. Drew leyó el ambiente perfectamente y mantuvo la pista llena del primer al último tema.', name: 'Sofia y Mateo', event: 'Boda · Miami', source: 'Google' },
   { quote: 'Se encargaron de cada transición, cada anuncio, cada pequeño detalle, así nosotros pudimos disfrutar el momento. Nuestros invitados todavía nos hablan de la música.', name: 'Emma y James', event: 'Boda · Fort Lauderdale', source: 'Google' },
   { quote: 'Bilingües, profesionales y realmente divertidos. Nuestros papás de Colombia se sintieron incluidos toda la noche. Vale cada centavo.', name: 'Camila y Daniel', event: 'Boda · Coral Gables', source: 'Zola' },
   { quote: 'Agregamos las chispas frías y el baile en las nubes y fue increíble. Las fotos quedaron espectaculares y el ambiente, de otro nivel.', name: 'Ashley y Marcus', event: 'Boda · Palm Beach', source: 'Google' },
 ];
 
-// Reseñas de Google EN VIVO (en tiempo de build). La API key vive en una env
-// var de Cloudflare Pages y nunca llega al navegador. Filtra a 5 estrellas y
-// ordena por más recientes; texto en español (language=es).
-let liveReviews = [];
-let gRating = null, gTotal = null;
-const G_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
-const G_PLACE = import.meta.env.GOOGLE_PLACE_ID;
-if (!G_KEY || !G_PLACE) {
-  console.warn('[reviews/es] Google env vars missing — using curated fallback');
-} else {
-  try {
-    const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(G_PLACE)}?languageCode=es`, {
-      headers: { 'X-Goog-Api-Key': G_KEY, 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' },
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      console.warn('[reviews/es] Places API error', res.status, JSON.stringify(data).slice(0, 400));
-    } else {
-      gRating = data.rating ?? null;
-      gTotal = data.userRatingCount ?? null;
-      liveReviews = (data.reviews || [])
-        .filter((r) => r.rating === 5 && r.text && r.text.text && r.text.text.trim())
-        .sort((a, b) => new Date(b.publishTime || 0) - new Date(a.publishTime || 0))
-        .slice(0, 6)
-        .map((r) => ({
-          quote: r.text.text.trim(),
-          name: (r.authorAttribution && r.authorAttribution.displayName) || 'Reseña de Google',
-          event: (r.relativePublishTimeDescription || 'Reseña de Google') + ' · Google',
-          source: 'Google',
-        }));
-      console.log(`[reviews/es] Google OK — ${(data.reviews || []).length} returned, ${liveReviews.length} five-star kept`);
-    }
-  } catch (e) {
-    console.warn('[reviews/es] Google fetch failed:', e && e.message);
-  }
-}
-const reviews = liveReviews.length ? liveReviews : curated;
-
 const platforms = [
-  { name: 'Google',  short: 'G',  rating: gRating ? gRating.toFixed(1) : '5.0', count: gTotal ? `${gTotal} reseñas` : '120+ reseñas', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
-  { name: 'Zola',    short: 'Z',  rating: '5.0',                                 count: '40+ reseñas',                                 url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
+  { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reseñas', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
+  { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reseñas',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
 ];
 
 const vlogs = [
