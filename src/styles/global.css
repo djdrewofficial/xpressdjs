@@ -287,6 +287,7 @@ section { position: relative; }
 /* ---------- Why / values ---------- */
 .values { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
 .value { padding: 36px 30px; border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius); transition: transform 0.5s var(--ease), background 0.5s, color 0.5s; }
+.dj-avatar { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 16px; border: 3px solid rgba(255,255,255,0.16); box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 0 4px rgba(254,58,59,0.15); background: #17112a; }
 .value:hover { transform: translateY(-8px); background: var(--purple); color: #fff; border-color: var(--purple); }
 .value .vnum { font-family: var(--serif); font-size: 1.1rem; color: var(--red); }
 .value:hover .vnum { color: var(--lavender); }
