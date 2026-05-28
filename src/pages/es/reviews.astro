@@ -22,26 +22,34 @@ let liveReviews = [];
 let gRating = null, gTotal = null;
 const G_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 const G_PLACE = import.meta.env.GOOGLE_PLACE_ID;
-if (G_KEY && G_PLACE) {
+if (!G_KEY || !G_PLACE) {
+  console.warn('[reviews/es] Google env vars missing — using curated fallback');
+} else {
   try {
-    const u = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(G_PLACE)}&fields=reviews,rating,user_ratings_total&reviews_sort=newest&language=es&key=${G_KEY}`;
-    const res = await fetch(u);
+    const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(G_PLACE)}?languageCode=es`, {
+      headers: { 'X-Goog-Api-Key': G_KEY, 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' },
+    });
     const data = await res.json();
-    if (data && data.result) {
-      gRating = data.result.rating;
-      gTotal = data.result.user_ratings_total;
-      liveReviews = (data.result.reviews || [])
-        .filter((r) => r.rating === 5 && r.text && r.text.trim())
-        .sort((a, b) => (b.time || 0) - (a.time || 0))
+    if (!res.ok) {
+      console.warn('[reviews/es] Places API error', res.status, JSON.stringify(data).slice(0, 400));
+    } else {
+      gRating = data.rating ?? null;
+      gTotal = data.userRatingCount ?? null;
+      liveReviews = (data.reviews || [])
+        .filter((r) => r.rating === 5 && r.text && r.text.text && r.text.text.trim())
+        .sort((a, b) => new Date(b.publishTime || 0) - new Date(a.publishTime || 0))
         .slice(0, 6)
         .map((r) => ({
-          quote: r.text.trim(),
-          name: r.author_name || 'Reseña de Google',
-          event: (r.relative_time_description || 'Reseña de Google') + ' · Google',
+          quote: r.text.text.trim(),
+          name: (r.authorAttribution && r.authorAttribution.displayName) || 'Reseña de Google',
+          event: (r.relativePublishTimeDescription || 'Reseña de Google') + ' · Google',
           source: 'Google',
         }));
+      console.log(`[reviews/es] Google OK — ${(data.reviews || []).length} returned, ${liveReviews.length} five-star kept`);
     }
-  } catch (e) { /* usa el fallback curado */ }
+  } catch (e) {
+    console.warn('[reviews/es] Google fetch failed:', e && e.message);
+  }
 }
 const reviews = liveReviews.length ? liveReviews : curated;
 

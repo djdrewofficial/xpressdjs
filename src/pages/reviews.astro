@@ -21,26 +21,36 @@ let liveReviews = [];
 let gRating = null, gTotal = null;
 const G_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 const G_PLACE = import.meta.env.GOOGLE_PLACE_ID;
-if (G_KEY && G_PLACE) {
+if (!G_KEY || !G_PLACE) {
+  console.warn('[reviews] Google env vars missing (GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID) — using curated fallback');
+} else {
   try {
-    const u = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(G_PLACE)}&fields=reviews,rating,user_ratings_total&reviews_sort=newest&language=en&key=${G_KEY}`;
-    const res = await fetch(u);
+    // Places API (New). Legacy maps.googleapis.com/.../details is disabled for
+    // newer Google Cloud projects, so we use the v1 endpoint.
+    const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(G_PLACE)}?languageCode=en`, {
+      headers: { 'X-Goog-Api-Key': G_KEY, 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' },
+    });
     const data = await res.json();
-    if (data && data.result) {
-      gRating = data.result.rating;
-      gTotal = data.result.user_ratings_total;
-      liveReviews = (data.result.reviews || [])
-        .filter((r) => r.rating === 5 && r.text && r.text.trim())
-        .sort((a, b) => (b.time || 0) - (a.time || 0))
+    if (!res.ok) {
+      console.warn('[reviews] Places API error', res.status, JSON.stringify(data).slice(0, 400));
+    } else {
+      gRating = data.rating ?? null;
+      gTotal = data.userRatingCount ?? null;
+      liveReviews = (data.reviews || [])
+        .filter((r) => r.rating === 5 && r.text && r.text.text && r.text.text.trim())
+        .sort((a, b) => new Date(b.publishTime || 0) - new Date(a.publishTime || 0))
         .slice(0, 6)
         .map((r) => ({
-          quote: r.text.trim(),
-          name: r.author_name || 'Google reviewer',
-          event: (r.relative_time_description || 'Google review') + ' · Google',
+          quote: r.text.text.trim(),
+          name: (r.authorAttribution && r.authorAttribution.displayName) || 'Google reviewer',
+          event: (r.relativePublishTimeDescription || 'Google review') + ' · Google',
           source: 'Google',
         }));
+      console.log(`[reviews] Google OK — ${(data.reviews || []).length} returned, ${liveReviews.length} five-star kept`);
     }
-  } catch (e) { /* fall back to curated */ }
+  } catch (e) {
+    console.warn('[reviews] Google fetch failed:', e && e.message);
+  }
 }
 const reviews = liveReviews.length ? liveReviews : curated;
 
