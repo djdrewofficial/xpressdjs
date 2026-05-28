@@ -13,6 +13,12 @@ const reviews = [
   { quote: 'We added cold sparks and dancing on the clouds and it was unreal. The photos came out incredible and the vibe was next-level.', name: 'Ashley & Marcus', event: 'Wedding · Palm Beach', source: 'Google' },
 ];
 
+// Platform icon shown on each review card (by source).
+const sourceIcon = {
+  Google: '/images/google-review-icon.png',
+  Zola: '/images/best-of-zola-2025.png',
+};
+
 const platforms = [
   { name: 'Google',  short: 'G',  rating: '5.0', count: '120+ reviews', url: 'https://g.page/r/xpressdjs/review',                                  accent: '#4285F4' },
   { name: 'Zola',    short: 'Z',  rating: '5.0', count: '40+ reviews',  url: 'https://www.zola.com/wedding-vendors/wedding-djs/xpress-entertainment', accent: '#0095CB' },
@@ -50,9 +56,10 @@ const vlogs = [
       <div class="values" style="grid-template-columns:repeat(2,1fr);">
         {reviews.map((r, i) => (
           <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <img src={sourceIcon[r.source]} alt={`${r.source} review`} class="review-source-icon" loading="lazy" />
             <p style="font-family:var(--serif); font-style:italic; font-size:1.15rem; color:#fff; line-height:1.5;">"{r.quote}"</p>
             <p style="margin-top:18px; color:var(--lavender); font-weight:600;">{r.name}</p>
-            <p style="color:var(--muted); font-size:0.85rem; letter-spacing:0.04em;">{r.event} · via {r.source}</p>
+            <p style="color:var(--muted); font-size:0.85rem; letter-spacing:0.04em;">{r.event}</p>
           </div>
         ))}
       </div>
@@ -117,6 +124,9 @@ const vlogs = [
 </Base>
 
 <style>
+  /* Per-review platform icon */
+  .review-source-icon { height: 30px; width: auto; display: block; margin: 0 0 16px; }
+
   /* Platform hub */
   .platforms-grid {
     display: grid;
