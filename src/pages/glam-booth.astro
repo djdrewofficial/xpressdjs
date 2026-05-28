@@ -2,9 +2,12 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import Ph from '../components/Ph.astro';
 import FaqSchema from '../components/FaqSchema.astro';
-import { phUri } from '../lib/ph';
+
+const gallery = [1, 2, 3, 4, 5, 6].map((n) => ({
+  src: `/images/galleries/glam-photo-booth-bw-0${n}.jpg`,
+  alt: `Black and white slow-motion portrait from the Xpress Entertainment Glam Booth at a South Florida wedding (${n} of 6)`,
+}));
 
 // Three step "how it works" beats — match what top glam booth providers
 // emphasize: pose, ai beauty, instant share.
@@ -45,8 +48,8 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
       eyebrow="Glam Booth"
       titleHtml={`A moment, slowed down.<br><span class="serif-accent" style="font-style:italic">In black and white.</span>`}
       sub="Slow-motion, editorial portraits with skin-smoothing AI. The kind of guest experience your friends will be reposting for a week."
-      image={phUri(2560, 1440, 'Glam Booth hero', 'High-key B&W portrait of a guest in a slow-mo glam booth')}
-      alt="A wedding guest captured in a black-and-white slow-motion glam booth portrait"
+      image="/images/galleries/glam-photo-booth-bw-cover.jpg"
+      alt="A wedding guest captured in a black-and-white slow-motion glam booth portrait by Xpress Entertainment"
       ctaText="Add It to Your Event"
     />
 
@@ -77,9 +80,11 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
       <div class="wrap">
         <div class="sec-head reveal"><span class="eyebrow">The look</span><h2 class="h-xl">Editorial. Cinematic. Instantly shareable.</h2></div>
         <div class="glam-grid">
-          <div class="media reveal"><Ph w={900} h={1200} label="Glam Booth portrait" note="Editorial B&W portrait of a guest" /></div>
-          <div class="media reveal d1"><Ph w={900} h={1200} label="Couple slow-mo" note="Bride and groom B&W slow-mo capture" /></div>
-          <div class="media reveal d2"><Ph w={900} h={1200} label="Bridesmaid party" note="Bridal party group slow-mo capture" /></div>
+          {gallery.map((g, i) => (
+            <div class={`media reveal ${['','d1','d2','','d1','d2'][i]}`}>
+              <img src={g.src} alt={g.alt} loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -122,7 +127,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
               <a href="/epic-extras-1" class="btn ghost"><span>Epic Extras</span></a>
             </div>
           </div>
-          <div class="media reveal d1"><Ph w={1200} h={900} label="Photobooth + Glam Booth side by side" note="Reception room with both booths set up" /></div>
+          <div class="media reveal d1"><img src="/images/galleries/glam-photo-booth-bw-07.jpg" alt="Couple sharing a moment in the Xpress Entertainment Glam Booth" loading="lazy" /></div>
         </div>
       </div>
     </section>
@@ -182,12 +187,14 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
   .glam-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 16px;
     margin-top: 28px;
   }
-  .glam-grid .media { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 14px; }
-  .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  @media (max-width: 760px) { .glam-grid { grid-template-columns: 1fr 1fr; } .glam-grid .media:nth-child(3) { display: none; } }
+  .glam-grid .media { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 12px; background: #0a0612; }
+  .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+  .glam-grid .media:hover img { transform: scale(1.04); }
+  @media (max-width: 860px) { .glam-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .glam-grid { grid-template-columns: 1fr; } }
 
   .glam-occasions {
     list-style: none; padding: 0; margin: 28px 0 0;

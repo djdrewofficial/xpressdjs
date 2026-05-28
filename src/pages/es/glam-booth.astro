@@ -2,11 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
 import FaqSchema from '../../components/FaqSchema.astro';
-import { phUri, } from '../../lib/ph';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
+
+const gallery = [1, 2, 3, 4, 5, 6].map((n) => ({
+  src: `/images/galleries/glam-photo-booth-bw-0${n}.jpg`,
+  alt: `Retrato en blanco y negro y cámara lenta de la Glam Booth de Xpress Entertainment en una boda del sur de Florida (${n} de 6)`,
+}));
 
 const steps = [
   ['01 · Entra', "Iluminación profesional, un fondo editorial impecable y tres segundos para dar tu mejor cara. Eso es todo."],
@@ -43,8 +46,8 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
       eyebrow="Glam Booth"
       titleHtml={`Un momento, en cámara lenta.<br><span class="serif-accent" style="font-style:italic">En blanco y negro.</span>`}
       sub="Retratos editoriales en cámara lenta con suavizado de piel con IA. El tipo de experiencia que tus amigos compartirán toda la semana."
-      image={phUri(2560, 1440, 'Glam Booth hero', 'Retrato B&N de alta luz de una invitada en una glam booth en cámara lenta')}
-      alt="Invitada de boda capturada en un retrato en blanco y negro en cámara lenta de la glam booth"
+      image="/images/galleries/glam-photo-booth-bw-cover.jpg"
+      alt="Invitada de boda capturada en un retrato en blanco y negro en cámara lenta de la Glam Booth de Xpress Entertainment"
       ctaText="Súmala a tu Evento"
       ctaHref={L('/check-availability')}
     />
@@ -73,9 +76,11 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
       <div class="wrap">
         <div class="sec-head reveal"><span class="eyebrow">El look</span><h2 class="h-xl">Editorial. Cinematográfico. Listo para compartir.</h2></div>
         <div class="glam-grid">
-          <div class="media reveal"><Ph w={900} h={1200} label="Retrato Glam Booth" note="Retrato editorial en B&N de una invitada" /></div>
-          <div class="media reveal d1"><Ph w={900} h={1200} label="Pareja en slow-mo" note="Novios capturados en B&N en cámara lenta" /></div>
-          <div class="media reveal d2"><Ph w={900} h={1200} label="Bridal party" note="Grupo del cortejo de novia en slow-mo" /></div>
+          {gallery.map((g, i) => (
+            <div class={`media reveal ${['','d1','d2','','d1','d2'][i]}`}>
+              <img src={g.src} alt={g.alt} loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -115,7 +120,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
               <a href={L('/epic-extras-1')} class="btn ghost"><span>Extras Épicos</span></a>
             </div>
           </div>
-          <div class="media reveal d1"><Ph w={1200} h={900} label="Photobooth + Glam Booth lado a lado" note="Salón con ambas cabinas instaladas" /></div>
+          <div class="media reveal d1"><img src="/images/galleries/glam-photo-booth-bw-07.jpg" alt="Pareja compartiendo un momento en la Glam Booth de Xpress Entertainment" loading="lazy" /></div>
         </div>
       </div>
     </section>
@@ -165,10 +170,12 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 </style>
 
 <style>
-  .glam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
-  .glam-grid .media { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 14px; }
-  .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  @media (max-width: 760px) { .glam-grid { grid-template-columns: 1fr 1fr; } .glam-grid .media:nth-child(3) { display: none; } }
+  .glam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .glam-grid .media { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 12px; background: #0a0612; }
+  .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+  .glam-grid .media:hover img { transform: scale(1.04); }
+  @media (max-width: 860px) { .glam-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .glam-grid { grid-template-columns: 1fr; } }
   .glam-occasions { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .glam-occasions li { padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.95rem; letter-spacing: 0.02em; background: rgba(255,255,255,0.04); }
 </style>
