@@ -293,7 +293,7 @@ section { position: relative; }
 .value h3 { font-size: 1.5rem; margin: 16px 0 12px; }
 .value p { font-size: 0.94rem; color: #5a4f6e; }
 .value:hover p { color: #e9e2f5; }
-@media (max-width: 860px) { .values { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .values { grid-template-columns: 1fr !important; } }
 
 /* ---------- Alternating service rows (services page) ---------- */
 .srow { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,90px); align-items: center; padding-block: clamp(50px,7vw,90px); border-bottom: 1px solid rgba(255,255,255,0.08); }
