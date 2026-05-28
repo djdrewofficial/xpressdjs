@@ -79,6 +79,7 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
           {gallery.map((g, i) => (
             <div class={`media reveal ${['','d1','d2','','d1','d2'][i]}`}>
               <img src={g.src} alt={g.alt} loading="lazy" />
+              <span class="cam-flash" aria-hidden="true"></span>
             </div>
           ))}
         </div>
@@ -142,6 +143,30 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 
     <CTA eyebrow="🤍 ¿Lista para el momento glam?" titleHtml={`Suma la Glam Booth<br>a tu día.`} text="Cuéntanos tu fecha y lugar. Nosotros nos encargamos de la parte glam." ctaText="Súmala a tu Evento" ctaHref={L('/check-availability')} />
   </div>
+
+  <script is:inline>
+    (function () {
+      try {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var flashes = [].slice.call(document.querySelectorAll('.glam-grid .cam-flash'));
+        if (!flashes.length) return;
+        var corners = ['c-tl', 'c-tr', 'c-bl', 'c-br'];
+        var last = -1;
+        function pop() {
+          if (document.hidden) return;
+          var i = Math.floor(Math.random() * flashes.length);
+          if (flashes.length > 1 && i === last) i = (i + 1) % flashes.length;
+          last = i;
+          var el = flashes[i];
+          el.className = 'cam-flash ' + corners[Math.floor(Math.random() * corners.length)];
+          void el.offsetWidth;
+          el.classList.add('go');
+        }
+        setTimeout(pop, 900);
+        setInterval(pop, 2000);
+      } catch (e) {}
+    })();
+  </script>
 </Base>
 
 <style is:global>
@@ -171,11 +196,29 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 
 <style>
   .glam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-  .glam-grid .media { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 12px; background: #0a0612; }
+  .glam-grid .media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 12px; background: #0a0612; }
   .glam-grid .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
   .glam-grid .media:hover img { transform: scale(1.04); }
   @media (max-width: 860px) { .glam-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .glam-grid { grid-template-columns: 1fr; } }
+
+  .cam-flash {
+    position: absolute; width: 52px; height: 52px; border-radius: 50%;
+    pointer-events: none; opacity: 0; z-index: 3; mix-blend-mode: screen;
+    background: radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.45) 32%, transparent 70%);
+  }
+  .cam-flash.c-tl { top: 9px; left: 9px; }
+  .cam-flash.c-tr { top: 9px; right: 9px; }
+  .cam-flash.c-bl { bottom: 9px; left: 9px; }
+  .cam-flash.c-br { bottom: 9px; right: 9px; }
+  .cam-flash.go { animation: cam-pop 620ms ease-out; }
+  @keyframes cam-pop {
+    0%   { opacity: 0;   transform: scale(0.35); }
+    16%  { opacity: 0.98; transform: scale(1.15); }
+    38%  { opacity: 0.45; transform: scale(1); }
+    100% { opacity: 0;   transform: scale(1.25); }
+  }
+  @media (prefers-reduced-motion: reduce) { .cam-flash { display: none; } }
   .glam-occasions { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .glam-occasions li { padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.95rem; letter-spacing: 0.02em; background: rgba(255,255,255,0.04); }
 </style>
