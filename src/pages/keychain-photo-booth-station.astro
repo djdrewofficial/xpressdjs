@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
 import Ph from '../components/Ph.astro';
 import FaqSchema from '../components/FaqSchema.astro';
-import { phUri } from '../lib/ph';
 
 // How it works — 4 steps.
 const steps = [
@@ -49,15 +48,13 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
   description="Upgrade your wedding photo booth with Xpress Entertainment's Keychain Station — a live custom wedding favor experience with leather keychains, gold hardware, and personalized photo inserts.">
 
   <div class="kc-page">
-    <!-- TODO(image): replace hero with a wide, premium shot of the Keychain
-         Station or a hero macro of a finished leather + gold keychain (2560x1440). -->
     <Hero
       size="tall"
       eyebrow="Wedding Photo Booth Upgrade"
       titleHtml={`The photo booth favor your guests <span class="serif-accent" style="font-style:italic">actually keep.</span>`}
       sub="At our Keychain Station, guests turn their photo booth pictures into custom leather keychains with gold hardware, assembled live at your wedding. It's the South Florida wedding favor people put on their keys instead of in a drawer."
-      image={phUri(2560, 1440, 'Keychain Station — hero', 'Wide shot of the staffed station or a macro of a finished keychain')}
-      alt="Xpress Entertainment Keychain Station at a South Florida wedding"
+      image="/images/heroes/keychains-header.jpg"
+      alt="Custom leather wedding keychains with gold hardware and photo inserts from the Xpress Entertainment Keychain Station"
       ctaText="Check Availability"
       ctaText2="View Photo Booth Options"
       ctaHref2="/south-florida-photo-booth-rental"
