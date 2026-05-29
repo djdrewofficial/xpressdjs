@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+import Ph from '../components/Ph.astro';
+import FaqSchema from '../components/FaqSchema.astro';
+
+// How it works — 4 steps.
+const steps = [
+  ['01 · Snap', 'Guests take their photos at your Xpress Entertainment photo booth, just like they normally would.'],
+  ['02 · Visit the station', 'They head over to the staffed Keychain Station and pick their strap color on the spot.'],
+  ['03 · Live assembly', 'Our attendant sets their photo into a leather-style keychain with gold hardware, right there at the event.'],
+  ['04 · Keep it forever', 'Guests walk away with a personalized keepsake they actually use, not a favor that gets left on the table.'],
+];
+
+// What's included.
+const included = [
+  'Dedicated Keychain Station attendant',
+  'Keychain display + setup table',
+  'Leather-style straps with gold hardware',
+  'Custom circular photo insert',
+  'Live assembly during your reception',
+  'Guest strap-color selection at the event',
+];
+
+// Who it's perfect for.
+const perfectFor = [
+  'Weddings with a photo booth',
+  'Couples who want an interactive favor',
+  'Guests who love personalized keepsakes',
+  'Luxury & multicultural weddings',
+  'High-energy South Florida celebrations',
+  'Couples who want more than standard favors',
+];
+
+const faqs = [
+  { q: 'How many keychains should we order?', a: 'We recommend matching your guest count. For example, if you have 100 guests, we recommend ordering 100 keychains so no one misses out.' },
+  { q: 'Can guests choose their strap color?', a: 'Yes. Guests pick from the available strap colors right at the station during your event.' },
+  { q: 'Do guests choose the design inside the keychain?', a: 'The couple chooses the insert style before the wedding. You can go with two photos, or one photo plus your wedding monogram/design.' },
+  { q: 'Is this included with the photo booth?', a: "It's a premium upgrade you add to your photo booth package, so the booth and the Keychain Station work together seamlessly." },
+  { q: 'What does pricing start at?', a: 'Keychain Station pricing starts at $795.' },
+  { q: 'Is this available for every wedding?', a: 'Availability may be limited. The keychain components can be hard to source and sometimes sell out, so we recommend reserving early.' },
+];
+const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
+---
+<Base
+  title="Keychain Photo Booth Station for Weddings | Xpress Entertainment"
+  description="Upgrade your wedding photo booth with Xpress Entertainment's Keychain Station — a live custom wedding favor experience with leather keychains, gold hardware, and personalized photo inserts.">
+
+  <!-- TODO(image): swap hero for a wide, premium shot of the Keychain Station
+       or a hero macro of a finished leather + gold keychain. Using the existing
+       photo-booth hero as a temporary placeholder (it has .webp variants). -->
+  <Hero
+    size="tall"
+    eyebrow="Keychain Station · Photo Booth Upgrade"
+    titleHtml={`Turn your photo booth into a wedding favor <span class="serif-accent" style="font-style:italic">guests actually keep.</span>`}
+    sub="Our Keychain Station transforms your guests' photo booth pictures into custom leather keychains with gold hardware, assembled live during your wedding."
+    image="/images/heroes/photobooth-hero.jpg"
+    alt="Guests at an Xpress Entertainment wedding photo booth in South Florida"
+    ctaText="Check Availability"
+    ctaText2="View Photo Booth Options"
+    ctaHref2="/south-florida-photo-booth-rental"
+  />
+
+  <!-- INTRO -->
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <p class="lead reveal" style="text-align:center;">Most wedding favors get left on the table. Couples spend real money on something guests forget by the time they reach the parking lot. The Keychain Station flips that. Guests take their photo, choose a strap color, and watch their keychain come together live — leaving with a personalized keepsake they'll actually clip to their keys and carry long after the last dance.</p>
+      <p class="lead reveal d1" style="text-align:center; margin-top:18px;">It's an experience and a favor in one, and it pairs perfectly with our <a href="/south-florida-photo-booth-rental" class="textlink">South Florida photo booths</a> for weddings across Miami, Fort Lauderdale, and Palm Beach.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">How it works</span><h2 class="h-xl">A favor that happens live.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(4,1fr);">
+        {steps.map(([t, d], i) => (
+          <div class={`value reveal ${['', 'd1', 'd2', 'd3'][i]}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <h3 style="font-family:var(--serif); font-size:1.4rem;">{t}</h3>
+            <p style="color:#d9d0ec; margin-top:10px;">{d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender); max-width:760px; margin-inline:auto;">Before the wedding, you choose the insert style: <strong>two photos</strong> inside the keychain, or <strong>one photo plus your wedding monogram</strong>.</p>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">What's included</span><h2 class="h-xl">Done for you, start to finish.</h2></div>
+      <div class="reveal" style="max-width:680px; margin:0 auto;">
+        {included.map((name) => (
+          <div style="display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
+            <span style="color:var(--red); font-family:var(--serif); font-size:1.2rem;">✦</span><span style="font-size:1.15rem;">{name}</span>
+          </div>
+        ))}
+      </div>
+      <div class="reveal" style="text-align:center; margin-top:36px;">
+        <div style="font-family:var(--serif); font-size:2.6rem; color:var(--red); line-height:1;">Starts at $795</div>
+        <p style="color:var(--muted); margin-top:12px;">Added to your photo booth package.</p>
+        <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="/check-availability" class="btn"><span>Check Availability</span> <span class="arrow">↗</span></a>
+          <a href="/south-florida-photo-booth-rental" class="btn ghost"><span>View Photo Booth Options</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S PERFECT FOR -->
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:920px;">
+      <div class="sec-head center reveal"><span class="eyebrow light">Who it's perfect for</span><h2 class="h-xl">Made for couples who sweat the details.</h2></div>
+      <ul class="kc-tags reveal">
+        {perfectFor.map((o) => <li>{o}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">The look</span><h2 class="h-xl">Leather, gold, and your photos.</h2></div>
+      <div class="kc-gallery">
+        <!-- TODO(image): real macro close-up of a finished leather + gold keychain -->
+        <figure class="reveal"><Ph w={1000} h={1000} label="Keychain close-up" note="Macro of finished leather + gold keychain" /></figure>
+        <!-- TODO(image): guest smiling while receiving their keychain at the station -->
+        <figure class="reveal d1"><Ph w={1000} h={1000} label="Guest receiving keychain" note="Guest receiving their keychain at the station" /></figure>
+        <!-- TODO(image): the staffed Keychain Station display + setup table -->
+        <figure class="reveal d2"><Ph w={1000} h={1000} label="Keychain Station setup" note="Staffed display + setup table at the reception" /></figure>
+        <!-- TODO(image): swap for a real photo-strip / sample insert photo.
+             Temporarily using an existing classic photo booth strip. -->
+        <figure class="reveal"><img src="/images/galleries/classic-photo-booth-strip-01.jpg" alt="Sample photo booth strip used for the keychain insert" loading="lazy" /></figure>
+        <!-- TODO(image): the available leather strap color options laid out -->
+        <figure class="reveal d1"><Ph w={1000} h={1000} label="Strap color options" note="Flat-lay of the available leather strap colors" /></figure>
+        <!-- TODO(image): swap for a real keychain with the wedding monogram insert.
+             Temporarily using an existing wedding monogram image. -->
+        <figure class="reveal d2"><img src="/images/wedding-monogram.jpg" alt="Wedding monogram design used as a keychain insert" loading="lazy" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-deep">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head center reveal"><span class="eyebrow light">Good to know</span><h2 class="h-xl">Keychain Station FAQs.</h2></div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        {faqs.map((f, i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <h3 style="font-size:1.15rem;">{f.q}</h3>
+            <p style="color:#d9d0ec; margin-top:8px;">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <FaqSchema items={faqItems} />
+
+  <CTA eyebrow="💛 The favor they keep" titleHtml={`Give your guests a favor<br>they'll actually keep.`} text="Ask about adding the Keychain Station to your photo booth for your South Florida wedding." ctaText="Ask About the Keychain Station" />
+</Base>
+
+<style>
+  .kc-tags {
+    list-style: none; padding: 0; margin: 28px 0 0;
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  }
+  .kc-tags li {
+    padding: 10px 18px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; font-size: 0.95rem; letter-spacing: 0.02em;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .kc-gallery {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px;
+  }
+  .kc-gallery figure { margin: 0; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 14px; background: #0a0612; }
+  .kc-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+  .kc-gallery figure:hover img { transform: scale(1.04); }
+  @media (max-width: 760px) { .kc-gallery { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .kc-gallery { grid-template-columns: 1fr; } }
+</style>

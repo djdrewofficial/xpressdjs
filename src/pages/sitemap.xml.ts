@@ -8,7 +8,7 @@ const exclude = new Set(['/photobooth-templates']);
 
 // Indexable English-only pages (no Spanish translation) — emitted without
 // hreflang alternates so we never point search engines at a missing /es page.
-const enOnly = ['/lgbtq-wedding-dj-south-florida'];
+const enOnly = ['/lgbtq-wedding-dj-south-florida', '/keychain-photo-booth-station'];
 
 export const GET: APIRoute = () => {
   const routes = Array.from(translated).filter((r) => !exclude.has(r));
