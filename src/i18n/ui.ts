@@ -16,6 +16,7 @@ export const translated = new Set<string>([
   '/dj-drew-segura',
   '/djphil',
   '/djrere',
+  '/djnaqeeb',
   '/services',
   '/services/djs',
   '/services/fort-lauderdale-wedding-dj',
@@ -67,7 +68,7 @@ export function localize(enPath: string, locale: Locale): string {
 type NavDict = {
   experience: string; djs: string; services: string; epicExtras: string;
   pricing: string; blog: string; about: string; reviews: string; checkDate: string;
-  djDrew: string; djPhil: string; djReRe: string; allDjs: string;
+  djDrew: string; djPhil: string; djReRe: string; djNaqeeb: string; allDjs: string;
   allServices: string; photoBooths: string; glamBooth: string; photoTemplates: string; contentCreator: string; vibo: string;
   overview: string; clouds: string; coldSparks: string; lighting: string;
 };
@@ -84,7 +85,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
     nav: {
       experience: 'Experience', djs: 'DJs', services: 'Services', epicExtras: 'Epic Extras',
       pricing: 'Pricing', blog: 'Blog', about: 'About', reviews: 'Reviews', checkDate: 'Check Your Date',
-      djDrew: 'Drew Segura', djPhil: 'DJ Phil', djReRe: 'DJ ReRe', allDjs: 'All DJs →',
+      djDrew: 'Drew Segura', djPhil: 'DJ Phil', djReRe: 'DJ ReRe', djNaqeeb: 'DJ Naqeeb', allDjs: 'All DJs →',
       allServices: 'All Services', photoBooths: 'Photo Booths', glamBooth: 'Glam Booth', photoTemplates: 'Photo Booth Templates', contentCreator: 'Content Creator', vibo: 'Vibo Planning App',
       overview: 'Overview', clouds: 'Dancing on the Clouds', coldSparks: 'Cold Sparks', lighting: 'Lighting & Monogram',
     },
@@ -103,7 +104,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
     nav: {
       experience: 'Experiencia', djs: 'DJs', services: 'Servicios', epicExtras: 'Extras Épicos',
       pricing: 'Precios', blog: 'Blog', about: 'Nosotros', reviews: 'Reseñas', checkDate: 'Consulta tu Fecha',
-      djDrew: 'Drew Segura', djPhil: 'DJ Phil', djReRe: 'DJ ReRe', allDjs: 'Todos los DJs →',
+      djDrew: 'Drew Segura', djPhil: 'DJ Phil', djReRe: 'DJ ReRe', djNaqeeb: 'DJ Naqeeb', allDjs: 'Todos los DJs →',
       allServices: 'Todos los Servicios', photoBooths: 'Cabinas de Fotos', glamBooth: 'Glam Booth', photoTemplates: 'Plantillas de Cabina', contentCreator: 'Creador de Contenido', vibo: 'App de Planeación Vibo',
       overview: 'Resumen', clouds: 'Bailando en las Nubes', coldSparks: 'Chispas Frías', lighting: 'Iluminación y Monograma',
     },

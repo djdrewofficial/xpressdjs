@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import Ph from '../../components/Ph.astro';
+import { phUri } from '../../lib/ph';
+import { localize } from '../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const why = [
+  ['🌴 Experto en música caribeña y de las Indias Occidentales', 'Soca, dancehall, reggae, calipso, chutney y Afrobeats son su base. Conoce las canciones, los momentos y el orden al que pertenecen.'],
+  ['🎚️ Mezclador de formato abierto', 'Combina el sonido caribeño con hip-hop, R&B, Latin y top 40 para que cada invitado escuche algo que le gusta.'],
+  ['🎤 MC con flow', 'Pega cada cue, toma el micrófono cuando hace falta y se hace a un lado cuando el momento es tuyo.'],
+  ['🔥 Hecho para pistas grandes', 'Sets largos, drops fuertes y la energía que tus invitados van a recordar toda la semana.'],
+];
+---
+<Base
+  title="DJ Naqeeb | DJ caribeño y de las Indias Occidentales para bodas en Miami — Xpress Entertainment"
+  description="DJ Naqeeb — DJ caribeño y de las Indias Occidentales con base en Miami y Fort Lauderdale. Soca, dancehall, Afrobeats, hip-hop y top 40 para bodas en el sur de Florida.">
+
+  <Hero
+    eyebrow="DJ caribeño · Miami y Fort Lauderdale"
+    titleHtml={`DJ Naqeeb`}
+    sub="Raíces caribeñas, formato abierto y una pista de baile llena cada vez. DJ Naqeeb aporta la soca, el dancehall, los Afrobeats y la energía multicultural con la que se viven las bodas en el sur de Florida."
+    image={phUri(2560, 1440, 'DJ Naqeeb — hero', 'Pista de baile en una boda caribeña o foto de DJ Naqeeb mezclando en una boda en Miami')}
+    alt="DJ Naqeeb mezclando en una recepción de boda en el sur de Florida"
+    ctaText="Consulta Disponibilidad"
+    ctaHref={L('/check-availability')}
+  />
+
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/djs/naqeeb-mohamed-headshot.jpg" alt="DJ Naqeeb — DJ caribeño y de las Indias Occidentales en Miami y Fort Lauderdale" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">🌴 DJ caribeño con raíces en el sur de Florida</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">Una boda que suena a casa.</h2>
+          <p class="lead">Criado en la tradición de las Indias Occidentales y con base en el sur de Florida, DJ Naqeeb sabe cómo armar una boda caribeña. Desde el primer drop de soca hasta el dancehall de la madrugada, entiende la música, los momentos y la cultura detrás de cada canción.</p>
+          <p class="lead" style="margin-top:14px;">Ya sea una boda 100% caribeña, una celebración multicultural o simplemente quieres un DJ que pivote entre caribeño, latino, hip-hop y top 40 sin perder el ritmo, Naqeeb lee la pista y la mantiene en movimiento de la hora del cóctel al último baile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">🔥 Por qué las parejas reservan a DJ Naqeeb</span><h2 class="h-xl">Un sonido para cada invitado.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <Ph w={2400} h={1400} label="DJ Naqeeb — pista de baile llena" note="Foto amplia de una pista de baile en una boda caribeña al máximo de energía" />
+    <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">Soca, dancehall, Afrobeats, top 40. Cada cultura en el salón escucha su canción.</blockquote></div>
+  </section>
+
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Más allá de la cabina</span><h2 class="h-lg">Un DJ de bodas que respeta la cultura</h2></div>
+      <p class="lead reveal d1">Fuera de la cabina, Naqeeb es la presencia tranquila que llega temprano, monta limpio y hace que la noche se sienta fácil. Tiene la experiencia para manejar lo que sea que la boda traiga, y el buen gusto para que la música cuente la historia que tú quieres contar.</p>
+      <ul class="reveal d2" style="margin:22px 0 0 20px; color:#d9d0ec; line-height:2;">
+        <li>🌴 Catálogo caribeño profundo: soca, dancehall, reggae, Afrobeats, calipso</li>
+        <li>🎚️ Fluidez en formato abierto: hip-hop, R&B, latin y top 40</li>
+        <li>✨ Una presencia profesional y tranquila desde el setup hasta el último baile</li>
+        <li>🖤 Respeto real por la cultura detrás de cada canción</li>
+      </ul>
+      <p class="lead reveal d2" style="margin-top:18px; color:#fff;">Con Naqeeb en la cabina, tienes un DJ que lee la sala, honra la cultura y mantiene tu pista llena toda la noche.</p>
+    </div>
+  </section>
+
+  <CTA eyebrow="Reserva a DJ Naqeeb" titleHtml={`Lleva el Caribe<br>a tu pista de baile.`} ctaText="Consulta Disponibilidad" ctaHref={L('/check-availability')} />
+</Base>

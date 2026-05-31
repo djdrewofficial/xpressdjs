@@ -46,7 +46,7 @@ const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ili
   <section class="pad bg-deep">
     <div class="wrap">
       <div class="sec-head center reveal"><span class="eyebrow light">Conoce a los DJs</span><h2 class="h-xl">Elige tu DJ.</h2></div>
-      <div class="cards">
+      <div class="dj-grid">
         <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
           <img src="/images/djs/drew-segura-headshot.png" alt="Drew Segura — fundador y DJ principal" class="dj-avatar" />
           <h3>Drew Segura</h3>
@@ -58,15 +58,22 @@ const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ili
           <img src="/images/djs/dj-phil-headshot.jpg" alt="DJ Phil — DJ y MC de bodas" class="dj-avatar" />
           <h3>DJ Phil</h3>
           <p style="color:#d9d0ec; margin:12px 0;">Un DJ y MC de formato abierto y versátil que lee el ambiente sin esfuerzo y mezcla géneros para mantener a todas las generaciones en la pista toda la noche.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,500</div>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
           <a href={L('/djphil')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Phil ↗</a>
         </div>
         <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
           <img src="/images/djs/dj-rere-headshot.jpg" alt="DJ ReRe — DJ y MC de bodas" class="dj-avatar" />
           <h3>DJ ReRe</h3>
           <p style="color:#d9d0ec; margin:12px 0;">Un DJ y MC lleno de energía que aporta el hype y el corazón, creando una banda sonora que encaja con tu público y mantiene la celebración en movimiento.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,500</div>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
           <a href={L('/djrere')} class="textlink" style="margin-top:16px;">Conoce Más Sobre ReRe ↗</a>
+        </div>
+        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
+          <img src="/images/djs/naqeeb-mohamed-headshot.jpg" alt="DJ Naqeeb — DJ caribeño y de las Indias Occidentales en Miami y Fort Lauderdale" class="dj-avatar" />
+          <h3>DJ Naqeeb</h3>
+          <p style="color:#d9d0ec; margin:12px 0;">Un DJ caribeño y de las Indias Occidentales con raíces profundas en Miami y Fort Lauderdale. Mezcla soca, dancehall, Afrobeats, hip-hop y Top 40 con sensibilidad para cada público.</p>
+          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
+          <a href={L('/djnaqeeb')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Naqeeb ↗</a>
         </div>
       </div>
       <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">(El precio incluye Hora del Cóctel y Recepción)</p>
@@ -110,3 +117,10 @@ const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ili
 
   <CTA eyebrow="Crea tu noche" titleHtml={`Crea tu Máxima<br>Experiencia de Bodas.`} ctaText="Consulta Disponibilidad" ctaHref={L('/check-availability')} />
 </Base>
+
+<style>
+  /* 4-up DJ pricing grid — collapses to 2x2 on tablet and stacks on phone */
+  .dj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  @media (max-width: 1100px) { .dj-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .dj-grid { grid-template-columns: 1fr; } }
+</style>
