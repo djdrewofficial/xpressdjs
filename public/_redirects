@@ -52,3 +52,7 @@
 # --- WordPress category & tag archives (no equivalent) ---
 /category/*                                           /wedding-blog/                                  301
 /tag/*                                                /wedding-blog/                                  301
+
+# --- Vibo app-store vanity links (shared with couples after booking) ---
+/viboapple                                            https://apps.apple.com/us/app/vibo-2-0/id1523045467               302
+/vibogoogle                                           https://play.google.com/store/apps/details?id=com.vibodj&hl=en_US 302
