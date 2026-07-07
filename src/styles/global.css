@@ -374,6 +374,9 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); p
 .foot-welcome-row { max-width: var(--maxw); margin: 26px auto 0; text-align: center; }
 .foot-welcome { display: inline-block; height: 40px; width: auto; opacity: 0.95; }
 .foot-bottom { max-width: var(--maxw); margin: 24px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 0.82rem; }
+.foot-legal { display: inline-flex; gap: 18px; }
+.foot-legal a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+.foot-legal a:hover { color: #fff; text-decoration: underline; }
 
 /* ---------- Scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(38px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }

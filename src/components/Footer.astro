@@ -42,6 +42,10 @@ const f = t(locale).foot;
   </div>
   <div class="foot-bottom">
     <span>© <span data-year>2026</span> Xpress Entertainment Corp. {f.rightsSuffix}</span>
+    <span class="foot-legal">
+      <a href={L('/privacy-policy')}>{f.privacy}</a>
+      <a href={L('/terms-of-service')}>{f.terms}</a>
+    </span>
     <span>{f.tagline2}</span>
   </div>
 </footer>

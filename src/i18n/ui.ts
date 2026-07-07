@@ -34,6 +34,7 @@ export const translated = new Set<string>([
   '/reviews',
   '/careers',
   '/privacy-policy',
+  '/terms-of-service',
   '/wedding-blog',
   '/wedding-blog/how-to-choose-the-perfect-dj-for-your-wedding',
   '/wedding-blog/how-to-keep-the-dance-floor-packed-all-night',
@@ -78,6 +79,7 @@ type FootDict = {
   servicesHead: string; weddingDjs: string; photoBooths: string; epicExtras: string;
   contentCreator: string; viboPlanning: string; contact: string;
   checkAvailability: string; rightsSuffix: string; tagline2: string;
+  legal: string; privacy: string; terms: string;
 };
 
 export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }> = {
@@ -97,6 +99,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       contentCreator: 'Content Creator', viboPlanning: 'Vibo Planning', contact: 'Contact',
       checkAvailability: 'Check Availability', rightsSuffix: 'All rights reserved.',
       tagline2: 'The Ultimate Wedding Experience.',
+      legal: 'Legal', privacy: 'Privacy Policy', terms: 'Terms of Service',
     },
     toggle: '¿Prefieres en español?',
   },
@@ -116,6 +119,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       contentCreator: 'Creador de Contenido', viboPlanning: 'Planeación Vibo', contact: 'Contacto',
       checkAvailability: 'Consulta Disponibilidad', rightsSuffix: 'Todos los derechos reservados.',
       tagline2: 'La Máxima Experiencia de Bodas.',
+      legal: 'Legal', privacy: 'Política de Privacidad', terms: 'Términos de Servicio',
     },
     toggle: 'View in English',
   },
