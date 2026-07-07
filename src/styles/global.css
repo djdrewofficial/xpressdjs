@@ -353,6 +353,8 @@ section { position: relative; }
 .radio input { width: auto; accent-color: var(--red); }
 .consent { display: flex; gap: 12px; align-items: flex-start; margin: 6px 0 22px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); cursor: pointer; }
 .consent input { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 2px; accent-color: var(--red); }
+.consent-legal { font-size: 0.76rem; line-height: 1.55; color: var(--muted); margin: -12px 0 22px; }
+.consent-legal a { color: var(--red); text-decoration: underline; }
 .form-error { background: rgba(254,58,59,0.12); border: 1px solid var(--red); color: #ffd7d7; padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; }
 .info-card { border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius); padding: 30px; margin-bottom: 18px; transition: border-color 0.4s, transform 0.4s var(--ease); }
 .info-card:hover { border-color: var(--red); transform: translateX(6px); }
@@ -370,6 +372,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); p
 .foot-grid h3 { font-size: 2rem; margin-bottom: 14px; }
 .foot-col h5 { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); margin-bottom: 16px; }
 .foot-col a { display: block; color: var(--muted); margin-bottom: 10px; transition: color 0.3s; font-size: 0.95rem; }
+.foot-address { font-style: normal; color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; }
 .foot-col a:hover { color: #fff; }
 .foot-welcome-row { max-width: var(--maxw); margin: 26px auto 0; text-align: center; }
 .foot-welcome { display: inline-block; height: 40px; width: auto; opacity: 0.95; }

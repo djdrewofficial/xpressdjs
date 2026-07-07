@@ -10,6 +10,11 @@ const {
   description,
   image = '/images/og-default.png',
   noindex = false,
+  // A2P/SMS compliance: the GoHighLevel chat widget collects phone numbers &
+  // SMS opt-in, so it must NOT appear on pages that already have a form
+  // collecting phone numbers or SMS consent (lead, contact, or appointment
+  // forms). Those pages set hideChat to suppress the widget.
+  hideChat = false,
 } = Astro.props;
 
 const locale = getLocale(Astro.url);
@@ -43,8 +48,10 @@ const businessSchema = {
   founder: { '@type': 'Person', name: 'Drew Segura' },
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '11280 Pines Blvd',
     addressLocality: 'Pembroke Pines',
     addressRegion: 'FL',
+    postalCode: '33026',
     addressCountry: 'US',
   },
   geo: { '@type': 'GeoCoordinates', latitude: 26.0078, longitude: -80.2963 },
@@ -109,25 +116,29 @@ const businessSchema = {
   <LangToggle />
   <script is:inline src="/js/main.js"></script>
   <!-- GoHighLevel chat widget — deferred off the critical path (loads on first
-       interaction, or 4s after load) so it doesn't slow LCP/first paint. -->
-  <script is:inline>
-    (function () {
-      var loaded = false;
-      function loadChat() {
-        if (loaded) return; loaded = true;
-        var s = document.createElement('script');
-        s.src = 'https://widgets.leadconnectorhq.com/loader.js';
-        s.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
-        s.setAttribute('data-widget-id', '6a4c5594af4e62471842d114');
-        s.setAttribute('data-source', 'WEB_USER');
-        document.body.appendChild(s);
-      }
-      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function (e) {
-        window.addEventListener(e, loadChat, { once: true, passive: true });
-      });
-      if ('requestIdleCallback' in window) requestIdleCallback(loadChat, { timeout: 5000 });
-      else window.addEventListener('load', function () { setTimeout(loadChat, 4000); });
-    })();
-  </script>
+       interaction, or 4s after load) so it doesn't slow LCP/first paint.
+       Suppressed on pages that collect phone numbers / SMS opt-in (hideChat)
+       to satisfy A2P/SMS carrier compliance. -->
+  {!hideChat && (
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadChat() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://widgets.leadconnectorhq.com/loader.js';
+          s.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+          s.setAttribute('data-widget-id', '6a4c5594af4e62471842d114');
+          s.setAttribute('data-source', 'WEB_USER');
+          document.body.appendChild(s);
+        }
+        ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function (e) {
+          window.addEventListener(e, loadChat, { once: true, passive: true });
+        });
+        if ('requestIdleCallback' in window) requestIdleCallback(loadChat, { timeout: 5000 });
+        else window.addEventListener('load', function () { setTimeout(loadChat, 4000); });
+      })();
+    </script>
+  )}
 </body>
 </html>

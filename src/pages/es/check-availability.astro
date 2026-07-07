@@ -28,7 +28,7 @@ const leadCfg = {
   },
 };
 ---
-<Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración.">
+<Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración." hideChat>
 
   <header class="hero" style="min-height:62svh;">
     <div class="hero-bg"><img src="/images/heroes/check-availability-hero.jpg" alt="Invitados de boda disfrutando en la pista de baile" /></div>
@@ -81,6 +81,7 @@ const leadCfg = {
                 <input type="checkbox" id="smsConsent" name="smsConsent" required />
                 <span>{CONSENT_TEXT}</span>
               </label>
+              <p class="consent-legal">Al enviar este formulario aceptas nuestra <a href="/es/privacy-policy">Política de Privacidad</a> y nuestros <a href="/es/terms-of-service">Términos de Servicio</a>. La frecuencia de los mensajes varía y pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar o HELP para ayuda.</p>
             </div>
 
             <!-- PASO 2 — Información del evento -->
