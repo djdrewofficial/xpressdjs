@@ -6,10 +6,21 @@
  * GoHighLevel Inbound Webhook. Keeping the webhook URL server-side means it
  * never appears in the page source.
  *
- * Set the secret in Cloudflare Pages → Settings → Environment variables:
- *   GHL_WEBHOOK_URL = https://services.leadconnectorhq.com/hooks/.....
+ * Set the secrets in Cloudflare Pages → Settings → Environment variables:
+ *   GHL_WEBHOOK_URL    = https://services.leadconnectorhq.com/hooks/.....
+ *   GHL_API_TOKEN      = HighLevel Private Integration token ("Xpress Lead AI Worker")
+ *   ANTHROPIC_API_KEY  = Claude API key for intent classification
+ * Plain variable:
+ *   GHL_LOCATION_ID    = tRQqRP2zGXszbRBr9wU3
+ *
+ * On the FINAL (complete) submission this function also asks Claude to
+ * classify the lead's intent (pricing / consult / availability / general),
+ * then upserts the contact in HighLevel with `intent-*` + `ai-workflow-active`
+ * tags and the Preferred Method of Communication custom field. Those tags
+ * trigger the lead-response workflow. Classification is strictly best-effort:
+ * any failure falls back to `intent-general` and never blocks the lead.
  */
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   let data;
   try {
     data = await request.json();
@@ -71,6 +82,7 @@ export async function onRequestPost({ request, env }) {
     email: str(data.email),
     phone: str(data.phone),
     commLanguage: str(data.commLanguage),
+    preferredMethod: normalizePreferred(data.preferredMethod),
     eventType: str(data.eventType),
     eventTypeOther: str(data.eventTypeOther),
     eventDate: str(data.eventDate),
@@ -107,7 +119,127 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "Network error. Please try again or call us." }, 502);
   }
 
+  // ---- AI intent classification (complete submissions only) -----------------
+  // Runs after the response is returned so the visitor never waits on it.
+  if (complete && env.GHL_API_TOKEN && env.GHL_LOCATION_ID) {
+    waitUntil(classifyAndTag(payload, env).catch((e) => console.log("AI tagging failed:", e.message)));
+  }
+
   return json({ ok: true });
+}
+
+// ---------------------------------------------------------------------------
+// AI intent classification + HighLevel tagging
+// ---------------------------------------------------------------------------
+const GHL_BASE = "https://services.leadconnectorhq.com";
+const GHL_VERSION = "2021-07-28";
+const INTENTS = ["pricing", "consult", "availability", "general"];
+
+async function classifyAndTag(p, env) {
+  // 1) Ask Claude for the lead's primary intent — default to general on any hiccup
+  let intent = "general";
+  let summary = "";
+  if (env.ANTHROPIC_API_KEY) {
+    try {
+      const inquiry = [
+        p.notes && `Message: ${p.notes}`,
+        p.eventType && `Event type: ${p.eventTypeOther || p.eventType}`,
+        p.eventDate && `Event date: ${p.eventDate}`,
+        p.venueName && `Venue: ${p.venueName}, ${p.venueCity}`,
+        `Form submitted: Check Availability page`,
+      ].filter(Boolean).join("\n");
+
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 200,
+          system:
+            "You classify inquiries for Xpress Entertainment, a South Florida DJ company. " +
+            "Classify the lead's PRIMARY intent as exactly one of: " +
+            "pricing (asking about cost or packages), consult (explicitly wants to talk, meet, or get a call), " +
+            "availability (wants to know if their date is open), general (anything else). " +
+            "This form lives on the Check Availability page, so availability is the default " +
+            "UNLESS the message clearly asks about price (then pricing) or clearly asks for a call/meeting (then consult). " +
+            'Respond ONLY with JSON: {"intent":"...","summary":"one sentence about what they want"}',
+          messages: [{ role: "user", content: inquiry }],
+        }),
+      });
+      if (res.ok) {
+        const d = await res.json();
+        const m = (d.content?.[0]?.text || "").match(/\{[\s\S]*\}/);
+        if (m) {
+          const parsed = JSON.parse(m[0]);
+          if (INTENTS.includes(parsed.intent)) intent = parsed.intent;
+          summary = parsed.summary || "";
+        }
+      }
+    } catch (e) {
+      console.log("Claude classification failed, using general:", e.message);
+    }
+  }
+
+  // 2) Upsert the contact with intent tags + preferred method custom field
+  const upsert = await fetch(`${GHL_BASE}/contacts/upsert`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.GHL_API_TOKEN}`,
+      Version: GHL_VERSION,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      locationId: env.GHL_LOCATION_ID,
+      firstName: p.firstName,
+      lastName: p.lastName,
+      email: p.email,
+      phone: p.phone,
+      tags: [`intent-${intent}`, "ai-workflow-active"],
+      customFields: [
+        { key: "preferred_method_of_communication", field_value: p.preferredMethod },
+      ],
+    }),
+  });
+  if (!upsert.ok) {
+    console.log("GHL upsert failed:", upsert.status, await upsert.text());
+    return;
+  }
+
+  // 3) Best-effort note so the team sees the AI's read on the inquiry
+  try {
+    const { contact } = await upsert.json();
+    if (contact?.id) {
+      await fetch(`${GHL_BASE}/contacts/${contact.id}/notes`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.GHL_API_TOKEN}`,
+          Version: GHL_VERSION,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          body: [
+            `WEBSITE INQUIRY — AI classified intent: ${intent}`,
+            summary && `AI summary: ${summary}`,
+            p.eventDate && `Event date: ${p.eventDate}`,
+            p.preferredMethod && `Preferred contact: ${p.preferredMethod}`,
+            p.commLanguage && `Language: ${p.commLanguage}`,
+            p.notes && `Message: ${p.notes}`,
+          ].filter(Boolean).join("\n"),
+        }),
+      });
+    }
+  } catch (e) {
+    console.log("Note creation failed (non-fatal):", e.message);
+  }
+}
+
+function normalizePreferred(v) {
+  if (!v) return "SMS";
+  return String(v).trim().toLowerCase().startsWith("e") ? "Email" : "SMS";
 }
 
 function str(v) {

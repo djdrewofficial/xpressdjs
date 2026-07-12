@@ -103,6 +103,7 @@
       phone: val("phone").trim(),
       email: val("email").trim(),
       commLanguage: (form.querySelector('input[name="commLanguage"]:checked') || {}).value || "",
+      preferredMethod: (form.querySelector('input[name="preferredMethod"]:checked') || {}).value || "",
       eventType: eventType ? eventType.value : "",
       eventTypeOther: (otherSelect && !otherSelect.disabled) ? otherSelect.value : "",
       eventDate: val("eventDate"),
