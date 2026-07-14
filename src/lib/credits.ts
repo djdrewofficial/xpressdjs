@@ -19,6 +19,7 @@ export const imageCredits: Record<string, Credit> = {
   '/images/lgbtq-first-dance-clouds-cold-sparks.jpg': { name: 'Amarena Productions', href: 'https://amarenaproductions.com/' },
   '/images/lesbian-couple-first-dance.jpg': { name: 'La Vie Studios', href: 'http://www.laviestudios.com/' },
   '/images/gay-couple-dance-floor.jpg': { name: 'Amarena Productions', href: 'https://amarenaproductions.com/' },
+  '/images/heroes/dj-atomic-hero.jpg': { name: 'Leo Photographer', href: 'https://leophotographer.com' },
 };
 
 export function creditFor(src?: string): Credit | undefined {
