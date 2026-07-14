@@ -2,8 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTA from '../../components/CTA.astro';
-import Ph from '../../components/Ph.astro';
-import { phUri } from '../../lib/ph';
+import Credit from '../../components/Credit.astro';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
@@ -22,10 +21,12 @@ const why = [
     eyebrow="DJ caribeño · Miami y Fort Lauderdale"
     titleHtml={`DJ Naqeeb`}
     sub="Raíces caribeñas, formato abierto y una pista de baile llena cada vez. DJ Naqeeb aporta la soca, el dancehall, los Afrobeats y la energía multicultural con la que se viven las bodas en el sur de Florida."
-    image={phUri(2560, 1440, 'DJ Naqeeb — hero', 'Pista de baile en una boda caribeña o foto de DJ Naqeeb mezclando en una boda en Miami')}
+    image="/images/heroes/dj-services-hero.jpg"
     alt="DJ Naqeeb mezclando en una recepción de boda en el sur de Florida"
     ctaText="Consulta Disponibilidad"
     ctaHref={L('/check-availability')}
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
   />
 
   <section class="pad bg-ink">
@@ -54,7 +55,8 @@ const why = [
   </section>
 
   <section class="showcase">
-    <Ph w={2400} h={1400} label="DJ Naqeeb — pista de baile llena" note="Foto amplia de una pista de baile en una boda caribeña al máximo de energía" />
+    <img src="/images/vibing-on-the-dance-floor.webp" loading="lazy" decoding="async" alt="Una pista de baile llena en una boda del sur de Florida al máximo de energía" />
+    <Credit variant="overlay" name="The Schau Photography" href="https://theschau.com/" />
     <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">Soca, dancehall, Afrobeats, top 40. Cada cultura en el salón escucha su canción.</blockquote></div>
   </section>
 

@@ -2,8 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
-import Ph from '../components/Ph.astro';
-import { phUri } from '../lib/ph';
+import Credit from '../components/Credit.astro';
 
 const why = [
   ['🌴 West Indian & Caribbean expert', 'Soca, dancehall, reggae, calypso, chutney and Afrobeats are home base. He knows the songs, the moments, and the order they belong in.'],
@@ -20,9 +19,11 @@ const why = [
     eyebrow="West Indian Wedding DJ · Miami & Fort Lauderdale"
     titleHtml={`DJ Naqeeb`}
     sub="Caribbean roots, open-format chops, and a packed dance floor every time. DJ Naqeeb brings the soca, dancehall, Afrobeats and cross-cultural energy South Florida weddings are built for."
-    image={phUri(2560, 1440, 'DJ Naqeeb — hero', 'Caribbean wedding dance floor or wide shot of DJ Naqeeb mixing at a Miami wedding')}
+    image="/images/heroes/dj-services-hero.jpg"
     alt="DJ Naqeeb spinning at a South Florida wedding reception"
     ctaText="Check Availability"
+    creditName="Romina Raggio Photography"
+    creditHref="https://rominaraggio.com/"
   />
 
   <section class="pad bg-ink">
@@ -51,7 +52,8 @@ const why = [
   </section>
 
   <section class="showcase">
-    <Ph w={2400} h={1400} label="DJ Naqeeb — packed dance floor" note="Wide shot of a Caribbean wedding dance floor at peak energy" />
+    <img src="/images/vibing-on-the-dance-floor.webp" loading="lazy" decoding="async" alt="A packed South Florida wedding dance floor at peak energy" />
+    <Credit variant="overlay" name="The Schau Photography" href="https://theschau.com/" />
     <div class="wrap" style="max-width:900px;"><blockquote class="reveal" style="max-width:none; font-size:clamp(1.4rem,3vw,2.4rem);">Soca, dancehall, Afrobeats, top 40. Every culture in the room hears their song.</blockquote></div>
   </section>
 
