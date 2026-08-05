@@ -40,6 +40,7 @@ export const translated = new Set<string>([
   '/wedding-blog/how-to-choose-the-perfect-dj-for-your-wedding',
   '/wedding-blog/how-to-keep-the-dance-floor-packed-all-night',
   '/wedding-blog/music-trends-for-weddings-in-south-florida',
+  '/wedding-blog/multicultural-wedding-dj-south-florida',
 ]);
 
 /** Current locale from the URL ( /es/... => 'es', otherwise 'en' ). */
