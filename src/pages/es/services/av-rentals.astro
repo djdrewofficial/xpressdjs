@@ -1,0 +1,137 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
+import CTA from '../../../components/CTA.astro';
+import FaqSchema from '../../../components/FaqSchema.astro';
+import { localize } from '../../../i18n/ui';
+const L = (p) => localize(p, 'es');
+
+const gear = [
+  ['📽️ Proyectores y Pantallas de Proyección', 'Proyectores HD y 4K brillantes con pantallas de armado rápido, dimensionadas para salas de juntas, salones y sesiones generales, más todo el cableado, soportes y ruteo de señal.'],
+  ['🖥️ Muros de Video LED y Pantallas', 'Muros LED modulares y monitores de gran formato para conferencias magistrales, logos de patrocinadores, señales de cámara en vivo y fondos de escenario que se ven claros desde el fondo del salón.'],
+  ['🔊 Bocinas y Sistemas de Sonido', 'Sistemas de line-array y PA amplificados y escalables que llenan desde una sesión de 40 personas hasta el gran salón de un hotel con una cobertura limpia y pareja.'],
+  ['🎤 Micrófonos', 'Micrófonos inalámbricos de mano, de solapa (lavalier) y de diadema para presentadores y paneles, con coordinación de frecuencias confiable para que nada se corte a media sesión.'],
+  ['🎙️ Podios y Atriles', 'Podios profesionales con micrófono de cuello de ganso, ideales para conferencias magistrales, ceremonias de premiación y moderación de paneles.'],
+  ['🎚️ Mezcladoras e Ingeniería de Audio', 'Consolas de mezcla digitales y un técnico de audio opcional en sitio para equilibrar presentadores, reproducción y preguntas y respuestas en tiempo real.'],
+  ['🎵 Música para Conferencias y Audio Ambiental', 'Listas de entrada, receso y networking, además de cortinillas y música de fondo que mantienen tu agenda en movimiento y tu salón con un ambiente profesional.'],
+  ['💡 Escenario e Iluminación', 'Iluminación de lavado, de ambiente y looks de escenario sencillos para vestir tu salón con los colores de tu empresa y mantener a los presentadores bien iluminados para foto y video.'],
+];
+
+const audiences = [
+  ['🏨 Hoteles y Resorts', 'Un socio de AV local y confiable para eventos internos, o equipo adicional cuando tu inventario en sitio ya está reservado.'],
+  ['🎤 Conferencias y Seminarios', 'Sesiones generales, sesiones simultáneas y conferencias magistrales con audio, proyección y manejo de micrófonos coordinados.'],
+  ['🏢 Reuniones Corporativas', 'Asambleas, capacitaciones, lanzamientos de producto y juntas de accionistas que necesitan verse y sonar impecables.'],
+  ['🥂 Galas y Banquetes', 'Noches de premiación, recaudaciones de fondos y fiestas de fin de año con audio de podio, pantallas de presentación y música ambiental.'],
+];
+
+const why = [
+  ['🚚 Entrega, Montaje y Desmontaje', 'Entregamos, montamos, hacemos la prueba de sonido y retiramos el equipo para que tu equipo nunca toque un cable. Al estar en Fort Lauderdale, respondemos rápido en todo Broward.'],
+  ['🧑‍🔧 Opción de Técnico en Sitio', 'Agrega un técnico para operar el audio y las diapositivas en vivo, para que los presentadores se concentren en el salón y no en el equipo.'],
+  ['🛟 Equipo de Respaldo Siempre', 'Viajamos con micrófonos, cables y componentes críticos redundantes, porque un micrófono muerto frente a 200 personas no es una opción.'],
+  ['📄 Con Seguro Completo', 'Contamos con cobertura de responsabilidad civil y podemos proporcionar un certificado de seguro (COI) para tu hotel o salón cuando se solicite.'],
+];
+const faqs = [
+  ['¿Qué zonas cubren para la renta de A/V?', 'Estamos en Fort Lauderdale y damos servicio a los condados de Broward, Miami-Dade y Palm Beach. La entrega y el montaje están disponibles en todo el sur de Florida.'],
+  ['¿Entregan y montan, o es solo recolección?', 'Nosotros entregamos, montamos, hacemos la prueba de sonido y desmontamos el equipo por ti. El soporte de un técnico en sitio está disponible durante todo tu evento como complemento.'],
+  ['¿Pueden proporcionar un certificado de seguro para nuestro hotel o salón?', 'Sí. Contamos con seguro completo y podemos entregar un COI a nombre de tu salón cuando se solicite; muchos hoteles y centros de convenciones lo exigen antes del ingreso de equipo.'],
+  ['¿Puedo rentar solo un artículo, como un proyector o algunos micrófonos?', 'Sí. Manejamos desde un solo montaje de podio y micrófono hasta la producción completa de una conferencia de varias salas. Cuéntanos tu agenda y tu salón, y definiremos exactamente lo que necesitas.'],
+  ['¿Con cuánta anticipación deberíamos reservar?', 'Lo antes posible para temporada alta y eventos grandes, pero hacemos nuestro mejor esfuerzo por atender solicitudes de último minuto cuando hay equipo disponible.'],
+  ['¿Cómo obtenemos una cotización?', 'Envíanos la fecha de tu evento, el salón, el tamaño de la sala y el equipo que tienes en mente. Te responderemos con una cotización transparente y detallada.'],
+];
+const faqItems = faqs.map(([q, a]) => ({ q, a }));
+---
+<Base
+  title="Renta de A/V en Fort Lauderdale | Audio y Video para Conferencias y Hoteles — Xpress Entertainment"
+  description="Renta de audio y video para conferencias, hoteles y eventos corporativos en Fort Lauderdale y Broward. Proyectores, pantallas LED, micrófonos, bocinas, podios y más — entregados, montados y con seguro completo.">
+
+  <Hero
+    eyebrow="Fort Lauderdale · Broward · Sur de Florida"
+    titleHtml={`Renta de Audio y <span class="serif-accent" style="font-style:italic">Video</span><br>para Conferencias y Hoteles`}
+    sub="Proyectores, pantallas LED, micrófonos, bocinas, podios y audio para conferencias — entregados, montados y respaldados por un equipo de Fort Lauderdale que maneja la parte técnica para que tú manejes el salón."
+    image="/images/heroes/lighting-hero.jpg"
+    alt="Producción profesional de iluminación y audio-video para eventos en un salón del sur de Florida"
+    ctaText="Solicita una Cotización"
+    ctaHref={L('/check-availability')}
+  />
+
+  <!-- INTRO -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">A/V Corporativo y de Eventos</span><h2 class="h-xl">Equipo profesional. Cero adivinanzas.</h2><p class="lead" style="margin-inline:auto;">Ya sea que estés realizando una conferencia magistral en el salón de un hotel, una conferencia de varias salas o una asamblea corporativa, la tecnología debe ser invisible: sonido claro, pantallas nítidas y micrófonos que simplemente funcionan. Aportamos el equipo y la experiencia para lograrlo en Fort Lauderdale y todo el sur de Florida.</p></div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Lo que rentamos</span><h2 class="h-xl">Equipo de audio, video y escenario.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {gear.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">¿Necesitas algo que no está en la lista? Pregúntanos: podemos conseguir y coordinar equipo de producción adicional.</p>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Para quién es</span><h2 class="h-xl">Hecho para eventos de negocios.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {audiences.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`}><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Por qué Xpress</span><h2 class="h-xl">Un socio local, no una caja de envío.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Zona de servicio</span><h2 class="h-xl">Entregamos en todo el sur de Florida.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(4,1fr);">
+        <div class="value reveal" style="text-align:center;"><h3>Fort Lauderdale</h3></div>
+        <div class="value reveal d1" style="text-align:center;"><h3>Broward</h3></div>
+        <div class="value reveal d2" style="text-align:center;"><h3>Miami-Dade</h3></div>
+        <div class="value reveal d3" style="text-align:center;"><h3>Palm Beach</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Bueno saber</span><h2 class="h-xl">Preguntas sobre renta de A/V</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
+            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
+            <p style="color:#5a4f6e; line-height:1.8;">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqSchema items={faqItems} />
+
+  <CTA
+    eyebrow="Hablemos"
+    titleHtml={`Obtén tu<br>cotización de A/V.`}
+    text="Envíanos tu fecha, salón y lista de equipo. Te responderemos con una cotización detallada — o llama/escribe al 954-833-1196."
+    ctaText="Solicita una Cotización"
+  />
+</Base>

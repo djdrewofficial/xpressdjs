@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTA from '../../components/CTA.astro';
+import FaqSchema from '../../components/FaqSchema.astro';
+
+const gear = [
+  ['📽️ Projectors & Projection Screens', 'Bright HD and 4K projectors with fast-fold screens sized for boardrooms, ballrooms, and general sessions — plus all the cabling, stands, and signal routing.'],
+  ['🖥️ LED Video Walls & Displays', 'Modular LED walls and large-format monitors for keynotes, sponsor logos, live camera feeds, and stage backdrops that read clearly from the back of the room.'],
+  ['🔊 Speakers & PA Systems', 'Scalable line-array and powered PA setups that fill anything from a 40-person breakout to a hotel grand ballroom with clean, even coverage.'],
+  ['🎤 Microphones', 'Wireless handhelds, lavalier/lapel mics, and headsets for presenters and panels — with reliable frequency coordination so nothing drops mid-session.'],
+  ['🎙️ Podiums & Lecterns', 'Professional podiums with gooseneck podium mics, ideal for conference keynotes, award ceremonies, and panel moderation.'],
+  ['🎚️ Mixers & Audio Engineering', 'Digital mixing consoles and an optional on-site audio tech to balance presenters, playback, and Q&A in real time.'],
+  ['🎵 Conference Music & Ambient Audio', 'Walk-in, break, and networking playlists plus stinger cues and background music that keep your agenda moving and your room feeling professional.'],
+  ['💡 Stage & Uplighting', 'Wash lighting, uplighting, and simple stage looks to brand your room in your company colors and keep speakers well-lit for photo and video.'],
+];
+
+const audiences = [
+  ['🏨 Hotels & Resorts', 'A reliable local AV partner for in-house events, or overflow gear when your on-site inventory is booked.'],
+  ['🎤 Conferences & Seminars', 'General sessions, breakouts, and keynotes with coordinated audio, projection, and mic management.'],
+  ['🏢 Corporate Meetings', 'Town halls, trainings, product launches, and shareholder meetings that need to look and sound buttoned-up.'],
+  ['🥂 Galas & Banquets', 'Award nights, fundraisers, and holiday parties with podium audio, presentation screens, and ambient music.'],
+];
+
+const why = [
+  ['🚚 Delivery, Setup & Breakdown', 'We deliver, set up, sound-check, and strike the gear so your team never touches a cable. Fort Lauderdale–based means fast turnaround across Broward.'],
+  ['🧑‍🔧 On-Site Technician Option', 'Add a technician to run audio and slides live, so presenters can focus on the room instead of the equipment.'],
+  ['🛟 Backup Gear as Standard', 'We travel with redundant mics, cables, and critical components — because a dead mic in front of 200 people is not an option.'],
+  ['📄 Fully Insured', 'We carry liability coverage and can provide a certificate of insurance (COI) for your hotel or venue on request.'],
+];
+const faqs = [
+  ['What areas do you serve for A/V rentals?', 'We are based in Fort Lauderdale and serve Broward, Miami-Dade, and Palm Beach counties. Delivery and setup are available throughout South Florida.'],
+  ['Do you deliver and set up, or is it pickup only?', 'We deliver, set up, sound-check, and break down the equipment for you. On-site technician support is available for the duration of your event as an add-on.'],
+  ['Can you provide a certificate of insurance for our hotel or venue?', 'Yes. We are fully insured and can supply a COI naming your venue on request — many hotels and conference centers require this before load-in.'],
+  ['Can I rent just one item, like a projector or a few microphones?', 'Yes. We handle everything from a single podium-and-mic setup to full multi-room conference production. Tell us your agenda and room, and we will scope exactly what you need.'],
+  ['How far in advance should we book?', 'As early as possible for peak season and large events, but we do our best to accommodate short-notice and last-minute requests when gear is available.'],
+  ['How do we get a quote?', 'Send us your event date, venue, room size, and the equipment you have in mind. We will reply with a transparent, itemized quote.'],
+];
+const faqItems = faqs.map(([q, a]) => ({ q, a }));
+---
+<Base
+  title="A/V Rentals in Fort Lauderdale | Conference & Hotel Audio Visual — Xpress Entertainment"
+  description="Audio visual rentals for conferences, hotels, and corporate events in Fort Lauderdale & Broward. Projectors, LED screens, microphones, speakers, podiums & more — delivered, set up, and fully insured.">
+
+  <Hero
+    eyebrow="Fort Lauderdale · Broward · South Florida"
+    titleHtml={`Audio Visual <span class="serif-accent" style="font-style:italic">Rentals</span><br>for Conferences & Hotels`}
+    sub="Projectors, LED screens, microphones, speakers, podiums, and conference audio — delivered, set up, and supported by a Fort Lauderdale team that runs the technical side so you can run the room."
+    image="/images/heroes/lighting-hero.jpg"
+    alt="Professional event production lighting and audio-visual setup in a South Florida venue"
+    ctaText="Request a Quote"
+  />
+
+  <!-- INTRO -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Corporate & Event A/V</span><h2 class="h-xl">Professional gear. Zero guesswork.</h2><p class="lead" style="margin-inline:auto;">Whether you are running a hotel ballroom keynote, a multi-room conference, or a corporate town hall, the technology should be invisible — clear sound, sharp screens, and microphones that just work. We supply the equipment and the expertise to make that happen across Fort Lauderdale and greater South Florida.</p></div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">What we rent</span><h2 class="h-xl">Audio, visual & staging equipment.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {gear.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">Need something not listed? Ask — we can source and coordinate additional production gear.</p>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Who it's for</span><h2 class="h-xl">Built for business events.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {audiences.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`}><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Why Xpress</span><h2 class="h-xl">A local partner, not a shipping box.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(2,1fr);">
+        {why.map(([t, d], i) => (
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;"><h3>{t}</h3><p style="color:#d9d0ec;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Service area</span><h2 class="h-xl">Delivering across South Florida.</h2></div>
+      <div class="values" style="grid-template-columns:repeat(4,1fr);">
+        <div class="value reveal" style="text-align:center;"><h3>Fort Lauderdale</h3></div>
+        <div class="value reveal d1" style="text-align:center;"><h3>Broward</h3></div>
+        <div class="value reveal d2" style="text-align:center;"><h3>Miami-Dade</h3></div>
+        <div class="value reveal d3" style="text-align:center;"><h3>Palm Beach</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-light">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Good to know</span><h2 class="h-xl">A/V rental questions</h2></div>
+      <div style="max-width:820px;">
+        {faqs.map(([q, a], i) => (
+          <div class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
+            <h3 style="font-size:1.4rem; color:var(--purple); margin-bottom:8px;">{q}</h3>
+            <p style="color:#5a4f6e; line-height:1.8;">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqSchema items={faqItems} />
+
+  <CTA
+    eyebrow="Let's talk"
+    titleHtml={`Get your<br>A/V quote.`}
+    text="Send us your date, venue, and equipment list. We'll reply with an itemized quote — or call/text 954-833-1196."
+    ctaText="Request a Quote"
+  />
+</Base>
