@@ -29,14 +29,12 @@ const SITE_ORIGIN = Astro.site ? Astro.site.origin : 'https://xpressdjs.com';
 const altEn = SITE_ORIGIN + enPath;
 const altEs = SITE_ORIGIN + (enPath === '/' ? '/es/' : '/es' + enPath);
 
-// Analytics. Clarity's project ID is a public client-side ID (it ships in the
-// page source), so it's set as the default here and is live in every build.
-// GA4's Measurement ID is likewise public but not set yet — add PUBLIC_GA4_ID
-// in Cloudflare Pages → Environment variables to switch it on. Either can be
-// overridden per-environment via the matching PUBLIC_* env var.
+// Analytics. Both IDs below are public client-side values (they ship in the
+// page source), so they're set as defaults here and are live in every build.
+// Either can be overridden per-environment via the matching PUBLIC_* env var.
 //   PUBLIC_GA4_ID      = G-XXXXXXXXXX   (Google Analytics 4 Measurement ID)
 //   PUBLIC_CLARITY_ID  = xxxxxxxxxx     (Microsoft Clarity project ID)
-const GA4_ID = import.meta.env.PUBLIC_GA4_ID || '';
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID || 'G-GFTVJ190J0';
 const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID || 'y4xq7tf2or';
 const businessSchema = {
   '@context': 'https://schema.org',
