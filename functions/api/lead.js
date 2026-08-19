@@ -104,7 +104,8 @@ export async function onRequestPost({ request, env, waitUntil }) {
     leadStage: str(data.stage) || "step-1",
     complete: complete ? "Yes" : "No",
     tag: complete ? "lead complete - ready to book" : "lead incomplete - needs followup",
-    source: "Website — Check Availability",
+    source: sourceLabel(data.sourcePage),
+    sourcePage: str(data.sourcePage),
     submittedAt: new Date().toISOString(),
   };
 
@@ -240,6 +241,30 @@ async function classifyAndTag(p, env) {
 function normalizePreferred(v) {
   if (!v) return "SMS";
   return String(v).trim().toLowerCase().startsWith("e") ? "Email" : "SMS";
+}
+
+// Turn the referring page into a friendly CRM source label so leads can be
+// split by where they came from (e.g. the A/V Rentals page vs. a wedding page).
+// Falls back to the generic label when the referrer is missing/off-site.
+function sourceLabel(ref) {
+  const base = "Website — Check Availability";
+  if (!ref) return base;
+  let path;
+  try { path = new URL(String(ref)).pathname; } catch { return base; }
+  const map = [
+    ["/services/av-rentals", "Website — A/V Rentals"],
+    ["/services/fort-lauderdale-wedding-dj", "Website — Fort Lauderdale Wedding DJ"],
+    ["/wedding-dj-miami", "Website — Miami Wedding DJ"],
+    ["/south-florida-photo-booth-rental", "Website — Photo Booth"],
+    ["/glam-booth", "Website — Photo Booth"],
+    ["/epic-extras-1", "Website — Epic Extras"],
+    ["/pricing", "Website — Pricing"],
+    ["/wedding-blog", "Website — Blog"],
+  ];
+  for (const [needle, label] of map) {
+    if (path.indexOf(needle) !== -1) return label;
+  }
+  return base;
 }
 
 function str(v) {

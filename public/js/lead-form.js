@@ -123,6 +123,9 @@
       stage: stage,
       complete: !!complete,
       turnstileToken: tsToken,
+      // Attribution: the page the visitor came from before the form (e.g. the
+      // A/V Rentals page), so leads can be split by source in the CRM.
+      sourcePage: document.referrer || "",
     };
   }
 
@@ -160,8 +163,16 @@
     idleTimer = setTimeout(function () { flushIncomplete(false); }, IDLE_MS);
   }
 
-  form.addEventListener("input", function () { dirty = true; resetIdle(); });
-  form.addEventListener("change", function () { dirty = true; resetIdle(); });
+  // Fire an analytics form_start the first time the visitor touches the form.
+  var started = false;
+  function markStart() {
+    if (started) return;
+    started = true;
+    try { if (window.track) window.track("form_start", { form: "check_availability" }); } catch (e) {}
+  }
+
+  form.addEventListener("input", function () { dirty = true; markStart(); resetIdle(); });
+  form.addEventListener("change", function () { dirty = true; markStart(); resetIdle(); });
 
   // Flush the latest snapshot when the visitor leaves / backgrounds the tab.
   document.addEventListener("visibilitychange", function () {
@@ -188,6 +199,8 @@
       .then(function (res) {
         if (res.ok) {
           sentComplete = true; dirty = false;
+          // GA4 key event for a completed inquiry (mark as a conversion in GA4).
+          try { if (window.track) window.track("generate_lead", { form: "check_availability" }); } catch (e) {}
           form.hidden = true;
           $("form-success").hidden = false;
           $("form-success").scrollIntoView({ behavior: "smooth", block: "center" });
