@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import Credit from './Credit.astro';
 const {
   eyebrow,
@@ -14,11 +15,20 @@ const {
   creditName,
   creditHref,
   imgFocus,
+  titleStyle,
 } = Astro.props;
 const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
 const isJpg = /\.jpe?g$/i.test(image);
-const webpFull = isJpg ? image.replace(/\.jpe?g$/i, '.webp') : null;
-const webpSm = isJpg ? image.replace(/\.jpe?g$/i, '-1280.webp') : null;
+const webpFullPath = isJpg ? image.replace(/\.jpe?g$/i, '.webp') : null;
+const webpSmPath = isJpg ? image.replace(/\.jpe?g$/i, '-1280.webp') : null;
+// Only advertise the webp <source> when BOTH derivatives actually exist on
+// disk. Otherwise a webp-capable browser would select a 404 source and render
+// a blank hero (the <img> fallback only applies when no <source> matches).
+const hasWebp =
+  isJpg && image.startsWith('/') &&
+  fs.existsSync(`public${webpFullPath}`) && fs.existsSync(`public${webpSmPath}`);
+const webpFull = hasWebp ? webpFullPath : null;
+const webpSm = hasWebp ? webpSmPath : null;
 const focusStyle = imgFocus ? `--hero-focus:${imgFocus}` : undefined;
 ---
 <header class="hero" style={`min-height:${minh};`}>
@@ -35,7 +45,7 @@ const focusStyle = imgFocus ? `--hero-focus:${imgFocus}` : undefined;
   <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
     {eyebrow && <span class="eyebrow light hero-in">{eyebrow}</span>}
-    <h1 class="display hero-in" set:html={titleHtml}></h1>
+    <h1 class="display hero-in" style={titleStyle} set:html={titleHtml}></h1>
     {sub && <p class="lead hero-in">{sub}</p>}
     {(ctaText || ctaText2) && (
       <div class="hero-cta hero-in">

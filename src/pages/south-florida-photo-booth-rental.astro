@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTA from '../components/CTA.astro';
@@ -80,68 +81,164 @@ const galleries = [
   },
 ];
 
-const faqs = [
-  ['How much space do I need?', 'Lux Booth: ≈ 8′×8′ | 360 Booth: ≈ 10′×10′ flat area'],
-  ['Do you include an attendant?', 'Always ✔️ Our booths come with a friendly pro to guide your guests.'],
-  ['Do guests get prints?', 'Yes — Lux Booth offers unlimited 2×6 or 4×6 prints plus digital downloads. The 360 Booth focuses on videos with instant digital sharing.'],
-  ['Can we customize the prints?', 'Absolutely — we’ll match your wedding colors or brand logo perfectly.'],
-  ['What areas do you serve?', 'Yes! We cover Miami-Dade and Palm Beach counties (small travel fee may apply).'],
+// Everything included with every booth.
+const included = [
+  ['State-of-the-art Canon cameras', 'Real photography-style lenses — not a webcam or an iPad. Every smile is captured in crisp, true-to-life quality your guests will actually want to frame.'],
+  ['A friendly on-site attendant', 'A pro runs the booth all night — guiding poses, swapping props, and keeping the line moving so the energy never dips.'],
+  ['Unlimited prints', 'Print as many times as your guests want. Everyone leaves with something in hand.'],
+  ['2×6 & 4×6 prints', 'Classic strips, full postcard-size prints, or both — with the option to upgrade to premium paper.'],
+  ['On-site framing & magnets', 'Turn prints into keepsakes on the spot — framed photos and fridge magnets guests take straight home.'],
+  ['Digital sharing & full gallery', 'Instant text and QR sharing at the booth, plus the complete high-resolution gallery delivered after your event.'],
 ];
-const steps = [
-  ['Choose Your Booth', '360 or Lux (or both)'],
-  ['Customize Your Look', 'Pick your overlay, backdrop, and theme.'],
-  ['We Set the Scene', 'Delivery, setup, and operation handled by our team.'],
-  ['Strike a Pose', 'Snap, spin, and share instantly via text or print.'],
-  ['Relive the Memories', 'Get your full digital gallery after the event.'],
+
+// Photo-rich "moments" mosaic. Any slot without a dropped image is simply
+// skipped, so you can add as few or as many as you like.
+const momentFiles = [
+  ['moment-01.jpg', 'Guests holding their photo booth strips at the reception'],
+  ['moment-02.jpg', 'Photo booth prints kept as a keepsake on the table'],
+  ['moment-03.jpg', 'Couple laughing at their fresh photo booth print'],
+  ['moment-04.jpg', 'Photo booth strips shared among friends at dinner'],
+  ['moment-05.jpg', 'A photo booth print tucked into a clutch to take home'],
+  ['moment-06.jpg', 'Guests sharing their photo booth photos on their phone'],
+  ['moment-07.jpg', 'Group photo booth print passed around the party'],
+  ['moment-08.jpg', 'Black-and-white photo booth strips as a keepsake'],
+];
+const moments = momentFiles
+  .filter(([f]) => fs.existsSync(`public/images/photobooth/${f}`))
+  .map(([f, alt]) => ({ src: `/images/photobooth/${f}`, alt }));
+
+// The full booth lineup.
+const booths = [
+  ['Classic Booth', 'The timeless open-air setup — crisp prints, props, and room for the whole crew.', null],
+  ['Glam Booth', 'Editorial black-and-white, skin-smoothing "Kardashian-style" portraits.', '/glam-booth'],
+  ['360 Booth', 'Step onto the platform for slow-motion, cinematic 360° video everyone shares.', null],
+  ['Mirror Booth', 'A full-length interactive mirror that talks, animates, and signs — pure showpiece.', null],
+  ['Roaming Booth', 'A handheld booth that comes to your guests — perfect for cocktail hour and the dance floor.', null],
+  ['Keychain Booth', 'Custom leather keychains with gold hardware, assembled live — the favor guests keep for years.', '/keychain-photo-booth-station'],
+];
+
+const faqs = [
+  ['What makes your booths different from other "photo booths"?', 'Real cameras. Our booths use state-of-the-art Canon cameras with photography-style lenses — not a tablet or webcam. The difference in quality is obvious the second your guests see their print.'],
+  ['Is an attendant included?', 'Always. Every booth comes with a friendly on-site attendant who runs everything so you and your guests just have fun.'],
+  ['Do guests get unlimited prints?', 'Yes — unlimited 2×6 strips and/or 4×6 prints, with the option to upgrade to premium paper. We can also add on-site framing and magnets.'],
+  ['What is the signed guest book option?', 'Guests take their photo, drop a copy into a keepsake album, and write a heartfelt message right next to their smile — a guest book you will actually treasure.'],
+  ['Can the backdrop match our colors?', 'Absolutely. We offer premium backdrops themed to your style and palette, plus custom fabric step-and-repeats with your names or logo.'],
+  ['Do we get the digital photos too?', 'Yes — instant digital sharing at the booth, plus the full high-resolution gallery delivered after your event. Every booth includes it.'],
+  ['What areas do you serve?', 'All of South Florida — Fort Lauderdale, Miami-Dade, Broward, and Palm Beach.'],
 ];
 ---
-<Base title="Photo Booth Rental Miami & Fort Lauderdale | Xpress Entertainment" description="Lux & 360 photo booths for South Florida weddings — DSLR-quality cameras, instant prints, social sharing, and an on-site attendant. The Ultimate Wedding Experience, captured.">
+<Base title="Photo Booth Rental Miami & Fort Lauderdale | Xpress Entertainment" description="South Florida's premium photo booth experience — real Canon cameras, unlimited prints, on-site attendant, framing, magnets, signed guest book & custom backdrops. The keepsake your guests actually keep.">
 
   <Hero
-    eyebrow="Photo Booths in Fort Lauderdale / Miami / Palm Beach"
-    titleHtml={`Captured<br>Frame by <span class="serif-accent" style="font-style:italic">Frame</span>`}
-    sub="At Xpress Entertainment, The Ultimate Wedding Experience doesn’t end on the dance floor — it lives on in every smile, pose, and playful moment inside our photo booths."
-    image="/images/heroes/photobooth-hero.jpg"
-    alt="Group of guests posing in an Xpress Entertainment photo booth"
+    eyebrow="Photo Booths · Fort Lauderdale · Miami · Palm Beach"
+    titleHtml={`The Photo Booth Your<br>Guests <span class="serif-accent" style="font-style:italic">Actually Keep</span>`}
+    sub="It's the one thing from your wedding your guests take home and hang on the fridge. Not a gimmick — a real photography experience that turns your celebration into keepsakes."
+    image="/images/photobooth/hero.jpg"
+    alt="Couple posing inside an Xpress Entertainment photo booth with studio lighting"
     ctaText="Check Availability"
+    titleStyle="font-size:clamp(2.4rem,5.6vw,5rem);"
   />
 
+  <!-- THE KEEPSAKE HOOK -->
   <section class="pad bg-ink">
-    <div class="wrap" style="max-width:880px;">
-      <p class="lead reveal">Each booth is equipped with professional-grade cameras, flattering studio lighting, and instant print &amp; digital sharing options so your guests can keep the fun going long after the night ends.</p>
-      <p class="lead reveal d1" style="margin-top:14px;">From romantic snapshots to hilarious group shots, our booths have become the home of the first kiss, the last laugh, and every memory in between. Whether you’re creating a chic black-and-white glam wall or a confetti-filled celebration reel, your guests will walk away with keepsakes as beautiful as your day itself.</p>
-    </div>
-  </section>
-
-  <!-- TWO BOOTHS -->
-  <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">Two ways to capture it</span><h2 class="h-xl">Our Booths</h2></div>
-      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff;">
-          <h3>📸 The Lux Booth</h3>
-          <p style="color:var(--lavender); margin:6px 0 12px;">Classic. Chic. Timeless.</p>
-          <p style="color:#d9d0ec;">Our Lux Booth brings that modern-studio look to your event with high-definition cameras, flattering lighting, and gorgeous print templates. Guests can snap unlimited photos, create GIFs or boomerangs, and take home instant prints or digital copies, all designed to match your event’s vibe. The sleek open-air design fits seamlessly into any wedding venue or party backdrop.</p>
-          <p style="color:#fff; margin:16px 0 8px;">Highlights:</p>
-          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0;"><li>✦ DSLR-quality camera for crisp photos</li><li>✦ Instant prints (optional) + digital downloads</li><li>✦ Custom overlays & branded templates</li><li>✦ Optional Glam filter (black-and-white “Kardashian-style”)</li><li>✦ Friendly on-site attendant included</li></ul>
-        </div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff;">
-          <h3>✨ The 360 Booth</h3>
-          <p style="color:var(--lavender); margin:6px 0 12px;">Step into the spotlight — literally.</p>
-          <p style="color:#d9d0ec;">Our 360 Booth creates jaw-dropping slow-motion videos that capture your guests from every angle. It’s an interactive experience that makes everyone feel like a celebrity on the red carpet. With studio-grade cameras, dynamic lighting, and instant social-media sharing, every spin becomes a moment worth replaying. Weddings that deserve a little extra wow.</p>
-          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; margin-top:16px;"><li>✦ 360° rotating video platform with cinematic slow motion</li><li>✦ Instant sharing via text, email, or QR code</li><li>✦ LED base with customizable lighting</li><li>✦ Attendant-operated for a smooth experience</li><li>✦ Optional overlays, logos, and branded effects</li></ul>
+      <div class="split">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/photobooth/keepsake.jpg" alt="Newlyweds smiling at their freshly printed photo booth photo" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow">More than a photo</span>
+          <h2 class="h-lg" style="margin:14px 0 18px;">The keepsake that outlives the party.</h2>
+          <p class="lead">Most of your wedding disappears the next morning — the flowers, the cake, the playlist. The photo strip doesn't. It ends up on the fridge, on the desk, in the wallet. Months later, your guests are still smiling at it.</p>
+          <p class="lead" style="margin-top:14px;">That's what we build: a booth experience so good the print becomes the memory people keep.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY CHOOSE -->
+  <!-- THE DIFFERENCE: CANON CAMERAS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/photobooth/the-booth.jpg" alt="Xpress Entertainment premium photo booth with a professional Canon camera" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">The difference</span>
+          <h2 class="h-lg" style="margin:14px 0 18px; color:#fff;">Real cameras. Real photography.</h2>
+          <p class="lead" style="color:#d9d0ec;">Here's the thing nobody tells you: most "photo booths" are just a tablet or a webcam in a nice shell. Ours aren't. Every Xpress booth runs a <strong style="color:#fff;">state-of-the-art Canon camera with a photography-style lens</strong> and studio lighting.</p>
+          <p class="lead" style="color:#d9d0ec; margin-top:14px;">The result is the kind of crisp, flattering, true-to-color image you'd expect from a real photographer — printed and in your guests' hands in seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
   <section class="pad bg-ink">
-    <div class="wrap" style="max-width:880px;">
-      <div class="sec-head reveal" style="max-width:none;"><span class="eyebrow">Why Choose Xpress Entertainment</span><h2 class="h-lg">We don’t just drop off a booth; we deliver The Ultimate Wedding Experience.</h2></div>
-      <p class="lead reveal d1">At Xpress Entertainment, our photo booths are powered by high-quality cameras, studio-grade lighting, and instant sharing technology that make every click look like a cover shoot. Whether you’re spinning on the 360 Booth or striking a pose in front of the Lux Booth, your guests will walk away with keepsakes that feel as premium as your celebration itself.</p>
-      <p class="lead reveal d2" style="margin-top:14px;">Our team has rocked hundreds of weddings and events across South Florida, from Miami rooftops to Fort Lauderdale ballrooms. We handle setup, operation, and teardown, so all you have to do is smile.</p>
-      <p class="lead reveal d2" style="margin-top:14px; color:#fff; font-family:var(--serif); font-size:1.5rem;">✨ Because memories fade… but photos last forever.</p>
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Every booth includes</span><h2 class="h-xl">Everything, handled.</h2><p class="lead" style="margin-inline:auto;">No add-on menus, no fine print. Every Xpress booth arrives complete — this is the standard, not the upsell.</p></div>
+      <div class="incl-grid reveal">
+        {included.map(([t, d], i) => (
+          <div class="incl">
+            <span class="incl-n">{String(i + 1).padStart(2, '0')}</span>
+            <div class="incl-body"><h3>{t}</h3><p>{d}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MOMENTS GUESTS KEEP -->
+  {moments.length > 0 && (
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">What they take home</span><h2 class="h-xl">The prints that don't get thrown away.</h2><p class="lead" style="color:#d9d0ec; margin-inline:auto;">Strips on the fridge, prints in the wallet, magnets on the desk at work — the keepsakes your guests actually keep.</p></div>
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px;">
+        {moments.map((m) => (
+          <img src={m.src} alt={m.alt} loading="lazy" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:14px;" />
+        ))}
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- SIGNED GUEST BOOK -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="split">
+        <div class="media reveal" style="background:var(--ink-2);"><img src="/images/photobooth/guestbook.jpg" alt="Signed photo booth guest book with photo strips and a heartfelt message" style="aspect-ratio:1; object-fit:cover; width:100%; height:100%;" /></div>
+        <div class="reveal d1">
+          <span class="eyebrow light">A guest book you'll treasure</span>
+          <h2 class="h-lg" style="margin:14px 0 18px; color:#fff;">Their smile, next to their message.</h2>
+          <p class="lead" style="color:#d9d0ec;">Skip the plain sign-in book. Guests take their photo, drop a copy into your keepsake album, and write a note right beside it — so every heartfelt message is matched to the face that wrote it.</p>
+          <p class="lead" style="color:#d9d0ec; margin-top:14px;">You'll page through it for years and remember exactly who was there, and how they felt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM BACKDROPS -->
+  <section class="pad bg-ink">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow">Premium backdrops</span><h2 class="h-xl">Styled to your day.</h2><p class="lead" style="margin-inline:auto;">Your backdrop is curated to match your colors and style — bold and dramatic, soft and floral, elegant and neutral, whatever your day calls for. Want something one of a kind? We also build custom fabric step-and-repeats with your names or logo.</p></div>
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
+        <img src="/images/photobooth/backdrop-red.jpg" alt="Guests posing in a photo booth against a bold, dramatic backdrop" loading="lazy" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:14px;" />
+        <img src="/images/photobooth/backdrop-peachy.jpg" alt="Photo booth set up against a soft floral backdrop" loading="lazy" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:14px;" />
+        <img src="/images/photobooth/backdrop-champagne.jpg" alt="Photo booth with an elegant, neutral toned backdrop" loading="lazy" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:14px;" />
+      </div>
+      <p class="reveal" style="text-align:center; margin-top:16px; color:var(--muted); font-size:0.92rem;">Looks for inspiration — every backdrop is selected and customized for your event.</p>
+    </div>
+  </section>
+
+  <!-- THE LINEUP -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">The full lineup</span><h2 class="h-xl">Six booths. One standard.</h2><p class="lead" style="color:#d9d0ec; margin-inline:auto;">Every booth comes with the Canon-camera quality, a friendly attendant, digital sharing, and your full gallery after the event.</p></div>
+      <div class="values" style="grid-template-columns:repeat(3,1fr);">
+        {booths.map(([name, desc, href], i) => (
+          <div class={`value reveal ${i % 3 === 1 ? 'd1' : i % 3 === 2 ? 'd2' : ''}`} style="border-color:rgba(255,255,255,0.14); color:#fff;">
+            <h3>{name}</h3>
+            <p style="color:#d9d0ec;">{desc}</p>
+            {href && <a href={href} class="textlink" style="margin-top:12px; display:inline-block;">Learn more →</a>}
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -152,18 +249,6 @@ const steps = [
     title="See the magic."
     sub="A peek at what your guests take home — tap any gallery to flip through real booth moments."
   />
-
-  <!-- HOW IT WORKS -->
-  <section class="pad bg-light">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">How It Works</span><h2 class="h-xl">From "say cheese" to your gallery.</h2></div>
-      <div class="steps" style="grid-template-columns:repeat(5,1fr);">
-        {steps.map(([t, d], i) => (
-          <div class={`step reveal ${i ? 'd' + i : ''}`}><div class="sn">{i + 1}</div><h4>{t}</h4><p>{d}</p></div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section class="pad bg-ink">
@@ -180,19 +265,21 @@ const steps = [
     </div>
   </section>
 
-  <!-- KEYCHAIN STATION UPGRADE TEASER -->
-  <section class="pad bg-deep">
-    <div class="wrap" style="max-width:820px; text-align:center;">
-      <div class="reveal">
-        <span class="eyebrow light">Premium upgrade</span>
-        <h2 class="h-lg" style="margin:14px 0 16px; color:#fff;">Add the Keychain Station.</h2>
-        <p class="lead" style="color:#d9d0ec;">Turn your photo booth pictures into custom leather keychains with gold hardware, assembled live during your wedding. It's the favor your guests actually keep.</p>
-        <div style="margin-top:24px;">
-          <a href="/keychain-photo-booth-station" class="btn"><span>Explore the Keychain Station</span> <span class="arrow">↗</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <CTA eyebrow="Check Availability" titleHtml={`The keepsake starts<br>with your date.`} text="Tell us about your event and we'll build the perfect photo booth experience for it." />
 
-  <CTA eyebrow="Check Availability" titleHtml={`Make your dance floor<br>unforgettable.`} text="Your Ultimate Wedding Experience starts here." />
+  <style>
+    /* Editorial "spec sheet" grid for the included list — hairline dividers,
+       italic serif numerals, generous whitespace. Reads premium, not checklist. */
+    .incl-grid { margin-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+    .incl { display: flex; gap: 22px; align-items: flex-start; padding: 30px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .incl-n { font-family: var(--serif); font-style: italic; font-size: 1.6rem; line-height: 1; color: var(--red); flex: 0 0 auto; opacity: 0.92; }
+    .incl-body h3 { font-size: 1.16rem; color: #fff; margin: 3px 0 10px; letter-spacing: 0.005em; }
+    .incl-body p { color: var(--muted); line-height: 1.75; font-size: 1rem; max-width: 44ch; }
+    @media (min-width: 760px) {
+      .incl-grid { display: grid; grid-template-columns: 1fr 1fr; }
+      .incl { padding: 34px 44px; }
+      .incl:nth-child(odd) { border-right: 1px solid rgba(255, 255, 255, 0.12); padding-left: 0; }
+      .incl:nth-child(even) { padding-right: 0; }
+    }
+  </style>
 </Base>
