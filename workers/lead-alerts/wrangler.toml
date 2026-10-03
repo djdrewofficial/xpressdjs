@@ -1,0 +1,40 @@
+# Scheduled Worker for inquiry follow-ups (notes, source, completed-inquiry alerts).
+# Deploy from the repo root:  npx wrangler deploy -c workers/lead-alerts/wrangler.toml
+# Secrets (set once):
+#   npx wrangler secret put GHL_API_TOKEN          -c workers/lead-alerts/wrangler.toml
+#   npx wrangler secret put LEAD_ALERT_WEBHOOK_URL -c workers/lead-alerts/wrangler.toml
+name = "xpress-lead-alerts"
+main = "index.js"
+compatibility_date = "2025-09-01"
+workers_dev = false
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+GHL_LOCATION_ID = "tRQqRP2zGXszbRBr9wU3"
+
+# Must be the SAME D1 database bound to the Pages project as LEADS_DB.
+[[d1_databases]]
+binding = "LEADS_DB"
+database_name = "xpress-leads"
+database_id = "d35d01b3-7d5d-43d0-927c-f9635c32bcf9"
+
+# ---- Preview: pairs with the Pages PREVIEW environment (LEADS_DB = xpress-leads-preview).
+# Deploy:  npx wrangler deploy -c workers/lead-alerts/wrangler.toml --env preview
+# Secrets: npx wrangler secret put GHL_API_TOKEN          -c workers/lead-alerts/wrangler.toml --env preview
+#          npx wrangler secret put LEAD_ALERT_WEBHOOK_URL -c workers/lead-alerts/wrangler.toml --env preview
+[env.preview]
+name = "xpress-lead-alerts-preview"
+workers_dev = false
+
+[env.preview.triggers]
+crons = ["* * * * *"]
+
+[env.preview.vars]
+GHL_LOCATION_ID = "tRQqRP2zGXszbRBr9wU3"
+
+[[env.preview.d1_databases]]
+binding = "LEADS_DB"
+database_name = "xpress-leads-preview"
+database_id = "c9123f50-3b91-4139-b76b-208ce1392c77"
