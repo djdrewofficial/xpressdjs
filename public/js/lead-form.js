@@ -92,6 +92,14 @@
     return !!m && (+m[1] > 12 || (m[1].length === 2 && m[1].charAt(0) === "0"));
   }
   var EMAIL_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
+  // Same rules as lib/lead/validate.js normalizePhone → E.164, or "".
+  function toE164(v) {
+    var s = String(v || "").trim(), digits = s.replace(/\D/g, "");
+    if (s.charAt(0) === "+" && s.indexOf("+1") !== 0) return digits.length >= 8 && digits.length <= 15 ? "+" + digits : "";
+    if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
+    if (digits.length !== 10 || /^[01]/.test(digits) || /^[01]/.test(digits.slice(3))) return "";
+    return "+1" + digits;
+  }
 
   function wantsSms() {
     var m = form.querySelector('input[name="preferredMethod"]:checked');
@@ -336,11 +344,16 @@
     attempt(0);
   }
 
+  // The exact request the server confirmed — kept in memory only (never
+  // storage, URL, analytics or logs) until the calendar has the contact details.
+  var sentPayload = null;
+
   function attempt(n) {
+    sentPayload = buildPayload();
     fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(buildPayload()),
+      body: JSON.stringify(sentPayload),
     })
       .then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j || {} }; });
@@ -367,13 +380,15 @@
 
   function onSaved() {
     inFlight = true; // stays locked — this inquiry is done
+    var contact = calendarContact(sentPayload); // taken before the saved form is cleared
+    sentPayload = null;
     ssDel(DRAFT_KEY); ssDel(SID_KEY);
     try { if (window.track) window.track("generate_lead", { form: "check_availability" }); } catch (e) {}
     form.hidden = true;
     if (stepper) stepper.hidden = true;
     var ok = $("form-success");
     ok.hidden = false;
-    loadCalendar();
+    loadCalendar(contact);
     ok.scrollIntoView({ behavior: "smooth", block: "start" });
     try { ok.focus({ preventScroll: true }); } catch (e) {}
   }
@@ -381,17 +396,52 @@
   // ---- Consultation calendar (HighLevel booking widget) ----------------------
   // The visitor books inside HighLevel's own widget, which shows its own
   // confirmation. Nothing here treats loading or clicking it as a booking.
-  function loadCalendar() {
+  //
+  // Prefill: the widget fills first_name / last_name / email / phone from its
+  // own URL's query string (browser-tested 2026-10-03; not a documented API).
+  // It turns "+" into a space even when sent as %2B, so an email containing
+  // "+" is NOT passed (the visitor types it) rather than prefilled wrong. All
+  // fields stay editable; the widget's consent checkbox is never touched.
+  function calendarContact(p) {
+    if (!p) return null;
+    var c = {};
+    if (p.firstName) c.first_name = p.firstName;
+    if (p.lastName) c.last_name = p.lastName;
+    if (p.email && p.email.indexOf("+") === -1) c.email = p.email.toLowerCase();
+    var phone = toE164(p.phone);
+    if (phone) c.phone = phone;
+    return c;
+  }
+
+  function loadCalendar(contact) {
     var box = $("booking-embed"), slow = $("booking-slow");
     if (!box || !cfg.bookingUrl) { if (slow) slow.hidden = false; return; }
     var widgetId = cfg.bookingUrl.split("/").pop();
+    var prefilled = "";
+    if (contact && Object.keys(contact).length) {
+      var u = new URL(cfg.bookingUrl);
+      u.search = new URLSearchParams(contact).toString();
+      prefilled = u.toString();
+    }
+    // HighLevel's form_embed.js forwards the iframe's own src query string to
+    // the widget (it overrides any other navigation), so the details must be in
+    // src. Microsoft Clarity copies the page's DOM, so it is STOPPED for the
+    // rest of this page view before the frame exists — it never records the
+    // prefilled src. (Clarity's queue stub applies "stop" even if not loaded.)
+    if (prefilled) {
+      try {
+        window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+        window.clarity("stop");
+      } catch (e) {}
+    }
     var frame = document.createElement("iframe");
-    frame.src = cfg.bookingUrl;
+    frame.src = prefilled || cfg.bookingUrl;
     frame.id = widgetId + "_" + Date.now();
     frame.title = t.calendarTitle || "Book a consultation";
     frame.setAttribute("scrolling", "no");
     frame.style.cssText = "width:100%;border:none;overflow:hidden;min-height:780px;";
     var loaded = false;
+    prefilled = ""; contact = null; // handed to the frame; drop from memory
     frame.addEventListener("load", function () { loaded = true; if (slow) slow.hidden = true; });
     box.appendChild(frame);
     // Cross-origin iframes don't report HTTP errors, so the fallback link is
