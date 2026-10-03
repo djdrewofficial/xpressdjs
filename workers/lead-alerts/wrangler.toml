@@ -18,7 +18,7 @@ GHL_LOCATION_ID = "tRQqRP2zGXszbRBr9wU3"
 [[d1_databases]]
 binding = "LEADS_DB"
 database_name = "xpress-leads"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "d35d01b3-7d5d-43d0-927c-f9635c32bcf9"
 
 # ---- Preview: pairs with the Pages PREVIEW environment (LEADS_DB = xpress-leads-preview).
 # Deploy:  npx wrangler deploy -c workers/lead-alerts/wrangler.toml --env preview
