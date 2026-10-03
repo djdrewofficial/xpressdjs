@@ -1,0 +1,263 @@
+{
+ "customFields": [
+  {
+   "id": "1S9nxUEORSZB4Qx1xxDz",
+   "name": "Do you have a date picked out yet?",
+   "model": "contact",
+   "fieldKey": "contact.do_you_have_a_date_picked_out_yet",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "ffKrkDh7iKueN8sljn5p",
+   "picklistOptions": [
+    "Yes",
+    "No"
+   ]
+  },
+  {
+   "id": "6e0H2XE26RCKmaGphDeB",
+   "name": "Assigned DJ",
+   "model": "contact",
+   "fieldKey": "contact.assigned_dj",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v",
+   "picklistOptions": [
+    "47715",
+    "47835"
+   ]
+  },
+  {
+   "id": "CL1jxQpVsjljDtO0pYOk",
+   "name": "Client Email Adress",
+   "model": "contact",
+   "fieldKey": "contact.client_email_adress",
+   "dataType": "TEXT",
+   "parentId": "UQLy3FnPEzJQRIhmpyRk"
+  },
+  {
+   "id": "CfqxKNWJMhhaAzL0WCAV",
+   "name": "Guest Count",
+   "model": "contact",
+   "fieldKey": "contact.guest_count",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "ER8MxrMfajffqfgHbKQK",
+   "name": "Event Date",
+   "model": "contact",
+   "fieldKey": "contact.event_date",
+   "dataType": "DATE",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "EeOdduBuq33r8dkqlGy7",
+   "name": "Tittle of Event:",
+   "model": "contact",
+   "fieldKey": "contact.tittle_of_event",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "EnDkjGtO0tZT1l4oj2ni",
+   "name": "Name of Venue",
+   "model": "contact",
+   "fieldKey": "contact.name_of_venue",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "HNpYnyjdv90RzN6lQSqR",
+   "name": "Initial Contact Date",
+   "model": "contact",
+   "fieldKey": "contact.initial_contact_date",
+   "dataType": "DATE",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh"
+  },
+  {
+   "id": "KZ95MPxkuGVZCZu1fmcL",
+   "name": "Event End Time",
+   "model": "contact",
+   "fieldKey": "contact.event_end_time",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "OzHJURUXhDy5DOVNIcyo",
+   "name": "Event Vibo Link",
+   "model": "contact",
+   "fieldKey": "contact.event_vibo_link",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "SAKxQ1MfRAHEFkCcpFMQ",
+   "name": "Preferred Language",
+   "model": "contact",
+   "fieldKey": "contact.preferred_language",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh",
+   "picklistOptions": [
+    "English",
+    "Spanish"
+   ]
+  },
+  {
+   "id": "VzFUtxB9e6rww1kBBdsR",
+   "name": "Partner B Last Name",
+   "model": "contact",
+   "fieldKey": "contact.partner_b_last_name",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "Y2Xe6bfKlQDpIZeZ0B8L",
+   "name": "Event Start Time",
+   "model": "contact",
+   "fieldKey": "contact.event_start_time",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "Yjxw1LNsWSTP7F8H1sJY",
+   "name": "Preferred Method of Communication",
+   "model": "contact",
+   "fieldKey": "contact.preferred_method_of_communication",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh",
+   "picklistOptions": [
+    "SMS",
+    "Email"
+   ]
+  },
+  {
+   "id": "cZ6x28YS5igRThJKTbxM",
+   "name": "Lead Complete",
+   "model": "contact",
+   "fieldKey": "contact.lead_complete",
+   "dataType": "TEXT",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh"
+  },
+  {
+   "id": "d4TRmyeMC1WfaLINHOMS",
+   "name": "Venue City",
+   "model": "contact",
+   "fieldKey": "contact.venue_city",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "dPVY9xurcduLSc3Q4eV8",
+   "name": "Partner A Last Name",
+   "model": "contact",
+   "fieldKey": "contact.partner_a_last_name",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "hLBakaZYdqZdE15Ub6QZ",
+   "name": "Event Type",
+   "model": "contact",
+   "fieldKey": "contact.event_type",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "kddP7XrKS52pD6CdYSUg",
+   "name": "Partner A First Name",
+   "model": "contact",
+   "fieldKey": "contact.partner_a_first_name",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "pUQj9pTg8u4IBuTKAW05",
+   "name": "Assigned Sales Person",
+   "model": "contact",
+   "fieldKey": "contact.xpress_entertainment_rep",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "ffKrkDh7iKueN8sljn5p",
+   "picklistOptions": [
+    "Stephanie",
+    "Andrew",
+    "Megan",
+    "Jake"
+   ]
+  },
+  {
+   "id": "rKLRZJ99iztCuLlSbrNH",
+   "name": "Lead Stage",
+   "model": "contact",
+   "fieldKey": "contact.lead_stage",
+   "dataType": "TEXT",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh"
+  },
+  {
+   "id": "t0VpHOeldAAOdv5imbfW",
+   "name": "Inquiry Source",
+   "model": "contact",
+   "fieldKey": "contact.inquiry_source",
+   "dataType": "SINGLE_OPTIONS",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh",
+   "picklistOptions": [
+    "Wedding Wire",
+    "The Knot",
+    "Zola"
+   ]
+  },
+  {
+   "id": "tvb20gkW3iqS94TVxPa9",
+   "name": "SMS Consent",
+   "model": "contact",
+   "fieldKey": "contact.sms_consent",
+   "dataType": "CHECKBOX",
+   "parentId": "ffKrkDh7iKueN8sljn5p",
+   "picklistOptions": [
+    "By checking this box, you agree to receive booking confirmations, event updates, and promotional messages via SMS from Xpress Entertainment. Message & data rates may apply. Consent is not a condition of purchase. You may opt out anytime by replying STOP."
+   ]
+  },
+  {
+   "id": "vOPtDz8F9qhpO0jr2UnT",
+   "name": "Do you have your Venue Booked?",
+   "model": "contact",
+   "fieldKey": "contact.do_you_have_your_venue_booked",
+   "dataType": "RADIO",
+   "parentId": "ffKrkDh7iKueN8sljn5p",
+   "picklistOptions": [
+    "Yes",
+    "No, but will be Booking Soon",
+    "No, Still Touring"
+   ]
+  },
+  {
+   "id": "vchmp7srRzRIsk03ONVH",
+   "name": "Partner B First Name",
+   "model": "contact",
+   "fieldKey": "contact.partner_b_first_name",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "wRyrPFfvHjgfJvu0x32G",
+   "name": "Booking Comments",
+   "model": "contact",
+   "fieldKey": "contact.comments",
+   "dataType": "TEXT",
+   "parentId": "dvpLpB5mv9FRsPe8Zs9v"
+  },
+  {
+   "id": "z2c8pTbP8aOIIHOJ7rp6",
+   "name": "Relationship to Wedding",
+   "model": "contact",
+   "fieldKey": "contact.relationship_to_wedding",
+   "dataType": "TEXT",
+   "parentId": "1j3VuWewPAOdkl2Rq38X"
+  },
+  {
+   "id": "zLzyHg3wAJP6YYGeuAUO",
+   "name": "Initial Booking Comments",
+   "model": "contact",
+   "fieldKey": "contact.comments",
+   "dataType": "TEXT",
+   "parentId": "9Am7j1H7sFOQ9QC6wDkh"
+  }
+ ]
+}

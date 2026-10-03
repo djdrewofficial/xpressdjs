@@ -9,22 +9,60 @@ const CONSENT_TEXT = "Doy mi consentimiento para recibir notificaciones por SMS 
 // works with the honeypot only.
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
+// [value sent to the CRM, Spanish label]
 const eventTypeOther = [
-  'Banquete','Bar Mitzvá','Bat Mitzvá','Fiesta de Cumpleaños','Reunión de Egresados','Celebración Comunitaria',
-  'Fiesta Navideña de Empresa','Reunión Familiar','Celebración de Graduación','Club Nocturno / Baile en Bar',
-  'Fiesta Privada','Quinceañera','PA / Refuerzo de Sonido','Baile Escolar','Sweet 16',
-  'Aniversario de Bodas','Otro / No Listado',
+  ['Banquet','Banquete'],['Bar Mitzvah','Bar Mitzvá'],['Bat Mitzvah','Bat Mitzvá'],['Birthday Party','Fiesta de Cumpleaños'],
+  ['Class Reunion','Reunión de Egresados'],['Community Celebration','Celebración Comunitaria'],
+  ['Company Holiday Party','Fiesta Navideña de Empresa'],['Family Reunion','Reunión Familiar'],
+  ['Graduation Celebration','Celebración de Graduación'],['Night Club / Bar Dance','Club Nocturno / Baile en Bar'],
+  ['Private Party','Fiesta Privada'],['Quinceanera','Quinceañera'],['PA / Sound Reinforcement','PA / Refuerzo de Sonido'],
+  ['School Dance','Baile Escolar'],['Sweet 16','Sweet 16'],['Wedding Anniversary','Aniversario de Bodas'],
+  ['Other / Not Listed','Otro / No Listado'],
 ];
-const relations = ["¡Soy la Novia!","¡Soy el Novio!","Soy un Familiar","Soy Planificador(a) / Coordinador(a) de Bodas"];
+// [value sent to the CRM, Spanish label]
+const relations = [
+  ["I'm A Bride!","¡Soy la Novia!"],["I'm a Groom!","¡Soy el Novio!"],["I'm a Family Member","Soy un Familiar"],
+  ["I'm a Wedding Planner / Coordinator","Soy Planificador(a) / Coordinador(a) de Bodas"],
+];
+
+const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/booking/VusY7T1D0DLoYTQ1uNJ5';
 
 const leadCfg = {
+  locale: 'es',
   consentText: CONSENT_TEXT,
   turnstileKey: TURNSTILE_SITE_KEY,
+  bookingUrl: BOOKING_URL,
   i18n: {
-    sending: 'Enviando…',
-    antispam: 'Por favor completa la verificación anti-spam de abajo.',
-    error: 'Algo salió mal. Por favor llámanos o escríbenos al 954-833-1196.',
-    network: 'Error de red. Por favor llámanos o escríbenos al 954-833-1196.',
+    next: 'Siguiente',
+    submit: 'Enviar',
+    sending: 'Guardando…',
+    calendarTitle: 'Agenda tu consulta por video con Xpress Entertainment',
+    summary: 'Por favor corrige el campo marcado:',
+    errors: {
+      required: 'Por favor completa este campo.',
+      invalid: 'Por favor revisa este campo.',
+      invalid_email: 'Ingresa un correo electrónico válido, como nombre@ejemplo.com.',
+      invalid_phone: 'Ingresa un número de EE. UU. de 10 dígitos, o un número internacional que empiece con +.',
+      invalid_choice: 'Por favor elige una de las opciones.',
+      invalid_date: 'Ingresa una fecha de evento válida.',
+      past_date: 'La fecha del evento no puede estar en el pasado. Por favor elige una fecha próxima.',
+      date_too_far: 'Por favor elige una fecha dentro de los próximos 5 años, o llámanos/escríbenos al 954-833-1196.',
+      invalid_time: 'Ingresa una hora con AM o PM, como 6:00 PM.',
+      invalid_guests: 'Ingresa un número estimado de invitados entre 1 y 5,000.',
+      too_long: 'Es un poco largo. Por favor acórtalo.',
+      consent_required_for_sms: 'Para contactarte por texto, marca la casilla de consentimiento de SMS, o elige "Envíame un email".',
+    },
+    codes: {
+      antispam: 'Por favor completa la verificación anti-spam justo arriba de los botones y presiona Enviar de nuevo.',
+      antispam_unavailable: 'No pudimos hacer la verificación anti-spam. Tus respuestas siguen aquí. Presiona Enviar de nuevo en un momento.',
+      in_progress: 'Tu solicitud todavía se está guardando. Espera un momento antes de intentarlo de nuevo.',
+      save_failed: 'No pudimos confirmar tu solicitud en este momento. Tus respuestas siguen aquí. Presiona Enviar de nuevo, o llámanos/escríbenos al 954-833-1196.',
+      not_configured: 'No pudimos guardar tu solicitud en este momento. Por favor llámanos o escríbenos al 954-833-1196.',
+      not_ready: 'Las solicitudes en línea no están disponibles por el momento. Tus respuestas siguen aquí. Inténtalo de nuevo en un rato, o llámanos/escríbenos al 954-833-1196.',
+      network: 'Problema de conexión. Tus respuestas siguen aquí. Revisa tu conexión y presiona Enviar de nuevo, o llámanos/escríbenos al 954-833-1196.',
+      bad_request: 'Algo salió mal. Tus respuestas siguen aquí. Presiona Enviar de nuevo o llámanos/escríbenos al 954-833-1196.',
+      generic: 'Algo salió mal. Tus respuestas siguen aquí. Presiona Enviar de nuevo o llámanos/escríbenos al 954-833-1196.',
+    },
   },
 };
 ---
@@ -47,7 +85,7 @@ const leadCfg = {
           <span class="eyebrow">Consulta Disponibilidad ⬇️</span>
           <h2 class="h-lg" style="margin:14px 0 24px;">Cuéntanos sobre tu día.</h2>
 
-          <div class="stepper" aria-hidden="true">
+          <div class="stepper" id="lead-stepper" aria-hidden="true">
             <span class="step-dot active"><b>1</b><span class="lbl">Tus datos</span></span>
             <span class="step-dot"><b>2</b><span class="lbl">Evento</span></span>
             <span class="step-dot"><b>3</b><span class="lbl">Lugar y notas</span></span>
@@ -62,8 +100,8 @@ const leadCfg = {
             <!-- PASO 1 — Datos del cliente -->
             <div class="form-step" data-step="1">
               <div class="field-row">
-                <div class="field"><label for="firstName">Nombre *</label><input type="text" id="firstName" name="firstName" autocomplete="given-name" required /></div>
-                <div class="field"><label for="lastName">Apellido *</label><input type="text" id="lastName" name="lastName" autocomplete="family-name" required /></div>
+                <div class="field"><label for="firstName">Nombre *</label><input type="text" id="firstName" name="firstName" maxlength="100" autocomplete="given-name" required /></div>
+                <div class="field"><label for="lastName">Apellido *</label><input type="text" id="lastName" name="lastName" maxlength="100" autocomplete="family-name" required /></div>
               </div>
               <div class="field-row">
                 <div class="field"><label for="phone">Teléfono *</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required /></div>
@@ -85,9 +123,10 @@ const leadCfg = {
               </div>
 
               <label class="consent">
-                <input type="checkbox" id="smsConsent" name="smsConsent" required />
+                <input type="checkbox" id="smsConsent" name="smsConsent" />
                 <span>{CONSENT_TEXT}</span>
               </label>
+              <p class="consent-hint">Opcional, a menos que quieras que te escribamos por texto. ¿Prefieres email? Solo elige "Envíame un email" arriba.</p>
               <p class="consent-legal">Al enviar este formulario aceptas nuestra <a href="/es/privacy-policy">Política de Privacidad</a> y nuestros <a href="/es/terms-of-service">Términos de Servicio</a>. La frecuencia de los mensajes varía y pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar o HELP para ayuda.</p>
             </div>
 
@@ -106,14 +145,14 @@ const leadCfg = {
                 <label for="eventTypeOther">¿Qué tipo de evento? (elige uno) *</label>
                 <select id="eventTypeOther" name="eventTypeOther" disabled>
                   <option value="" selected disabled>Selecciona una opción</option>
-                  {eventTypeOther.map((o) => <option value={o}>{o}</option>)}
+                  {eventTypeOther.map(([v, l]) => <option value={v}>{l}</option>)}
                 </select>
               </div>
 
               <div class="field"><label for="eventDate">Fecha del evento *</label><input type="date" id="eventDate" name="eventDate" required /></div>
 
               <div class="field-row">
-                <div class="field"><label for="guests">Número estimado de invitados *</label><input type="number" min="1" id="guests" name="guests" required /><small class="hint">No necesitas el número final — solo un aproximado.</small></div>
+                <div class="field"><label for="guests">Número estimado de invitados *</label><input type="number" min="1" max="5000" inputmode="numeric" id="guests" name="guests" required /><small class="hint">No necesitas el número final — solo un aproximado.</small></div>
                 <div class="field"><label for="startTime">Hora estimada de inicio *</label><input type="text" id="startTime" name="startTime" placeholder="ej. 6:00 PM" required /></div>
               </div>
               <div class="field"><label for="endTime">Hora estimada de finalización *</label><input type="text" id="endTime" name="endTime" placeholder="ej. 11:00 PM" required /></div>
@@ -123,7 +162,7 @@ const leadCfg = {
                 <label>Tu relación con la boda *</label>
                 <div class="radio-group">
                   {relations.map((r) => (
-                    <label class="radio"><input type="radio" name="relation" value={r} disabled /> <span>{r}</span></label>
+                    <label class="radio"><input type="radio" name="relation" value={r[0]} disabled /> <span>{r[1]}</span></label>
                   ))}
                 </div>
               </div>
@@ -144,10 +183,10 @@ const leadCfg = {
             <!-- PASO 3 — Lugar y notas -->
             <div class="form-step" data-step="3" hidden>
               <div class="field-row">
-                <div class="field"><label for="venueName">Nombre del lugar *</label><input type="text" id="venueName" name="venueName" required /></div>
-                <div class="field"><label for="venueCity">Ciudad del lugar *</label><input type="text" id="venueCity" name="venueCity" required /></div>
+                <div class="field"><label for="venueName">Nombre del lugar *</label><input type="text" id="venueName" name="venueName" maxlength="200" required /></div>
+                <div class="field"><label for="venueCity">Ciudad del lugar *</label><input type="text" id="venueCity" name="venueCity" maxlength="120" required /></div>
               </div>
-              <div class="field"><label for="notes">¿Algo más que quieras que sepamos?</label><textarea id="notes" name="notes" rows="4" placeholder="Ambiente, canciones imprescindibles, momentos especiales..."></textarea></div>
+              <div class="field"><label for="notes">¿Algo más que quieras que sepamos?</label><textarea id="notes" name="notes" maxlength="2000" rows="4" placeholder="Ambiente, canciones imprescindibles, momentos especiales..."></textarea></div>
 
               {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
             </div>
@@ -160,10 +199,21 @@ const leadCfg = {
             <p style="color:var(--muted); font-size:0.8rem; margin-top:14px;">Un miembro del equipo se comunicará contigo para confirmar la disponibilidad en tu fecha.</p>
           </form>
 
-          <div id="form-success" hidden style="text-align:center; padding:40px 0;">
-            <div style="font-size:3rem; line-height:1;">🎉</div>
-            <h3 class="h-lg" style="margin:16px 0 10px;">¡Ya estás en nuestro radar!</h3>
-            <p class="lead">¡Gracias por escribirnos! Un miembro del equipo de Xpress Entertainment te llamará o te enviará un mensaje pronto para confirmar tu fecha. ¡Mantén tu teléfono cerca! 📲</p>
+          <div id="form-success" class="lead-success" hidden tabindex="-1">
+            <div class="success-head">
+              <div class="success-icon" aria-hidden="true">🎉</div>
+              <h3 class="h-lg">¡Recibimos tu solicitud!</h3>
+              <p class="lead">¡Gracias! Los detalles de tu evento quedaron guardados con el equipo de Xpress Entertainment.</p>
+            </div>
+            <ul class="lead-status">
+              <li class="is-done"><b>✓ Solicitud recibida</b><span>Tenemos tus datos de contacto y de tu evento.</span></li>
+              <li class="is-next"><b>Elige un horario para tu consulta</b><span>Elige un horario abajo para una consulta por video de 20 minutos en Google Meet. Cuando tu reserva se complete, el calendario mostrará su propia confirmación.</span></li>
+              <li class="is-info"><b>Tu fecha aún no está reservada</b><span>Una solicitud o una consulta no reserva tu fecha. Te confirmaremos la disponibilidad y los próximos pasos.</span></li>
+            </ul>
+            <p class="booking-tip">Usa el mismo email y número de teléfono que acabas de ingresar para que podamos conectar tu consulta con tu solicitud.</p>
+            <div id="booking-embed" class="booking-embed"></div>
+            <p id="booking-slow" class="form-error" hidden>El calendario está tardando en cargar. <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a>, o llámanos/escríbenos al 954-833-1196.</p>
+            <p class="booking-fallback">¿El calendario no carga? <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a> o llámanos/escríbenos al 954-833-1196.</p>
           </div>
         </div>
 
