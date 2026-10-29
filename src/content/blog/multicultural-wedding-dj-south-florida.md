@@ -150,7 +150,7 @@ Outdoor receptions require weather-resistant speaker setups and careful attentio
 
 **Where do you serve?**
 
-Xpress Entertainment covers Miami, Fort Lauderdale, Broward County, and Palm Beach. [DJ Naqeeb](https://xpressdjs.com/djnaqeeb), our Caribbean and West Indian specialist, is based in Miami and Fort Lauderdale, and is a strong match for weddings blending Soca, dancehall, Afrobeats, or Caribbean-rooted traditions with other genres.
+Xpress Entertainment covers Miami, Fort Lauderdale, Broward County, and Palm Beach. [DJ Naqeeb](https://xpressdjs.com/djnaqeeb), our Caribbean and West Indian specialist, is based in Miami and Fort Lauderdale and is a strong match for weddings blending soca, dancehall, Afrobeats or Caribbean-rooted traditions with other genres. He DJs only, so couples who book him bring their own MC or add one from our team.
 
 ## Real wedding proof: what it looks like in practice
 
