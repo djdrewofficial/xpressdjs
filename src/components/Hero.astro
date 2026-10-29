@@ -16,6 +16,7 @@ const {
   creditHref,
   imgFocus,
   titleStyle,
+  langTag,
 } = Astro.props;
 const minh = size === 'full' ? '100svh' : size === 'mid' ? '62svh' : '78svh';
 const isJpg = /\.jpe?g$/i.test(image);
@@ -44,7 +45,13 @@ const focusStyle = imgFocus ? `--hero-focus:${imgFocus}` : undefined;
   </div>
   <Credit variant="overlay" name={creditName} href={creditHref} />
   <div class="wrap">
-    {eyebrow && <span class="eyebrow light hero-in">{eyebrow}</span>}
+    {eyebrow && !langTag && <span class="eyebrow light hero-in">{eyebrow}</span>}
+    {eyebrow && langTag && (
+      <span class="hero-kicker hero-in">
+        <span class="eyebrow light">{eyebrow}</span>
+        <span class="lang-tag">{langTag}</span>
+      </span>
+    )}
     <h1 class="display hero-in" style={titleStyle} set:html={titleHtml}></h1>
     {sub && <p class="lead hero-in">{sub}</p>}
     {(ctaText || ctaText2) && (

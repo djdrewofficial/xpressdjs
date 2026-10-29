@@ -19,7 +19,7 @@ La energía no es una línea recta. Diseñamos la recepción en olas — picos d
 
 ## 3. Mezcla entre generaciones y culturas
 
-Tu abuela y tus compañeros de la universidad deberían encontrar *ambos* su canción. Como DJs bilingües de formato abierto, mezclamos Reggaetón, música latina, Top 40, hip-hop y clásicos atemporales para que cada mesa se sienta invitada a la pista.
+Tu abuela y tus compañeros de la universidad deberían encontrar su canción. Como DJs de formato abierto, mezclamos reguetón, música latina, Top 40, hip-hop y clásicos de siempre para que cada mesa se sienta invitada a la pista. Cuando tu familia necesita los dos idiomas, Drew Segura o DJ Phil pueden ser tu MC en inglés y en español.
 
 ## 4. Domina las transiciones
 

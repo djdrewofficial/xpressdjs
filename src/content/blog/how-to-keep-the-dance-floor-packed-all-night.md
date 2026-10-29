@@ -19,7 +19,7 @@ Energy isn't a straight line. We design the reception in waves — high-energy p
 
 ## 3. Mix across generations and cultures
 
-Your grandmother and your college roommates should *both* find their song. As bilingual, open-format DJs, we blend Reggaeton, Latin, Top 40, hip-hop, and timeless classics so every table feels invited to the floor.
+Your grandmother and your college roommates should both find their song. As open-format DJs, we blend Reggaeton, Latin, Top 40, hip-hop and timeless classics so every table feels invited to the floor. When your families need both languages, Drew Segura or DJ Phil can MC in English and Spanish.
 
 ## 4. Nail the transitions
 

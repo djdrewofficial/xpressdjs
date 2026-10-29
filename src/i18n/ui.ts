@@ -82,6 +82,7 @@ type FootDict = {
   services: string; pricing: string; weddingBlog: string; about: string;
   servicesHead: string; weddingDjs: string; avRentals: string; photoBooths: string; epicExtras: string;
   contentCreator: string; viboPlanning: string; contact: string;
+  ftlWedding: string; miamiWedding: string; serviceArea: string;
   checkAvailability: string; rightsSuffix: string; tagline2: string;
   legal: string; privacy: string; terms: string;
 };
@@ -96,11 +97,13 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       overview: 'Overview', clouds: 'Dancing on the Clouds', coldSparks: 'Cold Sparks', lighting: 'Lighting & Monogram',
     },
     foot: {
-      tagline: "South Florida's award-winning wedding DJ & entertainment company. Pembroke Pines, FL.",
+      tagline: 'Wedding DJs, MCs and production for Miami, Fort Lauderdale and Palm Beach since 2016.',
       explore: 'Explore', home: 'Home', theExperience: 'The Experience', services: 'Services',
       pricing: 'Pricing', weddingBlog: 'Wedding Blog', about: 'About',
       servicesHead: 'Services', weddingDjs: 'Wedding DJs', avRentals: 'A/V Rentals', photoBooths: 'Photo Booths', epicExtras: 'Epic Extras',
       contentCreator: 'Content Creator', viboPlanning: 'Vibo Planning', contact: 'Contact',
+      ftlWedding: 'Fort Lauderdale Wedding DJ', miamiWedding: 'Miami Wedding DJ',
+      serviceArea: 'Serving Miami-Dade, Broward & Palm Beach',
       checkAvailability: 'Check Availability', rightsSuffix: 'All rights reserved.',
       tagline2: 'The Ultimate Wedding Experience.',
       legal: 'Legal', privacy: 'Privacy Policy', terms: 'Terms of Service',
@@ -116,11 +119,13 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       overview: 'Resumen', clouds: 'Bailando en las Nubes', coldSparks: 'Chispas Frías', lighting: 'Iluminación y Monograma',
     },
     foot: {
-      tagline: 'Compañía de DJ y entretenimiento para bodas, galardonada en el sur de Florida. Pembroke Pines, FL.',
+      tagline: 'DJs, MCs y producción para bodas en Miami, Fort Lauderdale y Palm Beach desde 2016.',
       explore: 'Explorar', home: 'Inicio', theExperience: 'La Experiencia', services: 'Servicios',
       pricing: 'Precios', weddingBlog: 'Blog de Bodas', about: 'Nosotros',
       servicesHead: 'Servicios', weddingDjs: 'DJs de Bodas', avRentals: 'Renta de Audio y Video', photoBooths: 'Cabinas de Fotos', epicExtras: 'Extras Épicos',
       contentCreator: 'Creador de Contenido', viboPlanning: 'Planeación Vibo', contact: 'Contacto',
+      ftlWedding: 'DJ de Bodas en Fort Lauderdale', miamiWedding: 'DJ de Bodas en Miami',
+      serviceArea: 'Servimos Miami-Dade, Broward y Palm Beach',
       checkAvailability: 'Consulta Disponibilidad', rightsSuffix: 'Todos los derechos reservados.',
       tagline2: 'La Máxima Experiencia de Bodas.',
       legal: 'Legal', privacy: 'Política de Privacidad', terms: 'Términos de Servicio',

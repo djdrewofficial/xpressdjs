@@ -7,7 +7,7 @@ import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
 const team = [
-  { name: 'Drew Segura', role: 'Fundador y DJ Principal', img: '/images/djs/drew-segura-headshot.png' },
+  { name: 'Drew Segura', role: 'Fundador y DJ Principal', tag: 'Bilingüe', img: '/images/djs/drew-segura-headshot.png' },
   { name: 'Laura Del Gordo', role: 'Gerente de Oficina', img: '/images/djs/laura-del-gordo-headshot.jpg' },
   { name: 'Isabella Hernandez', role: 'Redes Sociales y Marketing', img: '/images/djs/isabella-hernandez-headshot.jpg' },
   { name: 'Stephanie Estrada', role: 'Redes Sociales y Contenido', img: '/images/djs/stephanie-estrada-headshot.jpg' },
@@ -20,13 +20,13 @@ const team = [
 const reasons = [
   { t: '🎧 Ambientes Musicales a tu Medida', d: 'Nada de listas genéricas: adaptamos cada momento a tu gusto y a la energía de tus invitados.' },
   { t: '🕺 Pistas de Baile Llenas, Siempre', d: 'Leemos a la gente y mantenemos la fiesta encendida, desde tu tío hasta tus amigos de la universidad.' },
-  { t: '🌎 DJs Multiculturales y Bilingües', d: 'Nos especializamos en bodas multiculturales y hablamos inglés y español con fluidez.' },
+  { t: 'DJs Multiculturales, MC Bilingüe', d: 'Nos especializamos en bodas multiculturales, y Drew Segura y DJ Phil son MC en inglés y en español.' },
   { t: 'Anfitriones profesionales para tu noche', d: 'Tu MC guía el cronograma: entradas, brindis, bailes y todo lo que pasa entre un momento y otro. La mayoría de nuestros DJs también son el MC de sus bodas. DJ Naqeeb trabaja solo como DJ, así que las parejas que lo reservan traen su propio MC o suman uno de nuestro equipo.' },
   { t: '✨ Nuestros Extras Mágicos y Épicos', d: 'Desde cabinas de fotos hasta chispas frías e iluminación ambiental: traemos toda la diversión.' },
   { t: '📍 Expertos en Bodas del Sur de Florida', d: 'Conocemos los venues, los proveedores y cómo hacer que tu celebración en el área de Miami sea impecable.' },
 ];
 ---
-<Base title="Nosotros | Xpress Entertainment — DJs de Bodas del Sur de Florida" description="De un sueño a más de 100 bodas al año. Conoce al equipo bilingüe y multicultural detrás de Xpress Entertainment, tu equipo de DJ de bodas de referencia en el sur de Florida.">
+<Base title="Nosotros | Xpress Entertainment — DJs de Bodas del Sur de Florida" description="De un solo DJ en 2016 a más de 150 bodas al año. Conoce al equipo multicultural detrás de Xpress Entertainment, DJs y MCs de bodas en el sur de Florida.">
 
   <Hero
     size="mid"
@@ -53,10 +53,10 @@ const reasons = [
         <div class="media reveal"><img src="/images/xpress-team-photo.jpg" alt="El equipo de Xpress Entertainment en Top Golf durante su fiesta de Navidad" style="aspect-ratio:4/3;" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">De un sueño…</span>
-          <h2 class="h-lg" style="margin:14px 0 18px;">…a más de 100 bodas al año.</h2>
+          <h2 class="h-lg" style="margin:14px 0 18px;">…a más de 150 bodas al año.</h2>
           <p class="lead">Xpress Entertainment comenzó en 2016 cuando Drew Segura, un apasionado DJ bilingüe, tomó su amor por la música y lo convirtió en un espectáculo de un solo hombre en un venue de bodas de Pompano Beach.</p>
           <p class="lead" style="margin-top:14px;">Lo que comenzó pequeño rápidamente se convirtió en una de las compañías de entretenimiento de bodas más queridas del sur de Florida, conocida por nuestro enfoque personalizado, nuestro estilo multicultural y nuestra inigualable habilidad para leer a la gente.</p>
-          <p class="lead" style="margin-top:14px;">Ahora somos un equipo completo, animando más de 100 bodas al año, además de eventos corporativos y fiestas privadas en Miami, Fort Lauderdale, Weston y más allá.</p>
+          <p class="lead" style="margin-top:14px;">Ahora somos un equipo completo, animando más de 150 bodas al año, además de eventos corporativos y fiestas privadas en Miami, Fort Lauderdale, Weston y más allá.</p>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@ const reasons = [
         {team.map((m, i) => (
           <div class={`card reveal ${i ? 'd' + i : ''}`} style="aspect-ratio:3/4;">
             <img src={m.img} alt={m.name} />
-            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
+            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}{m.tag && <span class="lang-tag">{m.tag}</span>}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
           </div>
         ))}
       </div>

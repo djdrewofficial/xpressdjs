@@ -25,7 +25,7 @@ Pay close attention to the lyrics of your chosen song. Do they resonate with you
 
 As experienced wedding DJs, we've seen it all when it comes to first dance songs. Don't hesitate to reach out to us for personalized recommendations based on your musical tastes and wedding theme. We can help you narrow down your options and find the perfect song that aligns with your vision for your special day.
 
-## Top 10 First Dance Songs of 2023:
+## 10 First Dance Songs Couples Keep Coming Back To
 
 1. "All of Me" by John Legend
 2. "Perfect" by Ed Sheeran
