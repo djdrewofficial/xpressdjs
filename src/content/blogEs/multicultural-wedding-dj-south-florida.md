@@ -150,7 +150,7 @@ Las recepciones al aire libre requieren montajes de bocinas resistentes al clima
 
 **¿Dónde prestan servicio?**
 
-Xpress Entertainment cubre Miami, Fort Lauderdale, el Condado de Broward y Palm Beach. [DJ Naqeeb](https://xpressdjs.com/es/djnaqeeb), nuestro especialista caribeño y de las Indias Occidentales, tiene base en Miami y Fort Lauderdale, y es una excelente opción para bodas que mezclan Soca, dancehall, Afrobeats o tradiciones de raíz caribeña con otros géneros.
+Xpress Entertainment cubre Miami, Fort Lauderdale, el Condado de Broward y Palm Beach. [DJ Naqeeb](https://xpressdjs.com/es/djnaqeeb), nuestro especialista caribeño y de las Indias Occidentales, tiene base en Miami y Fort Lauderdale y es una excelente opción para bodas que mezclan soca, dancehall, Afrobeats o tradiciones de raíz caribeña con otros géneros. Él trabaja solo como DJ, así que las parejas que lo reservan traen su propio MC o suman uno de nuestro equipo.
 
 ## Prueba real de bodas: cómo se ve en la práctica
 
