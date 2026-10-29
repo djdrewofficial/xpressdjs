@@ -52,6 +52,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.02;
   display: inline-block;
 }
 .eyebrow.light { color: var(--lavender); }
+.hero-kicker { display: inline-flex; align-items: center; flex-wrap: wrap; max-width: 100%; }
 .display { font-size: clamp(2.8rem, 9vw, 8.5rem); }
 .h-xl { font-size: clamp(2.4rem, 6vw, 5rem); }
 .h-lg { font-size: clamp(2rem, 4vw, 3.4rem); }
@@ -104,6 +105,25 @@ section { position: relative; }
   transition: gap 0.3s var(--ease);
 }
 .textlink:hover { gap: 14px; }
+/* Inline copy links keep the surrounding type and only mark the words as a link. */
+a.inline-link { color: inherit; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+a.inline-link:hover { color: var(--red); }
+/* Language pills beside Drew (Bilingual) and Phil (Trilingual) only. */
+.lang-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  padding: 2px 9px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.lang-tag-sm { font-size: .62rem; letter-spacing: .04em; padding: 1px 6px; margin-left: 6px; }
 
 /* ---------- Custom cursor ---------- */
 .cursor {

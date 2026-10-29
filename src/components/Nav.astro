@@ -17,9 +17,9 @@ const n = t(locale).nav;
     <div class="nav-item">
       <a href={L('/services/djs')} class="dd-toggle">{n.djs} <span class="car">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
-        <a href={L('/dj-drew-segura')}>{n.djDrew}</a>
+        <a href={L('/dj-drew-segura')}>{n.djDrew}<span class="lang-tag lang-tag-sm">{locale === 'es' ? 'Bilingüe' : 'Bilingual'}</span></a>
         <a href={L('/djatomic')}>{n.djAtomic}</a>
-        <a href={L('/djphil')}>{n.djPhil}</a>
+        <a href={L('/djphil')}>{n.djPhil}<span class="lang-tag lang-tag-sm">{locale === 'es' ? 'Trilingüe' : 'Trilingual'}</span></a>
         <a href={L('/djrere')}>{n.djReRe}</a>
         <a href={L('/djnaqeeb')}>{n.djNaqeeb}</a>
         <a href={L('/services/djs')}>{n.allDjs}</a>

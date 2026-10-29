@@ -35,11 +35,11 @@ Each effect serves a different visual purpose:
 
 The practical decision: if you want a single intimate moment on camera, the cloud effect alone delivers it cleanly. If you want multiple visual peaks throughout the night, pairing the cloud effect for the first dance with [cold spark machines](https://xpressdjs.com/epic-extras-1/cold-sparks) for a grand entrance or cake cutting creates distinct, memorable chapter breaks in your reception footage without redundancy.
 
-## What the effect typically costs in the South Florida market
+## What affects the cost in South Florida
 
-The most commonly cited market range for "dancing on the clouds" as a standalone add-on is $200 to $450.
+The cost depends on your venue, your timeline and how the effect fits with the rest of your entertainment, so we price it after a quick [date check](https://xpressdjs.com/check-availability).
 
-Actual pricing varies based on several factors:
+The main factors:
 
 - Equipment type and capacity (larger ballrooms may require more than one unit)
 - Dedicated technician time for setup, operation, and breakdown
@@ -98,13 +98,13 @@ A vendor who can't answer questions 2 and 3 clearly is a practical risk at your 
 
 ## How Xpress Entertainment is set up for this moment
 
-Xpress Entertainment serves couples across South Florida, including Miami-Dade, Broward, and Palm Beach counties, and executes over 100 weddings annually. The dancing on the clouds effect is part of the company's [epic extras suite](https://xpressdjs.com/epic-extras-1), alongside cold spark machines, wireless uplighting, and photo booth options.
+Xpress Entertainment serves couples across South Florida, including Miami-Dade, Broward and Palm Beach counties, and plays 150+ weddings a year. The dancing on the clouds effect is part of the company's [epic extras suite](https://xpressdjs.com/epic-extras-1), alongside cold spark machines, wireless uplighting, and photo booth options.
 
 The practical advantage is integration. The DJ, MC, and effects technician are coordinated through one team rather than separate vendors operating on independent timelines. The Vibo app lets couples mark the exact first-dance song and flag key moments weeks before the event, so the timeline on the night is confirmed, not improvised.
 
 Xpress Entertainment is also fully insured and travels with backup equipment as standard practice. For a South Florida wedding, where venue contracts often require proof of liability coverage before approving special effects, having that documentation ready is a meaningful logistical advantage.
 
-For multicultural and bilingual celebrations across Miami and Fort Lauderdale, the [bilingual DJ and MC team](https://xpressdjs.com/services/djs) handles both language and cultural coordination throughout the reception, not just during the first dance. That continuity matters for transitions, announcements, and keeping family members across language backgrounds connected to the moment.
+For multicultural and bilingual celebrations across Miami and Fort Lauderdale, your Xpress DJ handles the cultural coordination throughout the reception, not just during the first dance, and Drew Segura or DJ Phil can MC in English and Spanish. That continuity matters for transitions, announcements and keeping family members from every language background connected to the moment.
 
 ## FAQ
 

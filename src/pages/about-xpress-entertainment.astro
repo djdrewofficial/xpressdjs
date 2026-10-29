@@ -5,7 +5,7 @@ import SocialFollow from '../components/SocialFollow.astro';
 import { socials } from '../lib/socials';
 
 const team = [
-  { name: 'Drew Segura', role: 'Founder & Lead DJ', img: '/images/djs/drew-segura-headshot.png' },
+  { name: 'Drew Segura', role: 'Founder & Lead DJ', tag: 'Bilingual', img: '/images/djs/drew-segura-headshot.png' },
   { name: 'Laura Del Gordo', role: 'Office Manager', img: '/images/djs/laura-del-gordo-headshot.jpg' },
   { name: 'Isabella Hernandez', role: 'Social Media & Marketing', img: '/images/djs/isabella-hernandez-headshot.jpg' },
   { name: 'Stephanie Estrada', role: 'Social Media & Content', img: '/images/djs/stephanie-estrada-headshot.jpg' },
@@ -18,13 +18,13 @@ const team = [
 const reasons = [
   { t: '🎧 Custom Music Vibes', d: 'No generic playlists — we tailor every moment to your taste and your guests’ energy.' },
   { t: '🕺 Packed Dance Floors, Always', d: 'We read the crowd and keep the party going — from your tío to your college crew.' },
-  { t: '🌎 Multicultural & Bilingual DJs', d: 'We specialize in multicultural weddings and speak both English & Spanish fluently.' },
+  { t: 'Multicultural DJs, Bilingual MC', d: 'We specialize in multicultural weddings, and Drew Segura and DJ Phil MC in English and Spanish.' },
   { t: 'Professional Hosts for Your Night', d: 'Your MC guides the timeline: entrances, toasts, dances and everything in between. Most of our DJs MC their own nights. DJ Naqeeb DJs only, so couples who book him bring their own MC or add one from our team.' },
   { t: '✨ Our Magical Epic Extras', d: 'From photo booths to cold sparks and uplighting — we bring all the fun.' },
   { t: '📍 South Florida Wedding Pros', d: 'We know the venues, the vendors, and how to make your Miami-area celebration flawless.' },
 ];
 ---
-<Base title="About Xpress Entertainment | South Florida Wedding DJs" description="From a dream to 100+ weddings a year. Meet the bilingual, multicultural team behind Xpress Entertainment — your go-to wedding DJ team in South Florida.">
+<Base title="About Xpress Entertainment | South Florida Wedding DJs" description="From one DJ in 2016 to 150+ weddings a year. Meet the multicultural team behind Xpress Entertainment, South Florida wedding DJs and MCs.">
 
   <Hero
     size="mid"
@@ -50,10 +50,10 @@ const reasons = [
         <div class="media reveal"><img src="/images/xpress-team-photo.jpg" alt="The Xpress Entertainment crew at Top Golf for their Christmas party" style="aspect-ratio:4/3;" /></div>
         <div class="reveal d1">
           <span class="eyebrow light">From a dream…</span>
-          <h2 class="h-lg" style="margin:14px 0 18px;">…to 100+ weddings a year.</h2>
+          <h2 class="h-lg" style="margin:14px 0 18px;">…to 150+ weddings a year.</h2>
           <p class="lead">Xpress Entertainment began in 2016 when Drew Segura, a passionate bilingual DJ, took his love for music and turned it into a one-man show at a Pompano Beach wedding venue.</p>
           <p class="lead" style="margin-top:14px;">What started small quickly evolved into one of the most loved wedding entertainment companies in South Florida — known for our personalized approach, multicultural flair, and unmatched crowd-reading skills.</p>
-          <p class="lead" style="margin-top:14px;">Now we’re a full team, rocking over 100 weddings a year, plus corporate events and private parties across Miami, Fort Lauderdale, Weston, and beyond.</p>
+          <p class="lead" style="margin-top:14px;">Now we’re a full team playing 150+ weddings a year, plus corporate events and private parties across <a class="inline-link" href="/wedding-dj-miami/">Miami</a>, <a class="inline-link" href="/services/fort-lauderdale-wedding-dj/">Fort Lauderdale</a>, Weston and beyond.</p>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@ const reasons = [
         {team.map((m, i) => (
           <div class={`card reveal ${i ? 'd' + i : ''}`} style="aspect-ratio:3/4;">
             <img src={m.img} alt={m.name} />
-            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
+            <div class="card-body"><h3 style="font-size:1.4rem;">{m.name}{m.tag && <span class="lang-tag">{m.tag}</span>}</h3><p style="max-height:none; opacity:1; color:#d9d0ec;">{m.role}</p></div>
           </div>
         ))}
       </div>

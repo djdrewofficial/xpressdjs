@@ -8,7 +8,7 @@ import FaqSchema from '../components/FaqSchema.astro';
 const why = [
   ['🏳️‍🌈 All Are Welcome Here', "We’re not just okay with it. We’re genuinely happy to be there. Every couple and every guest is welcome at our events, and that’s been true since day one. If you want an inclusive wedding DJ in Miami or anywhere nearby, you’ve found one."],
   ['🎶 Your Story, Your Soundtrack', "We don’t run a set playlist or a set script. We never assume who’s walking down the aisle or who’s leading the first dance. You tell us how you want the night to go, and we make it happen."],
-  ['🎤 Bilingual DJs & MCs', "We host in English and Spanish, so everyone in the room feels included, from your college friends up front to abuela in the back."],
+  ['Bilingual MC', "Drew Segura and DJ Phil can MC in English and Spanish, so everyone in the room feels included, from your college friends up front to abuela in the back."],
   ['✨ We Handle the Details', "We take care of the announcements, the timing, and all the little cues that keep a wedding moving. That way you can actually be present for your day instead of running it."],
 ];
 
@@ -24,7 +24,7 @@ const faqs = [
   { q: 'Are you an LGBTQ-friendly wedding DJ in Miami and Fort Lauderdale?', a: "We are. We’re an inclusive wedding DJ in Miami and a gay wedding DJ in Fort Lauderdale, and we treat every couple the same way: with respect, real excitement, and zero weirdness." },
   { q: 'Do you serve LGBTQ couples in West Palm Beach and Palm Beach County?', a: "Yes. We’re an LGBTQ-friendly wedding DJ in West Palm Beach and an LGBTQ wedding DJ in Palm Beach County, and we travel all over the area for the right celebration." },
   { q: 'How do you handle traditions and the order of events for same-sex weddings?', a: "However you want. We never assume who walks down the aisle, who gets introduced first, or who leads the first dance. We plan the whole timeline around the two of you, and we keep the language inclusive all night." },
-  { q: 'Can you MC in both English and Spanish?', a: "Yes. Our DJs and MCs are bilingual, so nobody in the room feels left out. It’s one of the big reasons couples around South Florida book us." },
+  { q: 'Can you MC in both English and Spanish?', a: "Yes. Drew Segura and DJ Phil MC in English and Spanish, so nobody in the room feels left out. Ask for either one when you check your date." },
 ];
 const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
 ---
@@ -85,7 +85,15 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
       <div class="sec-head reveal"><span class="eyebrow">Where we celebrate</span><h2 class="h-xl">Serving LGBTQ couples across South Florida.</h2><p class="lead">Wherever your celebration happens, we’ll be there early, ready to throw a party your friends talk about for years.</p></div>
       <div class="values" style="grid-template-columns:repeat(2,1fr);">
         {areas.map(([t, d], i) => (
-          <div class={`value reveal ${i % 2 ? 'd1' : ''}`}><h3>{t}</h3><p>{d}</p></div>
+          <div class={`value reveal ${i % 2 ? 'd1' : ''}`}><h3>{t}</h3>
+            <p>
+              {t === 'Miami' ? (
+                <>We’re an LGBTQ wedding DJ in Miami, and we’ve thrown parties for gay, lesbian, and same-sex couples all over Miami-Dade. If you want an <a class="inline-link" href="/wedding-dj-miami/">inclusive wedding DJ in Miami</a> who actually gets your vision, that’s us.</>
+              ) : t === 'Fort Lauderdale & Broward' ? (
+                <>Whether you need a <a class="inline-link" href="/services/fort-lauderdale-wedding-dj/">gay wedding DJ in Fort Lauderdale</a> or a gay wedding DJ in Broward County, we cover the whole area, from beachfront ceremonies to ballroom receptions.</>
+              ) : d}
+            </p>
+          </div>
         ))}
       </div>
     </div>
@@ -100,9 +108,9 @@ const faqItems = faqs.map((f) => ({ q: f.q, a: f.a }));
           <Credit variant="caption" name="Amarena Productions" href="https://amarenaproductions.com/" />
         </figure>
         <div class="reveal d1">
-          <span class="eyebrow">Bilingual · Inclusive · A whole lot of fun</span>
+          <span class="eyebrow">Bilingual MC · Inclusive · A whole lot of fun</span>
           <h2 class="h-lg" style="margin:14px 0 16px;">Everyone on the dance floor.</h2>
-          <p class="lead">Our DJs and MCs work in both English and Spanish, and we keep the language welcoming all night so every guest feels included. It’s a big reason couples in Miami, Fort Lauderdale, and Palm Beach County pick us as their inclusive wedding DJ.</p>
+          <p class="lead">Every DJ on our team keeps the language welcoming all night, and Drew Segura or DJ Phil can MC in English and Spanish when your families need both. It’s a big reason couples in Miami, Fort Lauderdale and Palm Beach County pick us as their inclusive wedding DJ.</p>
           <p class="lead" style="margin-top:14px;">And yes, all are welcome here. Always.</p>
         </div>
       </div>

@@ -35,11 +35,11 @@ Cada efecto cumple un propósito visual diferente:
 
 La decisión práctica: si quieres un solo momento íntimo en cámara, el efecto de nube por sí solo lo entrega de forma limpia. Si quieres varios picos visuales durante la noche, combinar el efecto de nube para el primer baile con [máquinas de chispas frías](https://xpressdjs.com/es/epic-extras-1/cold-sparks) para una gran entrada o el corte del pastel crea quiebres de capítulo distintos y memorables en el video de tu recepción, sin redundancia.
 
-## Cuánto cuesta normalmente el efecto en el mercado del sur de Florida
+## Qué influye en el costo en el sur de Florida
 
-El rango de mercado más citado para "bailando en las nubes" como complemento independiente es de $200 a $450.
+El costo depende de tu salón, tu cronograma y cómo encaja el efecto con el resto del entretenimiento, así que lo cotizamos después de [verificar tu fecha](https://xpressdjs.com/es/check-availability).
 
-El precio real varía según varios factores:
+Los factores principales:
 
 - Tipo y capacidad del equipo (los salones más grandes pueden requerir más de una unidad)
 - Tiempo dedicado del técnico para el montaje, la operación y el desmontaje
@@ -98,13 +98,13 @@ Un proveedor que no pueda responder con claridad las preguntas 2 y 3 es un riesg
 
 ## Cómo Xpress Entertainment está preparado para este momento
 
-Xpress Entertainment presta servicio a parejas en todo el sur de Florida, incluyendo los condados de Miami-Dade, Broward y Palm Beach, y realiza más de 100 bodas al año. El efecto de bailando en las nubes es parte de la suite de [extras épicos](https://xpressdjs.com/es/epic-extras-1) de la empresa, junto con las máquinas de chispas frías, la iluminación inalámbrica y las opciones de cabina de fotos.
+Xpress Entertainment presta servicio a parejas en todo el sur de Florida, incluyendo los condados de Miami-Dade, Broward y Palm Beach, y realiza más de 150 bodas al año. El efecto de bailando en las nubes es parte de la suite de [extras épicos](https://xpressdjs.com/es/epic-extras-1) de la empresa, junto con las máquinas de chispas frías, la iluminación inalámbrica y las opciones de cabina de fotos.
 
 La ventaja práctica es la integración. El DJ, el MC y el técnico de efectos se coordinan a través de un solo equipo en lugar de proveedores separados operando en cronogramas independientes. La app Vibo permite a las parejas marcar la canción exacta del primer baile y señalar los momentos clave semanas antes del evento, así el cronograma de la noche está confirmado, no improvisado.
 
 Xpress Entertainment también cuenta con seguro completo y viaja con equipo de respaldo como práctica estándar. Para una boda del sur de Florida, donde los contratos de los salones a menudo exigen comprobante de cobertura de responsabilidad civil antes de aprobar efectos especiales, tener esa documentación lista es una ventaja logística importante.
 
-Para celebraciones multiculturales y bilingües en Miami y Fort Lauderdale, el [equipo de DJ y MC bilingüe](https://xpressdjs.com/es/services/djs) maneja tanto el idioma como la coordinación cultural durante toda la recepción, no solo durante el primer baile. Esa continuidad importa para las transiciones, los anuncios y para mantener conectados al momento a los familiares de distintos trasfondos lingüísticos.
+Para celebraciones multiculturales y bilingües en Miami y Fort Lauderdale, tu DJ de Xpress se encarga de la coordinación cultural durante toda la recepción, no solo en el primer baile, y Drew Segura o DJ Phil pueden ser el MC en inglés y en español. Esa continuidad cuenta en las transiciones, en los anuncios y para que toda la familia, hable el idioma que hable, viva el momento.
 
 ## Preguntas frecuentes
 

@@ -7,7 +7,7 @@ import Credit from '../../components/Credit.astro';
 import FaqSchema from '../../components/FaqSchema.astro';
 
 const faqs = [
-  ['Do you offer bilingual DJs and MCs?', 'Yes. Our DJs host in English and Spanish and read multicultural crowds with ease — keeping every generation, and both sides of the family, on the dance floor.'],
+  ['Do you offer a bilingual MC?', 'Yes. Drew Segura and DJ Phil MC in English and Spanish, and Drew can also MC when another Xpress DJ is playing. Ask for either one when you check your date. Every one of our DJs knows how to read a multicultural crowd and keep every generation, and both sides of the family, on the dance floor.'],
   ['Can we bundle the DJ, photo booth, and lighting together?', 'Absolutely — that’s the whole point. Booking everything with one team means one timeline, one point of contact, and a night that flows seamlessly from ceremony to last dance.'],
   ['How far in advance should we book?', 'We take a limited number of weddings each weekend to keep our quality high, so popular dates book up fast. Check your date as early as you can to lock it in.'],
   ['What areas do you serve?', 'All of South Florida — Miami-Dade, Broward, Palm Beach, and the Florida Keys.'],
@@ -28,15 +28,15 @@ const faqItems = faqs.map(([q, a]) => ({ q, a }));
     creditHref="https://www.jupiterweddingphoto.com/"
   />
 
-  <Marquee items={["Bilingual","Open-Format","Cinematic","Stress-Free","Award-Winning"]} variant="alt" />
+  <Marquee items={["Bilingual MC","Open-Format","Cinematic","Stress-Free","Award-Winning"]} variant="alt" />
 
   <!-- STAT BAND -->
   <section class="bg-purple" style="padding-block:50px;">
     <div class="wrap">
       <div class="stats" style="border:none; padding-top:0;">
         <div class="stat reveal"><div class="num">150+</div><div class="label" style="color:#fff;">Weddings every year</div></div>
-        <div class="stat reveal d1"><div class="num">8+ yrs</div><div class="label" style="color:#fff;">Never missed an event</div></div>
-        <div class="stat reveal d2"><div class="num">Bilingual</div><div class="label" style="color:#fff;">DJs & MCs who speak your crowd</div></div>
+        <div class="stat reveal d1"><div class="num" style="font-size:clamp(1.7rem,3vw,2.4rem);">Since 2016</div><div class="label" style="color:#fff;">Never missed an event</div></div>
+        <div class="stat reveal d2"><div class="num">Bilingual</div><div class="label" style="color:#fff;">Drew and Phil MC in English and Spanish</div></div>
         <div class="stat reveal d3"><div class="num" style="font-size:clamp(1.8rem,3.4vw,2.6rem);">Award-Winning</div><div class="label" style="color:#fff;">WeddingWire Best of Weddings</div></div>
       </div>
     </div>
@@ -84,7 +84,7 @@ const faqItems = faqs.map(([q, a]) => ({ q, a }));
     <div class="wrap" style="max-width:820px; text-align:center;">
       <span class="eyebrow light reveal">Trusted</span>
       <h2 class="h-xl reveal d1" style="margin:14px 0 18px; color:#fff;">South Florida Couples Trust Us With Their Biggest Night</h2>
-      <p class="lead reveal d2" style="margin-inline:auto; color:#f6f2ff;">150+ weddings a year. Two-time WeddingWire Best of Weddings winner. Hundreds of five-star reviews from couples across Miami, Fort Lauderdale, and Palm Beach.</p>
+      <p class="lead reveal d2" style="margin-inline:auto; color:#f6f2ff;">150+ weddings a year. Two-time WeddingWire Best of Weddings winner. Hundreds of five-star reviews from couples across <a class="inline-link" href="/wedding-dj-miami/">Miami</a>, <a class="inline-link" href="/services/fort-lauderdale-wedding-dj/">Fort Lauderdale</a>, and Palm Beach.</p>
     </div>
   </section>
 
