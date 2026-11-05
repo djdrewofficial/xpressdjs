@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Credit from '../../components/Credit.astro';
+import { WEDDING_ALIASES, OTHER_PARENT_ALIASES } from '../../../lib/lead/event-type.js';
 
 const CONSENT_TEXT = "Doy mi consentimiento para recibir notificaciones por SMS de Xpress Entertainment sobre mis consultas, reservas y ofertas promocionales. Pueden aplicar tarifas de mensajes y datos. Entiendo que puedo cancelar en cualquier momento respondiendo 'STOP' a cualquier mensaje.";
 
@@ -32,6 +33,8 @@ const leadCfg = {
   consentText: CONSENT_TEXT,
   turnstileKey: TURNSTILE_SITE_KEY,
   bookingUrl: BOOKING_URL,
+  weddingAliases: WEDDING_ALIASES,
+  otherAliases: OTHER_PARENT_ALIASES,
   i18n: {
     next: 'Siguiente',
     submit: 'Enviar',
@@ -214,6 +217,19 @@ const leadCfg = {
             <div id="booking-embed" class="booking-embed"></div>
             <p id="booking-slow" class="form-error" hidden>El calendario está tardando en cargar. <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a>, o llámanos/escríbenos al 954-833-1196.</p>
             <p class="booking-fallback">¿El calendario no carga? <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a> o llámanos/escríbenos al 954-833-1196.</p>
+          </div>
+
+          <div id="form-thanks" class="lead-success" hidden tabindex="-1">
+            <div class="success-head">
+              <div class="success-icon" aria-hidden="true">✓</div>
+              <h3 class="h-lg">Recibimos tu solicitud</h3>
+              <p class="lead">Gracias. Tenemos los datos de tu evento. Un miembro del equipo te contactará sobre tu fecha.</p>
+            </div>
+            <ul class="lead-status">
+              <li class="is-done"><b>Solicitud recibida</b><span>Tenemos tus datos de contacto y de tu evento.</span></li>
+              <li class="is-info"><b>Tu fecha todavía no está reservada</b><span>Te confirmaremos la disponibilidad cuando te contactemos.</span></li>
+            </ul>
+            <p class="thanks-note">Si tienes preguntas antes, llama o escribe al 954-833-1196.</p>
           </div>
         </div>
 

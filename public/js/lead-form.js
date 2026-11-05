@@ -12,8 +12,13 @@
      failed submit or an accidental reload doesn't lose them. SMS consent is
      never restored — the box must be ticked by the visitor every time.
    - Only after the server confirms the contact is saved in HighLevel does the
-     consultation calendar appear. Showing it books nothing: a booking exists
-     only once HighLevel's own widget confirms it. */
+     next step appear. A wedding is offered the consultation calendar. Every
+     other event type gets the thank-you confirmation and no calendar, embed,
+     or booking link. Showing the calendar books nothing: a booking exists
+     only once HighLevel's own widget confirms it.
+   - The server sends bookConsult. The page also checks the event type against
+     the wedding aliases in __leadCfg (case and Spanish labels). Both have to
+     agree before the calendar is loaded. */
 (function () {
   var cfg = window.__leadCfg || {};
   var t = cfg.i18n || {};
@@ -168,10 +173,29 @@
       else { el.removeAttribute("required"); if (el.type !== "radio") el.value = ""; el.checked = false; }
     });
   }
+  // Same fold as lib/lead/event-type.js: case, accents, punctuation.
+  function fold(value) {
+    return String(value || "").trim().toLowerCase().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
+  }
+  function aliasMatch(value, aliases) {
+    return aliases.indexOf(fold(value)) !== -1;
+  }
+  function isWeddingValue(value) {
+    return aliasMatch(value, cfg.weddingAliases || ["wedding"]);
+  }
+  function isOtherValue(value) {
+    return aliasMatch(value, cfg.otherAliases || ["other"]);
+  }
+  // Server flag and the submitted event type both have to say wedding.
+  function offerConsult(j, payload) {
+    return !!(j && j.bookConsult === true && payload && isWeddingValue(payload.eventType));
+  }
+
   function syncEventType() {
     var v = eventType.value;
-    setGroup(grpOther, [otherSelect], v === "Other");
-    var w = v === "Wedding";
+    setGroup(grpOther, [otherSelect], isOtherValue(v));
+    var w = isWeddingValue(v);
     if (grpRelation) grpRelation.hidden = !w;
     relationRadios.forEach(function (r) {
       r.disabled = !w;
@@ -229,7 +253,7 @@
     if (eventType) syncEventType();
     setVal("eventTypeOther");
     setRadio("relation", d.relation);
-    if (eventType && eventType.value === "Wedding") syncRelation();
+    if (eventType && isWeddingValue(eventType.value)) syncRelation();
     ["partner1First", "partner1Last", "partner2First", "partner2Last", "eventDate", "guests", "startTime",
      "endTime", "venueName", "venueCity", "notes"].forEach(setVal);
     // Resume on the saved step only if every step before it is still valid
@@ -378,19 +402,52 @@
     if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
   }
 
-  function onSaved() {
+  // Set only when this saved inquiry is a wedding. loadCalendar refuses to
+  // run otherwise, including if something else calls it later.
+  var consultAllowed = false;
+
+  function reveal(panel) {
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    try { panel.focus({ preventScroll: true }); } catch (e) {}
+  }
+
+  function showThanks() {
+    consultAllowed = false;
+    var booking = $("form-success");
+    if (booking) {
+      booking.hidden = true;
+      // Drop the calendar mount point and any consult links so this
+      // confirmation has nowhere to go for a booking.
+      booking.querySelectorAll("#booking-embed, #booking-slow, .booking-fallback, .booking-tip, .is-next, a").forEach(function (n) {
+        n.remove();
+      });
+    }
+    var panel = $("form-thanks");
+    if (panel) reveal(panel);
+  }
+
+  function onSaved(j) {
     inFlight = true; // stays locked — this inquiry is done
     var contact = calendarContact(sentPayload); // taken before the saved form is cleared
+    var book = offerConsult(j, sentPayload);
     sentPayload = null;
     ssDel(DRAFT_KEY); ssDel(SID_KEY);
     try { if (window.track) window.track("generate_lead", { form: "check_availability" }); } catch (e) {}
     form.hidden = true;
     if (stepper) stepper.hidden = true;
+    var thanks = $("form-thanks");
     var ok = $("form-success");
-    ok.hidden = false;
-    loadCalendar(contact);
-    ok.scrollIntoView({ behavior: "smooth", block: "start" });
-    try { ok.focus({ preventScroll: true }); } catch (e) {}
+    if (book && ok) {
+      consultAllowed = true;
+      if (thanks) thanks.hidden = true;
+      ok.hidden = false;
+      loadCalendar(contact);
+      reveal(ok);
+      return;
+    }
+    contact = null;
+    showThanks();
   }
 
   // ---- Consultation calendar (HighLevel booking widget) ----------------------
@@ -414,6 +471,7 @@
   }
 
   function loadCalendar(contact) {
+    if (!consultAllowed) return;
     var box = $("booking-embed"), slow = $("booking-slow");
     if (!box || !cfg.bookingUrl) { if (slow) slow.hidden = false; return; }
     var widgetId = cfg.bookingUrl.split("/").pop();
