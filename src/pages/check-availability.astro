@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Credit from '../components/Credit.astro';
+import { WEDDING_ALIASES, OTHER_PARENT_ALIASES } from '../../lib/lead/event-type.js';
 
 const CONSENT_TEXT = "I consent to receive SMS notifications from Xpress Entertainment regarding my inquiries, bookings, and promotional offers. Message and data rates may apply. I understand that I can opt out at any time by replying 'STOP' to any message.";
 
@@ -24,6 +25,8 @@ const leadCfg = {
   consentText: CONSENT_TEXT,
   turnstileKey: TURNSTILE_SITE_KEY,
   bookingUrl: BOOKING_URL,
+  weddingAliases: WEDDING_ALIASES,
+  otherAliases: OTHER_PARENT_ALIASES,
   i18n: {
     next: 'Next',
     submit: 'Submit',
@@ -206,6 +209,19 @@ const leadCfg = {
             <div id="booking-embed" class="booking-embed"></div>
             <p id="booking-slow" class="form-error" hidden>The calendar is taking a while to load. <a href="/consult" target="_blank" rel="noopener">Open the booking page instead</a>, or call/text us at 954-833-1196.</p>
             <p class="booking-fallback">Calendar not loading? <a href="/consult" target="_blank" rel="noopener">Open the booking page</a> or call/text 954-833-1196.</p>
+          </div>
+
+          <div id="form-thanks" class="lead-success" hidden tabindex="-1">
+            <div class="success-head">
+              <div class="success-icon" aria-hidden="true">✓</div>
+              <h3 class="h-lg">Inquiry received</h3>
+              <p class="lead">Thanks. We have your event details. A team member will reach out about your date.</p>
+            </div>
+            <ul class="lead-status">
+              <li class="is-done"><b>Inquiry received</b><span>We have your contact and event details.</span></li>
+              <li class="is-info"><b>Your date is not reserved yet</b><span>We will confirm availability when we reach out.</span></li>
+            </ul>
+            <p class="thanks-note">Questions before then? Call or text 954-833-1196.</p>
           </div>
         </div>
 

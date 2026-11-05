@@ -57,7 +57,7 @@ test("complete inquiry: contact saved synchronously, then note → source → al
   const p = wedding();
   const r = await post(p, e);
   assert.equal(r.status, 200);
-  assert.deepEqual(r.body, { ok: true, submissionId: p.submissionId, saved: true, replay: false });
+  assert.deepEqual(r.body, { ok: true, submissionId: p.submissionId, saved: true, replay: false, bookConsult: true });
 
   const order = mock.calls.map((c) => c.url.endsWith("/contacts/upsert") ? "upsert"
     : c.url.includes("/notes") ? "note" : c.method === "PUT" ? "source" : c.url === ALERT_URL ? "alert" : "meta");
@@ -127,6 +127,7 @@ test("returning contact, box unticked, email preference: nothing granted, revoke
   });
   const r = await post(p, e);
   assert.equal(r.status, 200);
+  assert.equal(r.body.bookConsult, false);
   const u = upserts()[0].body;
   assert.equal(fieldValue(u, "tvb20gkW3iqS94TVxPa9"), undefined, "SMS Consent field untouched (neither granted nor revoked)");
   for (const k of ["tags", "dnd", "dndSettings", "source"]) assert.ok(!(k in u));
@@ -158,13 +159,60 @@ test("Spanish visitor, Other event: canonical values, subtype in note + alert", 
     locale: "es", commLanguage: "Spanish", eventType: "Other", eventTypeOther: "Quinceanera",
     relation: "", partner1First: "", partner1Last: "", partner2First: "", partner2Last: "",
   });
-  await post(p, env());
+  const r = await post(p, env());
+  assert.equal(r.body.bookConsult, false);
   const u = upserts()[0].body;
   assert.equal(fieldValue(u, "hLBakaZYdqZdE15Ub6QZ"), "Other");
   assert.equal(fieldValue(u, "SAKxQ1MfRAHEFkCcpFMQ"), "Spanish");
   assert.match(notes()[0].body.body, /Event: Other — Quinceanera/);
   assert.equal(alerts()[0].body.eventTypeLabel, "Quinceanera");
   assert.equal(alerts()[0].body.formLanguage, "es");
+});
+
+test("wedding case and label variants still book a consult; anniversary and other types do not", async () => {
+  const none = { relation: "", partner1First: "", partner1Last: "", partner2First: "", partner2Last: "" };
+  const lower = await post(wedding({ eventType: "  WEDDING " }), env());
+  assert.equal(lower.status, 200);
+  assert.equal(lower.body.bookConsult, true);
+  assert.equal(fieldValue(upserts().at(-1).body, "hLBakaZYdqZdE15Ub6QZ"), "Wedding");
+
+  const boda = await post(wedding({ eventType: "Boda" }), env());
+  assert.equal(boda.status, 200);
+  assert.equal(boda.body.bookConsult, true);
+  assert.equal(fieldValue(upserts().at(-1).body, "hLBakaZYdqZdE15Ub6QZ"), "Wedding");
+
+  const corporate = await post(wedding({ eventType: "evento corporativo", ...none }), env());
+  assert.equal(corporate.status, 200);
+  assert.equal(corporate.body.bookConsult, false);
+  assert.equal(fieldValue(upserts().at(-1).body, "hLBakaZYdqZdE15Ub6QZ"), "Corporate Event");
+
+  const anniversary = await post(wedding({ eventType: "Other", eventTypeOther: "Aniversario de Bodas", ...none }), env());
+  assert.equal(anniversary.status, 200);
+  assert.equal(anniversary.body.bookConsult, false);
+  assert.match(notes().at(-1).body.body, /Event: Other — Wedding Anniversary/);
+
+  const quince = await post(wedding({ eventType: "other", eventTypeOther: "QUINCEAÑERA", ...none }), env());
+  assert.equal(quince.body.bookConsult, false);
+  assert.equal(alerts().at(-1).body.eventTypeLabel, "Quinceanera");
+
+  const house = await post(wedding({ eventType: "House Party", ...none }), env());
+  assert.equal(house.status, 422);
+  assert.equal(house.body.bookConsult, undefined);
+  assert.ok(house.body.errors.some((x) => x.field === "eventType" && x.code === "invalid_choice"));
+});
+
+test("a saved non-wedding cannot reach consult booking by retrying as a wedding", async () => {
+  const e = env();
+  const p = wedding({
+    eventType: "Corporate Event", relation: "", partner1First: "", partner1Last: "", partner2First: "", partner2Last: "",
+  });
+  const first = await post(p, e);
+  assert.equal(first.body.bookConsult, false);
+  const flipped = await post(wedding({ submissionId: p.submissionId }), e);
+  assert.equal(flipped.status, 200);
+  assert.equal(flipped.body.replay, true);
+  assert.equal(flipped.body.bookConsult, false, "retry body is ignored once the saved inquiry is not a wedding");
+  assert.equal(upserts().length, 1);
 });
 
 // ---- validation -------------------------------------------------------------------------
@@ -210,6 +258,7 @@ test("retrying a saved submission: success, no second save, no second note or al
   await post(p, e);
   const again = await post({ ...p, turnstileToken: "" }, e);
   assert.equal(again.body.replay, true);
+  assert.equal(again.body.bookConsult, true);
   assert.equal(upserts().length, 1);
   assert.equal(notes().length, 1);
   assert.equal(alerts().length, 1);

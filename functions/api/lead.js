@@ -30,7 +30,7 @@
  *   TURNSTILE_SECRET_KEY   secret (enforced when set)
  *   READINESS_TOKEN        secret (optional) — unlocks outbox counts on GET
  */
-import { validateLead } from "../../lib/lead/validate.js";
+import { validateLead, isWeddingEvent } from "../../lib/lead/validate.js";
 import { createStore, sha256Hex, saveJobId } from "../../lib/lead/store.js";
 import { claimJob, runSaveJob, processSubmissionJobs, outboxStats } from "../../lib/lead/jobs.js";
 import { configChecks } from "../../lib/lead/config.js";
@@ -87,18 +87,32 @@ export async function onRequestPost(context) {
   const store = createStore(env.LEADS_DB);
   const db = store.db;
   const id = lead.submissionId;
+  // Wedding inquiries are the only ones offered the consultation calendar.
+  // The flag is computed from the validated event type. On a replay of an
+  // already-saved inquiry, the stored payload hash has to match this request
+  // too, so a later submit can't switch a non-wedding into the booking step.
+  const bookConsult = isWeddingEvent(lead.eventType);
   const runFollowUpsSoon = () => {
     const p = processSubmissionJobs(db, env, id, { fetchImpl: fetchT })
       .catch((e) => console.log("lead: immediate follow-up run failed (scheduled worker will retry):", e.message));
     if (typeof context.waitUntil === "function") context.waitUntil(p);
   };
-  const saved = (replay) => json({ ok: true, submissionId: id, saved: true, replay });
+  const offerConsult = async (confirmed) => {
+    if (!bookConsult) return false;
+    if (!confirmed) return true;
+    const savedRow = await store.get(id);
+    if (!savedRow || !savedRow.payload_hash) return false;
+    return (await sha256Hex(JSON.stringify(lead))) === savedRow.payload_hash;
+  };
+  const saved = async (replay, confirmed = false) => json({
+    ok: true, submissionId: id, saved: true, replay, bookConsult: await offerConsult(confirmed),
+  });
 
   try {
     const row = await store.get(id);
     if (row && row.contact_id) { // already confirmed: never save again
       runFollowUpsSoon();
-      return saved(true);
+      return saved(true, true);
     }
     // A save for this ID is running right now: answer before Turnstile so the
     // retry doesn't burn its single-use token. The browser asks again shortly.
@@ -135,7 +149,7 @@ export async function onRequestPost(context) {
     const job = await claimJob(db, saveJobId(id), Date.now(), { ignoreSchedule: true });
     if (!job) {
       const row = await store.get(id);
-      if (row && row.contact_id) { runFollowUpsSoon(); return saved(true); }
+      if (row && row.contact_id) { runFollowUpsSoon(); return saved(true, true); }
       return json({ ok: false, code: "in_progress" }, 409);
     }
     const r = await runSaveJob(db, env, job, { fetchImpl: fetchT });

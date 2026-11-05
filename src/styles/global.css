@@ -393,7 +393,7 @@ a.inline-link:hover { color: var(--red); }
 .lead-status li.is-done { border-color: rgba(120,220,150,0.55); }
 .lead-status li.is-done b { color: #9be7b0; }
 .lead-status li.is-next { border-color: var(--red); }
-.booking-tip { font-size: 0.86rem; color: var(--lavender); margin: 0 0 16px; }
+.booking-tip, .thanks-note { font-size: 0.86rem; color: var(--lavender); margin: 0 0 16px; }
 .lead-success .booking-embed { border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,0.35); min-height: 300px; }
 .lead-success .booking-embed iframe { display: block; width: 100%; border: 0; }
 .booking-fallback { font-size: 0.86rem; color: var(--muted); margin-top: 14px; text-align: center; }
