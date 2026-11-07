@@ -44,7 +44,10 @@
   function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
   function ssDel(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
-  // Keep in sync with lib/lead/draft.js. Drafts expire and never store SMS consent.
+  // Restore-time TTL, kept in sync with lib/lead/draft.js. There is no timer.
+  // Editing stamps savedAt again. The submission id below is removed only
+  // after a successful save, not when this window elapses. SMS consent is
+  // never written into the draft.
   var DRAFT_MAX_AGE = 12 * 60 * 60 * 1000;
   function motionOK() {
     return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -176,10 +176,15 @@
       el.removeAttribute("data-xe-dialog-inert");
     });
   }
+  function isShown(n) {
+    if (!n || n.disabled) return false;
+    var style = window.getComputedStyle(n);
+    return style.display !== "none" && style.visibility !== "hidden";
+  }
   function trapTab(modal, e) {
     if (e.key !== "Tab") return;
-    var nodes = modal.querySelectorAll("button, a[href], input, select, textarea");
-    var list = [].filter.call(nodes, function (n) { return !n.disabled; });
+    var nodes = modal.querySelectorAll("button, a[href], input, select, textarea, iframe");
+    var list = [].filter.call(nodes, isShown);
     if (!list.length) return;
     var first = list[0], last = list[list.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -290,12 +295,15 @@
       }, { passive: true });
     }
     function render() {
+      var multi = gItems.length > 1;
+      [gPrev, gNext].forEach(function (btn) {
+        btn.style.display = multi ? "" : "none";
+        if (multi) btn.removeAttribute("tabindex");
+        else btn.setAttribute("tabindex", "-1");
+      });
       if (!gItems.length) return;
       var it = gItems[gIndex];
       gImg.src = it.src; gImg.alt = it.alt || "";
-      var multi = gItems.length > 1;
-      gPrev.style.display = multi ? "" : "none";
-      gNext.style.display = multi ? "" : "none";
     }
     function step(dir) {
       if (!gItems.length) return;

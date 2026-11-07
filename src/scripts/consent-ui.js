@@ -1,12 +1,16 @@
 import {
-  ANALYTICS_COOKIE_RE,
-  CHAT_STORAGE_PREFIXES,
+  HOLD_KEY,
   STORAGE_KEY,
+  CHAT_STORAGE_PREFIXES,
+  isMeasurementCookie,
+  isReplayCookie,
   parseStored,
   serializeChoice,
   shouldLoadAnalytics,
   shouldLoadChat,
   shouldLoadReplay,
+  undecided,
+  withdrawalPlan,
 } from "../../lib/consent/state.js";
 
 function readConfig() {
@@ -19,22 +23,71 @@ function readConfig() {
   }
 }
 
-function readChoice() {
+function storageGet(store, key) {
   try {
-    return parseStored(localStorage.getItem(STORAGE_KEY));
+    return { ok: true, value: store.getItem(key) };
   } catch {
-    return parseStored(null);
+    return { ok: false, value: null };
   }
 }
 
-function writeChoice(partial) {
-  const raw = serializeChoice(partial);
+function storageSet(store, key, value) {
   try {
-    localStorage.setItem(STORAGE_KEY, raw);
+    store.setItem(key, value);
+    return true;
   } catch {
-    /* private mode */
+    return false;
   }
-  return parseStored(raw);
+}
+
+function storageDel(store, key) {
+  try {
+    store.removeItem(key);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function readLocalChoice() {
+  const got = storageGet(localStorage, STORAGE_KEY);
+  if (!got.ok) return null;
+  return parseStored(got.value);
+}
+
+/** What the next load of this tab would apply. A same-tab hold beats a stale Allow. */
+function readBootChoice() {
+  const held = storageGet(sessionStorage, HOLD_KEY);
+  if (held.ok && held.value) return parseStored(held.value);
+  return readLocalChoice();
+}
+
+/**
+ * Write the choice. If localStorage cannot be replaced, delete it.
+ * If it still cannot be removed, keep a same-tab hold so reload does not
+ * reapply a stale Allow. The hold does not reach other tabs.
+ * Returns the choice the next boot of this tab would use, or null if that
+ * record cannot be made to match `partial`.
+ */
+function forcePersist(partial) {
+  const raw = serializeChoice(partial);
+  const intended = parseStored(raw);
+  if (storageSet(localStorage, STORAGE_KEY, raw)) {
+    const back = storageGet(localStorage, STORAGE_KEY);
+    if (back.ok && back.value === raw) {
+      storageDel(sessionStorage, HOLD_KEY);
+      return intended;
+    }
+  }
+  if (storageDel(localStorage, STORAGE_KEY)) {
+    const back = storageGet(localStorage, STORAGE_KEY);
+    if (back.ok && (back.value == null || back.value === "")) {
+      storageDel(sessionStorage, HOLD_KEY);
+      return undecided();
+    }
+  }
+  if (storageSet(sessionStorage, HOLD_KEY, raw)) return intended;
+  return null;
 }
 
 function expireCookie(name) {
@@ -46,12 +99,12 @@ function expireCookie(name) {
   if (parts.length > 1) document.cookie = base + "; domain=." + parts.slice(-2).join(".");
 }
 
-function clearAnalyticsStorage() {
+/** JS-readable first-party cookies only. Not HttpOnly, third-party, or vendor-side records. */
+function clearCookies(match) {
   document.cookie.split(";").forEach(function (part) {
     const name = part.split("=")[0].trim();
-    if (name && ANALYTICS_COOKIE_RE.test(name)) expireCookie(name);
+    if (name && match(name)) expireCookie(name);
   });
-  try { sessionStorage.removeItem("_cltk"); } catch { /* ignore */ }
 }
 
 function clearChatStorage() {
@@ -88,6 +141,7 @@ export function bootConsent() {
   let replayInjected = false;
   let chatInjected = false;
   let lastFocus = null;
+  let memoryChoice = undecided();
 
   const region = element("div", { class: "consent-region", role: "region", "aria-label": s.bannerTitle });
   region.append(
@@ -100,8 +154,7 @@ export function bootConsent() {
   const customBtn = element("button", { type: "button", "data-consent-customize": "" }, s.customize);
   actions.append(acceptBtn, rejectBtn, customBtn);
   region.append(actions);
-  const policy = element("a", { href: cfg.privacyHref }, s.privacy);
-  region.append(policy);
+  region.append(element("a", { href: cfg.privacyHref }, s.privacy));
 
   const dialog = element("div", {
     class: "consent-dialog",
@@ -118,12 +171,17 @@ export function bootConsent() {
   const analyticsLabel = element("label", { class: "consent-check" });
   const analyticsBox = element("input", { type: "checkbox", "data-consent-analytics": "" });
   analyticsLabel.append(analyticsBox, element("span", null, s.analyticsLabel));
+  const replayLabel = element("label", { class: "consent-check" });
+  const replayBox = element("input", { type: "checkbox", "data-consent-replay": "" });
+  replayLabel.append(replayBox, element("span", null, s.replayLabel));
   const chatLabel = element("label", { class: "consent-check" });
   const chatBox = element("input", { type: "checkbox", "data-consent-chat": "" });
   chatLabel.append(chatBox, element("span", null, s.chatLabel));
   card.append(
     analyticsLabel,
     element("p", { class: "consent-hint" }, s.analyticsHint),
+    replayLabel,
+    element("p", { class: "consent-hint" }, s.replayHint),
     chatLabel,
     element("p", { class: "consent-hint" }, s.chatHint),
   );
@@ -138,8 +196,12 @@ export function bootConsent() {
 
   let chatButton = null;
 
+  function injectedState() {
+    return { analytics: analyticsInjected, replay: replayInjected, chat: chatInjected };
+  }
+
   function loadAnalytics() {
-    if (analyticsInjected || !cfg.ga4) return;
+    if (analyticsInjected || !cfg.ga4 || window.__xeVendorsDisarmed) return;
     analyticsInjected = true;
     if (cfg.promptwatch) {
       const pw = document.createElement("script");
@@ -158,7 +220,7 @@ export function bootConsent() {
   }
 
   function loadReplay() {
-    if (replayInjected || !cfg.clarity) return;
+    if (replayInjected || !cfg.clarity || cfg.replay === false || window.__xeVendorsDisarmed) return;
     replayInjected = true;
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
@@ -171,7 +233,7 @@ export function bootConsent() {
   }
 
   function loadChat() {
-    if (chatInjected || !cfg.chat || !cfg.widgetId) return;
+    if (chatInjected || !cfg.chat || !cfg.widgetId || window.__xeVendorsDisarmed) return;
     chatInjected = true;
     if (chatButton) chatButton.remove();
     const script = document.createElement("script");
@@ -183,21 +245,31 @@ export function bootConsent() {
   }
 
   function ensureChatButton() {
-    if (!cfg.chat || chatInjected || chatButton) return;
+    if (!cfg.chat || chatInjected || chatButton || window.__xeVendorsDisarmed) return;
     chatButton = element("button", { type: "button", class: "chat-launch", "data-chat-launch": "" }, s.chatButton);
     chatButton.setAttribute("aria-label", s.chatAria);
-    chatButton.addEventListener("click", function () {
-      const choice = readChoice();
-      commit({ decided: choice.decided === true, analytics: choice.analytics === true, chat: true });
-    });
+    chatButton.addEventListener("click", function () { openDialog(chatButton); });
     document.body.appendChild(chatButton);
   }
 
   function applyLoads(choice) {
+    memoryChoice = choice;
     if (shouldLoadAnalytics(choice)) loadAnalytics();
     if (shouldLoadReplay(choice, cfg.replay)) loadReplay();
     if (shouldLoadChat(choice, cfg.chat)) loadChat();
     else ensureChatButton();
+  }
+
+  function disarmVendors() {
+    window.__xeVendorsDisarmed = true;
+    window.track = function () {};
+    window.gtag = function () {};
+    try {
+      if (typeof window.clarity === "function") {
+        window.clarity("consent", false);
+        window.clarity("stop");
+      }
+    } catch { /* ignore */ }
   }
 
   function showBanner() {
@@ -230,10 +302,21 @@ export function bootConsent() {
     );
   }
 
+  function restoreFocus() {
+    const opener = lastFocus;
+    const visible = opener && opener.isConnected && !opener.closest("[hidden]") && opener.hidden !== true;
+    const fallback = document.querySelector("[data-consent-open]");
+    const target = visible ? opener : fallback;
+    if (target && target.focus) target.focus();
+  }
+
   function openDialog(opener) {
     lastFocus = opener || document.activeElement;
-    const choice = readChoice();
+    const choice = memoryChoice.decided || memoryChoice.chat || memoryChoice.replay
+      ? memoryChoice
+      : (readBootChoice() || memoryChoice);
     analyticsBox.checked = choice.analytics === true;
+    replayBox.checked = choice.replay === true;
     chatBox.checked = choice.chat === true;
     hideBanner();
     dialog.hidden = false;
@@ -245,51 +328,124 @@ export function bootConsent() {
   function closeDialog() {
     dialog.hidden = true;
     setInert(false);
-    if (!readChoice().decided) showBanner();
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    const choice = readBootChoice() || memoryChoice;
+    if (!choice.decided && !choice.replay) showBanner();
+    restoreFocus();
   }
 
   function commit(partial) {
-    const prev = readChoice();
-    const next = writeChoice({
+    const next = {
       decided: partial.decided === true,
       analytics: partial.analytics === true,
+      replay: partial.replay === true,
       chat: partial.chat === true,
+    };
+    const bootChoice = forcePersist(next);
+    const plan = withdrawalPlan({
+      injected: injectedState(),
+      next: next,
+      persisted: bootChoice,
+      replayPageEnabled: cfg.replay !== false,
     });
-    if (!next.analytics) clearAnalyticsStorage();
-    if (!next.chat) clearChatStorage();
-    const reload = (prev.analytics && !next.analytics && (analyticsInjected || replayInjected))
-      || (prev.chat && !next.chat && chatInjected);
+    if (!next.analytics) clearCookies(isMeasurementCookie);
+    if (!next.replay) {
+      clearCookies(isReplayCookie);
+      try { sessionStorage.removeItem("_cltk"); } catch { /* ignore */ }
+    }
+    if (!next.chat && (chatInjected || memoryChoice.chat === true)) clearChatStorage();
     if (!dialog.hidden) {
       dialog.hidden = true;
       setInert(false);
     }
-    if (next.decided) hideBanner();
+    if (next.decided || next.replay) hideBanner();
     else showBanner();
-    if (reload) {
+    if (plan.disarm) disarmVendors();
+    if (plan.reload) {
       location.reload();
       return;
     }
-    applyLoads(next);
+    if (plan.disarm) {
+      memoryChoice = next;
+      restoreFocus();
+      return;
+    }
+    if (window.__xeVendorsDisarmed) {
+      location.reload();
+      return;
+    }
+    applyLoads(parseStored(serializeChoice(next)));
+    restoreFocus();
+  }
+
+  function reconcile() {
+    const choice = readBootChoice();
+    if (!choice) return;
+    const plan = withdrawalPlan({
+      injected: injectedState(),
+      next: choice,
+      persisted: choice,
+      replayPageEnabled: cfg.replay !== false,
+    });
+    if (!choice.analytics) clearCookies(isMeasurementCookie);
+    if (!choice.replay) {
+      clearCookies(isReplayCookie);
+      try { sessionStorage.removeItem("_cltk"); } catch { /* ignore */ }
+    }
+    if (plan.disarm) {
+      disarmVendors();
+      if (plan.reload) location.reload();
+      return;
+    }
+    if (window.__xeVendorsDisarmed) {
+      location.reload();
+      return;
+    }
+    if (choice.decided || choice.replay) hideBanner();
+    applyLoads(choice);
   }
 
   acceptBtn.addEventListener("click", function () {
-    commit({ decided: true, analytics: true, chat: readChoice().chat === true });
+    commit({
+      decided: true,
+      analytics: true,
+      replay: memoryChoice.replay === true,
+      chat: memoryChoice.chat === true,
+    });
   });
   rejectBtn.addEventListener("click", function () {
-    commit({ decided: true, analytics: false, chat: readChoice().chat === true });
+    commit({
+      decided: true,
+      analytics: false,
+      replay: false,
+      chat: memoryChoice.chat === true,
+    });
   });
   customBtn.addEventListener("click", function () { openDialog(customBtn); });
   saveBtn.addEventListener("click", function () {
-    commit({ decided: true, analytics: analyticsBox.checked, chat: chatBox.checked });
+    commit({
+      decided: true,
+      analytics: analyticsBox.checked,
+      replay: replayBox.checked,
+      chat: chatBox.checked,
+    });
   });
   dialogAccept.addEventListener("click", function () {
     analyticsBox.checked = true;
-    commit({ decided: true, analytics: true, chat: chatBox.checked });
+    commit({
+      decided: true,
+      analytics: true,
+      replay: replayBox.checked,
+      chat: chatBox.checked,
+    });
   });
   dialogReject.addEventListener("click", function () {
     analyticsBox.checked = false;
-    commit({ decided: true, analytics: false, chat: chatBox.checked });
+    commit({
+      decided: true,
+      analytics: false,
+      replay: replayBox.checked,
+      chat: chatBox.checked,
+    });
   });
   closeBtn.addEventListener("click", closeDialog);
 
@@ -321,10 +477,27 @@ export function bootConsent() {
     openDialog(opener);
   });
 
+  window.addEventListener("storage", function (event) {
+    if (event.key !== STORAGE_KEY && event.key !== null) return;
+    reconcile();
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") reconcile();
+  });
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted) reconcile();
+  });
+
   region.hidden = true;
   document.body.append(region, dialog);
 
-  const initial = readChoice();
+  const initial = readBootChoice() || undecided();
+  memoryChoice = initial;
+  if (!shouldLoadAnalytics(initial)) clearCookies(isMeasurementCookie);
+  if (!shouldLoadReplay(initial, true)) {
+    clearCookies(isReplayCookie);
+    try { sessionStorage.removeItem("_cltk"); } catch { /* ignore */ }
+  }
   applyLoads(initial);
-  if (!initial.decided) showBanner();
+  if (!initial.decided && !initial.replay) showBanner();
 }

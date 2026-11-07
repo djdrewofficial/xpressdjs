@@ -180,7 +180,7 @@ a.inline-link:hover { color: var(--red); }
 
 /* ---------- Hero ---------- */
 .hero { min-height: 100svh; display: flex; align-items: flex-end; position: relative; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); animation: kenburns 14s var(--ease) forwards; }
 /* On narrow screens the hero crops to a center band; let a hero opt into a focal point */
 @media (max-width: 768px) { .hero-bg img { object-position: var(--hero-focus, 50% 50%); } }
@@ -346,6 +346,7 @@ a.inline-link:hover { color: var(--red); }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(40px,6vw,80px); align-items: start; }
+.contact-grid > *, .split > *, .srow > * { min-width: 0; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 .field { margin-bottom: 22px; }
 .field label { display: block; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lavender); margin-bottom: 10px; font-weight: 700; }
