@@ -11,10 +11,12 @@ const href =
 const label = t(locale).toggle;
 const ariaLang = locale === 'en' ? 'es' : 'en';
 ---
-<a class="lang-toggle" href={href} hreflang={ariaLang} aria-label={label}>
-  <span class="lang-toggle-globe" aria-hidden="true">🌐</span>
-  <span>{label}</span>
-</a>
+<div role="region" aria-label={locale === 'es' ? 'Idioma' : 'Language'}>
+  <a class="lang-toggle" href={href} hreflang={ariaLang} aria-label={label}>
+    <span class="lang-toggle-globe" aria-hidden="true">🌐</span>
+    <span>{label}</span>
+  </a>
+</div>
 
 <style>
   .lang-toggle {
@@ -28,7 +30,7 @@ const ariaLang = locale === 'en' ? 'es' : 'en';
     text-decoration: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-  .lang-toggle:hover { background: rgba(254, 58, 59, 0.92); border-color: transparent; transform: translateY(-2px); }
+  .lang-toggle:hover { background: #e11d2e; border-color: transparent; transform: translateY(-2px); }
   .lang-toggle-globe { font-size: 1rem; line-height: 1; }
   @media (max-width: 600px) {
     .lang-toggle { left: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.78rem; }

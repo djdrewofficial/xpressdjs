@@ -84,7 +84,7 @@ type FootDict = {
   contentCreator: string; viboPlanning: string; contact: string;
   ftlWedding: string; miamiWedding: string; serviceArea: string;
   checkAvailability: string; rightsSuffix: string; tagline2: string;
-  legal: string; privacy: string; terms: string;
+  legal: string; privacy: string; terms: string; privacyChoices: string;
 };
 
 export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }> = {
@@ -107,6 +107,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       checkAvailability: 'Check Availability', rightsSuffix: 'All rights reserved.',
       tagline2: 'The Ultimate Wedding Experience.',
       legal: 'Legal', privacy: 'Privacy Policy', terms: 'Terms of Service',
+      privacyChoices: 'Analytics choices',
     },
     toggle: '¿Prefieres en español?',
   },
@@ -129,6 +130,7 @@ export const ui: Record<Locale, { nav: NavDict; foot: FootDict; toggle: string }
       checkAvailability: 'Consulta Disponibilidad', rightsSuffix: 'Todos los derechos reservados.',
       tagline2: 'La Máxima Experiencia de Bodas.',
       legal: 'Legal', privacy: 'Política de Privacidad', terms: 'Términos de Servicio',
+      privacyChoices: 'Opciones de analítica',
     },
     toggle: 'View in English',
   },

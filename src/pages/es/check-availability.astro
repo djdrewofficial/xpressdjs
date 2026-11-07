@@ -69,7 +69,7 @@ const leadCfg = {
   },
 };
 ---
-<Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración." hideChat>
+<Base title="Consulta Disponibilidad | Xpress Entertainment — DJs de Bodas en el Sur de Florida" description="¿Quieres saber si estamos libres en tu fecha? Llena el formulario y un miembro del equipo se comunicará contigo para ver si Xpress Entertainment está disponible para tu celebración." hideChat noReplay>
 
   <header class="hero" style="min-height:62svh;">
     <div class="hero-bg"><img src="/images/heroes/check-availability-hero.jpg" alt="Invitados de boda disfrutando en la pista de baile" /></div>
@@ -88,10 +88,10 @@ const leadCfg = {
           <span class="eyebrow">Consulta Disponibilidad ⬇️</span>
           <h2 class="h-lg" style="margin:14px 0 24px;">Cuéntanos sobre tu día.</h2>
 
-          <div class="stepper" id="lead-stepper" aria-hidden="true">
-            <span class="step-dot active"><b>1</b><span class="lbl">Tus datos</span></span>
-            <span class="step-dot"><b>2</b><span class="lbl">Evento</span></span>
-            <span class="step-dot"><b>3</b><span class="lbl">Lugar y notas</span></span>
+          <div class="stepper" id="lead-stepper" role="list" aria-label="Pasos de la solicitud">
+            <span class="step-dot active" role="listitem" aria-current="step"><b>1</b><span class="lbl">Tus datos</span></span>
+            <span class="step-dot" role="listitem"><b>2</b><span class="lbl">Evento</span></span>
+            <span class="step-dot" role="listitem"><b>3</b><span class="lbl">Lugar y notas</span></span>
           </div>
 
           <form id="lead-form" novalidate>
@@ -110,20 +110,20 @@ const leadCfg = {
                 <div class="field"><label for="phone">Teléfono *</label><input type="tel" id="phone" name="phone" placeholder="(954) 000-0000" autocomplete="tel" required /></div>
                 <div class="field"><label for="email">Correo electrónico *</label><input type="email" id="email" name="email" placeholder="tucorreo@email.com" autocomplete="email" required /></div>
               </div>
-              <div class="field">
-                <label>Idioma preferido para comunicación *</label>
+              <fieldset class="field">
+                <legend>Idioma preferido para comunicación *</legend>
                 <div class="radio-group">
                   <label class="radio"><input type="radio" name="commLanguage" value="English" required /> <span>English</span></label>
                   <label class="radio"><input type="radio" name="commLanguage" value="Spanish" /> <span>Español</span></label>
                 </div>
-              </div>
-              <div class="field">
-                <label>Método de comunicación preferido *</label>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Método de comunicación preferido *</legend>
                 <div class="radio-group">
                   <label class="radio"><input type="radio" name="preferredMethod" value="SMS" required /> <span>Envíame un texto 📱</span></label>
                   <label class="radio"><input type="radio" name="preferredMethod" value="Email" /> <span>Envíame un email ✉️</span></label>
                 </div>
-              </div>
+              </fieldset>
 
               <label class="consent">
                 <input type="checkbox" id="smsConsent" name="smsConsent" />
@@ -161,14 +161,14 @@ const leadCfg = {
               <div class="field"><label for="endTime">Hora estimada de finalización *</label><input type="text" id="endTime" name="endTime" placeholder="ej. 11:00 PM" required /></div>
 
               <!-- se muestra para "Boda" -->
-              <div class="field" id="grp-relation" hidden>
-                <label>Tu relación con la boda *</label>
+              <fieldset class="field" id="grp-relation" hidden>
+                <legend>Tu relación con la boda *</legend>
                 <div class="radio-group">
                   {relations.map((r) => (
                     <label class="radio"><input type="radio" name="relation" value={r[0]} disabled /> <span>{r[1]}</span></label>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
               <!-- se muestra al elegir una relación -->
               <div id="grp-partners" hidden>
@@ -194,7 +194,7 @@ const leadCfg = {
               {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" style="margin:6px 0 18px;"></div>}
             </div>
 
-            <p id="form-error" class="form-error" hidden></p>
+            <p id="form-error" class="form-error"></p>
             <div class="form-nav">
               <button type="button" class="btn ghost" data-nav="back" hidden><span>← Atrás</span></button>
               <button type="submit" class="btn" data-nav="next"><span class="btn-label">Siguiente</span> <span class="arrow">↗</span></button>
@@ -213,7 +213,7 @@ const leadCfg = {
               <li class="is-next"><b>Elige un horario para tu consulta</b><span>Elige un horario abajo para una consulta por video de 20 minutos en Google Meet. Cuando tu reserva se complete, el calendario mostrará su propia confirmación.</span></li>
               <li class="is-info"><b>Tu fecha aún no está reservada</b><span>Una solicitud o una consulta no reserva tu fecha. Te confirmaremos la disponibilidad y los próximos pasos.</span></li>
             </ul>
-            <p class="booking-tip">Después de elegir un horario, tu nombre, email y teléfono de esta solicitud se completan automáticamente. Revísalos (puedes editarlos) antes de confirmar.</p>
+            <p class="booking-tip">El calendario se abre aparte. Escribe tu nombre, email y teléfono ahí. Esos datos no se agregan al enlace del calendario.</p>
             <div id="booking-embed" class="booking-embed"></div>
             <p id="booking-slow" class="form-error" hidden>El calendario está tardando en cargar. <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a>, o llámanos/escríbenos al 954-833-1196.</p>
             <p class="booking-fallback">¿El calendario no carga? <a href="/consult" target="_blank" rel="noopener">Abre la página de reservas</a> o llámanos/escríbenos al 954-833-1196.</p>

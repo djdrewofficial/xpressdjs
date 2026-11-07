@@ -11,11 +11,11 @@ const n = t(locale).nav;
   <a href={L('/')} class="brand" aria-label="Xpress Entertainment — home">
     <img class="brand-logo" src="/logo.svg" alt="Xpress Entertainment" width="150" height="62" />
   </a>
-  <div class="nav-links">
+  <div class="nav-links" id="site-menu">
     <a href={L('/the-experience')} class={isActive('/the-experience') ? 'active' : ''}>{n.experience}</a>
 
     <div class="nav-item">
-      <a href={L('/services/djs')} class="dd-toggle">{n.djs} <span class="car">▾</span></a>
+      <a href={L('/services/djs')} class="dd-toggle" aria-haspopup="true" aria-expanded="false">{n.djs} <span class="car" aria-hidden="true">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
         <a href={L('/dj-drew-segura')}>{n.djDrew}<span class="lang-tag lang-tag-sm">{locale === 'es' ? 'Bilingüe' : 'Bilingual'}</span></a>
         <a href={L('/djatomic')}>{n.djAtomic}</a>
@@ -27,7 +27,7 @@ const n = t(locale).nav;
     </div>
 
     <div class="nav-item">
-      <a href={L('/services')} class="dd-toggle">{n.services} <span class="car">▾</span></a>
+      <a href={L('/services')} class="dd-toggle" aria-haspopup="true" aria-expanded="false">{n.services} <span class="car" aria-hidden="true">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
         <a href={L('/services')}>{n.allServices}</a>
         <a href={L('/services/av-rentals')}>{n.avRentals}</a>
@@ -38,7 +38,7 @@ const n = t(locale).nav;
     </div>
 
     <div class="nav-item">
-      <a href={L('/south-florida-photo-booth-rental')} class={`dd-toggle ${isActive('/south-florida-photo-booth-rental') || isActive('/glam-booth') ? 'active' : ''}`}>{n.photoBooths} <span class="car">▾</span></a>
+      <a href={L('/south-florida-photo-booth-rental')} class={`dd-toggle ${isActive('/south-florida-photo-booth-rental') || isActive('/glam-booth') ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">{n.photoBooths} <span class="car" aria-hidden="true">▾</span></a>
       <div class="dropdown"><div class="dropdown-inner">
         <a href={L('/south-florida-photo-booth-rental')}>{n.photoBooths}</a>
         <a href={L('/glam-booth')}>{n.glamBooth}</a>
@@ -56,5 +56,13 @@ const n = t(locale).nav;
     </span>
     <a href={L('/check-availability')} class="btn"><span>{n.checkDate}</span></a>
   </div>
-  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button
+    class="burger"
+    type="button"
+    aria-expanded="false"
+    aria-controls="site-menu"
+    aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
+    data-label-open={locale === 'es' ? 'Abrir menú' : 'Open menu'}
+    data-label-close={locale === 'es' ? 'Cerrar menú' : 'Close menu'}
+  ><span></span><span></span><span></span></button>
 </nav>
