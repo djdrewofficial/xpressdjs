@@ -127,17 +127,6 @@ a.inline-link:hover { color: var(--red); }
 }
 .lang-tag-sm { font-size: .62rem; letter-spacing: .04em; padding: 1px 6px; margin-left: 6px; }
 
-/* ---------- Custom cursor ---------- */
-.cursor {
-  position: fixed; top: 0; left: 0; width: 36px; height: 36px;
-  border: 1.5px solid var(--lavender); border-radius: 50%;
-  transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s, border-color 0.3s, opacity 0.3s;
-  mix-blend-mode: difference;
-}
-.cursor.grow { width: 70px; height: 70px; background: var(--lavender); border-color: var(--lavender); }
-@media (hover: none) { .cursor { display: none; } }
-
 /* ---------- Nav ---------- */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 1000;

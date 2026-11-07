@@ -130,11 +130,32 @@ function element(tag, attrs, text) {
   return node;
 }
 
+function focusWithoutScroll(node) {
+  if (!node || typeof node.focus !== "function") return;
+  try { node.focus({ preventScroll: true }); } catch { try { node.focus(); } catch { /* ignore */ } }
+}
+
+function reloadKeepingPlace() {
+  try { sessionStorage.setItem("xe-scroll", String(window.scrollY || 0)); } catch { /* ignore */ }
+  location.reload();
+}
+
+function restoreScroll() {
+  let raw = null;
+  try { raw = sessionStorage.getItem("xe-scroll"); } catch { return; }
+  if (raw == null) return;
+  try { sessionStorage.removeItem("xe-scroll"); } catch { /* ignore */ }
+  const y = Number(raw);
+  if (!y) return;
+  window.scrollTo(0, y);
+}
+
 export function bootConsent() {
   if (window.__xeConsentBooted) return;
   const cfg = readConfig();
   if (!cfg || !cfg.strings) return;
   window.__xeConsentBooted = true;
+  restoreScroll();
 
   const s = cfg.strings;
   let analyticsInjected = false;
@@ -305,9 +326,15 @@ export function bootConsent() {
   function restoreFocus() {
     const opener = lastFocus;
     const visible = opener && opener.isConnected && !opener.closest("[hidden]") && opener.hidden !== true;
-    const fallback = document.querySelector("[data-consent-open]");
-    const target = visible ? opener : fallback;
-    if (target && target.focus) target.focus();
+    if (visible) {
+      focusWithoutScroll(opener);
+      return;
+    }
+    // The banner buttons live at the end of the document. Focusing the footer
+    // preference control from here scrolls the visitor to the footer.
+    const active = document.activeElement;
+    const hiddenFocus = active && active !== document.body && active.closest && active.closest("[hidden]");
+    if (hiddenFocus) focusWithoutScroll(document.getElementById("main") || document.body);
   }
 
   function openDialog(opener) {
@@ -322,7 +349,7 @@ export function bootConsent() {
     dialog.hidden = false;
     setInert(true);
     const nodes = focusable(card);
-    if (nodes[0]) nodes[0].focus();
+    if (nodes[0]) focusWithoutScroll(nodes[0]);
   }
 
   function closeDialog() {
@@ -361,7 +388,7 @@ export function bootConsent() {
     else showBanner();
     if (plan.disarm) disarmVendors();
     if (plan.reload) {
-      location.reload();
+      reloadKeepingPlace();
       return;
     }
     if (plan.disarm) {
@@ -370,7 +397,7 @@ export function bootConsent() {
       return;
     }
     if (window.__xeVendorsDisarmed) {
-      location.reload();
+      reloadKeepingPlace();
       return;
     }
     applyLoads(parseStored(serializeChoice(next)));
@@ -393,11 +420,11 @@ export function bootConsent() {
     }
     if (plan.disarm) {
       disarmVendors();
-      if (plan.reload) location.reload();
+      if (plan.reload) reloadKeepingPlace();
       return;
     }
     if (window.__xeVendorsDisarmed) {
-      location.reload();
+      reloadKeepingPlace();
       return;
     }
     if (choice.decided || choice.replay) hideBanner();
@@ -463,10 +490,10 @@ export function bootConsent() {
     const last = nodes[nodes.length - 1];
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
-      last.focus();
+      focusWithoutScroll(last);
     } else if (!event.shiftKey && document.activeElement === last) {
       event.preventDefault();
-      first.focus();
+      focusWithoutScroll(first);
     }
   });
 

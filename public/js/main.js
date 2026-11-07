@@ -143,25 +143,6 @@
     counters.forEach(function (c) { cio.observe(c); });
   }
 
-  /* ---- Custom cursor ---- */
-  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (fine) {
-    var cur = document.createElement("div");
-    cur.className = "cursor";
-    document.body.appendChild(cur);
-    var x = 0, y = 0, cx = 0, cy = 0;
-    document.addEventListener("mousemove", function (e) { x = e.clientX; y = e.clientY; });
-    (function loop() {
-      cx += (x - cx) * 0.18; cy += (y - cy) * 0.18;
-      cur.style.transform = "translate(" + cx + "px," + cy + "px) translate(-50%,-50%)";
-      requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll("a, button, .card, .value, .info-card").forEach(function (el) {
-      el.addEventListener("mouseenter", function () { cur.classList.add("grow"); });
-      el.addEventListener("mouseleave", function () { cur.classList.remove("grow"); });
-    });
-  }
-
   /* Background inert + tab loop for the video and gallery dialogs. */
   function holdDialog(modal) {
     Array.prototype.forEach.call(document.body.children, function (el) {
