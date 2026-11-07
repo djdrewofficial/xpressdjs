@@ -165,17 +165,14 @@ export function bootConsent() {
   let memoryChoice = undecided();
 
   const region = element("div", { class: "consent-region", role: "region", "aria-label": s.bannerTitle });
-  region.append(
-    element("p", { class: "consent-title", id: "consent-banner-title" }, s.bannerTitle),
-    element("p", { class: "consent-copy" }, s.bannerBody),
-  );
+  const copy = element("p", { class: "consent-copy" });
+  copy.append(document.createTextNode(s.bannerBody + " "), element("a", { href: cfg.privacyHref }, s.privacy));
   const actions = element("div", { class: "consent-actions" });
   const acceptBtn = element("button", { type: "button", "data-consent-accept": "" }, s.accept);
-  const rejectBtn = element("button", { type: "button", "data-consent-reject": "" }, s.reject);
   const customBtn = element("button", { type: "button", "data-consent-customize": "" }, s.customize);
-  actions.append(acceptBtn, rejectBtn, customBtn);
-  region.append(actions);
-  region.append(element("a", { href: cfg.privacyHref }, s.privacy));
+  const rejectBtn = element("button", { type: "button", "data-consent-reject": "" }, s.reject);
+  actions.append(acceptBtn, customBtn, rejectBtn);
+  region.append(copy, actions);
 
   const dialog = element("div", {
     class: "consent-dialog",
@@ -208,10 +205,8 @@ export function bootConsent() {
   );
   const dialogActions = element("div", { class: "consent-actions" });
   const saveBtn = element("button", { type: "button", "data-consent-save": "" }, s.save);
-  const dialogReject = element("button", { type: "button", "data-consent-reject-analytics": "" }, s.rejectAnalytics);
-  const dialogAccept = element("button", { type: "button", "data-consent-accept-analytics": "" }, s.accept);
   const closeBtn = element("button", { type: "button", "data-consent-close": "" }, s.close);
-  dialogActions.append(saveBtn, dialogReject, dialogAccept, closeBtn);
+  dialogActions.append(saveBtn, closeBtn);
   card.append(dialogActions, element("a", { href: cfg.privacyHref }, s.privacy));
   dialog.append(card);
 
@@ -339,9 +334,10 @@ export function bootConsent() {
 
   function openDialog(opener) {
     lastFocus = opener || document.activeElement;
-    const choice = memoryChoice.decided || memoryChoice.chat || memoryChoice.replay
-      ? memoryChoice
-      : (readBootChoice() || memoryChoice);
+    const stored = readBootChoice();
+    const choice = stored && (stored.decided || stored.analytics || stored.replay || stored.chat)
+      ? stored
+      : undecided();
     analyticsBox.checked = choice.analytics === true;
     replayBox.checked = choice.replay === true;
     chatBox.checked = choice.chat === true;
@@ -432,44 +428,16 @@ export function bootConsent() {
   }
 
   acceptBtn.addEventListener("click", function () {
-    commit({
-      decided: true,
-      analytics: true,
-      replay: memoryChoice.replay === true,
-      chat: memoryChoice.chat === true,
-    });
+    commit({ decided: true, analytics: true, replay: true, chat: true });
   });
   rejectBtn.addEventListener("click", function () {
-    commit({
-      decided: true,
-      analytics: false,
-      replay: false,
-      chat: memoryChoice.chat === true,
-    });
+    commit({ decided: true, analytics: false, replay: false, chat: false });
   });
   customBtn.addEventListener("click", function () { openDialog(customBtn); });
   saveBtn.addEventListener("click", function () {
     commit({
       decided: true,
       analytics: analyticsBox.checked,
-      replay: replayBox.checked,
-      chat: chatBox.checked,
-    });
-  });
-  dialogAccept.addEventListener("click", function () {
-    analyticsBox.checked = true;
-    commit({
-      decided: true,
-      analytics: true,
-      replay: replayBox.checked,
-      chat: chatBox.checked,
-    });
-  });
-  dialogReject.addEventListener("click", function () {
-    analyticsBox.checked = false;
-    commit({
-      decided: true,
-      analytics: false,
       replay: replayBox.checked,
       chat: chatBox.checked,
     });

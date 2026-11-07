@@ -80,7 +80,7 @@ test("keyboard banner choice and footer preferences do not jump the page", async
   await page.reload();
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   const bottom = await scrollY(page);
-  const opener = page.getByRole("button", { name: "Analytics choices" });
+  const opener = page.getByRole("button", { name: "Privacy choices" });
   await opener.focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("dialog")).toBeVisible();

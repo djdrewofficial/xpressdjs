@@ -27,7 +27,7 @@ test("homepage does not call analytics or chat before a choice, including the id
 test("reject, accept, customize, and revoke persist and gate network calls", async ({ page }) => {
   const hits = watch(page);
   await page.goto("/");
-  await page.getByRole("button", { name: "Don't allow" }).click();
+  await page.getByRole("button", { name: "Decline" }).click();
   await page.reload();
   await page.waitForTimeout(1500);
   expect(hits.filter((url) => ANALYTICS.test(url) || CHAT.test(url))).toEqual([]);
@@ -37,22 +37,25 @@ test("reject, accept, customize, and revoke persist and gate network calls", asy
   await page.evaluate(() => localStorage.removeItem("xe-consent"));
   await page.reload();
   const beforeAllow = hits.length;
-  await page.getByRole("button", { name: "Allow analytics" }).click();
+  await page.getByRole("button", { name: "Agree" }).click();
   await page.waitForTimeout(2000);
   const allowed = hits.slice(beforeAllow);
   expect(allowed.some((url) => /googletagmanager\.com/.test(url))).toBe(true);
   expect(allowed.some((url) => /ingest\.promptwatch\.com/.test(url))).toBe(true);
-  expect(allowed.some((url) => REPLAY.test(url))).toBe(false);
-  expect(allowed.some((url) => CHAT.test(url))).toBe(false);
+  expect(allowed.some((url) => REPLAY.test(url))).toBe(true);
+  expect(allowed.some((url) => /widgets\.leadconnectorhq\.com\/loader\.js/.test(url))).toBe(true);
+  expect(await page.getByRole("button", { name: "Allow analytics" }).count()).toBe(0);
 
-  await page.getByRole("button", { name: "Analytics choices" }).focus();
+  await page.getByRole("button", { name: "Privacy choices" }).focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.locator("[data-consent-analytics]").uncheck();
   await page.locator("[data-consent-replay]").uncheck();
   await page.locator("[data-consent-chat]").uncheck();
   const duringRevoke = [];
-  page.on("request", (req) => duringRevoke.push(req.url()));
+  let loadedAt = 0;
+  page.on("load", () => { loadedAt = Date.now(); });
+  page.on("request", (req) => duringRevoke.push({ t: Date.now(), url: req.url() }));
   await page.evaluate(() => {
     window.addEventListener("pagehide", () => {
       let live = false;
@@ -64,7 +67,8 @@ test("reject, accept, customize, and revoke persist and gate network calls", asy
   await page.keyboard.press("Enter");
   await page.waitForLoadState("load");
   await page.waitForTimeout(1500);
-  expect(duringRevoke.filter((url) => ANALYTICS.test(url) || CHAT.test(url))).toEqual([]);
+  const afterLoad = duringRevoke.filter((hit) => hit.t >= loadedAt && (ANALYTICS.test(hit.url) || CHAT.test(hit.url)));
+  expect(afterLoad).toEqual([]);
   expect(JSON.parse(await page.evaluate(() => localStorage.getItem("xe-consent"))).analytics).toBe(false);
   expect(await page.evaluate(() => sessionStorage.getItem("xe-unload-track"))).toBe("disarmed");
 });
@@ -75,6 +79,7 @@ test("chat loads only after it is allowed, and not from moving the pointer", asy
   await page.mouse.move(20, 20);
   await page.waitForTimeout(500);
   expect(hits.filter((url) => CHAT.test(url))).toEqual([]);
+  await page.getByRole("button", { name: "Decline" }).click();
   await page.getByRole("button", { name: "Review chat before it loads" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect(page.locator("[data-consent-chat]")).not.toBeChecked();
@@ -207,16 +212,65 @@ async function seedAllow(page, raw) {
 }
 
 async function denyAll(page) {
-  await page.getByRole("button", { name: "Analytics choices" }).click();
+  await page.getByRole("button", { name: "Privacy choices" }).click();
   await page.locator("[data-consent-analytics]").uncheck();
   await page.locator("[data-consent-replay]").uncheck();
   await page.locator("[data-consent-chat]").uncheck();
   await page.getByRole("button", { name: "Save choices" }).click();
 }
 
+test("Agree is not the old analytics-only control, and a saved analytics-only choice stays limited", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("xe-consent", JSON.stringify({
+      v: 2, decided: true, analytics: true, replay: false, chat: false, ts: 1,
+    }));
+  });
+  const hits = watch(page);
+  await page.goto("/");
+  await page.waitForTimeout(2000);
+  expect(hits.some((url) => /googletagmanager\.com/.test(url))).toBe(true);
+  expect(hits.filter((url) => REPLAY.test(url) || CHAT.test(url))).toEqual([]);
+  await expect(page.getByRole("button", { name: "Agree" })).toHaveCount(0);
+});
+
+test("Customize starts unchecked, and Agree on the inquiry page does not load replay or chat there", async ({ page }) => {
+  const hits = watch(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: "Customize" }).click();
+  await expect(page.locator("[data-consent-analytics]")).not.toBeChecked();
+  await expect(page.locator("[data-consent-replay]")).not.toBeChecked();
+  await expect(page.locator("[data-consent-chat]")).not.toBeChecked();
+  await page.getByRole("button", { name: "Close" }).click();
+  expect(hits.filter((url) => ANALYTICS.test(url) || CHAT.test(url))).toEqual([]);
+
+  await page.goto("/check-availability");
+  const before = hits.length;
+  await page.getByRole("button", { name: "Agree" }).click();
+  await page.waitForTimeout(2000);
+  const onForm = hits.slice(before);
+  expect(onForm.some((url) => /googletagmanager\.com/.test(url))).toBe(true);
+  expect(onForm.filter((url) => REPLAY.test(url) || CHAT.test(url))).toEqual([]);
+  await page.goto("/");
+  await page.waitForTimeout(2000);
+  const home = hits.slice(before + onForm.length);
+  expect(home.some((url) => REPLAY.test(url))).toBe(true);
+  expect(home.some((url) => /widgets\.leadconnectorhq\.com\/loader\.js/.test(url))).toBe(true);
+});
+
+test("consent bar fits a 320px screen", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto("/");
+  const box = await page.locator(".consent-region").boundingBox();
+  expect(box.x).toBeGreaterThanOrEqual(-1);
+  expect(box.x + box.width).toBeLessThanOrEqual(321);
+  await expect(page.getByRole("button", { name: "Agree" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Customize" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Decline" })).toBeVisible();
+});
+
 test("saving the consent dialog returns focus to the control that opened it", async ({ page }) => {
   await page.goto("/");
-  const opener = page.getByRole("button", { name: "Analytics choices" });
+  const opener = page.getByRole("button", { name: "Privacy choices" });
   await opener.focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("dialog")).toBeVisible();
@@ -370,7 +424,7 @@ test("pageshow after a stored denial reloads a page restored from the back-forwa
 test("chat withdrawal removes the observed local key and does not delete unrelated storage", async ({ page }) => {
   const hits = watch(page);
   await page.goto("/");
-  await page.getByRole("button", { name: "Review chat before it loads" }).click();
+  await page.getByRole("button", { name: "Customize" }).click();
   await page.locator("[data-consent-chat]").check();
   await page.getByRole("button", { name: "Save choices" }).click();
   await page.waitForTimeout(1500);
@@ -380,7 +434,7 @@ test("chat withdrawal removes the observed local key and does not delete unrelat
     document.cookie = "_ga=legacy; path=/";
     document.cookie = "MR=keep; path=/";
   });
-  await page.getByRole("button", { name: "Analytics choices" }).click();
+  await page.getByRole("button", { name: "Privacy choices" }).click();
   await page.locator("[data-consent-chat]").uncheck();
   await page.getByRole("button", { name: "Save choices" }).click();
   await page.waitForLoadState("load");
@@ -403,7 +457,7 @@ test("chat withdrawal removes the observed local key and does not delete unrelat
 test("video dialog tab order reaches the player iframe and returns to close", async ({ page }) => {
   await page.route(/youtube|googlevideo|ytimg/, (route) => route.abort());
   await page.goto("/dj-drew-segura");
-  await page.getByRole("button", { name: "Don't allow" }).click();
+  await page.getByRole("button", { name: "Decline" }).click();
   const play = page.locator(".video-facade").first();
   await play.scrollIntoViewIfNeeded();
   await play.click();
@@ -417,7 +471,7 @@ test("video dialog tab order reaches the player iframe and returns to close", as
 
 test("single-image gallery tab order skips hidden previous and next controls", async ({ page }) => {
   await page.goto("/south-florida-photo-booth-rental");
-  await page.getByRole("button", { name: "Don't allow" }).click();
+  await page.getByRole("button", { name: "Decline" }).click();
   await page.evaluate(() => {
     document.querySelector("#gsrc-lux-classics").replaceChildren();
   });
@@ -459,7 +513,7 @@ test("inquiry at 320 CSS pixels does not widen the scrollport", async ({ page })
 
 test("axe finds no serious or critical violations on home and inquiry", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Don't allow" }).click();
+  await page.getByRole("button", { name: "Decline" }).click();
   const home = await new AxeBuilder({ page }).analyze();
   const homeBad = home.violations.filter((item) => item.impact === "serious" || item.impact === "critical");
   expect(homeBad, JSON.stringify(homeBad, null, 2)).toEqual([]);
