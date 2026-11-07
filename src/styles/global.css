@@ -690,20 +690,21 @@ main:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
 .consent-manage:hover { color: #fff; }
 .consent-region, .consent-dialog-card {
   background: #1c1430; color: #fff; border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  border-radius: 16px; box-shadow: 0 12px 36px rgba(0,0,0,0.4);
 }
 .consent-region {
-  position: fixed; z-index: 1100; left: 16px; right: 16px; bottom: 16px;
-  max-width: 760px; margin: 0 auto; padding: 16px 18px;
+  position: fixed; z-index: 1100; left: 12px; right: 12px; bottom: 12px;
+  max-width: 1040px; margin: 0 auto; padding: 10px 12px;
+  display: flex; align-items: center; gap: 12px;
 }
 .consent-region[hidden] { display: none; }
-.consent-title { font-weight: 800; margin-bottom: 6px; }
-.consent-copy { color: #fff; font-size: 0.92rem; line-height: 1.5; }
+.consent-copy { color: #fff; font-size: 0.84rem; line-height: 1.35; margin: 0; flex: 1 1 auto; }
 .consent-region a, .consent-dialog-card a { color: #fff; text-decoration: underline; }
+.consent-region .consent-actions { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0; flex: 0 0 auto; }
 .consent-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .consent-actions button {
-  min-height: 44px; padding: 10px 16px; border-radius: 999px; font-weight: 700;
-  font-family: inherit; font-size: 0.92rem; cursor: pointer;
+  min-height: 44px; padding: 8px 14px; border-radius: 999px; font-weight: 700;
+  font-family: inherit; font-size: 0.92rem; cursor: pointer; white-space: nowrap;
 }
 .consent-actions [data-consent-accept],
 .consent-actions [data-consent-accept-analytics] { background: #e11d2e; color: #fff; border: 2px solid #e11d2e; }
@@ -728,12 +729,14 @@ main:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
   background: #e11d2e; color: #fff; font-weight: 800; cursor: pointer;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
-body.has-consent-banner .chat-launch,
-body.has-consent-banner .lang-toggle { bottom: 210px; }
-html:has(body.has-consent-banner) { scroll-padding-bottom: 230px; }
-body.has-consent-banner .hero .wrap { padding-bottom: 230px; }
-@media (max-width: 600px) {
-  body.has-consent-banner .chat-launch,
-  body.has-consent-banner .lang-toggle { bottom: 250px; }
-  body.has-consent-banner .hero .wrap { padding-bottom: 280px; }
+body.has-consent-banner .chat-launch { display: none; }
+body.has-consent-banner .lang-toggle { bottom: 84px; }
+html:has(body.has-consent-banner) { scroll-padding-bottom: 96px; }
+body.has-consent-banner .hero .wrap { padding-bottom: 120px; }
+@media (max-width: 720px) {
+  .consent-region { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; }
+  .consent-region .consent-actions { display: grid; grid-template-columns: 1fr; }
+  body.has-consent-banner .lang-toggle { top: 76px; bottom: auto; left: 12px; z-index: 1200; }
+  html:has(body.has-consent-banner) { scroll-padding-bottom: 210px; }
+  body.has-consent-banner .hero .wrap { padding-bottom: 210px; }
 }
