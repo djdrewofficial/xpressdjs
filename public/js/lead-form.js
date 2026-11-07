@@ -44,6 +44,11 @@
   function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
   function ssDel(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+  // Keep in sync with lib/lead/draft.js. Drafts expire and never store SMS consent.
+  var DRAFT_MAX_AGE = 12 * 60 * 60 * 1000;
+  function motionOK() {
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
 
   function uuid() {
     if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
@@ -62,6 +67,8 @@
     dots.forEach(function (d, idx) {
       d.classList.toggle("active", idx === i);
       d.classList.toggle("done", idx < i);
+      if (idx === i) d.setAttribute("aria-current", "step");
+      else d.removeAttribute("aria-current");
     });
     if (backBtn) backBtn.hidden = i === 0;
     if (nextLabel) nextLabel.textContent = i === lastIndex ? (t.submit || "Submit") : (t.next || "Next");
@@ -69,7 +76,7 @@
       // On phones the Next button sits far below the step's first field; bring
       // the top of the form back into view instead of leaving the visitor mid-page.
       var top = stepper.getBoundingClientRect().top;
-      if (top < 0 || top > window.innerHeight * 0.5) stepper.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (top < 0 || top > window.innerHeight * 0.5) stepper.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
     }
     if (!opts || !opts.noFocus) {
       var f = steps[i].querySelector("input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled])");
@@ -97,14 +104,6 @@
     return !!m && (+m[1] > 12 || (m[1].length === 2 && m[1].charAt(0) === "0"));
   }
   var EMAIL_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
-  // Same rules as lib/lead/validate.js normalizePhone → E.164, or "".
-  function toE164(v) {
-    var s = String(v || "").trim(), digits = s.replace(/\D/g, "");
-    if (s.charAt(0) === "+" && s.indexOf("+1") !== 0) return digits.length >= 8 && digits.length <= 15 ? "+" + digits : "";
-    if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
-    if (digits.length !== 10 || /^[01]/.test(digits) || /^[01]/.test(digits.slice(3))) return "";
-    return "+1" + digits;
-  }
 
   function wantsSms() {
     var m = form.querySelector('input[name="preferredMethod"]:checked');
@@ -242,11 +241,20 @@
     var d = { step: current };
     DRAFT_FIELDS.forEach(function (id) { var el = $(id); if (el && el.value) d[id] = el.value; });
     DRAFT_RADIOS.forEach(function (n) { var v = radioVal(n); if (v) d[n] = v; });
+    d.savedAt = Date.now();
+    delete d.smsConsent;
+    delete d.consentText;
     ssSet(DRAFT_KEY, JSON.stringify(d));
   }
   function restoreDraft() {
     var raw = ssGet(DRAFT_KEY); if (!raw) return 0;
-    var d; try { d = JSON.parse(raw); } catch (e) { return 0; }
+    var d; try { d = JSON.parse(raw); } catch (e) { ssDel(DRAFT_KEY); return 0; }
+    if (!d || typeof d.savedAt !== "number" || Date.now() - d.savedAt > DRAFT_MAX_AGE || d.savedAt > Date.now() + 60000) {
+      ssDel(DRAFT_KEY);
+      return 0;
+    }
+    delete d.smsConsent;
+    delete d.consentText;
     var setVal = function (id) { var el = $(id); if (el && d[id] != null) el.value = d[id]; };
     ["firstName", "lastName", "phone", "email", "eventType"].forEach(setVal);
     setRadio("commLanguage", d.commLanguage); setRadio("preferredMethod", d.preferredMethod);
@@ -280,11 +288,23 @@
   form.addEventListener("change", function (e) { clearFlag(e); markStart(); saveDraft(); });
 
   // ---- Errors ----------------------------------------------------------------
-  function showError(msg) {
+  function showError(msg, opts) {
+    if (!errEl) return;
+    errEl.setAttribute("role", "alert");
+    errEl.setAttribute("aria-atomic", "true");
     errEl.textContent = msg;
-    errEl.hidden = false;
+    errEl.classList.add("is-on");
+    if (!opts || !opts.keepFocus) {
+      errEl.tabIndex = -1;
+      try { errEl.focus(); } catch (e) {}
+    }
   }
-  function hideError() { errEl.hidden = true; errEl.textContent = ""; }
+  function hideError() {
+    if (!errEl) return;
+    errEl.classList.remove("is-on");
+    errEl.textContent = "";
+    errEl.removeAttribute("role");
+  }
 
   function fieldEl(name) {
     return $(name) || form.querySelector('input[name="' + name + '"]:not([disabled])');
@@ -302,7 +322,7 @@
     if (!first) { showError(C.generic); return; }
     var stepIdx = steps.findIndex(function (s) { return s.contains(first.el); });
     if (stepIdx > -1 && stepIdx !== current) show(stepIdx, { scroll: true, noFocus: true });
-    showError((t.summary ? t.summary + " " : "") + (E[first.code] || E.invalid));
+    showError((t.summary ? t.summary + " " : "") + (E[first.code] || E.invalid), { keepFocus: true });
     first.el.reportValidity();
   }
 
@@ -408,7 +428,7 @@
 
   function reveal(panel) {
     panel.hidden = false;
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    panel.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
     try { panel.focus({ preventScroll: true }); } catch (e) {}
   }
 
@@ -427,11 +447,19 @@
     if (panel) reveal(panel);
   }
 
+  function clearEnteredFields() {
+    form.querySelectorAll("input, textarea, select").forEach(function (el) {
+      if (el.type === "checkbox" || el.type === "radio") el.checked = false;
+      else if (el.tagName === "SELECT") el.selectedIndex = 0;
+      else el.value = "";
+    });
+  }
+
   function onSaved(j) {
     inFlight = true; // stays locked — this inquiry is done
-    var contact = calendarContact(sentPayload); // taken before the saved form is cleared
     var book = offerConsult(j, sentPayload);
     sentPayload = null;
+    clearEnteredFields();
     ssDel(DRAFT_KEY); ssDel(SID_KEY);
     try { if (window.track) window.track("generate_lead", { form: "check_availability" }); } catch (e) {}
     form.hidden = true;
@@ -442,64 +470,47 @@
       consultAllowed = true;
       if (thanks) thanks.hidden = true;
       ok.hidden = false;
-      loadCalendar(contact);
+      loadCalendar();
       reveal(ok);
       return;
     }
-    contact = null;
     showThanks();
   }
 
   // ---- Consultation calendar (HighLevel booking widget) ----------------------
   // The visitor books inside HighLevel's own widget, which shows its own
-  // confirmation. Nothing here treats loading or clicking it as a booking.
+  // confirmation. Nothing here treats loading the frame as a booking.
   //
-  // Prefill: the widget fills first_name / last_name / email / phone from its
-  // own URL's query string (browser-tested 2026-10-03; not a documented API).
-  // It turns "+" into a space even when sent as %2B, so an email containing
-  // "+" is NOT passed (the visitor types it) rather than prefilled wrong. All
-  // fields stay editable; the widget's consent checkbox is never touched.
-  function calendarContact(p) {
-    if (!p) return null;
-    var c = {};
-    if (p.firstName) c.first_name = p.firstName;
-    if (p.lastName) c.last_name = p.lastName;
-    if (p.email && p.email.indexOf("+") === -1) c.email = p.email.toLowerCase();
-    var phone = toE164(p.phone);
-    if (phone) c.phone = phone;
-    return c;
+  // Name, email, and phone are not copied into the widget URL. Query strings
+  // are stored in browser history and server logs, and the embed script forwards
+  // the frame address. The visitor enters those details on the calendar itself.
+  // Keep bookingFrameSrc in sync with lib/lead/booking-url.js.
+  function bookingFrameSrc(bookingUrl) {
+    var blocked = /^(first_name|last_name|email|phone|name|full_name|firstname|lastname)$/i;
+    var u = new URL(bookingUrl);
+    var kept = new URLSearchParams();
+    u.searchParams.forEach(function (v, k) { if (!blocked.test(k)) kept.append(k, v); });
+    u.search = kept.toString();
+    return u.toString();
   }
 
-  function loadCalendar(contact) {
+  function loadCalendar() {
     if (!consultAllowed) return;
     var box = $("booking-embed"), slow = $("booking-slow");
     if (!box || !cfg.bookingUrl) { if (slow) slow.hidden = false; return; }
     var widgetId = cfg.bookingUrl.split("/").pop();
-    var prefilled = "";
-    if (contact && Object.keys(contact).length) {
-      var u = new URL(cfg.bookingUrl);
-      u.search = new URLSearchParams(contact).toString();
-      prefilled = u.toString();
-    }
-    // HighLevel's form_embed.js forwards the iframe's own src query string to
-    // the widget (it overrides any other navigation), so the details must be in
-    // src. Microsoft Clarity copies the page's DOM, so it is STOPPED for the
-    // rest of this page view before the frame exists — it never records the
-    // prefilled src. (Clarity's queue stub applies "stop" even if not loaded.)
-    if (prefilled) {
-      try {
-        window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
-        window.clarity("stop");
-      } catch (e) {}
-    }
+    // Stop session replay before the calendar step if it was allowed on this view.
+    try {
+      window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+      window.clarity("stop");
+    } catch (e) {}
     var frame = document.createElement("iframe");
-    frame.src = prefilled || cfg.bookingUrl;
+    frame.src = bookingFrameSrc(cfg.bookingUrl);
     frame.id = widgetId + "_" + Date.now();
     frame.title = t.calendarTitle || "Book a consultation";
     frame.setAttribute("scrolling", "no");
     frame.style.cssText = "width:100%;border:none;overflow:hidden;min-height:780px;";
     var loaded = false;
-    prefilled = ""; contact = null; // handed to the frame; drop from memory
     frame.addEventListener("load", function () { loaded = true; if (slow) slow.hidden = true; });
     box.appendChild(frame);
     // Cross-origin iframes don't report HTTP errors, so the fallback link is

@@ -15,3 +15,8 @@ npm-debug.log*
 .env.*
 .dev.vars
 .wrangler/
+
+# local browser tests
+test-results/
+playwright-report/
+blob-report/

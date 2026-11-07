@@ -11,7 +11,7 @@ const f = t(locale).foot;
       <p style="color:var(--muted); max-width:34ch;">{f.tagline}</p>
     </div>
     <div class="foot-col">
-      <h5>{f.explore}</h5>
+      <h2 class="foot-label">{f.explore}</h2>
       <a href={L('/')}>{f.home}</a>
       <a href={L('/the-experience')}>{f.theExperience}</a>
       <a href={L('/services')}>{f.services}</a>
@@ -20,7 +20,7 @@ const f = t(locale).foot;
       <a href={L('/about-xpress-entertainment')}>{f.about}</a>
     </div>
     <div class="foot-col">
-      <h5>{f.servicesHead}</h5>
+      <h2 class="foot-label">{f.servicesHead}</h2>
       <a href={L('/services/djs')}>{f.weddingDjs}</a>
       <a href={L('/services/av-rentals')}>{f.avRentals}</a>
       <a href={L('/south-florida-photo-booth-rental')}>{f.photoBooths}</a>
@@ -31,7 +31,7 @@ const f = t(locale).foot;
       <a href={L('/wedding-dj-miami')}>{f.miamiWedding}</a>
     </div>
     <div class="foot-col">
-      <h5>{f.contact}</h5>
+      <h2 class="foot-label">{f.contact}</h2>
       <address class="foot-address">
         Xpress Entertainment Corp<br />
         {f.serviceArea}
@@ -52,6 +52,7 @@ const f = t(locale).foot;
     <span class="foot-legal">
       <a href={L('/privacy-policy')}>{f.privacy}</a>
       <a href={L('/terms-of-service')}>{f.terms}</a>
+      <button type="button" class="consent-manage" data-consent-open>{f.privacyChoices}</button>
     </span>
     <span>{f.tagline2}</span>
   </div>

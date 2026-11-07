@@ -6,10 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test tests/event-type.test.mjs tests/lead-api.test.mjs tests/lead-jobs.test.mjs tests/lead-recovery.test.mjs"
+    "test": "node --test tests/event-type.test.mjs tests/lead-api.test.mjs tests/lead-jobs.test.mjs tests/lead-recovery.test.mjs tests/consent-state.test.mjs tests/draft-retention.test.mjs tests/booking-url.test.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "astro": "^4.16.18",
-    "@astrojs/sitemap": "^3.2.1"
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^4.16.18"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.0"
   }
 }
