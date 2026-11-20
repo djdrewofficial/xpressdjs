@@ -15,6 +15,7 @@ const { Content } = await post.render();
 const d = post.data;
 const fmt = d.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 const SITE = 'https://xpressdjs.com';
+const pageUrl = new URL(Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`, SITE).href;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -25,11 +26,25 @@ const articleSchema = {
   image: d.image ? new URL(d.image, SITE).href : undefined,
   author: { '@type': 'Organization', name: d.author || 'Xpress Entertainment' },
   publisher: { '@type': 'Organization', name: 'Xpress Entertainment', logo: { '@type': 'ImageObject', url: `${SITE}/logo.svg` } },
-  mainEntityOfPage: Astro.url.href,
+  mainEntityOfPage: pageUrl,
 };
+const faqItems = (d.faqs || []).map((f) => ({ q: f.q, a: f.a }));
+const faqSchema = faqItems.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: faqItems.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
 ---
 <Base title={`${d.title} | Xpress Entertainment`} description={d.description} image={d.image}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+  {faqSchema && <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />}
 
   <header class="hero" style="min-height:58svh;">
     <div class="hero-bg"><img src={d.image} alt={d.title} /></div>
@@ -43,7 +58,7 @@ const articleSchema = {
   <article class="pad bg-ink">
     <div class="wrap" style="max-width:760px;">
       <div class="post-body"><Content /></div>
-      <div style="margin-top:54px;"><a href="/wedding-blog" class="textlink">← Back to the blog</a></div>
+      <div style="margin-top:54px;"><a href="/wedding-blog/" class="textlink">← Back to the blog</a></div>
     </div>
   </article>
 

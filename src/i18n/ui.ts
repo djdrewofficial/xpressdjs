@@ -63,11 +63,28 @@ export function hasES(enPath: string): boolean {
   return translated.has(enPath);
 }
 
+/** Ensure an internal path ends with a trailing slash (roots stay `/` and `/es/`). */
+export function withTrailingSlash(path: string): string {
+  if (!path || path === '/') return '/';
+  if (path === '/es' || path === '/es/') return '/es/';
+  const hashIdx = path.indexOf('#');
+  const queryIdx = path.indexOf('?');
+  let cut = path.length;
+  if (hashIdx >= 0) cut = Math.min(cut, hashIdx);
+  if (queryIdx >= 0) cut = Math.min(cut, queryIdx);
+  const base = path.slice(0, cut);
+  const suffix = path.slice(cut);
+  const slashed = base.endsWith('/') ? base : `${base}/`;
+  return slashed + suffix;
+}
+
 /** Build an href for an English route in the requested locale (graceful fallback to English when not translated). */
 export function localize(enPath: string, locale: Locale): string {
-  if (locale === 'en') return enPath;
-  if (!translated.has(enPath)) return enPath; // not translated yet -> serve English
-  return enPath === '/' ? '/es/' : '/es' + enPath;
+  let path: string;
+  if (locale === 'en') path = enPath;
+  else if (!translated.has(enPath)) path = enPath; // not translated yet -> serve English
+  else path = enPath === '/' ? '/es/' : '/es' + enPath;
+  return withTrailingSlash(path);
 }
 
 type NavDict = {

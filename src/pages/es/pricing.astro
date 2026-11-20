@@ -1,34 +1,247 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
-import CTA from '../../components/CTA.astro';
 import { localize } from '../../i18n/ui';
 const L = (p) => localize(p, 'es');
 
-const extras = [
-  'Cobertura de Ceremonia',
-  'Iluminación ambiental (Set de 10)',
-  'Proyección de Monograma',
-  'Máquinas de Chispas Frías (Par de 2)',
-  'Bailando en las Nubes',
-  'Show de Luces Estilo Club',
-  'Pistolas de CO2',
-  'Cañones de CO2',
-  'La Máxima Experiencia de Láser',
+const djs = [
+  {
+    href: L('/dj-drew-segura'),
+    img: '/images/djs/drew-segura-headshot.png',
+    alt: 'Drew Segura — fundador y DJ principal',
+    name: 'Drew Segura',
+    tag: 'Bilingüe',
+    bio: 'Un DJ de bodas y MC bilingüe con raíces en las culturas estadounidense, dominicana y colombiana. Reconocido por sus fenomenales habilidades como anfitrión y por mezclar culturas a la perfección.',
+    price: 'Desde $2,750',
+    label: 'Conoce a Drew',
+  },
+  {
+    href: L('/djatomic'),
+    img: '/images/djs/dj-atomic-headshot.jpg',
+    alt: 'DJ Atomic — DJ internacional de bodas y eventos',
+    name: 'DJ Atomic',
+    bio: 'Originario de Santa Lucía y ahora radicado en el sur de Florida, DJ Atomic es reconocido por su estilo musical multicultural, sus mezclas impecables y su habilidad para leer cualquier ambiente.',
+    price: 'Desde $2,500',
+    label: 'Conoce a Atomic',
+  },
+  {
+    href: L('/djphil'),
+    img: '/images/djs/dj-phil-headshot.jpg',
+    alt: 'DJ Phil — DJ y MC de bodas',
+    name: 'DJ Phil',
+    tag: 'Trilingüe',
+    bio: 'Un DJ y MC de formato abierto y versátil que lee el ambiente sin esfuerzo y mezcla géneros para mantener a todas las generaciones en la pista toda la noche.',
+    price: 'Desde $1,950',
+    label: 'Conoce a Phil',
+  },
+  {
+    href: L('/djrere'),
+    img: '/images/djs/dj-rere-headshot.jpg',
+    alt: 'DJ ReRe — DJ y MC de bodas',
+    name: 'DJ ReRe',
+    bio: 'Un DJ y MC lleno de energía que aporta el hype y el corazón, creando una banda sonora que encaja con tu público y mantiene la celebración en movimiento.',
+    price: 'Desde $1,950',
+    label: 'Conoce a ReRe',
+  },
+  {
+    href: L('/djnaqeeb'),
+    img: '/images/djs/naqeeb-mohamed-headshot.jpg',
+    alt: 'DJ Naqeeb — DJ caribeño y de las Indias Occidentales en Miami y Fort Lauderdale',
+    name: 'DJ Naqeeb',
+    bio: 'Un DJ caribeño y de las Indias Occidentales con raíces profundas en Miami y Fort Lauderdale. Mezcla soca, dancehall, Afrobeats, hip-hop y Top 40 con sensibilidad para cada público. Naqeeb trabaja solo como DJ, así que las parejas que lo reservan traen su propio MC o suman uno de nuestro equipo.',
+    price: 'Desde $1,950',
+    label: 'Conoce a Naqeeb',
+  },
 ];
-const lux = ['Cámara DSLR Canon', 'Entrega y Desmontaje', 'Sesiones de Fotos Ilimitadas + Impresiones', 'Flash de Estudio', 'Accesorios de Calidad', 'Impresiones Instantáneas', 'Galería en Línea', 'Compartir por Mensaje de Texto', 'Asistente de Cabina de Fotos'];
-const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ilimitadas', 'Iluminación de Estudio', 'Postes Rojos y Dorados', 'Compartir en Redes Sociales', 'Compartir por Mensaje de Texto', 'Asistente de Cabina de Fotos'];
+
+const extras = [
+  {
+    name: 'Cobertura de ceremonia',
+    price: '$250',
+    blurb: 'Música 30 minutos antes, la ceremonia, micrófono para el oficiante y sonido para que todos escuchen los votos.',
+    href: '#faq-ceremony',
+  },
+  {
+    name: 'Iluminación ambiental',
+    price: '$450',
+    blurb: 'Luz del color de tu evento en paredes, columnas o donde quieras.',
+    href: L('/epic-extras-1/lighting'),
+  },
+  {
+    name: 'Proyección de monograma',
+    price: '$375',
+    blurb: 'Sus nombres, iniciales, fecha o logo.',
+    href: L('/epic-extras-1/lighting'),
+  },
+  {
+    name: 'Chispas frías',
+    price: '$450 por dos máquinas',
+    blurb: 'Requiere aprobación del lugar.',
+    href: L('/epic-extras-1/cold-sparks'),
+  },
+  {
+    name: 'Bailando en las Nubes',
+    price: '$450',
+    blurb: 'Un uso, normalmente en su primer baile.',
+    href: L('/epic-extras-1/dancing-on-the-clouds'),
+  },
+  {
+    name: 'Show de luces estilo club',
+    price: '$750',
+    blurb: 'Luces móviles según el tamaño del salón.',
+    href: L('/epic-extras-1/lighting'),
+  },
+  {
+    name: 'Pistola o cañón de CO2',
+    price: '$375 con un tanque',
+    blurb: '',
+    href: L('/epic-extras-1'),
+  },
+  {
+    name: 'Experiencia de láser',
+    price: '$750',
+    blurb: 'Dos láseres a unos 10 pies de altura, sincronizados con la noche.',
+    href: L('/epic-extras-1'),
+  },
+  {
+    name: 'Hora Loca',
+    price: '$1,650',
+    blurb: 'Un show de 45 minutos con dos animadores, un robot LED en zancos y una sesión de fotos al final.',
+    href: null,
+  },
+  {
+    name: 'Música en vivo',
+    price: 'Violinista $575 por una hora',
+    blurb: 'Violinista para la hora del cóctel, $575 por una hora. Pregúntanos por saxofón o violín para la ceremonia o la cena.',
+    href: null,
+  },
+];
+
+const booths = [
+  {
+    name: 'Cabina de Fotos Lux',
+    price: '$875 por 4 horas',
+    blurb: 'Cámara Canon DSLR, impresiones al instante (tiras 2x6 o 4x6), fotos al celular de tus invitados, cientos de diseños, fondos y un asistente.',
+    href: L('/south-florida-photo-booth-rental'),
+  },
+  {
+    name: 'Cabina Glam Blanco y Negro',
+    price: '$1,200 por 4 horas',
+    blurb: 'Retratos en blanco y negro con impresiones 4x6 y tu monograma.',
+    href: L('/glam-booth'),
+  },
+  {
+    name: 'Cabina Móvil',
+    price: '$750 por 4 horas, o $350 para la hora del cóctel',
+    blurb: '',
+    href: L('/south-florida-photo-booth-rental'),
+  },
+  {
+    name: 'Cabina de Llaveros',
+    price: 'Desde $1,500 por 4 horas con 50 llaveros',
+    blurb: '',
+    href: '/keychain-photo-booth-station/',
+  },
+  {
+    name: 'Cabina AI',
+    price: 'Desde $1,500 por 4 horas',
+    blurb: '',
+    href: null,
+  },
+];
+
+const faqs = [
+  {
+    id: 'faq-cost',
+    q: '¿Cuánto cuesta un DJ para bodas con Xpress?',
+    a: 'Nuestros DJs empiezan desde $1,950, y DJ Drew Segura desde $2,750. Eso cubre la hora del cóctel y la recepción. El precio final depende de tus horas y de lo que agregues.',
+  },
+  {
+    id: 'faq-ceremony',
+    q: '¿La música de la ceremonia está incluida?',
+    a: 'La cobertura de ceremonia cuesta $250. Incluye 30 minutos de música antes, la ceremonia, un micrófono para el oficiante y sonido para que todos escuchen los votos.',
+  },
+  {
+    id: 'faq-booth',
+    q: '¿Puedo reservar DJ y cabina de fotos juntos?',
+    a: 'Sí. Agrega cualquier cabina a tu DJ en el mismo acuerdo de reserva. La Cabina de Fotos Lux cuesta $875 por 4 horas con impresiones al instante y un asistente.',
+  },
+  {
+    id: 'faq-lighting',
+    q: '¿La iluminación está incluida?',
+    a: 'Las nuevas reservas incluyen nuestra iluminación estándar de pista de baile. La iluminación ambiental cuesta $450 y el show de luces estilo club $750.',
+  },
+  {
+    id: 'faq-bilingual',
+    q: '¿Tienen un DJ bilingüe?',
+    a: 'Drew Segura es bilingüe en inglés y español, y DJ Phil habla inglés, español y portugués. Cuéntanos quiénes vienen y te ayudamos a elegir.',
+  },
+  {
+    id: 'faq-corporate',
+    q: '¿Cuánto cuesta un DJ para un evento corporativo?',
+    a: 'Los eventos corporativos empiezan desde $1,500 y se cotizan por evento, según tu horario, el lugar y lo que agregues.',
+  },
+  {
+    id: 'faq-book',
+    q: '¿Cómo reservo mi fecha?',
+    a: 'Consulta tu fecha, hablamos unos minutos y te enviamos un acuerdo de reserva con tu DJ y todo lo que elegiste.',
+  },
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'OfferCatalog',
+      '@id': 'https://xpressdjs.com/es/pricing/#catalog',
+      name: 'Precios de bodas de Xpress Entertainment',
+      provider: { '@id': 'https://xpressdjs.com/#business' },
+      itemListElement: [
+        { '@type': 'Offer', name: 'DJ Drew Segura, DJ y MC de bodas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 2750, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'DJ Atomic, DJ de bodas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 2500, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'DJ Phil, DJ y MC de bodas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1950, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'DJ ReRe, DJ y MC de bodas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1950, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'DJ Naqeeb, DJ de bodas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1950, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'DJ para evento corporativo, cotizado por evento', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1500, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'Cobertura de ceremonia', price: 250, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Bailando en las Nubes', price: 450, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Máquinas de chispas frías (dos)', price: 450, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Iluminación ambiental', price: 450, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Proyección de monograma', price: 375, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Show de luces estilo club', price: 750, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Pistola o cañón de CO2', price: 375, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Experiencia de láser', price: 750, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Experiencia Hora Loca', price: 1650, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Cabina de Fotos Lux, 4 horas', price: 875, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Cabina Glam Blanco y Negro, 4 horas', price: 1200, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Cabina Móvil, 4 horas', price: 750, priceCurrency: 'USD' },
+        { '@type': 'Offer', name: 'Cabina de Llaveros, 4 horas con 50 llaveros', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1500, priceCurrency: 'USD' } },
+        { '@type': 'Offer', name: 'Cabina AI, 4 horas', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1500, priceCurrency: 'USD' } },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://xpressdjs.com/es/pricing/#faq',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
 ---
-<Base title="Precios de DJ de Bodas | Xpress Entertainment — El Sur de Florida" description="¿Cuánto cuesta un DJ de bodas? La mayoría de las parejas invierten entre $1,750 y $3,500. Conoce a nuestros DJs, ve sus tarifas y crea tu Máxima Experiencia de Bodas.">
+<Base title="Precios de DJ para Bodas en Miami y el Sur de Florida | Xpress" description="Mira el precio inicial de cada DJ de Xpress para bodas en Miami y el sur de Florida, más cabinas de fotos e iluminación. Eventos corporativos desde $1,500.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
 
   <Hero
     size="mid"
-    eyebrow="Precios transparentes"
-    titleHtml={`¿Cuánto Cuesta<br>un <span class="serif-accent" style="font-style:italic">DJ de Bodas?</span>`}
+    eyebrow="Precios para bodas"
+    titleHtml={`¿Cuánto cuesta un DJ para bodas<br>en Miami y el <span class="serif-accent" style="font-style:italic">sur de Florida?</span>`}
     sub="Tu boda no es un paquete. Es una experiencia, y el DJ que elijas juega un papel enorme en cómo se siente toda la noche."
     image="/images/heroes/pricing-hero.jpg"
     alt="Recién casados cantando junto a la música en la pista de baile de la boda"
-    ctaText="Consulta tu Fecha"
+    ctaText="Consulta tu fecha"
     ctaHref={L('/check-availability')}
     creditName="Sid Rashlich"
     creditHref="https://photovsl.com/"
@@ -36,98 +249,146 @@ const threesixty = ['Cabina 360', 'Entrega y Desmontaje', 'Sesiones de Video Ili
 
   <section class="pad bg-ink">
     <div class="wrap" style="max-width:880px;">
-      <p class="lead reveal">En Xpress Entertainment, construimos nuestros precios alrededor de una idea sencilla. Cada DJ tiene su propia personalidad, trayectoria y nivel de demanda, y el precio refleja la experiencia que aportan a tu celebración.</p>
-      <p class="lead reveal d1" style="margin-top:16px;">La mayoría de las parejas invierten entre $1,750 y $3,500, con nuestros DJs más nuevos y solicitados comenzando en el rango más bajo y nuestros DJs más requeridos y con más experiencia en lo más alto. Esto te da la libertad de elegir a la persona que se alinea con tu visión y la energía que quieres para el día de tu boda.</p>
-      <p class="lead reveal d2" style="margin-top:16px; color:#fff;">👉 Desplázate hacia abajo para conocer a los DJs, ver sus tarifas y comenzar a crear tu versión de La Máxima Experiencia de Bodas.</p>
+      <p class="lead reveal">Cada DJ de nuestro equipo tiene su propia tarifa inicial según su experiencia y demanda. Esa tarifa cubre la hora del cóctel y la recepción, y las nuevas reservas incluyen nuestra iluminación estándar de pista de baile. Después agregas solo lo que quieras, como sonido para la ceremonia, efectos o una cabina de fotos. Ninguna boda se arma igual, y todo lo que elijas va en un solo acuerdo de reserva.</p>
     </div>
   </section>
 
-  <!-- DJ PRICING -->
+  <!-- WEDDING DJs -->
   <section class="pad bg-deep">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">Conoce a los DJs</span><h2 class="h-xl">Elige tu DJ.</h2></div>
+      <div class="sec-head center reveal"><span class="eyebrow light">Bodas</span><h2 class="h-xl">Elige tu DJ para la boda</h2></div>
       <div class="dj-grid">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <img src="/images/djs/drew-segura-headshot.png" alt="Drew Segura — fundador y DJ principal" class="dj-avatar" />
-          <h3>Drew Segura <span class="lang-tag">Bilingüe</span></h3>
-          <p style="color:#d9d0ec; margin:12px 0;">Un DJ de bodas y MC bilingüe con raíces en las culturas estadounidense, dominicana y colombiana. Reconocido por sus fenomenales habilidades como anfitrión y por mezclar culturas a la perfección.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,750</div>
-          <a href={L('/dj-drew-segura')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Drew ↗</a>
-        </div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <img src="/images/djs/dj-atomic-headshot.jpg" alt="DJ Atomic — DJ internacional de bodas y eventos" class="dj-avatar" />
-          <h3>DJ Atomic</h3>
-          <p style="color:#d9d0ec; margin:12px 0;">Originario de Santa Lucía y ahora radicado en el sur de Florida, DJ Atomic es reconocido por su estilo musical multicultural, sus mezclas impecables y su habilidad para leer cualquier ambiente.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $2,500</div>
-          <a href={L('/djatomic')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Atomic ↗</a>
-        </div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <img src="/images/djs/dj-phil-headshot.jpg" alt="DJ Phil — DJ y MC de bodas" class="dj-avatar" />
-          <h3>DJ Phil <span class="lang-tag">Trilingüe</span></h3>
-          <p style="color:#d9d0ec; margin:12px 0;">Un DJ y MC de formato abierto y versátil que lee el ambiente sin esfuerzo y mezcla géneros para mantener a todas las generaciones en la pista toda la noche.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
-          <a href={L('/djphil')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Phil ↗</a>
-        </div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <img src="/images/djs/dj-rere-headshot.jpg" alt="DJ ReRe — DJ y MC de bodas" class="dj-avatar" />
-          <h3>DJ ReRe</h3>
-          <p style="color:#d9d0ec; margin:12px 0;">Un DJ y MC lleno de energía que aporta el hype y el corazón, creando una banda sonora que encaja con tu público y mantiene la celebración en movimiento.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
-          <a href={L('/djrere')} class="textlink" style="margin-top:16px;">Conoce Más Sobre ReRe ↗</a>
-        </div>
-        <div class="value reveal d2" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <img src="/images/djs/naqeeb-mohamed-headshot.jpg" alt="DJ Naqeeb — DJ caribeño y de las Indias Occidentales en Miami y Fort Lauderdale" class="dj-avatar" />
-          <h3>DJ Naqeeb</h3>
-          <p style="color:#d9d0ec; margin:12px 0;">Un DJ caribeño y de las Indias Occidentales con raíces profundas en Miami y Fort Lauderdale. Mezcla soca, dancehall, Afrobeats, hip-hop y Top 40 con sensibilidad para cada público. Naqeeb trabaja solo como DJ, así que las parejas que lo reservan traen su propio MC o suman uno de nuestro equipo.</p>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">Desde $1,950</div>
-          <a href={L('/djnaqeeb')} class="textlink" style="margin-top:16px;">Conoce Más Sobre Naqeeb ↗</a>
-        </div>
+        {djs.map((dj, i) => (
+          <a
+            href={dj.href}
+            class={`value pricing-card reveal ${i ? (i < 3 ? 'd1' : 'd2') : ''}`}
+            style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;"
+          >
+            <img src={dj.img} alt={dj.alt} class="dj-avatar" />
+            <h3>{dj.name}{dj.tag && <span class="lang-tag">{dj.tag}</span>}</h3>
+            <p style="color:#d9d0ec; margin:12px 0;">{dj.bio}</p>
+            <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red);">{dj.price}</div>
+            <span class="textlink" style="margin-top:16px;">{dj.label} ↗</span>
+          </a>
+        ))}
       </div>
-      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">(El precio incluye Hora del Cóctel y Recepción)</p>
+      <p class="lead reveal" style="text-align:center; margin-top:30px; color:var(--lavender);">Las tarifas iniciales cubren la hora del cóctel y la recepción. Las nuevas reservas incluyen nuestra iluminación estándar de pista de baile.</p>
     </div>
   </section>
 
   <!-- EPIC EXTRAS -->
   <section class="pad bg-ink">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow">Extras Épicos (Complementos)</span><h2 class="h-xl">Eleva la experiencia.</h2><p class="lead" style="margin-inline:auto;">Un gran animador es el primer paso para crear una pista de baile épica en tu boda. Estos Extras Épicos elevarán tu Máxima Experiencia de Bodas.</p></div>
-      <div class="reveal" style="max-width:680px; margin:0 auto;">
-        {extras.map((name) => (
-          <div style="display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
-            <span style="color:var(--red); font-family:var(--serif);">✦</span><span style="font-size:1.15rem;">{name}</span>
+      <div class="sec-head center reveal"><span class="eyebrow">Extras Épicos</span><h2 class="h-xl">Agrega lo que quieras.</h2><p class="lead" style="margin-inline:auto;">Precios por evento.</p></div>
+      <div class="reveal" style="max-width:760px; margin:0 auto;">
+        {extras.map((item) => {
+          const Tag = item.href ? 'a' : 'div';
+          const props = item.href
+            ? { href: item.href, class: 'pricing-extra pricing-extra-link' }
+            : { class: 'pricing-extra' };
+          return (
+            <Tag {...props}>
+              <span class="pricing-extra-mark" aria-hidden="true">✦</span>
+              <span class="pricing-extra-body">
+                <span class="pricing-extra-title">{item.name}<span class="pricing-extra-price">, {item.price}</span></span>
+                {item.blurb && <span class="pricing-extra-blurb">{item.blurb}</span>}
+              </span>
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO BOOTHS -->
+  <section class="pad bg-deep">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Paquetes de Cabina de Fotos</span><h2 class="h-xl">Cabinas de fotos</h2></div>
+      <div class="booth-grid">
+        {booths.map((b, i) => {
+          const Tag = b.href ? 'a' : 'div';
+          const props = b.href
+            ? { href: b.href, class: `value pricing-card reveal ${i % 2 ? 'd1' : ''}`, style: 'border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;' }
+            : { class: `value reveal ${i % 2 ? 'd1' : ''}`, style: 'border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;' };
+          return (
+            <Tag {...props}>
+              <h3>{b.name}</h3>
+              <div style="font-family:var(--serif); font-size:2rem; color:var(--red); margin:8px 0;">{b.price}</div>
+              {b.blurb && <p style="color:#d9d0ec; line-height:1.7;">{b.blurb}</p>}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CORPORATE -->
+  <section class="pad bg-ink">
+    <div class="wrap" style="max-width:820px; text-align:center;">
+      <div class="sec-head center reveal"><span class="eyebrow">Corporativo</span><h2 class="h-xl">Eventos corporativos</h2></div>
+      <p class="lead reveal d1" style="margin-inline:auto;">Las fiestas de empresa, galas, fiestas navideñas y eventos de marca funcionan distinto a una boda, así que los cotizamos aparte. Cada evento corporativo recibe su propia cotización según tu horario, el lugar y lo que quieras agregar.</p>
+      <p class="reveal d2" style="font-family:var(--serif); font-size:2.2rem; color:var(--red); margin:28px 0 24px;">Desde $1,500, cotizado por evento.</p>
+      <a href={L('/check-availability')} class="btn reveal d3"><span>Pide una cotización</span> <span class="arrow">↗</span></a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad bg-deep" id="faq">
+    <div class="wrap">
+      <div class="sec-head center reveal"><span class="eyebrow light">Buenas preguntas</span><h2 class="h-xl">Preguntas sobre precios</h2></div>
+      <div style="max-width:820px; margin:0 auto;">
+        {faqs.map((f, i) => (
+          <div id={f.id} class={`reveal ${i % 2 ? 'd1' : ''}`} style="padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.12); scroll-margin-top:100px;">
+            <h3 style="font-size:1.35rem; color:#fff; margin-bottom:8px;">{f.q}</h3>
+            <p style="color:#d9d0ec; line-height:1.8;">{f.a}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- PHOTOBOOTHS -->
-  <section class="pad bg-deep">
+  <section class="cta pad">
     <div class="wrap">
-      <div class="sec-head center reveal"><span class="eyebrow light">Paquetes de Cabina de Fotos</span><h2 class="h-xl">Toca, Posa, Sonríe – Repite.</h2></div>
-      <div class="cards" style="grid-template-columns:repeat(2,1fr);">
-        <div class="value reveal" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <h3>Cabina de Fotos Lux</h3>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$875</div>
-          <p style="color:var(--lavender); margin-bottom:14px;">4 Horas</p>
-          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{lux.map((i) => <li>✦ {i}</li>)}</ul>
-        </div>
-        <div class="value reveal d1" style="border-color:rgba(255,255,255,0.14); color:#fff; text-align:center;">
-          <h3>Cabina de Video 360</h3>
-          <div style="font-family:var(--serif); font-size:2.4rem; color:var(--red); margin:8px 0;">$1,250</div>
-          <p style="color:var(--lavender); margin-bottom:14px;">4 Horas</p>
-          <ul style="list-style:none; color:#d9d0ec; line-height:1.9; padding:0; text-align:left; display:inline-block;">{threesixty.map((i) => <li>✦ {i}</li>)}</ul>
-        </div>
+      <span class="eyebrow light reveal">Crea tu noche</span>
+      <h2 class="display reveal d1">Crea tu Máxima<br>Experiencia de Bodas.</h2>
+      <p class="lead reveal d2" style="margin:24px auto 0; text-align:center;">Cuéntanos tu fecha y lo que tienes en mente, y preparamos tu acuerdo de reserva.</p>
+      <div class="reveal d3" style="margin-top:36px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
+        <a href={L('/check-availability')} class="btn"><span>Consulta tu fecha</span> <span class="arrow">↗</span></a>
+        <a href="tel:+19548331196" class="btn ghost"><span>Llámanos (954) 833-1196</span></a>
       </div>
     </div>
   </section>
-
-  <CTA eyebrow="Crea tu noche" titleHtml={`Crea tu Máxima<br>Experiencia de Bodas.`} ctaText="Consulta Disponibilidad" ctaHref={L('/check-availability')} />
 </Base>
 
 <style>
-  /* 4-up DJ pricing grid — collapses to 2x2 on tablet and stacks on phone */
-  .dj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
-  @media (max-width: 1100px) { .dj-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px)  { .dj-grid { grid-template-columns: 1fr; } }
+  .dj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+  .booth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; }
+  a.pricing-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    outline-offset: 4px;
+  }
+  a.pricing-card:focus-visible {
+    outline: 2px solid var(--lavender);
+  }
+  a.pricing-card .textlink { display: inline-block; }
+  .pricing-extra {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    color: inherit;
+    text-decoration: none;
+  }
+  .pricing-extra-link { transition: color 0.25s var(--ease); }
+  .pricing-extra-link:hover .pricing-extra-title,
+  .pricing-extra-link:focus-visible .pricing-extra-title { color: var(--lavender); }
+  .pricing-extra-link:focus-visible { outline: 2px solid var(--lavender); outline-offset: 4px; }
+  .pricing-extra-mark { color: var(--red); font-family: var(--serif); flex-shrink: 0; margin-top: 2px; }
+  .pricing-extra-body { display: flex; flex-direction: column; gap: 6px; }
+  .pricing-extra-title { font-size: 1.15rem; color: #fff; }
+  .pricing-extra-price { color: var(--lavender); }
+  .pricing-extra-blurb { font-size: 0.98rem; color: #d9d0ec; line-height: 1.65; }
 </style>

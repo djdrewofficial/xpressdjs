@@ -7,6 +7,10 @@ const postSchema = z.object({
   image: z.string().optional(),
   author: z.string().default('Xpress Entertainment'),
   tag: z.string().default('Wedding Tips'),
+  faqs: z.array(z.object({
+    q: z.string(),
+    a: z.string(),
+  })).optional(),
 });
 
 const blog = defineCollection({ type: 'content', schema: postSchema });
