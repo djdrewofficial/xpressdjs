@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { translated } from '../i18n/ui';
+import { translated, withTrailingSlash } from '../i18n/ui';
 
 const SITE = 'https://xpressdjs.com';
 
@@ -10,6 +10,8 @@ const exclude = new Set(['/photobooth-templates']);
 // Indexable English-only pages (no Spanish translation) — emitted without
 // hreflang alternates so we never point search engines at a missing /es page.
 const enOnly = ['/lgbtq-wedding-dj-south-florida', '/keychain-photo-booth-station'];
+
+const loc = (path: string) => SITE + withTrailingSlash(path);
 
 export const GET: APIRoute = async () => {
   const routes = Array.from(translated).filter((r) => !exclude.has(r));
@@ -21,10 +23,10 @@ export const GET: APIRoute = async () => {
     `<xhtml:link rel="alternate" hreflang="es" href="${es}"/>` +
     `<xhtml:link rel="alternate" hreflang="x-default" href="${en}"/>`;
 
-  const addEnOnly = (loc: string) => {
-    if (emitted.has(loc)) return;
-    emitted.add(loc);
-    blocks.push(`<url><loc>${loc}</loc></url>`);
+  const addEnOnly = (url: string) => {
+    if (emitted.has(url)) return;
+    emitted.add(url);
+    blocks.push(`<url><loc>${url}</loc></url>`);
   };
 
   const addPair = (en: string, es: string) => {
@@ -36,10 +38,10 @@ export const GET: APIRoute = async () => {
     blocks.push(`<url><loc>${es}</loc>${alts}</url>`);
   };
 
-  for (const r of enOnly) addEnOnly(SITE + r);
+  for (const r of enOnly) addEnOnly(loc(r));
 
   for (const r of routes) {
-    addPair(SITE + r, SITE + (r === '/' ? '/es/' : '/es' + r));
+    addPair(loc(r), loc(r === '/' ? '/es/' : '/es' + r));
   }
 
   // Auto-include every blog post so new posts never need a manual sitemap edit.
@@ -47,10 +49,10 @@ export const GET: APIRoute = async () => {
   // get hreflang alternates; the rest are emitted English-only.
   const esSlugs = new Set((await getCollection('blogEs')).map((p) => p.slug));
   for (const post of await getCollection('blog')) {
-    const en = `${SITE}/wedding-blog/${post.slug}`;
+    const en = loc(`/wedding-blog/${post.slug}`);
     if (emitted.has(en)) continue;
     if (esSlugs.has(post.slug)) {
-      addPair(en, `${SITE}/es/wedding-blog/${post.slug}`);
+      addPair(en, loc(`/es/wedding-blog/${post.slug}`));
     } else {
       addEnOnly(en);
     }

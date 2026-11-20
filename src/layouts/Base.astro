@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import LangToggle from '../components/LangToggle.astro';
-import { getLocale, toEnPath, hasES } from '../i18n/ui';
+import { getLocale, toEnPath, hasES, withTrailingSlash } from '../i18n/ui';
 
 const {
   title,
@@ -29,8 +29,8 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? 
 // Site-wide LocalBusiness structured data (helps Google's local pack,
 // knowledge panel, and rich results). Renders invisibly in <head>.
 const SITE_ORIGIN = Astro.site ? Astro.site.origin : 'https://xpressdjs.com';
-const altEn = SITE_ORIGIN + enPath;
-const altEs = SITE_ORIGIN + (enPath === '/' ? '/es/' : '/es' + enPath);
+const altEn = SITE_ORIGIN + withTrailingSlash(enPath);
+const altEs = SITE_ORIGIN + withTrailingSlash(enPath === '/' ? '/es/' : '/es' + enPath);
 
 // Analytics IDs are public client-side values. They are not loaded until the
 // visitor allows analytics. Either ID can be overridden with PUBLIC_GA4_ID
